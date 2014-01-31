@@ -1,0 +1,39 @@
+{
+  "name"            : "mochify",
+  "version"         : "0.2.1",
+  "description"     : "TDD browserified code with Mocha, PhantomJS and WebDriver",
+  "keywords"        : ["mocha", "browserify", "watchify", "phantomjs",
+                       "webdriver", "selenium", "tdd"],
+  "author"          : "Maximilian Antoni (http://maxantoni.de)",
+  "homepage"        : "https://github.com/mantoni/mochify.js",
+  "engines"         : {
+    "node"          : ">=0.10"
+  },
+  "bin"             : {
+    "mochify"       : "bin/cmd.js"
+  },
+  "scripts"         : {
+    "test"          : "jslint --color -- ./bin/*.js"
+  },
+  "repository"      : {
+    "type"          : "git",
+    "url"           : "https://github.com/mantoni/mochify.js.git"
+  },
+  "dependencies"    : {
+    "browserify"    : "~3.24.7",
+    "watchify"      : "~0.5.4",
+    "mocaccino"     : "~0.2.0",
+    "phantomic"     : "~0.3.0",
+    "through"       : "~2.3.4",
+    "glob"          : "~3.2.6"
+  },
+  "peerDependencies": {
+    "brout"         : "~0.1.2",
+    "min-wd"        : "~0.3.0"
+  },
+  "devDependencies" : {
+    "jslint"        : "~0.2.7"
+  },
+  "files"           : ["bin", "lib", "README.md", "LICENSE"],
+  "license"         : "MIT"
+}

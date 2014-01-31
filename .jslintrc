@@ -1,0 +1,9 @@
+{
+  "indent"   : 2,
+  "maxlen"   : 79,
+  "node"     : true,
+  "plusplus" : true,
+  "vars"     : true,
+  "nomen"    : true,
+  "ass"      : true
+}
