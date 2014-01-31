@@ -1,4 +1,11 @@
 #!/usr/bin/env node
+/*
+ * mochify.js
+ *
+ * Copyright (c) 2014 Maximilian Antoni <mail@maxantoni.de>
+ *
+ * @license MIT
+ */
 'use strict';
 
 var watchify      = require('watchify');
