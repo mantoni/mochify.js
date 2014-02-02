@@ -31,15 +31,12 @@ Options:
 
 ![mochify](http://maxantoni.de/img/mochify.png)
 
-Download «Selenium Server Standalone» JAR from here:
-<https://code.google.com/p/selenium/downloads/list>
-
-Except for Firefox, You will also need drivers for each browser you want run.
-
-The driver for Google Chrome can be found here:
-<http://chromedriver.storage.googleapis.com/index.html>
-
-Put the drivers in the same directory as the JAR file and run:
+- Download the «Selenium Server Standalone» JAR from here:
+  <https://code.google.com/p/selenium/downloads/list>
+- Except for Firefox, you will also need drivers for each browser.
+- The driver for Google Chrome can be found here:
+  <http://chromedriver.storage.googleapis.com/index.html>
+- Put the drivers in the same directory as the JAR file and run:
 
 ```
 java -jar selenium-server-standalone-2.39.0.jar
