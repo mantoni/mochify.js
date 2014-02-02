@@ -97,11 +97,13 @@ function bundler(w, launcher) {
   };
 }
 
+var transform = wd ? 'min-wd' : 'brout';
+
 if (watch) {
 
   var w = watchify(opts);
   var bundle = bundler(w, wd ? launchWebDriver : launchPhantom);
-  w.transform(wd ? 'min-wd' : 'brout');
+  w.transform(transform);
   w.on('update', bundle);
   w.on('error', error);
   bundle();
@@ -109,7 +111,7 @@ if (watch) {
 } else {
 
   var b = browserify(opts);
-  b.transform(wd ? 'min-wd' : 'brout');
+  b.transform(transform);
   b.on('error', error);
 
   var ps = through();
