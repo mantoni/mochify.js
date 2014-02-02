@@ -28,7 +28,7 @@ if (argv[0] === '--watch') {
   reporter = 'min';
 }
 
-while (argv.length && argv[0].indexOf('--') === 0) {
+while (argv.length && argv[0].indexOf('-') === 0) {
   if (argv[0] === '--wd') {
     argv.shift();
     wd = true;
