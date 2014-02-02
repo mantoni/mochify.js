@@ -75,7 +75,9 @@ function launchWebDriver(ps) {
 }
 
 function browserifyBundle(w, ps, callback) {
-  var wb = w.bundle();
+  var wb = w.bundle({
+    debug : true
+  });
   wb.on('error', error);
   var ms = mocaccino(wb, { reporter : reporter, browser : true });
   ms.pipe(ps);
