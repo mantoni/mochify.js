@@ -1,7 +1,7 @@
 {
   "name"            : "mochify",
   "version"         : "0.3.0",
-  "description"     : "TDD browserified code with Mocha, PhantomJS and WebDriver",
+  "description"     : "TDD for browserified code with Mocha, PhantomJS and WebDriver",
   "keywords"        : ["mocha", "browserify", "watchify", "phantomjs",
                        "webdriver", "selenium", "tdd"],
   "author"          : "Maximilian Antoni (http://maxantoni.de)",
@@ -24,7 +24,6 @@
     "watchify"      : "~0.5.4",
     "mocaccino"     : "~0.2.0",
     "phantomic"     : "~0.3.0",
-    "min-wd"        : "~0.3.0",
     "through"       : "~2.3.4",
     "glob"          : "~3.2.6"
   },
