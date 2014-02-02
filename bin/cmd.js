@@ -18,7 +18,7 @@ var webdriver     = require('min-wd/lib/driver');
 var webdriverOpts = require('min-wd/lib/options');
 
 var argv     = process.argv.slice(2);
-var reporter = 'spec';
+var reporter = 'dot';
 var watch    = false;
 var wd       = false;
 
