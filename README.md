@@ -94,7 +94,7 @@ Mocha reporters known to work:
 - markdown
 
 Note: Consuming the output of a machine readable reporter may not work as
-expected when running with `--wd`:
+expected with `--wd`.
 
 ## License
 
