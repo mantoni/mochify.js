@@ -46,15 +46,15 @@ Create `.min-wd` in your project root:
 
 ```
 {
-  "hostname": "localhost",
-  "port": 4444,
-  "browsers": [{
-    "name": "internet explorer",
-    "version": "9"
+  "hostname"  : "localhost",
+  "port"      : 4444,
+  "browsers"  : [{
+    "name"    : "internet explorer",
+    "version" : "9"
   }, {
-    "name": "chrome"
+    "name"    : "chrome"
   }, {
-    "name": "firefox"
+    "name"    : "firefox"
   }]
 }
 ```
@@ -66,16 +66,16 @@ to run `node_modules/.bin/mochify --wd`.
 ## Example package.json configuration
 
 ```
-"devDependencies": {
-  "mocha"        : "*",
-  "browserify"   : "*",
-  "mochify"      : "*"
+"devDependencies" : {
+  "mocha"         : "*",
+  "browserify"    : "*",
+  "mochify"       : "*"
 },
-"scripts"        : {
-  "start"        : "mochify --watch"
-  "test-phantom" : "mochify",
-  "test-wd"      : "mochify --wd",
-  "test"         : "npm run test-phantom && npm run test-wd"
+"scripts"         : {
+  "start"         : "mochify --watch"
+  "test-phantom"  : "mochify",
+  "test-wd"       : "mochify --wd",
+  "test"          : "npm run test-phantom && npm run test-wd"
 }
 ```
 
@@ -83,18 +83,18 @@ to run `node_modules/.bin/mochify --wd`.
 
 Mocha reporters known to work:
 
-- min (default for `--watch`, not usefull with `--wd`)
+- min (default for `--watch`)
 - dot (default when not `--watch`)
 - list
 - spec
-
-Reporters with machine readable output are currently not working with `--wd`:
-
 - tap
 - json
 - doc
 - xunit
 - markdown
+
+Note: Consuming the output of a machine readable reporter may not work as
+expected when running with `--wd`:
 
 ## License
 
