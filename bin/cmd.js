@@ -11,6 +11,7 @@
 var watchify      = require('watchify');
 var browserify    = require('browserify');
 var through       = require('through');
+var resolve       = require('resolve');
 var glob          = require('glob');
 var mocaccino     = require('mocaccino');
 var phantomic     = require('phantomic');
@@ -79,11 +80,10 @@ function browserifyBundle(w, ps, callback) {
     debug : true
   });
   wb.on('error', error);
-  var ms = mocaccino(wb, { reporter : reporter, browser : true });
-  ms.pipe(ps);
   if (callback) {
     ps.on('end', callback);
   }
+  wb.pipe(ps);
 }
 
 function bundler(w, launcher) {
@@ -97,22 +97,38 @@ function bundler(w, launcher) {
   };
 }
 
-var transform = wd ? 'min-wd' : 'brout';
+function configure(b) {
+  if (wd) {
+    var minWebDriverFile = resolve.sync('min-wd', {
+      baseDir: __dirname,
+      packageFilter: function (pkg) {
+        return { main : pkg.browser };
+      }
+    });
+    b.add(minWebDriverFile);
+  }
+
+  b.plugin(mocaccino, { reporter : reporter });
+  entries.forEach(function (entry) {
+    b.add(entry);
+  });
+  b.on('error', error);
+}
 
 if (watch) {
 
-  var w = watchify(opts);
+  var w = watchify();
+  configure(w);
+
   var bundle = bundler(w, wd ? launchWebDriver : launchPhantom);
-  w.transform(transform);
   w.on('update', bundle);
   w.on('error', error);
   bundle();
 
 } else {
 
-  var b = browserify(opts);
-  b.transform(transform);
-  b.on('error', error);
+  var b = browserify();
+  configure(b);
 
   var ps = through();
   if (wd) {

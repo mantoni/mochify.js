@@ -25,6 +25,7 @@ function run(test, callback) {
 
 
 describe('phantom', function () {
+  this.timeout(3000);
 
   it('passes', function (done) {
     run('passes', function (code, stdout) {
