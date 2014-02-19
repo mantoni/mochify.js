@@ -22,6 +22,7 @@ var argv     = process.argv.slice(2);
 var reporter = 'dot';
 var watch    = false;
 var wd       = false;
+var ps;
 
 if (argv[0] === '--watch') {
   argv.shift();
@@ -59,41 +60,42 @@ function error(err) {
   console.error(String(err));
 }
 
-function launcherCallback(err) {
-  if (!watch) {
-    process.nextTick(function () {
-      process.exit(err ? 1 : 0);
-    });
-  }
+function launcherCallback(callback) {
+  return function (err) {
+    if (!watch) {
+      process.nextTick(function () {
+        process.exit(err ? 1 : 0);
+      });
+    } else if (callback) {
+      callback();
+    }
+  };
 }
 
-function launchPhantom(ps) {
-  phantomic(ps, launcherCallback);
+function launchPhantom(callback) {
+  phantomic(ps, launcherCallback(callback)).pipe(process.stdout);
 }
 
-function launchWebDriver(ps) {
-  webdriver(ps, webdriverOpts(), launcherCallback).pipe(process.stdout);
+function launchWebDriver(callback) {
+  webdriver(ps, webdriverOpts(),
+      launcherCallback(callback)).pipe(process.stdout);
 }
 
-function browserifyBundle(w, ps, callback) {
+function browserifyBundle(w) {
   var wb = w.bundle({
     debug : true
   });
   wb.on('error', error);
-  if (callback) {
-    ps.on('end', callback);
-  }
   wb.pipe(ps);
 }
 
 function bundler(w, launcher) {
-  var ps = through();
-  launcher(ps);
+  (function run() {
+    ps = through();
+    launcher(run);
+  }());
   return function () {
-    browserifyBundle(w, ps, function () {
-      ps = through();
-      launcher(ps);
-    });
+    browserifyBundle(w);
   };
 }
 
@@ -125,18 +127,41 @@ if (watch) {
   w.on('error', error);
   bundle();
 
+  process.on('SIGINT', function () {
+    if (ps) {
+      ps.on('end', function () {
+        process.exit(0);
+      });
+      ps.queue(null);
+    } else {
+      process.exit(0);
+    }
+  });
+
+  // Hack for Windows:
+  if (require('os').platform() === 'win32') {
+    var readline = require('readline');
+    var rl = readline.createInterface({
+      input  : process.stdin,
+      output : process.stdout
+    });
+    rl.on('SIGINT', function () {
+      process.emit('SIGINT');
+    });
+  }
+
 } else {
 
   var b = browserify();
   configure(b);
 
-  var ps = through();
+  ps = through();
   if (wd) {
-    launchWebDriver(ps);
+    launchWebDriver();
   } else {
-    launchPhantom(ps);
+    launchPhantom();
   }
 
-  browserifyBundle(b, ps);
+  browserifyBundle(b);
 
 }

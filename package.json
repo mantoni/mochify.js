@@ -1,6 +1,6 @@
 {
   "name"            : "mochify",
-  "version"         : "0.4.0",
+  "version"         : "0.4.1",
   "description"     : "TDD for browserified code with Mocha, PhantomJS and WebDriver",
   "keywords"        : ["mocha", "browserify", "watchify", "phantomjs",
                        "webdriver", "selenium", "tdd"],
@@ -24,7 +24,7 @@
     "browserify"    : "~3.30.1",
     "watchify"      : "~0.6.1",
     "mocaccino"     : "~0.3.0",
-    "phantomic"     : "~0.3.0",
+    "phantomic"     : "~0.4.1",
     "through"       : "~2.3.4",
     "resolve"       : "~0.6.1",
     "glob"          : "~3.2.6",

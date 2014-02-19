@@ -1,5 +1,11 @@
 # Changes
 
+## 0.4.1
+
+- Up phantomic - fixes stack traces using the embedded source maps
+- Windows support
+- Waiting for a previous phantomic process to die before launching a new one
+
 ## 0.4.0
 
 - Using Mocaccino 0.3.0 which is now a Browserify plugin
