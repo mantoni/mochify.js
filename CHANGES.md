@@ -1,5 +1,9 @@
 # Changes
 
+## 0.4.2
+
+- Up phantomic
+
 ## 0.4.1
 
 - Up phantomic - fixes stack traces using the embedded source maps
