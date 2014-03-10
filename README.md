@@ -13,7 +13,8 @@ TDD for browserified code with Mocha, PhantomJS and WebDriver
 npm install mochify -g
 ```
 
-If you don't have PhantomJS yet, get it now: <http://phantomjs.org/>
+- Download and install Phantom.JS: <http://phantomjs.org/>
+- Make sure that the phantomjs executable is in your `PATH`
 
 ## Usage
 
@@ -26,6 +27,8 @@ Options:
 - `--watch` use [watchify][] to watch your files and run the tests on change
 - `--wd` use [min-webdriver][] to run the tests in multiple real browsers
 - `--reporter` or `-R` to change the Mocha reporter (see further down)
+- `--cover` to check code coverage with [coverify][]
+- `--node` to run test cases on node (useful with `--cover`)
 
 ## Browser setup
 
@@ -83,10 +86,10 @@ to run `node_modules/.bin/mochify --wd`.
 
 Mocha reporters known to work:
 
-- min (default for `--watch`)
-- dot (default when not `--watch`)
+- min
+- dot
 - list
-- spec
+- spec (default)
 - tap
 - json
 - doc
@@ -101,4 +104,5 @@ expected with `--wd`.
 MIT
 
 [watchify]: https://github.com/substack/watchify
+[coverify]: https://github.com/substack/coverify
 [min-webdriver]: https://github.com/mantoni/min-webdriver

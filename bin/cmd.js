@@ -10,6 +10,7 @@
 
 var watchify      = require('watchify');
 var browserify    = require('browserify');
+var coverify      = require('coverify');
 var through       = require('through');
 var resolve       = require('resolve');
 var glob          = require('glob');
@@ -17,29 +18,38 @@ var mocaccino     = require('mocaccino');
 var phantomic     = require('phantomic');
 var webdriver     = require('min-wd/lib/driver');
 var webdriverOpts = require('min-wd/lib/options');
+var spawn         = require('child_process').spawn;
 
 var argv     = process.argv.slice(2);
-var reporter = 'dot';
+var reporter = 'spec';
 var watch    = false;
 var wd       = false;
+var cover    = false;
+var node     = false;
+var failure  = false;
 var ps;
 
-if (argv[0] === '--watch') {
-  argv.shift();
-  watch    = true;
-  reporter = 'min';
-}
-
 while (argv.length && argv[0].indexOf('-') === 0) {
-  if (argv[0] === '--wd') {
+  if (argv[0] === '--watch') {
+    argv.shift();
+    watch = true;
+  } else if (argv[0] === '--cover') {
+    argv.shift();
+    cover = true;
+  } else if (argv[0] === '--node') {
+    argv.shift();
+    node = true;
+  } else if (argv[0] === '--wd') {
     argv.shift();
     wd = true;
   } else if (argv[0] === '--reporter' || argv[0] === '-R') {
     argv.shift();
     reporter = argv.shift();
+  } else {
+    process.stdout.write('Unknown argument: ' + argv[0] + '\n\n');
+    process.exit(1);
   }
 }
-
 
 var entries = [];
 if (argv.length) {
@@ -54,15 +64,13 @@ if (argv.length) {
   entries = glob.sync("./test/*.js");
 }
 
-var opts = { entries : entries };
-
 function error(err) {
   console.error(String(err));
 }
 
 function launcherCallback(callback) {
   return function (err) {
-    if (!watch) {
+    if (!watch && !cover) {
       process.nextTick(function () {
         process.exit(err ? 1 : 0);
       });
@@ -72,19 +80,59 @@ function launcherCallback(callback) {
   };
 }
 
+function launcherOut() {
+  if (cover) {
+    var c = spawn('coverify');
+    c.stdout.pipe(process.stdout);
+    c.stderr.pipe(process.stderr);
+    c.on('exit', function (code) {
+      if (!watch) {
+        process.nextTick(function () {
+          process.exit(failure || code);
+        });
+      }
+    });
+    return c.stdin;
+  }
+  return process.stdout;
+}
+
+function launchNode(callback) {
+  var n = spawn('node');
+  n.stdout.pipe(launcherOut());
+  n.stderr.pipe(process.stderr);
+  n.on('exit', function (code) {
+    failure = code;
+    if (!watch) {
+      if (!cover) {
+        process.nextTick(function () {
+          process.exit(code);
+        });
+      }
+    } else {
+      callback();
+    }
+  });
+  ps.pipe(n.stdin);
+}
+
 function launchPhantom(callback) {
-  phantomic(ps, launcherCallback(callback)).pipe(process.stdout);
+  phantomic(ps, launcherCallback(callback)).pipe(launcherOut());
 }
 
 function launchWebDriver(callback) {
-  webdriver(ps, webdriverOpts(),
-      launcherCallback(callback)).pipe(process.stdout);
+  var wdOpts = webdriverOpts();
+  webdriver(ps, wdOpts, launcherCallback(callback)).pipe(launcherOut());
 }
 
 function browserifyBundle(w) {
-  var wb = w.bundle({
+  var opts = {
     debug : true
-  });
+  };
+  if (node) {
+    opts.insertGlobalVars = ['__dirname', '__filename'];
+  }
+  var wb = w.bundle(opts);
   wb.on('error', error);
   wb.pipe(ps);
 }
@@ -99,30 +147,47 @@ function bundler(w, launcher) {
   };
 }
 
-function configure(b) {
-  if (wd) {
-    var minWebDriverFile = resolve.sync('min-wd', {
-      baseDir: __dirname,
-      packageFilter: function (pkg) {
-        return { main : pkg.browser };
-      }
-    });
-    b.add(minWebDriverFile);
-  }
 
-  b.plugin(mocaccino, { reporter : reporter });
-  entries.forEach(function (entry) {
-    b.add(entry);
+var opts = {};
+if (node) {
+  opts.builtins = false;
+  opts.commondir = false;
+}
+var b = browserify(opts);
+if (wd) {
+  var minWebDriverFile = resolve.sync('min-wd', {
+    baseDir: __dirname,
+    packageFilter: function (pkg) {
+      return { main : pkg.browser };
+    }
   });
-  b.on('error', error);
+  b.add(minWebDriverFile);
+}
+
+entries.forEach(function (entry) {
+  b.add(entry);
+});
+b.plugin(mocaccino, { reporter : reporter, node : node });
+if (cover) {
+  b.transform(coverify);
+}
+b.on('error', error);
+
+
+var launcher = null;
+if (wd) {
+  launcher = launchWebDriver;
+} else if (node) {
+  launcher = launchNode;
+} else {
+  launcher = launchPhantom;
 }
 
 if (watch) {
 
-  var w = watchify();
-  configure(w);
+  var w = watchify(b);
 
-  var bundle = bundler(w, wd ? launchWebDriver : launchPhantom);
+  var bundle = bundler(w, launcher);
   w.on('update', bundle);
   w.on('error', error);
   bundle();
@@ -152,16 +217,8 @@ if (watch) {
 
 } else {
 
-  var b = browserify();
-  configure(b);
-
   ps = through();
-  if (wd) {
-    launchWebDriver();
-  } else {
-    launchPhantom();
-  }
-
+  launcher();
   browserifyBundle(b);
 
 }

@@ -14,6 +14,7 @@
   },
   "scripts"         : {
     "lint"          : "jslint --color -- ./**/*.js",
+    "start"         : "mocha --watch",
     "test"          : "npm run lint && mocha -R spec"
   },
   "repository"      : {
@@ -23,12 +24,12 @@
   "dependencies"    : {
     "browserify"    : "~3.30.1",
     "watchify"      : "~0.6.1",
-    "mocaccino"     : "~0.3.0",
-    "phantomic"     : "~0.4.2",
+    "coverify"      : "~1.0.6",
+    "mocaccino"     : "~0.3.1",
+    "phantomic"     : "~0.4.4",
     "through"       : "~2.3.4",
     "resolve"       : "~0.6.1",
     "glob"          : "~3.2.6",
-    "brout"         : "~0.1.3",
     "min-wd"        : "~0.3.0"
   },
   "devDependencies" : {
