@@ -1,5 +1,11 @@
 # Changes
 
+## 0.5.0
+
+- Code coverage support using coverify (`--cover`)
+- Allow to run tests on node, like `browserify --bare script.js | node` with
+  `--node`. Can be combined with `--cover`.
+
 ## 0.4.2
 
 - Up phantomic
