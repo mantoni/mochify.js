@@ -45,6 +45,15 @@ while (argv.length && argv[0].indexOf('-') === 0) {
   } else if (argv[0] === '--reporter' || argv[0] === '-R') {
     argv.shift();
     reporter = argv.shift();
+  } else if (argv[0] === '--help' || argv[0] === '-h') {
+    argv.shift();
+    var fs = require('fs');
+    console.log(fs.readFileSync(require.resolve('./help.txt'), 'utf8'));
+    process.exit(0);
+  } else if (argv[0] === '--version' || argv[0] === '-v') {
+    argv.shift();
+    console.log(require('../package.json').version);
+    process.exit(0);
   } else {
     process.stdout.write('Unknown argument: ' + argv[0] + '\n\n');
     process.exit(1);

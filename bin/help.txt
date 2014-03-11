@@ -1,0 +1,21 @@
+Usage: mochify [options] entry ...
+
+TDD for browserified code with Mocha, PhantomJS and WebDriver
+
+Options:
+
+           --watch   Use watchify to watch your files and run the tests on
+                     change. 
+
+           --cover   Check code coverage with coverify.
+
+    -R, --reporter   Change the Mocha reporter (see further down).
+
+            --node   Run test cases on node (useful with --cover).
+
+              --wd   Use min-webdriver to run the tests in multiple real
+                     browsers.
+
+     -v, --version   Print mochify version and exit.
+
+        -h, --help   Show this message and exit.
