@@ -37,13 +37,13 @@ describe('phantom', function () {
     });
   });
 
-  it.skip('coverage', function (done) {
+  it('coverage', function (done) {
     run('passes', ['--cover', '-R', 'tap'], function (code, stdout) {
       assert.equal(stdout, '1..1\n'
         + 'ok 1 test passes\n'
         + '# tests 1\n'
         + '# pass 1\n'
-        + '# fail 0\n\n# coverage: 29/29 (100.00 %)\n\n');
+        + '# fail 0\n\n# coverage: 33/33 (100.00 %)\n\n');
       assert.equal(code, 0);
       done();
     });
