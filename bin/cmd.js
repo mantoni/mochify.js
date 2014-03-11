@@ -82,7 +82,12 @@ function launcherCallback(callback) {
 
 function launcherOut() {
   if (cover) {
-    var c = spawn('coverify');
+    var c = spawn(resolve.sync('coverify', {
+      baseDir: __dirname,
+      packageFilter: function (pkg) {
+        return { main : pkg.bin.coverify };
+      }
+    }));
     c.stdout.pipe(process.stdout);
     c.stderr.pipe(process.stderr);
     c.on('exit', function (code) {
