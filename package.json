@@ -1,42 +1,52 @@
 {
-  "name"            : "mochify",
-  "version"         : "0.5.0",
-  "description"     : "TDD for browserified code with Mocha, PhantomJS and WebDriver",
-  "keywords"        : ["mocha", "browserify", "watchify", "phantomjs",
-                       "webdriver", "selenium", "tdd"],
-  "author"          : "Maximilian Antoni (http://maxantoni.de)",
-  "homepage"        : "https://github.com/mantoni/mochify.js",
-  "engines"         : {
-    "node"          : ">=0.10"
+  "name": "mochify",
+  "version": "0.5.0",
+  "description": "TDD for browserified code with Mocha, PhantomJS and WebDriver",
+  "keywords": [
+    "mocha",
+    "browserify",
+    "watchify",
+    "phantomjs",
+    "webdriver",
+    "selenium",
+    "tdd"
+  ],
+  "author": "Maximilian Antoni <mail@maxantoni.de> (http://maxantoni.de)",
+  "contributors": [
+    "Andrey Popp <8mayday@gmail.com>"
+  ],
+  "homepage": "https://github.com/mantoni/mochify.js",
+  "engines": {
+    "node": ">=0.10"
   },
-  "bin"             : {
-    "mochify"       : "bin/cmd.js"
+  "bin": {
+    "mochify": "bin/cmd.js"
   },
-  "scripts"         : {
-    "lint"          : "jslint --color -- ./**/*.js",
-    "start"         : "mocha --watch",
-    "test"          : "npm run lint && mocha -R spec"
+  "scripts": {
+    "lint": "jslint --color -- ./**/*.js",
+    "start": "mocha --watch",
+    "test": "npm run lint && mocha -R spec"
   },
-  "repository"      : {
-    "type"          : "git",
-    "url"           : "https://github.com/mantoni/mochify.js.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mantoni/mochify.js.git"
   },
-  "dependencies"    : {
-    "browserify"    : ">=3.30 <4",
-    "watchify"      : "~0.6.1",
-    "coverify"      : "~1.0.6",
-    "mocaccino"     : "~0.4.0",
-    "phantomic"     : "~0.5.0",
-    "through"       : "~2.3.4",
-    "resolve"       : "~0.6.1",
-    "glob"          : "~3.2.6",
-    "min-wd"        : "~0.3.0"
+  "dependencies": {
+    "browserify": ">=3.30 <4",
+    "watchify": "~0.6.1",
+    "coverify": "~1.0.6",
+    "mocaccino": "~0.4.0",
+    "phantomic": "~0.5.0",
+    "through": "~2.3.4",
+    "resolve": "~0.6.1",
+    "glob": "~3.2.6",
+    "min-wd": "~0.3.0"
   },
-  "devDependencies" : {
-    "jslint"        : "~0.2.7",
-    "mocha"         : "~1.17.1",
-    "brout"         : "~0.1.3"
+  "devDependencies": {
+    "jslint": "~0.2.7",
+    "mocha": "~1.17.1",
+    "brout": "~0.1.3"
   },
-  "files"           : ["bin", "lib", "README.md", "LICENSE"],
-  "license"         : "MIT"
+  "files": ["bin", "lib", "README.md", "LICENSE"],
+  "license": "MIT"
 }
