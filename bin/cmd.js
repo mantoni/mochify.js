@@ -47,8 +47,9 @@ while (argv.length && argv[0].indexOf('-') === 0) {
     reporter = argv.shift();
   } else if (argv[0] === '--help' || argv[0] === '-h') {
     argv.shift();
-    var fs = require('fs');
-    console.log(fs.readFileSync(require.resolve('./help.txt'), 'utf8'));
+    console.log(
+      require('fs').readFileSync(require.resolve('./help.txt'), 'utf8')
+    );
     process.exit(0);
   } else if (argv[0] === '--version' || argv[0] === '-v') {
     argv.shift();
