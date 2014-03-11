@@ -1,5 +1,10 @@
 # Changes
 
+## 0.5.1
+
+- Add -h/--help and -v/--version (Andrey Popp)
+- Up mocaccino and phantomic
+
 ## 0.5.0
 
 - Code coverage support using coverify (`--cover`)
