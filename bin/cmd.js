@@ -12,8 +12,11 @@ var watchify      = require('watchify');
 var browserify    = require('browserify');
 var coverify      = require('coverify');
 var through       = require('through');
+var split         = require('char-split');
+var combine       = require('stream-combiner');
 var resolve       = require('resolve');
 var glob          = require('glob');
+var path          = require('path');
 var mocaccino     = require('mocaccino');
 var phantomic     = require('phantomic');
 var webdriver     = require('min-wd/lib/driver');
@@ -21,6 +24,7 @@ var webdriverOpts = require('min-wd/lib/options');
 var spawn         = require('child_process').spawn;
 
 var argv     = process.argv.slice(2);
+var cwd      = process.cwd();
 var reporter = 'spec';
 var watch    = false;
 var wd       = false;
@@ -78,6 +82,41 @@ function error(err) {
   console.error(String(err));
 }
 
+function decode() {
+  return through(function (chunk) {
+    this.queue(Buffer.isBuffer(chunk) ? chunk.toString() : chunk);
+  });
+}
+
+var IS_TRACEBACK_FRAME_RE = /^ *at [^:]+:[0-9]+\)? *$/;
+var SOURCE_RE = /\/[^:]+/;
+var IGNORE_RE = /node_modules\/(browser\-pack\/_prelude)|(mocha\/mocha)\.js/;
+
+function tracebackFormatter() {
+  var lineFormatter = through(function (line) {
+    var ignoreLine = false;
+
+    if (IS_TRACEBACK_FRAME_RE.exec(line)) {
+      line = line.replace(SOURCE_RE, function (source) {
+        if (IGNORE_RE.exec(source)) {
+          ignoreLine = true;
+        } else {
+          var relativeSource = path.relative(cwd, source);
+          if (!/^\.\./.exec(relativeSource)) {
+            source = relativeSource;
+          }
+        }
+        return source;
+      });
+    }
+
+    if (!ignoreLine) {
+      this.queue(line + '\n');
+    }
+  });
+  return combine(decode(), split(), lineFormatter);
+}
+
 function launcherCallback(callback) {
   return function (err) {
     if (!watch && !cover) {
@@ -114,7 +153,7 @@ function launcherOut() {
 
 function launchNode(callback) {
   var n = spawn('node');
-  n.stdout.pipe(launcherOut());
+  n.stdout.pipe(tracebackFormatter()).pipe(launcherOut());
   n.stderr.pipe(process.stderr);
   n.on('exit', function (code) {
     failure = code;
@@ -132,12 +171,16 @@ function launchNode(callback) {
 }
 
 function launchPhantom(callback) {
-  phantomic(ps, launcherCallback(callback)).pipe(launcherOut());
+  phantomic(ps, launcherCallback(callback))
+    .pipe(tracebackFormatter())
+    .pipe(launcherOut());
 }
 
 function launchWebDriver(callback) {
   var wdOpts = webdriverOpts();
-  webdriver(ps, wdOpts, launcherCallback(callback)).pipe(launcherOut());
+  webdriver(ps, wdOpts, launcherCallback(callback))
+    .pipe(tracebackFormatter())
+    .pipe(launcherOut());
 }
 
 function browserifyBundle(w) {
