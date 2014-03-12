@@ -86,8 +86,7 @@ function error(err) {
 var IS_TRACEBACK_FRAME_RE = /^ *at [^:]+:[0-9]+\)? *$/;
 /*jslint regexp: true*/
 var SOURCE_RE = /\/[^:]+/;
-/*jslint maxlen: 100*/
-var IGNORE_RE = /(node_modules\/browser\-pack\/_prelude\.js)|(node_modules\/mocha\/mocha\.js)/;
+var IGNORE_RE = /node_modules\/(browser\-pack\/_prelude)|(mocha\/mocha)\.js/;
 
 function tracebackFormatter() {
   var lineFormatter = through(function (line) {
