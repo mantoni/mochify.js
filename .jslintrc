@@ -6,5 +6,6 @@
   "vars"     : true,
   "nomen"    : true,
   "ass"      : true,
-  "stupid"   : true
+  "stupid"   : true,
+  "regexp"   : true
 }

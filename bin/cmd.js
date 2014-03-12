@@ -82,9 +82,7 @@ function error(err) {
   console.error(String(err));
 }
 
-/*jslint regexp: true*/
 var IS_TRACEBACK_FRAME_RE = /^ *at [^:]+:[0-9]+\)? *$/;
-/*jslint regexp: true*/
 var SOURCE_RE = /\/[^:]+/;
 var IGNORE_RE = /node_modules\/(browser\-pack\/_prelude)|(mocha\/mocha)\.js/;
 
