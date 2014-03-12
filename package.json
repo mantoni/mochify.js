@@ -40,13 +40,20 @@
     "through": "~2.3.4",
     "resolve": "~0.6.1",
     "glob": "~3.2.6",
-    "min-wd": "~0.3.0"
+    "min-wd": "~0.3.0",
+    "stream-combiner": "0.0.4",
+    "split": "^0.3.0"
   },
   "devDependencies": {
     "jslint": "~0.2.7",
     "mocha": "~1.17.1",
     "brout": "~0.1.3"
   },
-  "files": ["bin", "lib", "README.md", "LICENSE"],
+  "files": [
+    "bin",
+    "lib",
+    "README.md",
+    "LICENSE"
+  ],
   "license": "MIT"
 }
