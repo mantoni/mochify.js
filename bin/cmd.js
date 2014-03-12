@@ -12,7 +12,7 @@ var watchify      = require('watchify');
 var browserify    = require('browserify');
 var coverify      = require('coverify');
 var through       = require('through');
-var split         = require('split');
+var split         = require('char-split');
 var combine       = require('stream-combiner');
 var resolve       = require('resolve');
 var glob          = require('glob');
@@ -82,6 +82,12 @@ function error(err) {
   console.error(String(err));
 }
 
+function decode() {
+  return through(function (chunk) {
+    this.queue(Buffer.isBuffer(chunk) ? chunk.toString() : chunk);
+  });
+}
+
 var IS_TRACEBACK_FRAME_RE = /^ *at [^:]+:[0-9]+\)? *$/;
 var SOURCE_RE = /\/[^:]+/;
 var IGNORE_RE = /node_modules\/(browser\-pack\/_prelude)|(mocha\/mocha)\.js/;
@@ -108,7 +114,7 @@ function tracebackFormatter() {
       this.queue(line + '\n');
     }
   });
-  return combine(split(), lineFormatter);
+  return combine(decode(), split(), lineFormatter);
 }
 
 function launcherCallback(callback) {

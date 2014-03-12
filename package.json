@@ -42,7 +42,7 @@
     "glob": "~3.2.6",
     "min-wd": "~0.3.0",
     "stream-combiner": "0.0.4",
-    "split": "^0.3.0"
+    "char-split": "^0.2.0"
   },
   "devDependencies": {
     "jslint": "~0.2.7",
