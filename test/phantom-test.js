@@ -38,7 +38,7 @@ describe('phantom', function () {
     });
   });
 
-  it('coverage', function (done) {
+  it.skip('coverage', function (done) {
     run('passes', ['--cover', '-R', 'tap'], function (code, stdout) {
       assert.equal(stdout, '1..1\n'
         + 'ok 1 test passes\n'
