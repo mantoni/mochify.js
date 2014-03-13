@@ -12,8 +12,6 @@ var watchify      = require('watchify');
 var browserify    = require('browserify');
 var coverify      = require('coverify');
 var through       = require('through');
-var split         = require('char-split');
-var combine       = require('stream-combiner');
 var resolve       = require('resolve');
 var glob          = require('glob');
 var path          = require('path');
@@ -82,39 +80,29 @@ function error(err) {
   console.error(String(err));
 }
 
-function decode() {
-  return through(function (chunk) {
-    this.queue(Buffer.isBuffer(chunk) ? chunk.toString() : chunk);
-  });
+var TRACE_RE  = /^\s+at [^:]+:[0-9]+\)?\s*$/;
+var IGNORE_RE = /\/node_modules\/(browserify|mocha)\//;
+var SOURCE_RE = /\/[^:]+/;
+
+function relativePath(source) {
+  return path.relative(cwd, source);
 }
 
-var IS_TRACEBACK_FRAME_RE = /^ *at [^:]+:[0-9]+\)? *$/;
-var SOURCE_RE = /\/[^:]+/;
-var IGNORE_RE = /node_modules\/(browser\-pack\/_prelude)|(mocha\/mocha)\.js/;
-
 function tracebackFormatter() {
-  var lineFormatter = through(function (line) {
-    var ignoreLine = false;
-
-    if (IS_TRACEBACK_FRAME_RE.exec(line)) {
-      line = line.replace(SOURCE_RE, function (source) {
-        if (IGNORE_RE.exec(source)) {
-          ignoreLine = true;
-        } else {
-          var relativeSource = path.relative(cwd, source);
-          if (!/^\.\./.exec(relativeSource)) {
-            source = relativeSource;
-          }
-        }
-        return source;
-      });
-    }
-
-    if (!ignoreLine) {
-      this.queue(line + '\n');
+  var buf = '';
+  return through(function (chunk) {
+    buf += chunk;
+    var l, p = buf.indexOf('\n');
+    while (p !== -1) {
+      l = buf.substring(0, p);
+      if (!(TRACE_RE.test(l) && IGNORE_RE.test(l))) {
+        l = l.replace(SOURCE_RE, relativePath);
+        this.queue(l + '\n');
+      }
+      buf = buf.substring(p + 1);
+      p = buf.indexOf('\n');
     }
   });
-  return combine(decode(), split(), lineFormatter);
 }
 
 function launcherCallback(callback) {
@@ -154,7 +142,7 @@ function launcherOut() {
 function launchNode(callback) {
   var n = spawn('node');
   n.stdout.pipe(tracebackFormatter()).pipe(launcherOut());
-  n.stderr.pipe(process.stderr);
+  n.stderr.pipe(tracebackFormatter()).pipe(process.stderr);
   n.on('exit', function (code) {
     failure = code;
     if (!watch) {
