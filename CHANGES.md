@@ -1,5 +1,9 @@
 # Changes
 
+## 0.5.2
+
+- Filtered stack traces with relative source paths (Andrey Popp)
+
 ## 0.5.1
 
 - Add -h/--help and -v/--version (Andrey Popp)
