@@ -95,8 +95,12 @@ function tracebackFormatter() {
     var l, p = buf.indexOf('\n');
     while (p !== -1) {
       l = buf.substring(0, p);
-      if (!(TRACE_RE.test(l) && IGNORE_RE.test(l))) {
-        l = l.replace(SOURCE_RE, relativePath);
+      if (TRACE_RE.test(l)) {
+        if (!IGNORE_RE.test(l)) {
+          l = l.replace(SOURCE_RE, relativePath);
+          this.queue(l + '\n');
+        }
+      } else {
         this.queue(l + '\n');
       }
       buf = buf.substring(p + 1);
