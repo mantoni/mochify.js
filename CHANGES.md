@@ -1,5 +1,10 @@
 # Changes
 
+## 0.5.3
+
+- Only replace paths in lines that look like stacktraces
+- Fixes an issue when using the xunit reporter
+
 ## 0.5.2
 
 - Filtered stack traces with relative source paths (Andrey Popp)
