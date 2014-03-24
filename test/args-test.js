@@ -17,7 +17,8 @@ describe('args', function () {
   it('quites with usage', function (done) {
     run('passes', ['--unknown'], function (code, stdout) {
       assert.equal(code, 1);
-      assert.equal(stdout, 'Unknown argument: --unknown\n\n');
+      assert.equal(stdout, 'Unknown argument: --unknown\n'
+                   + 'Run `mochify --help` for usage.\n\n');
       done();
     });
   });

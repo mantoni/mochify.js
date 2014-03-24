@@ -49,16 +49,15 @@ while (argv.length && argv[0].indexOf('-') === 0) {
     reporter = argv.shift();
   } else if (argv[0] === '--help' || argv[0] === '-h') {
     argv.shift();
-    console.log(
-      require('fs').readFileSync(require.resolve('./help.txt'), 'utf8')
-    );
+    console.log(require('fs').readFileSync(__dirname + '/help.txt', 'utf8'));
     process.exit(0);
   } else if (argv[0] === '--version' || argv[0] === '-v') {
     argv.shift();
     console.log(require('../package.json').version);
     process.exit(0);
   } else {
-    process.stdout.write('Unknown argument: ' + argv[0] + '\n\n');
+    process.stdout.write('Unknown argument: ' + argv[0] + '\n');
+    process.stdout.write('Run `mochify --help` for usage.\n\n');
     process.exit(1);
   }
 }
