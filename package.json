@@ -9,6 +9,7 @@
     "phantomjs",
     "webdriver",
     "selenium",
+    "saucelabs",
     "tdd"
   ],
   "author": "Maximilian Antoni <mail@maxantoni.de> (http://maxantoni.de)",

@@ -6,6 +6,7 @@ TDD for browserified code with Mocha, PhantomJS and WebDriver
 - No test HTML page
 - No server
 - Supports most Mocha reporters
+- Run tests with SauceLabs
 
 ## Install
 
@@ -29,8 +30,10 @@ Options:
 - `--reporter` or `-R` to change the Mocha reporter (see further down)
 - `--cover` to check code coverage with [coverify][]
 - `--node` to run test cases on node (useful with `--cover`)
+- `--debug` to launch the WebKit debugger
+- `--port` to use a specific port for the PhantomJS server
 
-## Browser setup
+## Selenium WebDriver setup
 
 ![mochify](http://maxantoni.de/img/mochify.png)
 
@@ -65,6 +68,23 @@ Create `.min-wd` in your project root:
 Thant's it! Now `mochify --wd` will run your Mocha test cases in the configured
 browsers simultaniously. If you installed mochify without `-g`, you will need
 to run `node_modules/.bin/mochify --wd`.
+
+## SauceLabs
+
+Export your SauceLabs credentials:
+
+```
+export SAUCE_USERNAME="your-user-name"
+export SAUCE_ACCESS_KEY="your-access-key"
+```
+
+Enable SauceLabs in your `.min-wd` file:
+
+```
+{
+  "sauceLabs": true
+}
+```
 
 ## Example package.json configuration
 
