@@ -23,7 +23,7 @@
     "mochify": "bin/cmd.js"
   },
   "scripts": {
-    "lint": "jslint --color -- ./**/*.js",
+    "lint": "jslint --color './**/*.js'",
     "start": "mocha --watch",
     "test": "npm run lint && mocha -R spec"
   },
@@ -43,7 +43,7 @@
     "min-wd": "~0.4.0"
   },
   "devDependencies": {
-    "jslint": "~0.2.7",
+    "jslint": "~0.3.1",
     "mocha": "~1.17.1",
     "brout": "~0.1.3"
   },
