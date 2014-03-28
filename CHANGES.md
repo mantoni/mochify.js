@@ -1,5 +1,12 @@
 # Changes
 
+## 0.6.0
+
+- SauceLabs support
+- WebKit debugger support (`--debug`)
+- Auto-select free port for temporary webserver by default (override with
+  `--port`)
+
 ## 0.5.3
 
 - Only replace paths in lines that look like stacktraces
