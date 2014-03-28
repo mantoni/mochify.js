@@ -29,6 +29,8 @@ var wd       = false;
 var cover    = false;
 var node     = false;
 var failure  = false;
+var debug    = false;
+var port     = 0;
 var ps;
 
 while (argv.length && argv[0].indexOf('-') === 0) {
@@ -47,6 +49,12 @@ while (argv.length && argv[0].indexOf('-') === 0) {
   } else if (argv[0] === '--reporter' || argv[0] === '-R') {
     argv.shift();
     reporter = argv.shift();
+  } else if (argv[0] === '--debug') {
+    argv.shift();
+    debug = true;
+  } else if (argv[0] === '--port') {
+    argv.shift();
+    port = parseInt(argv.shift(), 10);
   } else if (argv[0] === '--help' || argv[0] === '-h') {
     argv.shift();
     console.log(require('fs').readFileSync(__dirname + '/help.txt', 'utf8'));
@@ -56,8 +64,19 @@ while (argv.length && argv[0].indexOf('-') === 0) {
     console.log(require('../package.json').version);
     process.exit(0);
   } else {
-    process.stdout.write('Unknown argument: ' + argv[0] + '\n');
-    process.stdout.write('Run `mochify --help` for usage.\n\n');
+    console.log('Unknown argument: ' + argv[0]);
+    console.log('Run `mochify --help` for usage.\n');
+    process.exit(1);
+  }
+}
+
+if (debug) {
+  if (node) {
+    console.log('--debug does not work with --node\n');
+    process.exit(1);
+  }
+  if (wd) {
+    console.log('--debug does not work with --wd\n');
     process.exit(1);
   }
 }
@@ -162,7 +181,7 @@ function launchNode(callback) {
 }
 
 function launchPhantom(callback) {
-  phantomic(ps, launcherCallback(callback))
+  phantomic(ps, { debug : debug, port : port }, launcherCallback(callback))
     .pipe(tracebackFormatter())
     .pipe(launcherOut());
 }
