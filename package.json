@@ -41,7 +41,7 @@
     "through": "~2.3.4",
     "resolve": "~0.6.1",
     "glob": "~3.2.6",
-    "min-wd": "~0.4.0"
+    "min-wd": "~0.4.2"
   },
   "devDependencies": {
     "jslint": "~0.3.1",
