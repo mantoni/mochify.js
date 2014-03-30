@@ -1,5 +1,10 @@
 # Changes
 
+## 0.7.0
+
+- Add `--yields` / `-y` option to specify a yield interval to allow pending I/O
+  to happen.
+
 ## 0.6.1
 
 - Fix an issue with the way `min-wd` was loaded
