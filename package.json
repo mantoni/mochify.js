@@ -36,12 +36,12 @@
     "browserify": ">=3.30 <4",
     "watchify": "~0.6.1",
     "coverify": "~1.0.6",
-    "mocaccino": "~0.4.2",
+    "mocaccino": "~0.5.0",
     "phantomic": "~0.6.1",
     "through": "~2.3.4",
     "resolve": "~0.6.1",
     "glob": "~3.2.6",
-    "min-wd": "~0.4.2"
+    "min-wd": "~0.4.3"
   },
   "devDependencies": {
     "jslint": "~0.3.1",
