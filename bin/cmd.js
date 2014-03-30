@@ -229,7 +229,12 @@ if (wd) {
       return { main : pkg.browser };
     }
   });
-  b.add(minWebDriverFile);
+  b.transform(function () {
+    return through(function (data) {
+      this.queue('require("' + minWebDriverFile + '");');
+      this.queue(data);
+    });
+  });
 }
 
 entries.forEach(function (entry) {
