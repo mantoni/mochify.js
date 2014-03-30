@@ -27,11 +27,12 @@ Options:
 
 - `--watch` use [watchify][] to watch your files and run the tests on change
 - `--wd` use [min-webdriver][] to run the tests in multiple real browsers
-- `--reporter` or `-R` to change the Mocha reporter (see further down)
-- `--cover` to check code coverage with [coverify][]
-- `--node` to run test cases on node (useful with `--cover`)
-- `--debug` to launch the WebKit debugger
-- `--port` to use a specific port for the PhantomJS server
+- `--reporter` or `-R` changes the Mocha reporter (see further down)
+- `--yields` or `-y` changes the yield interval to allow pending I/O to happen
+- `--cover` checks code coverage with [coverify][]
+- `--node` runs test cases on node (useful with `--cover`)
+- `--debug` launches the WebKit debugger
+- `--port` uses a specific port for the PhantomJS server
 
 ## Selenium WebDriver setup
 

@@ -31,6 +31,7 @@ var node     = false;
 var failure  = false;
 var debug    = false;
 var port     = 0;
+var yields   = 0;
 var ps;
 
 while (argv.length && argv[0].indexOf('-') === 0) {
@@ -49,6 +50,9 @@ while (argv.length && argv[0].indexOf('-') === 0) {
   } else if (argv[0] === '--reporter' || argv[0] === '-R') {
     argv.shift();
     reporter = argv.shift();
+  } else if (argv[0] === '--yields' || argv[0] === '-y') {
+    argv.shift();
+    yields = parseInt(argv.shift(), 10);
   } else if (argv[0] === '--debug') {
     argv.shift();
     debug = true;
@@ -188,6 +192,9 @@ function launchPhantom(callback) {
 
 function launchWebDriver(callback) {
   var wdOpts = webdriverOpts();
+  if (!wdOpts.hasOwnProperty('timeout')) {
+    wdOpts.timeout = 0;
+  }
   webdriver(ps, wdOpts, launcherCallback(callback))
     .pipe(tracebackFormatter())
     .pipe(launcherOut());
@@ -240,7 +247,7 @@ if (wd) {
 entries.forEach(function (entry) {
   b.add(entry);
 });
-b.plugin(mocaccino, { reporter : reporter, node : node });
+b.plugin(mocaccino, { reporter : reporter, node : node, yields : yields });
 if (cover) {
   b.transform(coverify);
 }
