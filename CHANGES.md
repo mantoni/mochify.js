@@ -1,5 +1,9 @@
 # Changes
 
+## 0.6.1
+
+- Fix an issue with the way `min-wd` was loaded
+
 ## 0.6.0
 
 - SauceLabs support
