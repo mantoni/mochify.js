@@ -132,6 +132,10 @@ function tracebackFormatter() {
       buf = buf.substring(p + 1);
       p = buf.indexOf('\n');
     }
+    if (!/^\s+/.test(buf) || (buf.length > 3 && !/^\s+at /.test(buf))) {
+      this.queue(buf);
+      buf = '';
+    }
   });
 }
 
