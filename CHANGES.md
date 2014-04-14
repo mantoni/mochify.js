@@ -1,5 +1,12 @@
 # Changes
 
+## 0.8.0
+
+- Stream partial lines of output that don't look like a stack
+- Change default reporter to 'dot' to align with the Mocha default
+- Use phantomic with 'brout' option
+- Bump dependencies
+
 ## 0.7.0
 
 - Add `--yields` / `-y` option to specify a yield interval to allow pending I/O
