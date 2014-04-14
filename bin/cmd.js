@@ -185,7 +185,11 @@ function launchNode(callback) {
 }
 
 function launchPhantom(callback) {
-  phantomic(ps, { debug : debug, port : port }, launcherCallback(callback))
+  phantomic(ps, {
+    debug : debug,
+    port  : port,
+    brout : true
+  }, launcherCallback(callback))
     .pipe(tracebackFormatter())
     .pipe(launcherOut());
 }
