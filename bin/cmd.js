@@ -23,7 +23,7 @@ var spawn         = require('child_process').spawn;
 
 var argv     = process.argv.slice(2);
 var cwd      = process.cwd();
-var reporter = 'spec';
+var reporter = 'dot';
 var watch    = false;
 var wd       = false;
 var cover    = false;
@@ -72,6 +72,10 @@ while (argv.length && argv[0].indexOf('-') === 0) {
     console.log('Run `mochify --help` for usage.\n');
     process.exit(1);
   }
+}
+
+if (cover && reporter === 'dot') {
+  reporter = 'spec';
 }
 
 if (debug) {
