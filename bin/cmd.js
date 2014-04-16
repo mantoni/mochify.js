@@ -252,7 +252,7 @@ if (wd) {
   });
   b.transform(function () {
     return through(function (data) {
-      this.queue('require("' + minWebDriverFile + '");');
+      this.queue('require(' + JSON.stringify(minWebDriverFile) + ');');
       this.queue(data);
     });
   });
