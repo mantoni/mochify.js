@@ -33,42 +33,44 @@ var debug    = false;
 var port     = 0;
 var yields   = 0;
 var ps;
+var arg;
 
 while (argv.length && argv[0].indexOf('-') === 0) {
-  if (argv[0] === '--watch') {
+  arg = argv[0];
+  if (arg === '--watch') {
     argv.shift();
     watch = true;
-  } else if (argv[0] === '--cover') {
+  } else if (arg === '--cover') {
     argv.shift();
     cover = true;
-  } else if (argv[0] === '--node') {
+  } else if (arg === '--node') {
     argv.shift();
     node = true;
-  } else if (argv[0] === '--wd') {
+  } else if (arg === '--wd') {
     argv.shift();
     wd = true;
-  } else if (argv[0] === '--reporter' || argv[0] === '-R') {
+  } else if (arg === '--reporter' || arg === '-R') {
     argv.shift();
     reporter = argv.shift();
-  } else if (argv[0] === '--yields' || argv[0] === '-y') {
+  } else if (arg === '--yields' || arg === '-y') {
     argv.shift();
     yields = parseInt(argv.shift(), 10);
-  } else if (argv[0] === '--debug') {
+  } else if (arg === '--debug') {
     argv.shift();
     debug = true;
-  } else if (argv[0] === '--port') {
+  } else if (arg === '--port') {
     argv.shift();
     port = parseInt(argv.shift(), 10);
-  } else if (argv[0] === '--help' || argv[0] === '-h') {
+  } else if (arg === '--help' || arg === '-h') {
     argv.shift();
     console.log(require('fs').readFileSync(__dirname + '/help.txt', 'utf8'));
     process.exit(0);
-  } else if (argv[0] === '--version' || argv[0] === '-v') {
+  } else if (arg === '--version' || arg === '-v') {
     argv.shift();
     console.log(require('../package.json').version);
     process.exit(0);
   } else {
-    console.log('Unknown argument: ' + argv[0]);
+    console.log('Unknown argument: ' + arg);
     console.log('Run `mochify --help` for usage.\n');
     process.exit(1);
   }
