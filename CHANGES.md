@@ -1,5 +1,9 @@
 # Changes
 
+## 0.8.1
+
+- Fix min-webdriver path for windows
+
 ## 0.8.0
 
 - Stream partial lines of output that don't look like a stack
