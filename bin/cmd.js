@@ -250,6 +250,10 @@ if (wd) {
       return { main : pkg.browser };
     }
   });
+  if (/^[A-Z]:\\/.test(minWebDriverFile)) {
+    minWebDriverFile = minWebDriverFile.substring(3);
+  }
+  minWebDriverFile = minWebDriverFile.replace(/\\/g, '/');
   b.transform(function () {
     return through(function (data) {
       this.queue('require(' + JSON.stringify(minWebDriverFile) + ');');
