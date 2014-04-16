@@ -1,5 +1,9 @@
 # Changes
 
+## 0.8.2
+
+- Fix min-webdriver require for windows (take II)
+
 ## 0.8.1
 
 - Fix min-webdriver path for windows
