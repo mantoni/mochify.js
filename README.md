@@ -108,9 +108,9 @@ Enable SauceLabs in your `.min-wd` file:
 Mocha reporters known to work:
 
 - min
-- dot
+- dot (default)
 - list
-- spec (default)
+- spec (default if --cover)
 - tap
 - json
 - doc
