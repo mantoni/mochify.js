@@ -1,5 +1,10 @@
 # Changes
 
+## 0.9.0
+
+- Support Browserify 4
+- Fix min-webdriver require for windows (take III)
+
 ## 0.8.2
 
 - Fix min-webdriver require for windows (take II)
