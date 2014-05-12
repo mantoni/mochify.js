@@ -33,8 +33,8 @@
     "url": "https://github.com/mantoni/mochify.js.git"
   },
   "dependencies": {
-    "browserify": "^3.30",
-    "watchify": "~0.6.1",
+    "browserify": ">=3.30 <5",
+    "watchify": "~0.9.0",
     "coverify": "~1.0.6",
     "mocaccino": "~0.6.0",
     "phantomic": "~0.7.0",

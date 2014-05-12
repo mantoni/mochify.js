@@ -219,6 +219,7 @@ function browserifyBundle(w) {
     debug : true
   };
   if (node) {
+    opts.detectGlobals = false;
     opts.insertGlobalVars = ['__dirname', '__filename'];
   }
   var wb = w.bundle(opts);
