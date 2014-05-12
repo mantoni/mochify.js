@@ -252,7 +252,7 @@ if (wd) {
     }
   });
   if (/^[A-Z]:\\/.test(minWebDriverFile)) {
-    minWebDriverFile = minWebDriverFile.substring(3);
+    minWebDriverFile = minWebDriverFile.substring(2);
   }
   minWebDriverFile = minWebDriverFile.replace(/\\/g, '/');
   b.transform(function () {
