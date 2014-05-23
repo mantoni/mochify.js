@@ -1,5 +1,9 @@
 # Changes
 
+## 0.9.1
+
+- Use `-w` as an alias for `--watch` (Andrey Popp)
+
 ## 0.9.0
 
 - Support Browserify 4
