@@ -37,7 +37,7 @@ var arg;
 
 while (argv.length && argv[0].indexOf('-') === 0) {
   arg = argv[0];
-  if (arg === '--watch') {
+  if (arg === '--watch' || arg === '-w') {
     argv.shift();
     watch = true;
   } else if (arg === '--cover') {
