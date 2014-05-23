@@ -1,12 +1,12 @@
 # Mochify
 
-TDD for browserified code with Mocha, PhantomJS and WebDriver
+TDD with Browserify, Mocha, PhantomJS and WebDriver
 
 - Fast roundtrip
 - No test HTML page
 - No server
-- Supports most Mocha reporters
-- Run tests with SauceLabs
+- Selenium WebDriver & SauceLabs support
+- Code coverage with [coverify][]
 
 ## Install
 
