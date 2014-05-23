@@ -92,20 +92,28 @@ if (debug) {
 }
 
 var entries = [];
-if (argv.length) {
-  argv.forEach(function (arg) {
-    if (arg.indexOf('*') === -1) {
-      entries.push(arg);
-    } else {
-      Array.prototype.push.apply(entries, glob.sync(arg));
-    }
-  });
-} else {
-  entries = glob.sync("./test/*.js");
+if (!argv.length) {
+  argv = ['./test/*.js'];
+}
+argv.forEach(function (arg) {
+  if (arg.indexOf('*') === -1) {
+    entries.push(arg);
+  } else {
+    Array.prototype.push.apply(entries, glob.sync(arg));
+  }
+});
+if (!entries.length) {
+  console.error('Error: Nothing found for "' + argv.join('" or "') + '".\n');
+  process.exit(1);
 }
 
 function error(err) {
-  console.error(String(err));
+  console.error(String(err) + '\n');
+  if (!watch) {
+    process.nextTick(function () {
+      process.exit(1);
+    });
+  }
 }
 
 var TRACE_RE  = /^\s+at [^:]+:[0-9]+\)?\s*$/;
