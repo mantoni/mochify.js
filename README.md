@@ -25,7 +25,8 @@ right in your console.
 
 Options:
 
-- `--watch` use [watchify][] to watch your files and run the tests on change
+- `--watch` or `-w` use [watchify][] to watch your files and run the tests on
+  change
 - `--wd` use [min-webdriver][] to run the tests in multiple real browsers
 - `--reporter` or `-R` changes the Mocha reporter (see further down)
 - `--yields` or `-y` changes the yield interval to allow pending I/O to happen

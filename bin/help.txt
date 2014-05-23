@@ -1,7 +1,7 @@
 Usage: mochify [options] entry ...
 
 Options:
-           --watch   Use watchify to watch your files and run the tests on
+       -w, --watch   Use watchify to watch your files and run the tests on
                      change. 
 
     -R, --reporter   Change the Mocha reporter (see further down).
