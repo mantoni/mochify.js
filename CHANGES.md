@@ -1,5 +1,9 @@
 # Changes
 
+## 0.9.2
+
+- Show meaningful error and exit if no files are found
+
 ## 0.9.1
 
 - Use `-w` as an alias for `--watch` (Andrey Popp)
