@@ -259,16 +259,10 @@ if (wd) {
       return { main : pkg.browser };
     }
   });
-  if (/^[A-Z]:\\/.test(minWebDriverFile)) {
-    minWebDriverFile = minWebDriverFile.substring(2);
-  }
-  minWebDriverFile = minWebDriverFile.replace(/\\/g, '/');
-  b.transform(function () {
-    return through(function (data) {
-      this.queue('require(' + JSON.stringify(minWebDriverFile) + ');');
-      this.queue(data);
-    });
-  });
+  minWebDriverFile = path.relative(process.cwd(), minWebDriverFile);
+  minWebDriverFile = "./" + minWebDriverFile.replace(/\\/g, '/');
+  b.require(minWebDriverFile, { expose : "min-wd" });
+  b.transform(require("min-wd"));
 }
 
 entries.forEach(function (entry) {
