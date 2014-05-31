@@ -1,5 +1,10 @@
 # Changes
 
+## 0.9.3
+
+- Add brout dependency to make sure it's only loaded once
+- Fix `min-webdriver` require for windows (take IV)
+
 ## 0.9.2
 
 - Show meaningful error and exit if no files are found
