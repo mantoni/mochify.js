@@ -113,6 +113,9 @@ Enable SauceLabs in your `.min-wd` file:
 }
 ```
 
+For more information about Selenium WebDriver and SourceLabs support can be
+found on the [min-webdriver][] project page.
+
 ## Reporters
 
 Mocha reporters known to work:
