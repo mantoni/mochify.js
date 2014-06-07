@@ -7,6 +7,8 @@ TDD with Browserify, Mocha, PhantomJS and WebDriver
 - No server
 - Selenium WebDriver & SauceLabs support
 - Code coverage with [coverify][]
+- Short stack traces with relative paths
+- Works with most Mocha reporters
 
 ## Install
 
@@ -15,13 +17,20 @@ npm install mochify -g
 ```
 
 - Download and install Phantom.JS: <http://phantomjs.org/>
-- Make sure that the phantomjs executable is in your `PATH`
+- Make sure that the `phantomjs` executable is in your `PATH`
 
 ## Usage
 
-Run `mochify` from within your project directory to browserify your scripts,
-decorated with a Mocha test runner, run it in PhantomJS and see the output
-right in your console.
+From within your project directory:
+
+```
+mochify
+```
+
+Browserifies `./test/*.js`, decorated with a [Mocha test runner][], runs it in
+PhantomJS with [phantomic][] and pass the output back to your console. Cleans
+up your stack traces by mapping back to the original sources and throws out all
+the lines from the test framework.
 
 Options:
 
@@ -128,3 +137,5 @@ MIT
 [watchify]: https://github.com/substack/watchify
 [coverify]: https://github.com/substack/coverify
 [min-webdriver]: https://github.com/mantoni/min-webdriver
+[Mocha test runner]: https://github.com/mantoni/mocaccino.js
+[phantomic]: https://github.com/mantoni/phantomic
