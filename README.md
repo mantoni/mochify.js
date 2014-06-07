@@ -44,6 +44,22 @@ Options:
 - `--debug` launches the WebKit debugger
 - `--port` uses a specific port for the PhantomJS server
 
+## Example package.json configuration
+
+```
+"devDependencies" : {
+  "mocha"         : "*",
+  "browserify"    : "*",
+  "mochify"       : "*"
+},
+"scripts"         : {
+  "start"         : "mochify --watch"
+  "test-phantom"  : "mochify",
+  "test-wd"       : "mochify --wd",
+  "test"          : "npm run test-phantom && npm run test-wd"
+}
+```
+
 ## Selenium WebDriver setup
 
 ![mochify](http://maxantoni.de/img/mochify.png)
@@ -94,22 +110,6 @@ Enable SauceLabs in your `.min-wd` file:
 ```
 {
   "sauceLabs": true
-}
-```
-
-## Example package.json configuration
-
-```
-"devDependencies" : {
-  "mocha"         : "*",
-  "browserify"    : "*",
-  "mochify"       : "*"
-},
-"scripts"         : {
-  "start"         : "mochify --watch"
-  "test-phantom"  : "mochify",
-  "test-wd"       : "mochify --wd",
-  "test"          : "npm run test-phantom && npm run test-wd"
 }
 ```
 
