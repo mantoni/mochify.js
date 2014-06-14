@@ -6,8 +6,6 @@ Options:
 
     -R, --reporter   Change the Mocha reporter (see further down).
 
-    -y, --yields     Changes the yield interval to allow pending I/O to happen
-
            --debug   Launch the WebKit inspector for debugging.
 
             --port   Use specific port for phantomic server. Defaults to 0 for
@@ -19,6 +17,8 @@ Options:
 
               --wd   Use min-webdriver to run the tests in multiple real
                      browsers.
+
+      -y, --yields   Changes the yield interval to allow pending I/O to happen.
 
      -v, --version   Print mochify version and exit.
 
