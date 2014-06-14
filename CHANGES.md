@@ -1,5 +1,9 @@
 # Changes
 
+## 0.9.4
+
+- Make coverify work with the dot reporter
+
 ## 0.9.3
 
 - Add brout dependency to make sure it's only loaded once
