@@ -123,7 +123,7 @@ Mocha reporters known to work:
 - min
 - dot (default)
 - list
-- spec (default if --cover)
+- spec
 - tap
 - json
 - doc

@@ -76,10 +76,6 @@ while (argv.length && argv[0].indexOf('-') === 0) {
   }
 }
 
-if (cover && reporter === 'dot') {
-  reporter = 'spec';
-}
-
 if (debug) {
   if (node) {
     console.log('--debug does not work with --node\n');
@@ -149,6 +145,38 @@ function tracebackFormatter() {
   });
 }
 
+function coverifySplit(coverifyIn) {
+  var buf = '';
+  return through(function (chunk) {
+    var p;
+    buf += chunk;
+    while (buf.length > 4) {
+      p = buf.indexOf('COVER');
+      if (p === -1) {
+        this.queue(buf.substring(0, buf.length - 5));
+        buf = buf.substring(buf.length - 5);
+        return;
+      }
+      if (p !== 0) {
+        this.queue(buf.substring(0, p));
+        buf = buf.substring(p);
+      }
+      p = buf.indexOf('\n');
+      if (p === -1) {
+        return;
+      }
+      coverifyIn.write(buf.substring(0, p + 1));
+      buf = buf.substring(p + 1);
+    }
+  }, function () {
+    if (buf.length) {
+      this.queue(buf);
+    }
+    this.queue(null);
+    coverifyIn.end();
+  });
+}
+
 function launcherCallback(callback) {
   return function (err) {
     if (!watch && !cover) {
@@ -178,7 +206,9 @@ function launcherOut() {
         });
       }
     });
-    return c.stdin;
+    var split = coverifySplit(c.stdin);
+    split.pipe(process.stdout);
+    return split;
   }
   return process.stdout;
 }
