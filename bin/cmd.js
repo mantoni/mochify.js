@@ -8,18 +8,17 @@
  */
 'use strict';
 
-var watchify      = require('watchify');
-var browserify    = require('browserify');
-var coverify      = require('coverify');
-var through       = require('through');
-var resolve       = require('resolve');
-var glob          = require('glob');
-var path          = require('path');
-var mocaccino     = require('mocaccino');
-var phantomic     = require('phantomic');
-var webdriver     = require('min-wd/lib/driver');
-var webdriverOpts = require('min-wd/lib/options');
-var spawn         = require('child_process').spawn;
+var watchify       = require('watchify');
+var makeBrowserify = require('browserify/bin/args');
+var coverify       = require('coverify');
+var through        = require('through');
+var resolve        = require('resolve');
+var path           = require('path');
+var mocaccino      = require('mocaccino');
+var phantomic      = require('phantomic');
+var webdriver      = require('min-wd/lib/driver');
+var webdriverOpts  = require('min-wd/lib/options');
+var spawn          = require('child_process').spawn;
 
 var argv     = process.argv.slice(2);
 var cwd      = process.cwd();
@@ -70,9 +69,7 @@ while (argv.length && argv[0].indexOf('-') === 0) {
     console.log(require('../package.json').version);
     process.exit(0);
   } else {
-    console.log('Unknown argument: ' + arg);
-    console.log('Run `mochify --help` for usage.\n');
-    process.exit(1);
+    argv.shift();
   }
 }
 
@@ -85,22 +82,6 @@ if (debug) {
     console.log('--debug does not work with --wd\n');
     process.exit(1);
   }
-}
-
-var entries = [];
-if (!argv.length) {
-  argv = ['./test/*.js'];
-}
-argv.forEach(function (arg) {
-  if (arg.indexOf('*') === -1) {
-    entries.push(arg);
-  } else {
-    Array.prototype.push.apply(entries, glob.sync(arg));
-  }
-});
-if (!entries.length) {
-  console.error('Error: Nothing found for "' + argv.join('" or "') + '".\n');
-  process.exit(1);
 }
 
 function error(err) {
@@ -276,12 +257,12 @@ function bundler(w, launcher) {
 }
 
 
-var opts = {};
+var browserifyArgs = process.argv.slice(2);
 if (node) {
-  opts.builtins = false;
-  opts.commondir = false;
+  browserifyArgs.push('--bare');
 }
-var b = browserify(opts);
+var b = makeBrowserify(browserifyArgs);
+console.log(b);
 if (wd) {
   var minWebDriverFile = resolve.sync('min-wd', {
     baseDir: __dirname,
@@ -295,9 +276,6 @@ if (wd) {
   b.transform(require("min-wd"));
 }
 
-entries.forEach(function (entry) {
-  b.add(entry);
-});
 b.plugin(mocaccino, { reporter : reporter, node : node, yields : yields });
 if (cover) {
   b.transform(coverify);
