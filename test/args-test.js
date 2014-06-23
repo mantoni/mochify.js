@@ -16,7 +16,7 @@ var run    = require('./fixture/run');
 describe('args', function () {
 
   it('sets defaults', function () {
-    var opts = args.parse([]);
+    var opts = args([]);
 
     assert.equal(opts.watch, false);
     assert.equal(opts.cover, false);
@@ -28,55 +28,55 @@ describe('args', function () {
   });
 
   it('parses --reporter', function () {
-    var opts = args.parse(['--reporter', 'tap']);
+    var opts = args(['--reporter', 'tap']);
 
     assert.equal(opts.reporter, 'tap');
   });
 
   it('parses -R', function () {
-    var opts = args.parse(['-R', 'tap']);
+    var opts = args(['-R', 'tap']);
 
     assert.equal(opts.reporter, 'tap');
   });
 
   it('parses --watch', function () {
-    var opts = args.parse(['--watch']);
+    var opts = args(['--watch']);
 
     assert(opts.watch);
   });
 
   it('parses -w', function () {
-    var opts = args.parse(['-w']);
+    var opts = args(['-w']);
 
     assert(opts.watch);
   });
 
   it('parses --node', function () {
-    var opts = args.parse(['--node']);
+    var opts = args(['--node']);
 
     assert(opts.node);
   });
 
   it('parses --wd', function () {
-    var opts = args.parse(['--wd']);
+    var opts = args(['--wd']);
 
     assert(opts.wd);
   });
 
   it('parses --port', function () {
-    var opts = args.parse(['--port', '8765']);
+    var opts = args(['--port', '8765']);
 
     assert.equal(opts.port, 8765);
   });
 
   it('parses --yields', function () {
-    var opts = args.parse(['--yields', '123']);
+    var opts = args(['--yields', '123']);
 
     assert.equal(opts.yields, 123);
   });
 
   it('parses -y', function () {
-    var opts = args.parse(['-y', '123']);
+    var opts = args(['-y', '123']);
 
     assert.equal(opts.yields, 123);
   });

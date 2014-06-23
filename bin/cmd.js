@@ -21,7 +21,7 @@ var webdriverOpts = require('min-wd/lib/options');
 var spawn         = require('child_process').spawn;
 var args          = require('../lib/args');
 
-var opts    = args.parse(process.argv.slice(2));
+var opts    = args(process.argv.slice(2));
 var cwd     = process.cwd();
 var failure = false;
 var ps;
