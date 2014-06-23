@@ -9,10 +9,77 @@
 'use strict';
 
 var assert = require('assert');
+var args   = require('../lib/args');
 var run    = require('./fixture/run');
 
 
 describe('args', function () {
+
+  it('sets defaults', function () {
+    var opts = args.parse([]);
+
+    assert.equal(opts.watch, false);
+    assert.equal(opts.cover, false);
+    assert.equal(opts.node, false);
+    assert.equal(opts.wd, false);
+    assert.equal(opts.reporter, 'dot');
+    assert.equal(opts.port, 0);
+    assert.equal(opts.yields, 0);
+  });
+
+  it('parses --reporter', function () {
+    var opts = args.parse(['--reporter', 'tap']);
+
+    assert.equal(opts.reporter, 'tap');
+  });
+
+  it('parses -R', function () {
+    var opts = args.parse(['-R', 'tap']);
+
+    assert.equal(opts.reporter, 'tap');
+  });
+
+  it('parses --watch', function () {
+    var opts = args.parse(['--watch']);
+
+    assert(opts.watch);
+  });
+
+  it('parses -w', function () {
+    var opts = args.parse(['-w']);
+
+    assert(opts.watch);
+  });
+
+  it('parses --node', function () {
+    var opts = args.parse(['--node']);
+
+    assert(opts.node);
+  });
+
+  it('parses --wd', function () {
+    var opts = args.parse(['--wd']);
+
+    assert(opts.wd);
+  });
+
+  it('parses --port', function () {
+    var opts = args.parse(['--port', '8765']);
+
+    assert.equal(opts.port, 8765);
+  });
+
+  it('parses --yields', function () {
+    var opts = args.parse(['--yields', '123']);
+
+    assert.equal(opts.yields, 123);
+  });
+
+  it('parses -y', function () {
+    var opts = args.parse(['-y', '123']);
+
+    assert.equal(opts.yields, 123);
+  });
 
   it('quits with usage', function (done) {
     run('passes', ['--unknown'], function (code, stdout) {
