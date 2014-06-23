@@ -26,17 +26,6 @@ var cwd     = process.cwd();
 var failure = false;
 var ps;
 
-if (opts.debug) {
-  if (opts.node) {
-    console.log('--debug does not work with --node\n');
-    process.exit(1);
-  }
-  if (opts.wd) {
-    console.log('--debug does not work with --wd\n');
-    process.exit(1);
-  }
-}
-
 function error(err) {
   console.error(String(err) + '\n');
   if (!opts.watch) {
