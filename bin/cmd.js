@@ -13,99 +13,33 @@ var browserify    = require('browserify');
 var coverify      = require('coverify');
 var through       = require('through');
 var resolve       = require('resolve');
-var glob          = require('glob');
 var path          = require('path');
 var mocaccino     = require('mocaccino');
 var phantomic     = require('phantomic');
 var webdriver     = require('min-wd/lib/driver');
 var webdriverOpts = require('min-wd/lib/options');
 var spawn         = require('child_process').spawn;
+var args          = require('../lib/args');
 
-var argv     = process.argv.slice(2);
-var cwd      = process.cwd();
-var reporter = 'dot';
-var watch    = false;
-var wd       = false;
-var cover    = false;
-var node     = false;
-var failure  = false;
-var debug    = false;
-var port     = 0;
-var yields   = 0;
+var opts    = args.parse(process.argv.slice(2));
+var cwd     = process.cwd();
+var failure = false;
 var ps;
-var arg;
 
-while (argv.length && argv[0].indexOf('-') === 0) {
-  arg = argv[0];
-  if (arg === '--watch' || arg === '-w') {
-    argv.shift();
-    watch = true;
-  } else if (arg === '--cover') {
-    argv.shift();
-    cover = true;
-  } else if (arg === '--node') {
-    argv.shift();
-    node = true;
-  } else if (arg === '--wd') {
-    argv.shift();
-    wd = true;
-  } else if (arg === '--reporter' || arg === '-R') {
-    argv.shift();
-    reporter = argv.shift();
-  } else if (arg === '--yields' || arg === '-y') {
-    argv.shift();
-    yields = parseInt(argv.shift(), 10);
-  } else if (arg === '--debug') {
-    argv.shift();
-    debug = true;
-  } else if (arg === '--port') {
-    argv.shift();
-    port = parseInt(argv.shift(), 10);
-  } else if (arg === '--help' || arg === '-h') {
-    argv.shift();
-    console.log(require('fs').readFileSync(__dirname + '/help.txt', 'utf8'));
-    process.exit(0);
-  } else if (arg === '--version' || arg === '-v') {
-    argv.shift();
-    console.log(require('../package.json').version);
-    process.exit(0);
-  } else {
-    console.log('Unknown argument: ' + arg);
-    console.log('Run `mochify --help` for usage.\n');
-    process.exit(1);
-  }
-}
-
-if (debug) {
-  if (node) {
+if (opts.debug) {
+  if (opts.node) {
     console.log('--debug does not work with --node\n');
     process.exit(1);
   }
-  if (wd) {
+  if (opts.wd) {
     console.log('--debug does not work with --wd\n');
     process.exit(1);
   }
 }
 
-var entries = [];
-if (!argv.length) {
-  argv = ['./test/*.js'];
-}
-argv.forEach(function (arg) {
-  if (arg.indexOf('*') === -1) {
-    entries.push(arg);
-  } else {
-    Array.prototype.push.apply(entries, glob.sync(arg));
-  }
-});
-if (!entries.length) {
-  console.error('Error: Nothing found for "' + argv.join('" or "') + '".\n');
-  process.exit(1);
-}
-
 function error(err) {
   console.error(String(err) + '\n');
-  if (!watch) {
+  if (!opts.watch) {
     process.nextTick(function () {
       process.exit(1);
     });
@@ -179,7 +113,7 @@ function coverifySplit(coverifyIn) {
 
 function launcherCallback(callback) {
   return function (err) {
-    if (!watch && !cover) {
+    if (!opts.watch && !opts.cover) {
       process.nextTick(function () {
         process.exit(err ? 1 : 0);
       });
@@ -190,7 +124,7 @@ function launcherCallback(callback) {
 }
 
 function launcherOut() {
-  if (cover) {
+  if (opts.cover) {
     var c = spawn(resolve.sync('coverify', {
       baseDir: __dirname,
       packageFilter: function (pkg) {
@@ -200,7 +134,7 @@ function launcherOut() {
     c.stdout.pipe(process.stdout);
     c.stderr.pipe(process.stderr);
     c.on('exit', function (code) {
-      if (!watch) {
+      if (!opts.watch) {
         process.nextTick(function () {
           process.exit(failure || code);
         });
@@ -219,8 +153,8 @@ function launchNode(callback) {
   n.stderr.pipe(tracebackFormatter()).pipe(process.stderr);
   n.on('exit', function (code) {
     failure = code;
-    if (!watch) {
-      if (!cover) {
+    if (!opts.watch) {
+      if (!opts.cover) {
         process.nextTick(function () {
           process.exit(code);
         });
@@ -234,8 +168,8 @@ function launchNode(callback) {
 
 function launchPhantom(callback) {
   phantomic(ps, {
-    debug : debug,
-    port  : port,
+    debug : opts.debug,
+    port  : opts.port,
     brout : true
   }, launcherCallback(callback))
     .pipe(tracebackFormatter())
@@ -253,14 +187,14 @@ function launchWebDriver(callback) {
 }
 
 function browserifyBundle(w) {
-  var opts = {
+  var bundleOpts = {
     debug : true
   };
-  if (node) {
-    opts.detectGlobals = false;
-    opts.insertGlobalVars = ['__dirname', '__filename'];
+  if (opts.node) {
+    bundleOpts.detectGlobals = false;
+    bundleOpts.insertGlobalVars = ['__dirname', '__filename'];
   }
-  var wb = w.bundle(opts);
+  var wb = w.bundle(bundleOpts);
   wb.on('error', error);
   wb.pipe(ps);
 }
@@ -276,45 +210,49 @@ function bundler(w, launcher) {
 }
 
 
-var opts = {};
-if (node) {
-  opts.builtins = false;
-  opts.commondir = false;
+var brOpts = {};
+if (opts.node) {
+  brOpts.builtins = false;
+  brOpts.commondir = false;
 }
-var b = browserify(opts);
-if (wd) {
+var b = browserify(brOpts);
+if (opts.wd) {
   var minWebDriverFile = resolve.sync('min-wd', {
     baseDir: __dirname,
     packageFilter: function (pkg) {
       return { main : pkg.browser };
     }
   });
-  minWebDriverFile = path.relative(process.cwd(), minWebDriverFile);
+  minWebDriverFile = path.relative(cwd, minWebDriverFile);
   minWebDriverFile = "./" + minWebDriverFile.replace(/\\/g, '/');
   b.require(minWebDriverFile, { expose : "min-wd" });
   b.transform(require("min-wd"));
 }
 
-entries.forEach(function (entry) {
+opts.entries.forEach(function (entry) {
   b.add(entry);
 });
-b.plugin(mocaccino, { reporter : reporter, node : node, yields : yields });
-if (cover) {
+b.plugin(mocaccino, {
+  reporter : opts.reporter,
+  node     : opts.node,
+  yields   : opts.yields
+});
+if (opts.cover) {
   b.transform(coverify);
 }
 b.on('error', error);
 
 
 var launcher = null;
-if (wd) {
+if (opts.wd) {
   launcher = launchWebDriver;
-} else if (node) {
+} else if (opts.node) {
   launcher = launchNode;
 } else {
   launcher = launchPhantom;
 }
 
-if (watch) {
+if (opts.watch) {
 
   var w = watchify(b);
 
