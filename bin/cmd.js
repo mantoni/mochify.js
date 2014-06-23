@@ -8,24 +8,23 @@
  */
 'use strict';
 
-var watchify      = require('watchify');
-var browserify    = require('browserify');
-var coverify      = require('coverify');
-var through       = require('through');
-var resolve       = require('resolve');
-var path          = require('path');
-var mocaccino     = require('mocaccino');
-var phantomic     = require('phantomic');
-var webdriver     = require('min-wd/lib/driver');
-var webdriverOpts = require('min-wd/lib/options');
-var spawn         = require('child_process').spawn;
-var args          = require('../lib/args');
-var cover         = require('../lib/cover');
+var watchify   = require('watchify');
+var browserify = require('browserify');
+var coverify   = require('coverify');
+var through    = require('through');
+var resolve    = require('resolve');
+var path       = require('path');
+var mocaccino  = require('mocaccino');
+var args       = require('../lib/args');
+var cover      = require('../lib/cover');
+var launch     = require('../lib/launch');
 
 var opts    = args(process.argv.slice(2));
 var cwd     = process.cwd();
-var failure = false;
-var ps;
+var context = {
+  failure : false,
+  ps      : null
+};
 
 function error(err) {
   console.error(String(err) + '\n');
@@ -36,101 +35,17 @@ function error(err) {
   }
 }
 
-var TRACE_RE  = /^\s+at [^:]+:[0-9]+\)?\s*$/;
-var IGNORE_RE = /\/node_modules\/(browserify|mocha)\//;
-var SOURCE_RE = /\/[^:]+/;
-
-function relativePath(source) {
-  return path.relative(cwd, source);
-}
-
-function tracebackFormatter() {
-  var buf = '';
-  return through(function (chunk) {
-    buf += chunk;
-    var l, p = buf.indexOf('\n');
-    while (p !== -1) {
-      l = buf.substring(0, p);
-      if (TRACE_RE.test(l)) {
-        if (!IGNORE_RE.test(l)) {
-          l = l.replace(SOURCE_RE, relativePath);
-          this.queue(l + '\n');
-        }
-      } else {
-        this.queue(l + '\n');
-      }
-      buf = buf.substring(p + 1);
-      p = buf.indexOf('\n');
-    }
-    if (!/^\s+/.test(buf) || (buf.length > 3 && !/^\s+at /.test(buf))) {
-      this.queue(buf);
-      buf = '';
-    }
-  });
-}
-
-function launcherCallback(callback) {
-  return function (err) {
-    if (!opts.watch && !opts.cover) {
-      process.nextTick(function () {
-        process.exit(err ? 1 : 0);
-      });
-    } else if (callback) {
-      callback();
-    }
-  };
-}
-
 function launcherOut() {
   if (opts.cover) {
     return cover(function (code) {
       if (!opts.watch) {
         process.nextTick(function () {
-          process.exit(failure || code);
+          process.exit(context.failure || code);
         });
       }
     });
   }
   return process.stdout;
-}
-
-function launchNode(callback) {
-  var n = spawn('node');
-  n.stdout.pipe(tracebackFormatter()).pipe(launcherOut());
-  n.stderr.pipe(tracebackFormatter()).pipe(process.stderr);
-  n.on('exit', function (code) {
-    failure = code;
-    if (!opts.watch) {
-      if (!opts.cover) {
-        process.nextTick(function () {
-          process.exit(code);
-        });
-      }
-    } else {
-      callback();
-    }
-  });
-  ps.pipe(n.stdin);
-}
-
-function launchPhantom(callback) {
-  phantomic(ps, {
-    debug : opts.debug,
-    port  : opts.port,
-    brout : true
-  }, launcherCallback(callback))
-    .pipe(tracebackFormatter())
-    .pipe(launcherOut());
-}
-
-function launchWebDriver(callback) {
-  var wdOpts = webdriverOpts();
-  if (!wdOpts.hasOwnProperty('timeout')) {
-    wdOpts.timeout = 0;
-  }
-  webdriver(ps, wdOpts, launcherCallback(callback))
-    .pipe(tracebackFormatter())
-    .pipe(launcherOut());
 }
 
 function browserifyBundle(w) {
@@ -143,12 +58,12 @@ function browserifyBundle(w) {
   }
   var wb = w.bundle(bundleOpts);
   wb.on('error', error);
-  wb.pipe(ps);
+  wb.pipe(context.ps);
 }
 
 function bundler(w, launcher) {
   (function run() {
-    ps = through();
+    context.ps = through();
     launcher(run);
   }());
   return function () {
@@ -190,14 +105,7 @@ if (opts.cover) {
 b.on('error', error);
 
 
-var launcher = null;
-if (opts.wd) {
-  launcher = launchWebDriver;
-} else if (opts.node) {
-  launcher = launchNode;
-} else {
-  launcher = launchPhantom;
-}
+var launcher = launch(context, opts, launcherOut);
 
 if (opts.watch) {
 
@@ -209,11 +117,11 @@ if (opts.watch) {
   bundle();
 
   process.on('SIGINT', function () {
-    if (ps) {
-      ps.on('end', function () {
+    if (context.ps) {
+      context.ps.on('end', function () {
         process.exit(0);
       });
-      ps.queue(null);
+      context.ps.queue(null);
     } else {
       process.exit(0);
     }
@@ -233,7 +141,7 @@ if (opts.watch) {
 
 } else {
 
-  ps = through();
+  context.ps = through();
   launcher();
   browserifyBundle(b);
 
