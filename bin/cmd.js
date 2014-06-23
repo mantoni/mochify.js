@@ -20,6 +20,7 @@ var webdriver     = require('min-wd/lib/driver');
 var webdriverOpts = require('min-wd/lib/options');
 var spawn         = require('child_process').spawn;
 var args          = require('../lib/args');
+var cover         = require('../lib/cover');
 
 var opts    = args(process.argv.slice(2));
 var cwd     = process.cwd();
@@ -68,38 +69,6 @@ function tracebackFormatter() {
   });
 }
 
-function coverifySplit(coverifyIn) {
-  var buf = '';
-  return through(function (chunk) {
-    var p;
-    buf += chunk;
-    while (buf.length > 4) {
-      p = buf.indexOf('COVER');
-      if (p === -1) {
-        this.queue(buf.substring(0, buf.length - 5));
-        buf = buf.substring(buf.length - 5);
-        return;
-      }
-      if (p !== 0) {
-        this.queue(buf.substring(0, p));
-        buf = buf.substring(p);
-      }
-      p = buf.indexOf('\n');
-      if (p === -1) {
-        return;
-      }
-      coverifyIn.write(buf.substring(0, p + 1));
-      buf = buf.substring(p + 1);
-    }
-  }, function () {
-    if (buf.length) {
-      this.queue(buf);
-    }
-    this.queue(null);
-    coverifyIn.end();
-  });
-}
-
 function launcherCallback(callback) {
   return function (err) {
     if (!opts.watch && !opts.cover) {
@@ -114,24 +83,13 @@ function launcherCallback(callback) {
 
 function launcherOut() {
   if (opts.cover) {
-    var c = spawn(resolve.sync('coverify', {
-      baseDir: __dirname,
-      packageFilter: function (pkg) {
-        return { main : pkg.bin.coverify };
-      }
-    }));
-    c.stdout.pipe(process.stdout);
-    c.stderr.pipe(process.stderr);
-    c.on('exit', function (code) {
+    return cover(function (code) {
       if (!opts.watch) {
         process.nextTick(function () {
           process.exit(failure || code);
         });
       }
     });
-    var split = coverifySplit(c.stdin);
-    split.pipe(process.stdout);
-    return split;
   }
   return process.stdout;
 }
