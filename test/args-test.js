@@ -23,6 +23,7 @@ describe('args', function () {
     assert.equal(opts.node, false);
     assert.equal(opts.wd, false);
     assert.equal(opts.reporter, 'dot');
+    assert.equal(opts.timeout, 2000);
     assert.equal(opts.port, 0);
     assert.equal(opts.yields, 0);
   });
@@ -37,6 +38,18 @@ describe('args', function () {
     var opts = args(['-R', 'tap']);
 
     assert.equal(opts.reporter, 'tap');
+  });
+
+  it('parses --timeout', function () {
+    var opts = args(['--timeout', '3000']);
+
+    assert.equal(opts.timeout, 3000);
+  });
+
+  it('parses -t', function () {
+    var opts = args(['-t', '3000']);
+
+    assert.equal(opts.timeout, 3000);
   });
 
   it('parses --watch', function () {
