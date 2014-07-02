@@ -1,5 +1,10 @@
 # Changes
 
+## 0.x.y 
+
+- Upgraded `"mocaccino": "~0.6.0"` to `"mocaccino": "~0.8.0"
+
+
 ## 0.9.4
 
 - Make coverify work with the dot reporter
