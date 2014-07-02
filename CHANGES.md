@@ -3,7 +3,7 @@
 ## 0.x.y 
 
 - Upgraded `"mocaccino": "~0.6.0"` to `"mocaccino": "~0.8.0"
-
+- Added `-t` and `--timeout` arguments to be passed to Mocha
 
 ## 0.9.4
 
