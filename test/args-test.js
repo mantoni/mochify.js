@@ -52,6 +52,18 @@ describe('args', function () {
     assert.equal(opts.timeout, 3000);
   });
 
+  it('parses --ui', function () {
+    var opts = args(['--ui', 'TDD']);
+
+    assert.equal(opts.ui, 'TDD');
+  });
+
+  it('parses -U', function () {
+    var opts = args(['-U', 'TDD']);
+
+    assert.equal(opts.ui, 'TDD');
+  });
+
   it('parses --watch', function () {
     var opts = args(['--watch']);
 

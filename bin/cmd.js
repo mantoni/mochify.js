@@ -96,6 +96,7 @@ opts.entries.forEach(function (entry) {
 });
 b.plugin(mocaccino, {
   reporter : opts.reporter,
+  ui       : opts.ui,
   node     : opts.node,
   yields   : opts.yields,
   timeout  : opts.timeout

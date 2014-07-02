@@ -61,13 +61,24 @@ describe('phantom', function () {
   });
 
   it('times out', function (done) {
-    run('timeout', ['-R', 'tap', '--timeout', '10'],
-      function (code, stdout) {
-        assert.equal(stdout.indexOf('1..1\n'
-          + 'not ok 1 test times out\n'), 0);
-        assert.equal(code, 1);
-        done();
-      });
+    run('timeout', ['-R', 'tap', '--timeout', '10'], function (code, stdout) {
+      assert.equal(stdout.indexOf('1..1\n'
+        + 'not ok 1 test times out\n'), 0);
+      assert.equal(code, 1);
+      done();
+    });
+  });
+
+  it('uses tdd ui', function (done) {
+    run('ui-tdd', ['-R', 'tap', '--ui', 'tdd'], function (code, stdout) {
+      assert.equal(stdout, '1..1\n'
+        + 'ok 1 test passes\n'
+        + '# tests 1\n'
+        + '# pass 1\n'
+        + '# fail 0\n');
+      assert.equal(code, 0);
+      done();
+    });
   });
 
 });
