@@ -81,4 +81,12 @@ describe('phantom', function () {
     });
   });
 
+  it('uses custom phantomjs', function (done) {
+    run('passes', ['--phantomjs', 'some/path'], function (code, stdout) {
+      assert.equal(stdout.indexOf('Cannot find phantomjs'), 0);
+      assert.equal(code, 1);
+      done();
+    });
+  });
+
 });

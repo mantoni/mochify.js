@@ -106,6 +106,12 @@ describe('args', function () {
     assert.equal(opts.yields, 123);
   });
 
+  it('parses --phantomjs', function () {
+    var opts = args(['--phantomjs', '/foo/bar']);
+
+    assert.equal(opts.phantomjs, '/foo/bar');
+  });
+
   it('quits with usage', function (done) {
     run('passes', ['--unknown'], function (code, stdout) {
       assert.equal(code, 1);
