@@ -1,9 +1,12 @@
 # Changes
 
-## 0.x.y 
+## 0.10.0
 
-- Upgraded `"mocaccino": "~0.6.0"` to `"mocaccino": "~0.8.0"
-- Added `-t` and `--timeout` arguments to be passed to Mocha
+- Upgraded mocaccino to `~0.8.0` (JP Richardson)
+- Added `-t` and `--timeout` arguments to be passed to mocaccino (JP Richardson)
+- Added `-U` and `--ui` arguments to be passed to mocaccino
+- Ugraded phantomic to `~0.8.0`
+- Added `--phantomjs` argument to use a specific PhantomJS binary
 
 ## 0.9.4
 
@@ -12,7 +15,7 @@
 ## 0.9.3
 
 - Add brout dependency to make sure it's only loaded once
-- Fix `min-webdriver` require for windows (take IV)
+- Fix min-webdriver require for windows (take IV)
 
 ## 0.9.2
 
