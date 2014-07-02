@@ -6,6 +6,8 @@ Options:
 
     -R, --reporter   Change the Mocha reporter (see further down).
 
+          -U, --ui   Change the Mocha UI. Defaults to 'bdd'.
+
            --debug   Launch the WebKit inspector for debugging.
 
             --port   Use specific port for phantomic server. Defaults to 0 for
