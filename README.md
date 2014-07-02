@@ -45,6 +45,8 @@ Options:
 - `--node` runs test cases on node (useful with `--cover`).
 - `--debug` launches the WebKit debugger.
 - `--port` uses a specific port for the PhantomJS server.
+- `--phantomjs` uses a specific PhantomJS executable. If not specified,
+  `phantomjs` is expected on the `$PATH`.
 
 ## Example package.json configuration
 
