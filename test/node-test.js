@@ -82,4 +82,14 @@ describe('node', function () {
       });
   });
 
+  it('times out', function (done) {
+    run('timeout', ['--node', '-R', 'tap', '--timeout', '10'],
+      function (code, stdout) {
+        assert.equal(stdout.indexOf('1..1\n'
+          + 'not ok 1 test times out\n'), 0);
+        assert.equal(code, 1);
+        done();
+      });
+  });
+
 });
