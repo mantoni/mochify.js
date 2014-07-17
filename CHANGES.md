@@ -1,5 +1,10 @@
 # Changes
 
+## 0.11.0
+
+- Use new source-mapper module to fix --node stacks
+- Upgraded phantomic to `~0.9.0`
+
 ## 0.10.0
 
 - Upgraded mocaccino to `~0.8.0` (JP Richardson)
