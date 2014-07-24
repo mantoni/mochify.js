@@ -1,5 +1,9 @@
 # Changes
 
+## 0.11.1
+
+- Allow --debug flag (Jerome Gravel-Niquet)
+
 ## 0.11.0
 
 - Use new source-mapper module to fix --node stacks
