@@ -1,5 +1,9 @@
 # Changes
 
+## 0.11.3
+
+- Improve stack trace detection to not match arbitrary URLs
+
 ## 0.11.2
 
 - Fix --help
