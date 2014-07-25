@@ -1,5 +1,9 @@
 # Changes
 
+## 0.11.2
+
+- Fix --help
+
 ## 0.11.1
 
 - Allow --debug flag (Jerome Gravel-Niquet)
