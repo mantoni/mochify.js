@@ -112,6 +112,12 @@ describe('args', function () {
     assert.equal(opts.phantomjs, '/foo/bar');
   });
 
+  it('parses --debug', function () {
+    var opts = args(['--debug']);
+
+    assert(opts.debug);
+  });
+
   it('quits with usage', function (done) {
     run('passes', ['--unknown'], function (code, stdout) {
       assert.equal(code, 1);
