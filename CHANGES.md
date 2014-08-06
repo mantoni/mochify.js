@@ -1,5 +1,10 @@
 # Changes
 
+## 1.0.1
+
+- Fix relative paths in stack frames
+- Filter mocaccino stack trace frames
+
 ## 1.0.0
 
 - Require Browserify 5
