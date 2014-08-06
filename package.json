@@ -1,6 +1,6 @@
 {
   "name": "mochify",
-  "version": "0.11.3",
+  "version": "1.0.0",
   "description": "TDD with Browserify, Mocha, PhantomJS and WebDriver",
   "keywords": [
     "mocha",

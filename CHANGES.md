@@ -1,5 +1,10 @@
 # Changes
 
+## 1.0.0
+
+- Require Browserify 5
+- Use 1.0.0 releases of mocaccino, min-wd and brout
+
 ## 0.11.3
 
 - Improve stack trace detection to not match arbitrary URLs
