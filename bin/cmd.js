@@ -49,14 +49,7 @@ function launcherOut() {
 }
 
 function browserifyBundle(w) {
-  var bundleOpts = {
-    debug : true
-  };
-  if (opts.node) {
-    bundleOpts.detectGlobals = false;
-    bundleOpts.insertGlobalVars = ['__dirname', '__filename'];
-  }
-  var wb = w.bundle(bundleOpts);
+  var wb = w.bundle();
   wb.on('error', error);
   wb.pipe(context.ps);
 }
@@ -72,10 +65,14 @@ function bundler(w, launcher) {
 }
 
 
-var brOpts = {};
+var brOpts = {
+  debug : true
+};
 if (opts.node) {
   brOpts.builtins = false;
   brOpts.commondir = false;
+  brOpts.detectGlobals = false;
+  brOpts.insertGlobalVars = ['__dirname', '__filename'];
 }
 var b = browserify(brOpts);
 if (opts.wd) {

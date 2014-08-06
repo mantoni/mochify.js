@@ -28,29 +28,28 @@
   "scripts": {
     "lint": "jslint --color './**/*.js'",
     "start": "mocha --watch",
-    "test": "npm run lint && mocha -R spec"
+    "test": "npm run lint && mocha"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/mantoni/mochify.js.git"
   },
   "dependencies": {
-    "browserify": ">=3.30 <5",
-    "watchify": "~0.9.0",
-    "coverify": "~1.0.6",
-    "mocaccino": "~0.8.0",
-    "phantomic": "~0.10.0",
-    "through": "^2.3.4",
-    "resolve": "~0.6.1",
+    "browserify": "^5.9",
+    "watchify": "^1.0",
+    "coverify": "^1.0",
+    "mocaccino": "^1.0",
+    "phantomic": "^0.10",
+    "through": "^2.3",
+    "resolve": "^0.7",
     "glob": "^3.2.6",
-    "min-wd": "~0.4.4",
-    "brout": "~0.2.0",
-    "source-mapper": "~0.2.0"
+    "min-wd": "^1.0",
+    "brout": "^1.0",
+    "source-mapper": "^0.2"
   },
   "devDependencies": {
-    "jslint": "~0.3.1",
-    "mocha": "~1.17.1",
-    "brout": "~0.2.0"
+    "jslint": "^0.6",
+    "mocha": "^1.21"
   },
   "files": [
     "bin",
