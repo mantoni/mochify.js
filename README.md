@@ -137,6 +137,12 @@ Mocha reporters known to work:
 Note: Consuming the output of a machine readable reporter may not work as
 expected with `--wd`.
 
+## Compatibility
+
+- Node 0.10 or later
+- Browserify 5.9 or later (since version 1.0.0)
+- Browserify 4.x (before 1.0.0)
+
 ## License
 
 MIT
