@@ -41,9 +41,10 @@
     "mocaccino": "^1.0",
     "phantomic": "^0.10",
     "through": "^2.3",
+    "through2": "^0.5",
     "resolve": "^0.7",
-    "glob": "^3.2.6",
-    "min-wd": "^1.0",
+    "glob": "^3.2",
+    "min-wd": "^2.0",
     "brout": "^1.0",
     "source-mapper": "^0.2"
   },

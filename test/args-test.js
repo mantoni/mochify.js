@@ -146,7 +146,7 @@ describe('args', function () {
 
   it('fails with meaningful message if file is missing', function (done) {
     run('passes', ['./unknown-file.js'], function (code, stdout) {
-      assert.equal(code, 1);
+      assert.notEqual(code, 0);
       assert(stdout.indexOf('./unknown-file.js') !== -1);
       done();
     });

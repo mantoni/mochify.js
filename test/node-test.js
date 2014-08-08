@@ -73,7 +73,7 @@ describe('node', function () {
           + '# tests 1\n'
           + '# pass 1\n'
           + '# fail 0\n';
-        var coverOut = '\n# coverage: 9/10 (90.00 %)\n\n';
+        var coverOut = '\n# coverage: 9/10 (90.00 %)\n\nError: Exit 1\n\n';
         assert.equal(stdout.substring(0, testOut.length), testOut);
         assert.equal(stdout.substring(stdout.length - coverOut.length),
             coverOut);

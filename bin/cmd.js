@@ -8,23 +8,17 @@
  */
 'use strict';
 
-var watchify   = require('watchify');
 var browserify = require('browserify');
+var watchify   = require('watchify');
 var coverify   = require('coverify');
-var through    = require('through');
-var resolve    = require('resolve');
-var path       = require('path');
 var mocaccino  = require('mocaccino');
+var webdriver  = require('min-wd');
 var args       = require('../lib/args');
 var cover      = require('../lib/cover');
-var launch     = require('../lib/launch');
+var node       = require('../lib/node');
+var phantom    = require('../lib/phantom');
 
-var opts    = args(process.argv.slice(2));
-var cwd     = process.cwd();
-var context = {
-  failure : false,
-  ps      : null
-};
+var opts = args(process.argv.slice(2));
 
 function error(err) {
   console.error(String(err) + '\n');
@@ -35,38 +29,11 @@ function error(err) {
   }
 }
 
-function launcherOut() {
-  if (opts.cover) {
-    return cover(function (code) {
-      if (!opts.watch) {
-        process.nextTick(function () {
-          process.exit(context.failure || code);
-        });
-      }
-    });
-  }
-  return process.stdout;
-}
-
-function browserifyBundle(w) {
-  var wb = w.bundle();
-  wb.on('error', error);
-  wb.pipe(context.ps);
-}
-
-function bundler(w, launcher) {
-  (function run() {
-    context.ps = through();
-    launcher(run);
-  }());
-  return function () {
-    browserifyBundle(w);
-  };
-}
-
 
 var brOpts = {
-  debug : true
+  debug        : true,
+  cache        : {},
+  packageCache : {}
 };
 if (opts.node) {
   brOpts.builtins = false;
@@ -75,22 +42,27 @@ if (opts.node) {
   brOpts.insertGlobalVars = ['__dirname', '__filename'];
 }
 var b = browserify(brOpts);
-if (opts.wd) {
-  var minWebDriverFile = resolve.sync('min-wd', {
-    baseDir: __dirname,
-    packageFilter: function (pkg) {
-      return { main : pkg.browser };
-    }
-  });
-  minWebDriverFile = path.relative(cwd, minWebDriverFile);
-  minWebDriverFile = "./" + minWebDriverFile.replace(/\\/g, '/');
-  b.require(minWebDriverFile, { expose : "min-wd" });
-  b.transform(require("min-wd"));
+if (!opts.node && !opts.wd) {
+  b.plugin(phantom, opts);
+} else {
+  if (opts.node) {
+    b.plugin(node);
+  }
+  if (opts.wd) {
+    b.plugin(webdriver, {
+      timeout : 0
+    });
+  }
+}
+if (opts.cover) {
+  b.transform(coverify);
+  b.plugin(cover);
 }
 
 opts.entries.forEach(function (entry) {
   b.add(entry);
 });
+
 b.plugin(mocaccino, {
   reporter : opts.reporter,
   ui       : opts.ui,
@@ -98,32 +70,23 @@ b.plugin(mocaccino, {
   yields   : opts.yields,
   timeout  : opts.timeout
 });
-if (opts.cover) {
-  b.transform(coverify);
-}
+
 b.on('error', error);
-
-
-var launcher = launch(context, opts, launcherOut);
+b.on('bundle', function (out) {
+  out.pipe(process.stdout);
+});
 
 if (opts.watch) {
-
   var w = watchify(b);
-
-  var bundle = bundler(w, launcher);
-  w.on('update', bundle);
-  w.on('error', error);
-  bundle();
+  w.on('update', function () {
+    b.bundle();
+  });
 
   process.on('SIGINT', function () {
-    if (context.ps) {
-      context.ps.on('end', function () {
-        process.exit(0);
-      });
-      context.ps.queue(null);
-    } else {
+    w.close();
+    setTimeout(function () {
       process.exit(0);
-    }
+    }, 50);
   });
 
   // Hack for Windows:
@@ -137,11 +100,6 @@ if (opts.watch) {
       process.emit('SIGINT');
     });
   }
-
-} else {
-
-  context.ps = through();
-  launcher();
-  browserifyBundle(b);
-
 }
+
+b.bundle();
