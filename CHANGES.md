@@ -1,5 +1,9 @@
 # Changes
 
+## 1.0.2
+
+- Refactor all launchers to be plugins
+
 ## 1.0.1
 
 - Fix relative paths in stack frames
