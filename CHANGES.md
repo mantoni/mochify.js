@@ -1,5 +1,9 @@
 # Changes
 
+## 1.0.3
+
+- Avoid concurrent executions when using `--watch`
+
 ## 1.0.2
 
 - Refactor all launchers to be plugins
