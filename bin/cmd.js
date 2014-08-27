@@ -78,8 +78,26 @@ b.on('bundle', function (out) {
 
 if (opts.watch) {
   var w = watchify(b);
-  w.on('update', function () {
-    b.bundle();
+  var bundling = false;
+  var queued = false;
+
+  var bundle = function () {
+    if (!bundling) {
+      bundling = true;
+      b.bundle();
+    } else {
+      queued = true;
+    }
+  };
+  w.on('update', bundle);
+  b.on('bundle', function (out) {
+    out.on('end', function () {
+      bundling = false;
+      if (queued) {
+        queued = false;
+        setImmediate(bundle);
+      }
+    });
   });
 
   process.on('SIGINT', function () {
