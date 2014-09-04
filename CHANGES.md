@@ -1,5 +1,10 @@
 # Changes
 
+## 1.0.4
+
+- Fix trace handling on Windows
+- Use through2 instead of through
+
 ## 1.0.3
 
 - Avoid concurrent executions when using `--watch`
