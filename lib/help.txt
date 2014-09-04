@@ -1,4 +1,7 @@
-Usage: mochify [options] entry ...
+Usage: mochify [options] [entry ...]
+
+Uses PhantomJS unless --wd or --node is specified.
+Defaults "entry" to "./test/*.js".
 
 Options:
        -w, --watch   Use watchify to watch your files and run the tests on
