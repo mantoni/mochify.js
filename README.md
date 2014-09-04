@@ -32,21 +32,25 @@ PhantomJS with [phantomic][] and pass the output back to your console. Cleans
 up your stack traces by mapping back to the original sources and throws out all
 the lines from the test framework.
 
+Run `mochify --help` to see all available options.
+
 Options:
 
 - `--watch` or `-w` use [watchify][] to watch your files and run the tests on
   change.
-- `--wd` use [min-webdriver][] to run the tests in multiple real browsers.
 - `--reporter` or `-R` changes the Mocha reporter (see further down).
 - `--ui` or `-U` changes the Mocha UI. Defaults to `'bdd'`.
 - `--timeout` or `-t` changes the Mocha timeout. Defaults to `2000`.
-- `--yields` or `-y` changes the yield interval to allow pending I/O to happen.
-- `--cover` checks code coverage with [coverify][].
-- `--node` runs test cases on node (useful with `--cover`).
 - `--debug` launches the WebKit debugger.
 - `--port` uses a specific port for the PhantomJS server.
 - `--phantomjs` uses a specific PhantomJS executable. If not specified,
   `phantomjs` is expected on the `$PATH`.
+- `--cover` checks code coverage with [coverify][].
+- `--node` runs test cases on node (useful with `--cover`).
+- `--wd` use [min-webdriver][] to run the tests in multiple real browsers.
+- `--yields` or `-y` changes the yield interval to allow pending I/O to happen.
+- `--version` or `-v` shows the Mochify version number.
+- `--help` or `-h` shows usage and all available options.
 
 ## Example package.json configuration
 
