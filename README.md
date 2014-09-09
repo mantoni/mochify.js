@@ -100,8 +100,8 @@ Create `.min-wd` in your project root:
 }
 ```
 
-Thant's it! Now `mochify --wd` will run your Mocha test cases in the configured
-browsers simultaniously. If you installed mochify without `-g`, you will need
+That's it! Now `mochify --wd` will run your Mocha test cases in the configured
+browsers simultaniously. If you installed mochify without `-g`, you will have
 to run `node_modules/.bin/mochify --wd`.
 
 ## SauceLabs
