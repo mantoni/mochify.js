@@ -38,7 +38,7 @@ describe('phantom', function () {
     });
   });
 
-  it.skip('coverage tap', function (done) {
+  it('coverage tap', function (done) {
     run('passes', ['--cover', '-R', 'tap'], function (code, stdout) {
       assert.equal(stdout, '1..1\n'
         + 'ok 1 test passes\n'
@@ -50,7 +50,7 @@ describe('phantom', function () {
     });
   });
 
-  it.skip('coverage dot', function (done) {
+  it('coverage dot', function (done) {
     run('passes', ['--cover'], function (code, stdout) {
       var lines = stdout.trim().split(/\n+/);
       assert.equal(lines[0], '\u001b[90m.\u001b[0m');
