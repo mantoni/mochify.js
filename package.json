@@ -39,13 +39,13 @@
     "watchify": "^1.0",
     "coverify": "^1.0",
     "mocaccino": "^1.0",
-    "phantomic": "^0.10",
+    "phantomic": "^1.0",
     "through2": "^0.6",
-    "resolve": "^0.7",
-    "glob": "^3.2",
+    "resolve": "^1.0",
+    "glob": "^4.0",
     "min-wd": "^2.0",
     "brout": "^1.0",
-    "source-mapper": "^0.2"
+    "source-mapper": "^1.0"
   },
   "devDependencies": {
     "jslint": "^0.6",
