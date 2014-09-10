@@ -1,5 +1,10 @@
 # Changes
 
+## 1.0.5
+
+- Fix coverage in phantomjs
+- Bump phantomic, source-mapper, resolve and glob
+
 ## 1.0.4
 
 - Fix trace handling on Windows
