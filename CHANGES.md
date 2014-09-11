@@ -1,5 +1,10 @@
 # Changes
 
+## 1.0.6
+
+- Increase `--watch` performance by preloading phantomjs
+- Do not quit `--watch` on syntax errors
+
 ## 1.0.5
 
 - Fix coverage in phantomjs
