@@ -17,7 +17,7 @@ npm install mochify -g
 ```
 
 - Download and install Phantom.JS: <http://phantomjs.org/>
-- Make sure that the `phantomjs` executable is in your `PATH`
+- Make sure that the `phantomjs` executable is in your `PATH` or use `--phantomjs <path>`
 
 ## Usage
 
