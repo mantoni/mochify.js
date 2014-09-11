@@ -73,6 +73,9 @@ b.plugin(mocaccino, {
 
 b.on('error', error);
 b.on('bundle', function (out) {
+  out.on('error', function (err) {
+    console.error(String(err) + '\n');
+  });
   out.pipe(process.stdout);
 });
 
