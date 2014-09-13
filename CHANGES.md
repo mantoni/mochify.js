@@ -1,5 +1,9 @@
 # Changes
 
+## 1.1.1
+
+- Fix resolving the browser part of consolify
+
 ## 1.1.0
 
 - Consolify support
