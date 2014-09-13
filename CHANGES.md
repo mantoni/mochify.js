@@ -1,5 +1,9 @@
 # Changes
 
+## 1.1.0
+
+- Consolify support
+
 ## 1.0.6
 
 - Increase `--watch` performance by preloading phantomjs
