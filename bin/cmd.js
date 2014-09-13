@@ -45,7 +45,6 @@ if (opts.node) {
 var b = browserify(brOpts);
 if (opts.consolify) {
   b.plugin(consolify, opts);
-  b.add('consolify');
 } else if (opts.node) {
   b.plugin(node);
 } else if (opts.wd) {
