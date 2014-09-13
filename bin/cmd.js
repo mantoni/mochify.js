@@ -17,6 +17,7 @@ var args       = require('../lib/args');
 var cover      = require('../lib/cover');
 var node       = require('../lib/node');
 var phantom    = require('../lib/phantom');
+var consolify  = require('../lib/consolify');
 
 var opts = args(process.argv.slice(2));
 
@@ -42,17 +43,15 @@ if (opts.node) {
   brOpts.insertGlobalVars = ['__dirname', '__filename'];
 }
 var b = browserify(brOpts);
-if (!opts.node && !opts.wd) {
-  b.plugin(phantom, opts);
+if (opts.consolify) {
+  b.plugin(consolify, opts);
+  b.add('consolify');
+} else if (opts.node) {
+  b.plugin(node);
+} else if (opts.wd) {
+  b.plugin(webdriver, { timeout : 0 });
 } else {
-  if (opts.node) {
-    b.plugin(node);
-  }
-  if (opts.wd) {
-    b.plugin(webdriver, {
-      timeout : 0
-    });
-  }
+  b.plugin(phantom, opts);
 }
 if (opts.cover) {
   b.transform(coverify);
