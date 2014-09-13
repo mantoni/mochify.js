@@ -28,6 +28,8 @@ Options:
               --wd   Use min-webdriver to run the tests in multiple real
                      browsers.
 
+       --consolify   Generate a standalone HTML page.
+
       -y, --yields   Changes the yield interval to allow pending I/O to happen.
 
      -v, --version   Print mochify version and exit.
