@@ -1,5 +1,9 @@
 # Mochify
 
+[![Build Status]](https://travis-ci.org/mantoni/mochify.js)
+[![SemVer]](http://semver.org)
+[![License]](https://github.com/mantoni/mochify.js/blob/master/LICENSE)
+
 TDD with Browserify, Mocha, PhantomJS and WebDriver
 
 - Fast roundtrip
@@ -152,6 +156,9 @@ expected with `--wd`.
 
 MIT
 
+[Build Status]: http://img.shields.io/travis/mantoni/mochify.js.svg
+[SemVer]: http://img.shields.io/:semver-%E2%9C%93-brightgreen.svg
+[License]: http://img.shields.io/npm/l/mochify.js.svg
 [watchify]: https://github.com/substack/watchify
 [coverify]: https://github.com/substack/coverify
 [min-webdriver]: https://github.com/mantoni/min-webdriver
