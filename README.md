@@ -158,7 +158,7 @@ MIT
 
 [Build Status]: http://img.shields.io/travis/mantoni/mochify.js.svg
 [SemVer]: http://img.shields.io/:semver-%E2%9C%93-brightgreen.svg
-[License]: http://img.shields.io/npm/l/mochify.js.svg
+[License]: http://img.shields.io/npm/l/mochify.svg
 [watchify]: https://github.com/substack/watchify
 [coverify]: https://github.com/substack/coverify
 [min-webdriver]: https://github.com/mantoni/min-webdriver
