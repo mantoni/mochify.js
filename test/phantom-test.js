@@ -13,7 +13,7 @@ var run    = require('./fixture/run');
 
 
 describe('phantom', function () {
-  this.timeout(3000);
+  this.timeout(5000);
 
   it('passes', function (done) {
     run('passes', ['-R', 'tap'], function (code, stdout) {
