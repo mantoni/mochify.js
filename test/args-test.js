@@ -88,6 +88,12 @@ describe('args', function () {
     assert(opts.wd);
   });
 
+  it('parses --consolify', function () {
+    var opts = args(['--consolify', 'some.html']);
+
+    assert.equal(opts.consolify, 'some.html');
+  });
+
   it('parses --port', function () {
     var opts = args(['--port', '8765']);
 
