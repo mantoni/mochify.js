@@ -1,5 +1,9 @@
 # Changes
 
+## 1.1.2
+
+- Enable colors in converify if stderr is a tty
+
 ## 1.1.1
 
 - Fix resolving the browser part of consolify
