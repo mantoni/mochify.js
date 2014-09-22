@@ -2,7 +2,7 @@
 
 ## 1.1.2
 
-- Enable colors in converify if stderr is a tty
+- Enable colors in coverify if stderr is a tty
 
 ## 1.1.1
 
