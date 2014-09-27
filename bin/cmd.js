@@ -46,7 +46,7 @@ var b = browserify(brOpts);
 if (opts.consolify) {
   b.plugin(consolify, opts);
 } else if (opts.node) {
-  b.plugin(node);
+  b.plugin(node, opts);
 } else if (opts.wd) {
   b.plugin(webdriver, { timeout : 0 });
 } else {

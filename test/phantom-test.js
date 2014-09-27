@@ -17,7 +17,8 @@ describe('phantom', function () {
 
   it('passes', function (done) {
     run('passes', ['-R', 'tap'], function (code, stdout) {
-      assert.equal(stdout, '1..1\n'
+      assert.equal(stdout, '# phantomjs:\n'
+        + '1..1\n'
         + 'ok 1 test passes\n'
         + '# tests 1\n'
         + '# pass 1\n'
@@ -29,7 +30,8 @@ describe('phantom', function () {
 
   it('fails', function (done) {
     run('fails', ['-R', 'tap'], function (code, stdout) {
-      assert.equal(stdout.indexOf('1..1\n'
+      assert.equal(stdout.indexOf('# phantomjs:\n'
+        + '1..1\n'
         + 'not ok 1 test fails\n'
         + '  Error: Oh noes!\n'), 0);
         //+ '      at test/fails.js:7'), 0); // FIXME relative path broken
@@ -40,7 +42,8 @@ describe('phantom', function () {
 
   it('coverage tap', function (done) {
     run('passes', ['--cover', '-R', 'tap'], function (code, stdout) {
-      assert.equal(stdout, '1..1\n'
+      assert.equal(stdout, '# phantomjs:\n'
+        + '1..1\n'
         + 'ok 1 test passes\n'
         + '# tests 1\n'
         + '# pass 1\n'
@@ -53,8 +56,9 @@ describe('phantom', function () {
   it('coverage dot', function (done) {
     run('passes', ['--cover'], function (code, stdout) {
       var lines = stdout.trim().split(/\n+/);
-      assert.equal(lines[0], '\u001b[90m.\u001b[0m');
-      assert.equal(lines[2], '# coverage: 8/8 (100.00 %)');
+      assert.equal(lines[0], '# phantomjs:');
+      assert.equal(lines[2], '  \u001b[90m.\u001b[0m');
+      assert.equal(lines[4], '# coverage: 8/8 (100.00 %)');
       assert.equal(code, 0);
       done();
     });
@@ -62,7 +66,8 @@ describe('phantom', function () {
 
   it('times out', function (done) {
     run('timeout', ['-R', 'tap', '--timeout', '10'], function (code, stdout) {
-      assert.equal(stdout.indexOf('1..1\n'
+      assert.equal(stdout.indexOf('# phantomjs:\n'
+        + '1..1\n'
         + 'not ok 1 test times out\n'), 0);
       assert.equal(code, 1);
       done();
@@ -71,7 +76,8 @@ describe('phantom', function () {
 
   it('uses tdd ui', function (done) {
     run('ui-tdd', ['-R', 'tap', '--ui', 'tdd'], function (code, stdout) {
-      assert.equal(stdout, '1..1\n'
+      assert.equal(stdout, '# phantomjs:\n'
+        + '1..1\n'
         + 'ok 1 test passes\n'
         + '# tests 1\n'
         + '# pass 1\n'

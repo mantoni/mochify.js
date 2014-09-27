@@ -16,7 +16,8 @@ describe('node', function () {
 
   it('passes', function (done) {
     run('passes', ['--node', '-R', 'tap'], function (code, stdout) {
-      assert.equal(stdout, '1..1\n'
+      assert.equal(stdout, '# node:\n'
+        + '1..1\n'
         + 'ok 1 test passes\n'
         + '# tests 1\n'
         + '# pass 1\n'
@@ -28,7 +29,8 @@ describe('node', function () {
 
   it('fails', function (done) {
     run('fails', ['--node', '-R', 'tap'], function (code, stdout) {
-      assert.equal(stdout.indexOf('1..1\n'
+      assert.equal(stdout.indexOf('# node:\n'
+        + '1..1\n'
         + 'not ok 1 test fails\n'
         + '  Error: Oh noes!'), 0);
       assert.equal(code, 1);
@@ -38,7 +40,8 @@ describe('node', function () {
 
   it('coverage tap', function (done) {
     run('passes', ['--node', '--cover', '-R', 'tap'], function (code, stdout) {
-      assert.equal(stdout, '1..1\n'
+      assert.equal(stdout, '# node:\n'
+        + '1..1\n'
         + 'ok 1 test passes\n'
         + '# tests 1\n'
         + '# pass 1\n'
@@ -51,8 +54,9 @@ describe('node', function () {
   it('coverage dot', function (done) {
     run('passes', ['--node', '--cover'], function (code, stdout) {
       var lines = stdout.trim().split(/\n+/);
-      assert.equal(lines[0], '\u001b[90m․\u001b[0m');
-      assert.equal(lines[2], '# coverage: 8/8 (100.00 %)');
+      assert.equal(lines[0], '# node:');
+      assert.equal(lines[2], '  \u001b[90m․\u001b[0m');
+      assert.equal(lines[4], '# coverage: 8/8 (100.00 %)');
       assert.equal(code, 0);
       done();
     });
@@ -68,7 +72,8 @@ describe('node', function () {
   it('fails cover', function (done) {
     run('fails-cover', ['--node', '--cover', '-R', 'tap'],
       function (code, stdout) {
-        var testOut = '1..1\n'
+        var testOut = '# node:\n'
+          + '1..1\n'
           + 'ok 1 test does not cover\n'
           + '# tests 1\n'
           + '# pass 1\n'
@@ -85,7 +90,8 @@ describe('node', function () {
   it('times out', function (done) {
     run('timeout', ['--node', '-R', 'tap', '--timeout', '10'],
       function (code, stdout) {
-        assert.equal(stdout.indexOf('1..1\n'
+        assert.equal(stdout.indexOf('# node:\n'
+          + '1..1\n'
           + 'not ok 1 test times out\n'), 0);
         assert.equal(code, 1);
         done();
@@ -95,7 +101,8 @@ describe('node', function () {
   it('uses tdd ui', function (done) {
     run('ui-tdd', ['--node', '-R', 'tap', '--ui', 'tdd'],
       function (code, stdout) {
-        assert.equal(stdout, '1..1\n'
+        assert.equal(stdout, '# node:\n'
+          + '1..1\n'
           + 'ok 1 test passes\n'
           + '# tests 1\n'
           + '# pass 1\n'
