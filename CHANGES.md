@@ -1,5 +1,10 @@
 # Changes
 
+## 1.1.3
+
+- Log "# node:" and "# phantom:" titles before running tests
+- Fix test case to not fail due to varying timings
+
 ## 1.1.2
 
 - Enable colors in coverify if stderr is a tty
