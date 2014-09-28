@@ -142,6 +142,7 @@ Mocha reporters known to work:
 - doc
 - xunit
 - markdown
+- landing
 
 Note: Consuming the output of a machine readable reporter may not work as
 expected with `--wd`.
