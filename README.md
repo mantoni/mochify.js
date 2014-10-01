@@ -53,6 +53,8 @@ Options:
 - `--node` runs test cases on node (useful with `--cover`).
 - `--wd` use [min-webdriver][] to run the tests in multiple real browsers.
 - `--consolify` generate a standalone HTML page with [consolify][].
+- `--extensions` search for files with these comma-sperated extensions in
+  `require` statements.
 - `--yields` or `-y` changes the yield interval to allow pending I/O to happen.
 - `--version` or `-v` shows the Mochify version number.
 - `--help` or `-h` shows usage and all available options.

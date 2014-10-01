@@ -34,7 +34,8 @@ function error(err) {
 var brOpts = {
   debug        : true,
   cache        : {},
-  packageCache : {}
+  packageCache : {},
+  extensions   : []
 };
 if (opts.node) {
   brOpts.builtins = false;
@@ -42,6 +43,10 @@ if (opts.node) {
   brOpts.detectGlobals = false;
   brOpts.insertGlobalVars = ['__dirname', '__filename'];
 }
+opts.extensions.forEach(function(ext) {
+  brOpts.extensions.push("." + ext);
+});
+
 var b = browserify(brOpts);
 if (opts.consolify) {
   b.plugin(consolify, opts);
