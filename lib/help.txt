@@ -30,6 +30,9 @@ Options:
 
        --consolify   Generate a standalone HTML page.
 
+      --extensions   Search for files with these comma-separated extensions
+                     in "require" statments. For example, "--extensions jsx,ts".
+
       -y, --yields   Changes the yield interval to allow pending I/O to happen.
 
      -v, --version   Print mochify version and exit.
