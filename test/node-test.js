@@ -55,7 +55,7 @@ describe('node', function () {
     run('passes', ['--node', '--cover'], function (code, stdout) {
       var lines = stdout.trim().split(/\n+/);
       assert.equal(lines[0], '# node:');
-      assert.equal(lines[2], '  \u001b[90m․\u001b[0m');
+      assert.equal(lines[2], '  \u001b[90m.\u001b[0m');
       assert.equal(lines[4], '# coverage: 8/8 (100.00 %)');
       assert.equal(code, 0);
       done();
