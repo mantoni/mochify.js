@@ -45,7 +45,7 @@
     "consolify": "^1.0",
     "through2": "^0.6",
     "resolve": "^1.0",
-    "subarg": "^0.0.1",
+    "subarg": "^1.0",
     "glob": "^4.0",
     "min-wd": "^2.0",
     "brout": "^1.0",
