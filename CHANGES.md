@@ -1,5 +1,10 @@
 # Changes
 
+## 1.2.0
+
+- Register mocha as a dependency (Barney)
+- Add "landing" to list of supported reporters
+
 ## 1.1.3
 
 - Log "# node:" and "# phantom:" titles before running tests
