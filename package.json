@@ -39,6 +39,7 @@
     "watchify": "^1.0",
     "coverify": "^1.0",
     "mocaccino": "^1.0",
+    "mocha": "^1.21",
     "phantomic": "^1.0",
     "consolify": "^1.0",
     "through2": "^0.6",
@@ -49,8 +50,7 @@
     "source-mapper": "^1.0"
   },
   "devDependencies": {
-    "jslint": "^0.6",
-    "mocha": "^1.21"
+    "jslint": "^0.6"
   },
   "files": [
     "bin",
