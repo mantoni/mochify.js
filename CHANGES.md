@@ -1,5 +1,10 @@
 # Changes
 
+## 1.3.0
+
+- Add `--transorm` support
+- Fix unknown argument handling
+
 ## 1.2.0
 
 - Register mocha as a dependency (Barney)
