@@ -1,5 +1,9 @@
 # Changes
 
+## 1.4.0
+
+- Add `--plugin` support
+
 ## 1.3.0
 
 - Add `--transorm` support
