@@ -30,6 +30,9 @@ Options:
 
        --consolify   Generate a standalone HTML page.
 
+       --transform   Specifies a Browserify transform to add. Can be specified
+                     multiple times. Options can be passed with subargs.
+
       -y, --yields   Changes the yield interval to allow pending I/O to happen.
 
      -v, --version   Print mochify version and exit.

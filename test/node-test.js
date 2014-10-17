@@ -8,8 +8,9 @@
  */
 'use strict';
 
-var assert = require('assert');
-var run    = require('./fixture/run');
+var assert    = require('assert');
+var run       = require('./fixture/run');
+var transform = require('./fixture/transform');
 
 
 describe('node', function () {
@@ -110,6 +111,38 @@ describe('node', function () {
         assert.equal(code, 0);
         done();
       });
+  });
+
+  it('passes transform to browserify', function (done) {
+    run('passes', ['--node', '-R', 'tap', '--transform',
+        './test/fixture/transform.js'], function (code, stdout) {
+      var lines = stdout.split('\n');
+      assert.equal(lines[0], 'passes/test/passes.js');
+      assert.equal(code, 0);
+      done();
+    });
+  });
+
+  it('passes transform with options to browserify', function (done) {
+    run('passes', ['--node', '-R', 'tap', '--transform', '[',
+        './test/fixture/transform.js', '-x', ']'], function (code, stdout) {
+      var lines = stdout.split('\n');
+      assert(JSON.parse(lines[1]).x);
+      assert.equal(code, 0);
+      done();
+    });
+  });
+
+  it('passes multiple transforms to browserify', function (done) {
+    run('passes', ['--node', '-R', 'tap', '--transform',
+        './test/fixture/transform.js', '--transform',
+        './test/fixture/transform.js'], function (code, stdout) {
+      var lines = stdout.split('\n');
+      assert.equal(lines[0], 'passes/test/passes.js');
+      assert.equal(lines[2], 'passes/test/passes.js');
+      assert.equal(code, 0);
+      done();
+    });
   });
 
 });

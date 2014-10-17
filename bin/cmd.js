@@ -43,6 +43,7 @@ if (opts.node) {
   brOpts.insertGlobalVars = ['__dirname', '__filename'];
 }
 var b = browserify(brOpts);
+
 if (opts.consolify) {
   b.plugin(consolify, opts);
 } else if (opts.node) {
@@ -68,6 +69,16 @@ b.plugin(mocaccino, {
   yields   : opts.yields,
   timeout  : opts.timeout
 });
+
+if (opts.transform) {
+  [].concat(opts.transform).forEach(function (t) {
+    if (typeof t === 'string') {
+      b.transform({}, t);
+    } else {
+      b.transform(t, t._.shift());
+    }
+  });
+}
 
 b.on('error', error);
 b.on('bundle', function (out) {

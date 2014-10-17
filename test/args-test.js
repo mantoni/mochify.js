@@ -124,6 +124,12 @@ describe('args', function () {
     assert(opts.debug);
   });
 
+  it('parses --transform', function () {
+    var opts = args(['--transform', 'foo']);
+
+    assert.equal(opts.transform, 'foo');
+  });
+
   it('quits with usage', function (done) {
     run('passes', ['--unknown'], function (code, stdout) {
       assert.equal(code, 1);
