@@ -130,6 +130,12 @@ describe('args', function () {
     assert.equal(opts.transform, 'foo');
   });
 
+  it('parses --plugin', function () {
+    var opts = args(['--plugin', 'foo']);
+
+    assert.equal(opts.plugin, 'foo');
+  });
+
   it('quits with usage', function (done) {
     run('passes', ['--unknown'], function (code, stdout) {
       assert.equal(code, 1);

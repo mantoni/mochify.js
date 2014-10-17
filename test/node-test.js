@@ -145,4 +145,35 @@ describe('node', function () {
     });
   });
 
+  it('passes plugin to browserify', function (done) {
+    run('passes', ['--node', '-R', 'tap', '--plugin',
+        '../plugin.js'], function (code, stdout) {
+      var lines = stdout.split('\n');
+      assert.equal(lines[0], 'passes/test/passes.js');
+      assert.equal(code, 0);
+      done();
+    });
+  });
+
+  it('passes plugin with options to browserify', function (done) {
+    run('passes', ['--node', '-R', 'tap', '--plugin', '[',
+        '../plugin.js', '-x', ']'], function (code, stdout) {
+      var lines = stdout.split('\n');
+      assert(JSON.parse(lines[1]).x);
+      assert.equal(code, 0);
+      done();
+    });
+  });
+
+  it('passes multiple plugins to browserify', function (done) {
+    run('passes', ['--node', '-R', 'tap', '--plugin', '../plugin.js',
+        '--plugin', '../plugin.js'], function (code, stdout) {
+      var lines = stdout.split('\n');
+      assert.equal(lines[0], 'passes/test/passes.js');
+      assert.equal(lines[2], 'passes/test/passes.js');
+      assert.equal(code, 0);
+      done();
+    });
+  });
+
 });

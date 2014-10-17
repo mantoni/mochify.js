@@ -70,6 +70,15 @@ b.plugin(mocaccino, {
   timeout  : opts.timeout
 });
 
+if (opts.plugin) {
+  [].concat(opts.plugin).forEach(function (p) {
+    if (typeof p === 'string') {
+      b.plugin(p, {});
+    } else {
+      b.plugin(p._.shift(), p);
+    }
+  });
+}
 if (opts.transform) {
   [].concat(opts.transform).forEach(function (t) {
     if (typeof t === 'string') {

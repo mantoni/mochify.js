@@ -33,6 +33,9 @@ Options:
        --transform   Specifies a Browserify transform to add. Can be specified
                      multiple times. Options can be passed with subargs.
 
+          --plugin   Specifies a Browserify plugin to add. Can be specified
+                     multiple times. Options can be passed with subargs.
+
       -y, --yields   Changes the yield interval to allow pending I/O to happen.
 
      -v, --version   Print mochify version and exit.

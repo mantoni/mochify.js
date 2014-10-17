@@ -55,6 +55,8 @@ Options:
 - `--consolify` generate a standalone HTML page with [consolify][].
 - `--transform` specifies a Browserify transform to add. Can be specified
   multiple times. Options can be passed with [subargs][].
+- `--plugin` specifies a Browserify plugin to add. Can be specified multiple
+  times. Options can be passed with [subargs][].
 - `--yields` or `-y` changes the yield interval to allow pending I/O to happen.
 - `--version` or `-v` shows the Mochify version number.
 - `--help` or `-h` shows usage and all available options.
