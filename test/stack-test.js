@@ -18,8 +18,8 @@ describe('stack', function () {
   it('does not screw up xunit', function (done) {
     run('passes', ['-R', 'xunit'], function (code, stdout) {
       var lines = stdout.split('\n');
-      assert.equal(lines[1].substring(0, lines[1].length - 3),
-          '<testcase classname="test" name="passes" time="0');
+      var expect = '<testcase classname="test" name="passes" time="0';
+      assert.equal(lines[1].substring(0, expect.length), expect);
       assert.equal(lines[2], '</testsuite>');
       assert.equal(code, 0);
       done();
