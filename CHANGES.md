@@ -1,5 +1,9 @@
 # Changes
 
+## 1.5.0
+
+- Add support for mocha `--grep` option (Daniel Davidson)
+
 ## 1.4.0
 
 - Add `--plugin` support
