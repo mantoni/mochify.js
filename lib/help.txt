@@ -5,9 +5,11 @@ Defaults "entry" to "./test/*.js".
 
 Options:
        -w, --watch   Use watchify to watch your files and run the tests on
-                     change. 
+                     change.
 
     -R, --reporter   Change the Mocha reporter (see further down).
+
+            --grep   Set Mocha grep option.
 
           -U, --ui   Change the Mocha UI. Defaults to 'bdd'.
 

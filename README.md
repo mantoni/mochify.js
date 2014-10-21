@@ -43,6 +43,7 @@ Options:
 - `--watch` or `-w` use [watchify][] to watch your files and run the tests on
   change.
 - `--reporter` or `-R` changes the Mocha reporter (see further down).
+- `--grep` sets the Mocha grep option.
 - `--ui` or `-U` changes the Mocha UI. Defaults to `'bdd'`.
 - `--timeout` or `-t` changes the Mocha timeout. Defaults to `2000`.
 - `--debug` launches the WebKit debugger.
