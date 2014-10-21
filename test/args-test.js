@@ -136,6 +136,12 @@ describe('args', function () {
     assert.equal(opts.plugin, 'foo');
   });
 
+  it('parses --grep', function () {
+    var opts = args(['--grep', 'foo']);
+
+    assert.equal(opts.grep, 'foo');
+  });
+
   it('quits with usage', function (done) {
     run('passes', ['--unknown'], function (code, stdout) {
       assert.equal(code, 1);
