@@ -20,7 +20,7 @@ TDD with Browserify, Mocha, PhantomJS and WebDriver
 npm install mochify -g
 ```
 
-- Download and install Phantom.JS: <http://phantomjs.org/>
+- Install Phantom.JS: `npm install phantomjs -g` or download from <http://phantomjs.org/>
 - Make sure that the `phantomjs` executable is in your `PATH` or use `--phantomjs <path>`
 
 ## Usage
@@ -66,8 +66,6 @@ Options:
 
 ```
 "devDependencies" : {
-  "mocha"         : "*",
-  "browserify"    : "*",
   "mochify"       : "*"
 },
 "scripts"         : {
