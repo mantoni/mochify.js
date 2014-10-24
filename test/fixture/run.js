@@ -7,7 +7,7 @@
  */
 'use strict';
 
-var spawn  = require('child_process').spawn;
+var spawn  = require('cross-spawn');
 var path   = require('path');
 
 var bin = path.resolve(__dirname, '..', '..', 'bin', 'cmd.js');

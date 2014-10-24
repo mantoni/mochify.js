@@ -50,7 +50,8 @@
     "glob": "^4.0",
     "min-wd": "^2.0",
     "brout": "^1.0",
-    "source-mapper": "^1.0"
+    "source-mapper": "^1.0",
+    "cross-spawn": "^0.2.3"
   },
   "devDependencies": {
     "jslint": "^0.6"
