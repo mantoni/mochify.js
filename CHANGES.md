@@ -1,5 +1,10 @@
 # Changes
 
+## 1.5.1
+
+- Fix --cover for Windows (#34)
+- Improve phantomjs install instructions
+
 ## 1.5.0
 
 - Add support for mocha `--grep` option (Daniel Davidson)
