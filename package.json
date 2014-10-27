@@ -40,7 +40,7 @@
     "browserify": "^5.9",
     "watchify": "^1.0",
     "coverify": "^1.0",
-    "mocaccino": "^1.1",
+    "mocaccino": "^1.2",
     "mocha": "^1.21",
     "phantomic": "^1.0",
     "consolify": "^1.0",
