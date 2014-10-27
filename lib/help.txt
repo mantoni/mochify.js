@@ -11,6 +11,8 @@ Options:
 
             --grep   Set Mocha grep option.
 
+          --invert   Set Mocha grep invert flag.
+
           -U, --ui   Change the Mocha UI. Defaults to 'bdd'.
 
      -t, --timeout   Change the Mocha timeout. Defaults to 2000.

@@ -142,6 +142,20 @@ describe('args', function () {
     assert.equal(opts.grep, 'foo');
   });
 
+  it('parses --invert', function () {
+    var opts = args(['--invert', '--grep', 'abc']);
+
+    assert(opts.invert);
+  });
+
+  it('fails with invert but no grep option', function (done) {
+    run('passes', ['--invert'], function (code, stdout) {
+      assert.equal(code, 1);
+      assert.equal(stdout, '--invert must be used with --grep option\n\n');
+      done();
+    });
+  });
+
   it('quits with usage', function (done) {
     run('passes', ['--unknown'], function (code, stdout) {
       assert.equal(code, 1);

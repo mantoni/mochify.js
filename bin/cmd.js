@@ -68,7 +68,8 @@ b.plugin(mocaccino, {
   node     : opts.node,
   yields   : opts.yields,
   timeout  : opts.timeout,
-  grep     : opts.grep
+  grep     : opts.grep,
+  invert   : opts.invert
 });
 
 if (opts.plugin) {
