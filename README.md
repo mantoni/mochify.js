@@ -44,6 +44,7 @@ Options:
   change.
 - `--reporter` or `-R` changes the Mocha reporter (see further down).
 - `--grep` sets the Mocha grep option.
+- `--invert` sets the Mocha grep `invert` flag.
 - `--ui` or `-U` changes the Mocha UI. Defaults to `'bdd'`.
 - `--timeout` or `-t` changes the Mocha timeout. Defaults to `2000`.
 - `--debug` launches the WebKit debugger.
