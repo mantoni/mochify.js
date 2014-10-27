@@ -1,5 +1,9 @@
 # Changes
 
+## 1.6.0
+
+- Add mocha grep `--invert` flag (Daniel Davidson)
+
 ## 1.5.1
 
 - Fix --cover for Windows (#34)
