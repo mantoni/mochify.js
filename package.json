@@ -27,6 +27,7 @@
   "bin": {
     "mochify": "bin/cmd.js"
   },
+  "main": "lib/mochify.js",
   "scripts": {
     "lint": "jslint --color \"**/*.js\"",
     "start": "mocha --watch",

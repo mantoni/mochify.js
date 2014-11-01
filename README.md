@@ -151,6 +151,39 @@ Mocha reporters known to work:
 Note: Consuming the output of a machine readable reporter may not work as
 expected with `--wd`.
 
+## API
+
+```js
+var mochify = require('mochify');
+
+mochify('./test/*.js', {
+  reporter : 'tap',
+  cover    : true
+}, function (err) {
+  // ...
+});
+```
+
+- `mochify()` uses default settings and runs tests in `./test/*.js`
+- `mochify(paths)` specifies the paths, a space delimited list of globs
+- `mochify(opts)` configures options as described below
+- `mochify(callback)` invokes the given callback after the test run with `err`
+  as the only argument
+- `mochify(paths, opts)` combines custom paths and options
+- `mochify(opts, callback)` combines options and a callback
+- `mochify(paths, callback)` combines custom paths and a callback
+- `mochify(paths, opts, callback)` combines custom paths, options and a
+  callback
+
+## Options
+
+All long form command line options can be used. E.g. `--node` can be configured
+as `{ node : true }`, `--reporter tab` as `{ reporter : 'tab' }` and so on.
+
+Additional API options:
+
+- `output` a stream that receives the test output (e.g. [through2][])
+
 ## Compatibility
 
 - Node 0.10 or later
@@ -171,3 +204,4 @@ MIT
 [phantomic]: https://github.com/mantoni/phantomic
 [consolify]: https://github.com/mantoni/consolify
 [subargs]: https://github.com/substack/subarg
+[through2]: https://github.com/rvagg/through2

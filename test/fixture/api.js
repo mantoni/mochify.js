@@ -10,12 +10,10 @@
 var spawn  = require('child_process').spawn;
 var path   = require('path');
 
-var bin = path.resolve(__dirname, '..', '..', 'bin', 'cmd.js');
 
-
-function run(test, args, callback) {
-  var mochify = spawn(bin, args, {
-    cwd : path.resolve(__dirname, test)
+function run(test, callback) {
+  var mochify = spawn('node', [path.resolve(__dirname, test)], {
+    cwd : path.resolve(__dirname, 'api')
   });
 
   var stdout = '';
