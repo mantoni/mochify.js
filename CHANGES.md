@@ -1,5 +1,9 @@
 # Changes
 
+## 1.7.0
+
+- Add API
+
 ## 1.6.0
 
 - Add mocha grep `--invert` flag (Daniel Davidson)
