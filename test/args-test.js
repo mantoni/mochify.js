@@ -148,6 +148,12 @@ describe('args', function () {
     assert(opts.invert);
   });
 
+  it('parses --baseSrcPath', function () {
+    var opts = args(['--baseSrcPath', './abc']);
+
+    assert(opts.baseSrcPath, './abc');
+  });
+
   it('fails with invert but no grep option', function (done) {
     run('passes', ['--invert'], function (code, stdout) {
       assert.equal(code, 1);

@@ -64,6 +64,20 @@ describe('api', function () {
       + '# fail 0\n', done));
   });
 
+  it('sets custom baseSrcPath to find src packages', function (done) {
+    mochify('./test/fixture/api/src/sum_spec.js', {
+      output   : output,
+      reporter : 'tap',
+      node     : true,
+      baseSrcPath: './test/fixture/api/src'
+    }, validateOutput('# node:\n'
+      + '1..1\n'
+      + 'ok 1 test sum should sum 2 + 1\n'
+      + '# tests 1\n'
+      + '# pass 1\n'
+      + '# fail 0\n', done));
+  });
+
   it('uses defaults', function (done) {
     api('api-defaults.js', function (code, stdout) {
       assert.equal(code, 0);
