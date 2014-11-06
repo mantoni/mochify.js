@@ -66,7 +66,7 @@ Options:
 want to avoid long require('../../../') paths in your specs
 Example: 
 `mochify --baseSrcPath './src' ./tests/*.js`
-[example spec](test/api-test.js#67)
+[example spec](test/api-test.js#L67)
 
 
 ## Example package.json configuration
