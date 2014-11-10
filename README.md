@@ -54,7 +54,7 @@ Options:
 - `--cover` checks code coverage with [coverify][].
 - `--node` runs test cases on node (useful with `--cover`).
 - `--wd` use [min-webdriver][] to run the tests in multiple real browsers.
-- `--consolify` generate a standalone HTML page with [consolify][].
+- `--consolify output.html` generate a standalone HTML page with [consolify][].
 - `--transform` specifies a Browserify transform to add. Can be specified
   multiple times. Options can be passed with [subargs][].
 - `--plugin` specifies a Browserify plugin to add. Can be specified multiple
