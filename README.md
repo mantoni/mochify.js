@@ -62,6 +62,12 @@ Options:
 - `--yields` or `-y` changes the yield interval to allow pending I/O to happen.
 - `--version` or `-v` shows the Mochify version number.
 - `--help` or `-h` shows usage and all available options.
+- `--baseSrcPath` (optional) path where your source code lives, if you
+want to avoid long require('../../../') paths in your specs
+Example: 
+`mochify --baseSrcPath './src' ./tests/*.js`
+[example spec](test/api-test.js#L67)
+
 
 ## Example package.json configuration
 
