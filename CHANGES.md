@@ -1,5 +1,9 @@
 # Changes
 
+## 1.9.0
+
+- Add `--require` and `-r` support
+
 ## 1.8.0
 
 - Add `--url` option to run tests in the context of the given URL
@@ -15,7 +19,7 @@
 
 ## 1.5.1
 
-- Fix --cover for Windows (#34)
+- Fix `--cover` for Windows (#34)
 - Improve phantomjs install instructions
 
 ## 1.5.0
@@ -28,7 +32,7 @@
 
 ## 1.3.0
 
-- Add `--transorm` support
+- Add `--transform` support
 - Fix unknown argument handling
 
 ## 1.2.0
