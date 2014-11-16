@@ -88,6 +88,12 @@ describe('args', function () {
     assert(opts.wd);
   });
 
+  it('parses --url', function () {
+    var opts = args(['--url', 'localhost']);
+
+    assert.equal(opts.url, 'localhost');
+  });
+
   it('parses --consolify', function () {
     var opts = args(['--consolify', 'some.html']);
 
