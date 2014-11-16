@@ -1,5 +1,10 @@
 # Changes
 
+## 1.8.0
+
+- Add `--url` option to run tests in the context of the given URL
+- Adjust window width when running tests with WebDriver
+
 ## 1.7.0
 
 - Add API
