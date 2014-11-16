@@ -14,6 +14,8 @@ TDD with Browserify, Mocha, PhantomJS and WebDriver
 - Short stack traces with relative paths
 - Works with most Mocha reporters
 
+![mochify](http://maxantoni.de/img/mochify-1.8.0.png)
+
 ## Install
 
 This will install Mochify in your current project and add it to the
@@ -89,8 +91,6 @@ Run `mochify --help` to see all available options.
 - `--help` or `-h` shows usage and all available options.
 
 ## Selenium WebDriver setup
-
-![mochify](http://maxantoni.de/img/mochify.png)
 
 - Download the «Selenium Server Standalone» JAR from here:
   <https://code.google.com/p/selenium/downloads/list>
