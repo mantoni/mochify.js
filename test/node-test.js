@@ -176,4 +176,13 @@ describe('node', function () {
     });
   });
 
+  it('requires file', function (done) {
+    run('passes', ['--node', '-R', 'tap', '-r', '../required'],
+      function (code, stdout) {
+        assert.equal(stdout.split('\n')[1], 'required');
+        assert.equal(code, 0);
+        done();
+      });
+  });
+
 });

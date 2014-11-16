@@ -95,4 +95,12 @@ describe('phantom', function () {
     });
   });
 
+  it('requires file', function (done) {
+    run('passes', ['-R', 'tap', '-r', '../required'], function (code, stdout) {
+      assert.equal(stdout.split('\n')[1], 'required');
+      assert.equal(code, 0);
+      done();
+    });
+  });
+
 });

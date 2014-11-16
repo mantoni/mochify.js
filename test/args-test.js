@@ -142,6 +142,18 @@ describe('args', function () {
     assert.equal(opts.plugin, 'foo');
   });
 
+  it('parses --require', function () {
+    var opts = args(['--require', 'foo']);
+
+    assert.equal(opts.require, 'foo');
+  });
+
+  it('parses -r', function () {
+    var opts = args(['-r', 'foo']);
+
+    assert.equal(opts.require, 'foo');
+  });
+
   it('parses --grep', function () {
     var opts = args(['--grep', 'foo']);
 
