@@ -16,20 +16,44 @@ TDD with Browserify, Mocha, PhantomJS and WebDriver
 
 ## Install
 
+This will install Mochify in your current project and add it to the
+`devDependencies`:
+
 ```
-npm install mochify -g
+npm install mochify --save-dev
 ```
 
-- Install Phantom.JS: `npm install phantomjs -g` or download from <http://phantomjs.org/>
-- Make sure that the `phantomjs` executable is in your `PATH` or use `--phantomjs <path>`
+- Install Phantom.JS: `npm install phantomjs -g` or download from
+  <http://phantomjs.org/>
+- Make sure that the `phantomjs` executable is in your `PATH` or use
+  `--phantomjs <path>`
 
 ## Usage
 
-From within your project directory:
+Configure `"scripts"` in your package.json so that your project ships with the
+testing infrastructure:
 
 ```
-mochify
+"devDependencies" : {
+  "mochify"       : "*"
+},
+"scripts"         : {
+  "start"         : "mochify --watch"
+  "phantom"       : "mochify",
+  "wd"            : "mochify --wd",
+  "cover"         : "mochify --cover",
+  "test"          : "npm run phantom && npm run wd && npm run cover"
+}
 ```
+
+To run from the command line, either run `npm install mochify -g` to have
+`mochify` available globally, or from within your project directory run:
+
+```
+node_modules/.bin/mochify
+```
+
+## Default behavior
 
 Browserifies `./test/*.js`, decorated with a [Mocha test runner][], runs it in
 PhantomJS with [phantomic][] and pass the output back to your console. Cleans
@@ -38,7 +62,7 @@ the lines from the test framework.
 
 Run `mochify --help` to see all available options.
 
-Options:
+## Command line options
 
 - `--watch` or `-w` use [watchify][] to watch your files and run the tests on
   change.
@@ -63,20 +87,6 @@ Options:
 - `--yields` or `-y` changes the yield interval to allow pending I/O to happen.
 - `--version` or `-v` shows the Mochify version number.
 - `--help` or `-h` shows usage and all available options.
-
-## Example package.json configuration
-
-```
-"devDependencies" : {
-  "mochify"       : "*"
-},
-"scripts"         : {
-  "start"         : "mochify --watch"
-  "test-phantom"  : "mochify",
-  "test-wd"       : "mochify --wd",
-  "test"          : "npm run test-phantom && npm run test-wd"
-}
-```
 
 ## Selenium WebDriver setup
 
@@ -114,7 +124,7 @@ That's it! Now `mochify --wd` will run your Mocha test cases in the configured
 browsers simultaniously. If you installed mochify without `-g`, you will have
 to run `node_modules/.bin/mochify --wd`.
 
-## SauceLabs
+## SauceLabs setup
 
 Export your SauceLabs credentials:
 
@@ -176,7 +186,7 @@ mochify('./test/*.js', {
 - `mochify(paths, opts, callback)` combines custom paths, options and a
   callback
 
-## Options
+### API options
 
 All long form command line options can be used. E.g. `--node` can be configured
 as `{ node : true }`, `--reporter tab` as `{ reporter : 'tab' }` and so on.
