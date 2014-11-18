@@ -17,9 +17,11 @@ var _    = opts._.length
   : null;
 
 function error() {
-  process.nextTick(function () {
-    process.exit(1);
-  });
+  if (!opts.watch) {
+    process.nextTick(function () {
+      process.exit(1);
+    });
+  }
 }
 
 mochify(_, opts)
