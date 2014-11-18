@@ -16,10 +16,10 @@ var _    = opts._.length
   ? opts._.join(' ')
   : null;
 
-mochify(_, opts, function (err) {
+mochify(_, opts).bundle(function (err) {
   if (err) {
     process.nextTick(function () {
       process.exit(1);
     });
   }
-}).bundle();
+});
