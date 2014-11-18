@@ -4,4 +4,4 @@ var mochify = require('../../');
 
 mochify({
   node : true
-});
+}).bundle();

@@ -22,4 +22,4 @@ mochify(_, opts, function (err) {
       process.exit(1);
     });
   }
-});
+}).bundle();
