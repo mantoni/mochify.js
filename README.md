@@ -192,11 +192,11 @@ Additional API options:
 
 - Node >= 0.10
 - v2.x
-    - Browserify >= 6.x
-    - Mocha >= 2.x
+    - Browserify 6.x
+    - Mocha 2.x
 - v1.x
-    - Browserify >= 5.x
-    - Mocha >= 1.x
+    - Browserify 5.x
+    - Mocha 1.x
 - v0.x
     - Browserify 4.x
 
