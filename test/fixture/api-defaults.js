@@ -2,4 +2,4 @@
 
 var mochify = require('../../');
 
-mochify();
+mochify().bundle();

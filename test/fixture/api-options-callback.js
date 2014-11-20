@@ -4,6 +4,6 @@ var mochify = require('../../');
 
 mochify({
   node : true
-}, function () {
+}).bundle(function () {
   process.exit(42);
 });

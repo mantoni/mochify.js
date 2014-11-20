@@ -43,7 +43,7 @@ describe('api', function () {
     mochify('./test/fixture/passes/test/*.js', {
       output   : output,
       reporter : 'tap'
-    }, validateOutput('# phantomjs:\n'
+    }).bundle(validateOutput('# phantomjs:\n'
       + '1..1\n'
       + 'ok 1 test passes\n'
       + '# tests 1\n'
@@ -56,7 +56,7 @@ describe('api', function () {
       output   : output,
       reporter : 'tap',
       node     : true
-    }, validateOutput('# node:\n'
+    }).bundle(validateOutput('# node:\n'
       + '1..1\n'
       + 'ok 1 test passes\n'
       + '# tests 1\n'

@@ -2,6 +2,6 @@
 
 var mochify = require('../../');
 
-mochify(function () {
+mochify().bundle(function () {
   process.exit(42);
 });

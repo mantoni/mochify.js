@@ -171,21 +171,13 @@ var mochify = require('mochify');
 mochify('./test/*.js', {
   reporter : 'tap',
   cover    : true
-}, function (err) {
-  // ...
-});
+}).bundle();
 ```
 
 - `mochify()` uses default settings and runs tests in `./test/*.js`
 - `mochify(paths)` specifies the paths, a space delimited list of globs
 - `mochify(opts)` configures options as described below
-- `mochify(callback)` invokes the given callback after the test run with `err`
-  as the only argument
 - `mochify(paths, opts)` combines custom paths and options
-- `mochify(opts, callback)` combines options and a callback
-- `mochify(paths, callback)` combines custom paths and a callback
-- `mochify(paths, opts, callback)` combines custom paths, options and a
-  callback
 
 ### API options
 
