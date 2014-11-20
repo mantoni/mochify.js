@@ -1,5 +1,13 @@
 # Changes
 
+## 2.0.0
+
+- Breaking API change: Return browserify bundle (Fernando Lores)
+  <https://github.com/mantoni/mochify.js/pull/52>
+- Upgrade Mocha to `^2.0`
+- Upgrade Browserify to `^6.3`
+- Upgrade Watchify to `^2.1`
+
 ## 1.9.0
 
 - Add `--require` and `-r` support
