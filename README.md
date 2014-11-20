@@ -190,9 +190,15 @@ Additional API options:
 
 ## Compatibility
 
-- Node 0.10 or later
-- Browserify 5.9 or later (since version 1.0.0)
-- Browserify 4.x (before 1.0.0)
+- Node >= 0.10
+- v2.x
+    - Browserify >= 6.x
+    - Mocha >= 2.x
+- v1.x
+    - Browserify >= 5.x
+    - Mocha >= 1.x
+- v0.x
+    - Browserify 4.x
 
 ## License
 
