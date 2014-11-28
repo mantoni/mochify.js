@@ -1,5 +1,9 @@
 # Changes
 
+## 2.1.0
+
+- Add `--extension` support to require non-JS files (Ryohei Ikegami)
+
 ## 2.0.0
 
 - Breaking API change: Return browserify bundle (Fernando Lores)
