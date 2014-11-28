@@ -45,6 +45,10 @@ Options:
           --plugin   Specifies a Browserify plugin to add. Can be specified
                      multiple times. Options can be passed with subargs.
 
+       --extension   Search for files with the extension in "require" statments.
+                     For example, "--extension .coffee". Can be specified
+                     multiple times.
+
       -y, --yields   Changes the yield interval to allow pending I/O to happen.
 
      -v, --version   Print mochify version and exit.
