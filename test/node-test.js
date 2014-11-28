@@ -185,4 +185,25 @@ describe('node', function () {
       });
   });
 
+  it('passes extension to browserify', function (done) {
+    run('extension', ['--node', '-R', 'tap', '--extension', '.coffee'],
+      function (code, stdout) {
+        var lines = stdout.split('\n');
+        assert.equal(lines[1], 'coffeescript');
+        assert.equal(code, 0);
+        done();
+      });
+  });
+
+  it('passes multiple extensions to browserify', function (done) {
+    run('extension-multiple', ['--node', '-R', 'tap', '--extension', '.coffee',
+      '--extension', '.ts'], function (code, stdout) {
+      var lines = stdout.split('\n');
+      assert.equal(lines[1], 'coffeescript');
+      assert.equal(lines[2], 'typescript');
+      assert.equal(code, 0);
+      done();
+    });
+  });
+
 });
