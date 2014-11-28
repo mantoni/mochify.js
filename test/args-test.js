@@ -148,6 +148,12 @@ describe('args', function () {
     assert.equal(opts.require, 'foo');
   });
 
+  it('parses --extension', function () {
+    var opts = args(['--extension', 'foo']);
+
+    assert.equal(opts.extension, 'foo');
+  });
+
   it('parses -r', function () {
     var opts = args(['-r', 'foo']);
 
