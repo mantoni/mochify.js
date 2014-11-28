@@ -11,6 +11,7 @@ TDD with Browserify, Mocha, PhantomJS and WebDriver
 - No server
 - Selenium WebDriver & SauceLabs support
 - Code coverage with [coverify][]
+- Code coverage with [istanbul][] using [mochify-istanbul][] plugin
 - Short stack traces with relative paths
 - Works with most Mocha reporters
 
@@ -210,6 +211,8 @@ MIT
 [License]: http://img.shields.io/npm/l/mochify.svg
 [watchify]: https://github.com/substack/watchify
 [coverify]: https://github.com/substack/coverify
+[istanbul]: https://github.com/gotwarlost/istanbul
+[mochify-istanbul]: https://github.com/ferlores/mochify-istanbul
 [min-webdriver]: https://github.com/mantoni/min-webdriver
 [Mocha test runner]: https://github.com/mantoni/mocaccino.js
 [phantomic]: https://github.com/mantoni/phantomic
