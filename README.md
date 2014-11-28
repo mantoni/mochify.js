@@ -87,6 +87,7 @@ Run `mochify --help` to see all available options.
   multiple times. Options can be passed with [subargs][].
 - `--plugin` specifies a Browserify plugin to add. Can be specified multiple
   times. Options can be passed with [subargs][].
+- `--extension` search for files with the extension in "require" statements.
 - `--yields` or `-y` changes the yield interval to allow pending I/O to happen.
 - `--version` or `-v` shows the Mochify version number.
 - `--help` or `-h` shows usage and all available options.
