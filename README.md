@@ -11,7 +11,8 @@ TDD with Browserify, Mocha, PhantomJS and WebDriver
 - No server
 - Selenium WebDriver & SauceLabs support
 - Code coverage with [coverify][]
-- [Code coverage](#code-coverage-with-istanbul) with [istanbul][] using [mochify-istanbul][] plugin
+- [Code coverage](#code-coverage-with-istanbul) with [istanbul][] using
+  [mochify-istanbul][] plugin
 - Short stack traces with relative paths
 - Works with most Mocha reporters
 
@@ -181,8 +182,6 @@ mochify('./test/*.js', {
 - `mochify(opts)` configures options as described below
 - `mochify(paths, opts)` combines custom paths and options
 
-### API options
-
 All long form command line options can be used. E.g. `--node` can be configured
 as `{ node : true }`, `--reporter tab` as `{ reporter : 'tab' }` and so on.
 
@@ -192,25 +191,29 @@ Additional API options:
 
 ## Code coverage with Istanbul
 
-### Install the [mochify-istanbul][] plugin:
+Install the [mochify-istanbul][] plugin:
 
 ```bash
-$ npm install mochify-istanbul
+$ npm install mochify-istanbul --save-dev
 ```
 
-### API usage
+Using a `package.json` script that can be run with `npm run cover`:
+
+```
+"scripts" : {
+  "cover" : "mochify --plugin [ mochify-istanbul --report cobertura ]"
+}
+```
+
+Using the API:
 
 ```js
 var mochify = require('mochify');
 var istanbul = require('mochify-istanbul');
 
-mochify('./test/*.js', {
-  reporter : 'tap'
-})
-.plugin(istanbul, {
+mochify().plugin(istanbul, {
   report: ['text', 'html', 'text-summary']
-})
-.bundle();
+}).bundle();
 ```
 
 ## Compatibility
