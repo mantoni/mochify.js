@@ -1,5 +1,10 @@
 # Changes
 
+## 2.1.1
+
+- Run coverify transform after command-line transforms (Max Goodman)
+- Add mochify-istanbul example (Fernando Lores)
+
 ## 2.1.0
 
 - Add `--extension` support to require non-JS files (Ryohei Ikegami)
