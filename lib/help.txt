@@ -42,8 +42,6 @@ Options:
        --transform   Specifies a Browserify transform to add. Can be specified
                      multiple times. Options can be passed with subargs.
 
-      --browserify   Specify browserify options as subargs e.g. [--ignoreMissing true --debug true]
-
           --plugin   Specifies a Browserify plugin to add. Can be specified
                      multiple times. Options can be passed with subargs.
 
