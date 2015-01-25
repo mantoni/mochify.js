@@ -27,6 +27,9 @@ Options:
        --phantomjs   Use a PhantomJS binary. If not specified, phantomjs is
                      expected on the $PATH.
 
+    --web-security   Enables PhantomJS web security and forbids cross-domain
+                     XHR (default is true)
+
            --cover   Check code coverage with coverify.
 
             --node   Run test cases on node (useful with --cover).
