@@ -124,6 +124,12 @@ describe('args', function () {
     assert.equal(opts.phantomjs, '/foo/bar');
   });
 
+  it('parses --web-security', function () {
+    var opts = args(['--web-security', 'true']);
+
+    assert.equal(opts['web-security'], true);
+  });
+
   it('parses --debug', function () {
     var opts = args(['--debug']);
 

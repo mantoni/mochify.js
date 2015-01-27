@@ -80,6 +80,8 @@ Run `mochify --help` to see all available options.
 - `--port` uses a specific port for the PhantomJS server.
 - `--phantomjs` uses a specific PhantomJS executable. If not specified,
   `phantomjs` is expected on the `$PATH`.
+- `--web-security` enables PhantomJS web security and forbids cross-domain XHR
+  (default is true)
 - `--cover` checks code coverage with [coverify][].
 - `--node` runs test cases on node (useful with `--cover`).
 - `--wd` use [min-webdriver][] to run the tests in multiple real browsers.
