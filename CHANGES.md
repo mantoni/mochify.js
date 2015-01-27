@@ -1,5 +1,9 @@
 # Changes
 
+## 2.2.0
+
+- Add `--web-security` option to toggle PhantomJS web security (Jacob Waller)
+
 ## 2.1.1
 
 - Run coverify transform after command-line transforms (Max Goodman)
