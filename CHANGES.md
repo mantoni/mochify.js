@@ -1,5 +1,9 @@
 # Changes
 
+## 2.3.0
+
+- Use Browserify 7
+
 ## 2.2.0
 
 - Add `--web-security` option to toggle PhantomJS web security (Jacob Waller)
