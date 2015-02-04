@@ -1,5 +1,9 @@
 # Changes
 
+## 2.4.0
+
+- Use Browserify 8
+
 ## 2.3.0
 
 - Use Browserify 7
