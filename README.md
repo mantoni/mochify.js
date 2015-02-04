@@ -221,7 +221,11 @@ mochify().plugin(istanbul, {
 ## Compatibility
 
 - Node >= 0.10
-- v2.x
+- v2.4+
+    - Browserify 8.x
+- v2.3
+    - Browserify 7.x
+- v2.0, v2.1, v2.2
     - Browserify 6.x
     - Mocha 2.x
 - v1.x
