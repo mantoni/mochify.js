@@ -220,8 +220,10 @@ mochify().plugin(istanbul, {
 
 ## Compatibility
 
-- Node >= 0.10
-- v2.4+
+- Node 0.10, 0.12
+- v2.5+
+    - Browserify 9.x
+- v2.4
     - Browserify 8.x
 - v2.3
     - Browserify 7.x
