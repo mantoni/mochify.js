@@ -1,5 +1,10 @@
 # Changes
 
+## 2.5.0
+
+- Use Browserify 9
+- Run tests on node 0.10 and 0.12
+
 ## 2.4.0
 
 - Use Browserify 8
