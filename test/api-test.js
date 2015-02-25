@@ -15,7 +15,7 @@ var mochify = require('../lib/mochify');
 
 
 describe('api', function () {
-  this.timeout(5000);
+  this.timeout(10000);
   var out;
   var output;
 
