@@ -206,4 +206,18 @@ describe('node', function () {
     });
   });
 
+  it('passes recursive', function (done) {
+    run('recursive', ['--node', '-R', 'tap', '--recursive'],
+      function (code, stdout) {
+        assert.equal(stdout, '# node:\n'
+          + '1..1\n'
+          + 'ok 1 recursive passes\n'
+          + '# tests 1\n'
+          + '# pass 1\n'
+          + '# fail 0\n');
+        assert.equal(code, 0);
+        done();
+      });
+  });
+
 });
