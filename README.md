@@ -73,6 +73,7 @@ Run `mochify --help` to see all available options.
 - `--reporter` or `-R` changes the Mocha reporter (see further down).
 - `--grep` sets the Mocha grep option.
 - `--invert` sets the Mocha grep `invert` flag.
+- `--recursive` include sub directories.
 - `--ui` or `-U` changes the Mocha UI. Defaults to `'bdd'`.
 - `--timeout` or `-t` changes the Mocha timeout. Defaults to `2000`.
 - `--require` or `-r` requires the given module.

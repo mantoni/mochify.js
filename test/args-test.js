@@ -22,6 +22,7 @@ describe('args', function () {
     assert.equal(opts.cover, false);
     assert.equal(opts.node, false);
     assert.equal(opts.wd, false);
+    assert.equal(opts.recursive, false);
     assert.equal(opts.reporter, 'dot');
     assert.equal(opts.timeout, 2000);
     assert.equal(opts.port, 0);
@@ -176,6 +177,12 @@ describe('args', function () {
     var opts = args(['--invert', '--grep', 'abc']);
 
     assert(opts.invert);
+  });
+
+  it('parses --recursive', function () {
+    var opts = args(['--recursive']);
+
+    assert(opts.recursive);
   });
 
   it('fails with invert but no grep option', function (done) {

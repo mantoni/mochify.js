@@ -13,6 +13,8 @@ Options:
 
           --invert   Set Mocha grep invert flag.
 
+       --recursive   include sub directories.
+
           -U, --ui   Change the Mocha UI. Defaults to 'bdd'.
 
      -t, --timeout   Change the Mocha timeout. Defaults to 2000.
