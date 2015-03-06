@@ -1,5 +1,10 @@
 # Changes
 
+## 2.6.0
+
+- Add `--recursive` flag to include tests in subdirectories (Dylan
+  Fogarty-MacDonald)
+
 ## 2.5.0
 
 - Use Browserify 9
