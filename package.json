@@ -23,7 +23,8 @@
     "Ryohei Ikegami <iofg2100@gmail.com>",
     "Max Goodman <c@chromakode.com>",
     "Phil Jepsen <phil@wired8.com>",
-    "Jacob Waller <jacob@krawaller.se>"
+    "Jacob Waller <jacob@krawaller.se>",
+    "Dylan Fogarty-MacDonald <dylan@dylanfm.com>"
   ],
   "homepage": "https://github.com/mantoni/mochify.js",
   "engines": {
