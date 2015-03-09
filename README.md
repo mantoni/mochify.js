@@ -42,7 +42,7 @@ testing infrastructure:
   "mochify"       : "*"
 },
 "scripts"         : {
-  "start"         : "mochify --watch"
+  "start"         : "mochify --watch",
   "phantom"       : "mochify",
   "wd"            : "mochify --wd",
   "cover"         : "mochify --cover",
