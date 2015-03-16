@@ -100,7 +100,7 @@ Run `mochify --help` to see all available options.
 ## Selenium WebDriver setup
 
 - Download the «Selenium Server Standalone» JAR from here:
-  <https://code.google.com/p/selenium/downloads/list>
+  <http://selenium-release.storage.googleapis.com/index.html>
 - Except for Firefox, you will also need drivers for each browser.
 - The driver for Google Chrome can be found here:
   <http://chromedriver.storage.googleapis.com/index.html>
