@@ -1,5 +1,9 @@
 # Changes
 
+## 2.6.1
+
+- Fix consolify when used with `--watch`
+
 ## 2.6.0
 
 - Add `--recursive` flag to include tests in subdirectories (Dylan
