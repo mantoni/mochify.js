@@ -76,6 +76,8 @@ Run `mochify --help` to see all available options.
 - `--recursive` include sub directories.
 - `--ui` or `-U` changes the Mocha UI. Defaults to `'bdd'`.
 - `--timeout` or `-t` changes the Mocha timeout. Defaults to `2000`.
+- `--colors` explicitly enables color output.
+- `--no-colors` explicitly disables color output.
 - `--require` or `-r` requires the given module.
 - `--debug` launches the WebKit debugger.
 - `--port` uses a specific port for the PhantomJS server.

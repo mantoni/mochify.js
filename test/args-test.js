@@ -185,6 +185,24 @@ describe('args', function () {
     assert(opts.recursive);
   });
 
+  it('parses --colors', function () {
+    var opts = args(['--colors']);
+
+    assert(opts.colors);
+  });
+
+  it('parses --no-colors', function () {
+    var opts = args(['--no-colors']);
+
+    assert.equal(opts.colors, false);
+  });
+
+  it('defaults colors to null', function () {
+    var opts = args([]);
+
+    assert.strictEqual(opts.colors, null);
+  });
+
   it('fails with invert but no grep option', function (done) {
     run('passes', ['--invert'], function (code, stdout) {
       assert.equal(code, 1);

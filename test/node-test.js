@@ -53,14 +53,15 @@ describe('node', function () {
   });
 
   it('coverage dot', function (done) {
-    run('passes', ['--node', '--cover'], function (code, stdout) {
-      var lines = stdout.trim().replace(/\u001b\[9?0m/g, '').split(/\n+/);
-      assert.equal(lines[0], '# node:');
-      assert.equal(lines[2], '  .');
-      assert.equal(lines[4], '# coverage: 8/8 (100.00 %)');
-      assert.equal(code, 0);
-      done();
-    });
+    run('passes', ['--node', '--cover', '--no-colors'],
+      function (code, stdout) {
+        var lines = stdout.trim().split(/\n+/);
+        assert.equal(lines[0], '# node:');
+        assert.equal(lines[2], '  .');
+        assert.equal(lines[4], '# coverage: 8/8 (100.00 %)');
+        assert.equal(code, 0);
+        done();
+      });
   });
 
   it('fails if test fails but coverage is fine', function (done) {
@@ -108,6 +109,15 @@ describe('node', function () {
           + '# tests 1\n'
           + '# pass 1\n'
           + '# fail 0\n');
+        assert.equal(code, 0);
+        done();
+      });
+  });
+
+  it('enables color', function (done) {
+    run('passes', ['--node', '-R', 'dot', '--colors'],
+      function (code, stdout) {
+        assert.equal(stdout.trim().split('\n')[3], '  \u001b[90m.\u001b[0m');
         assert.equal(code, 0);
         done();
       });

@@ -19,7 +19,11 @@ Options:
 
      -t, --timeout   Change the Mocha timeout. Defaults to 2000.
 
-     -r, --require   Require the given module
+          --colors   Explicitly enables Mocha color output.
+
+       --no-colors   Explicitly disables Mocha color output.
+
+     -r, --require   Require the given module.
 
            --debug   Launch the WebKit inspector for debugging.
 

@@ -33,8 +33,8 @@ describe('phantom', function () {
       assert.equal(stdout.indexOf('# phantomjs:\n'
         + '1..1\n'
         + 'not ok 1 test fails\n'
-        + '  Error: Oh noes!\n'), 0);
-        //+ '      at test/fails.js:7'), 0); // FIXME relative path broken
+        + '  Error: Oh noes!\n'
+        + '    at test/fails.js:7'), 0);
       assert.equal(code, 1);
       done();
     });
@@ -54,10 +54,10 @@ describe('phantom', function () {
   });
 
   it('coverage dot', function (done) {
-    run('passes', ['--cover'], function (code, stdout) {
+    run('passes', ['--cover', '--no-colors'], function (code, stdout) {
       var lines = stdout.trim().split(/\n+/);
       assert.equal(lines[0], '# phantomjs:');
-      assert.equal(lines[2], '  \u001b[90m.\u001b[0m');
+      assert.equal(lines[2], '  .');
       assert.equal(lines[4], '# coverage: 8/8 (100.00 %)');
       assert.equal(code, 0);
       done();
@@ -82,6 +82,14 @@ describe('phantom', function () {
         + '# tests 1\n'
         + '# pass 1\n'
         + '# fail 0\n');
+      assert.equal(code, 0);
+      done();
+    });
+  });
+
+  it('enables color', function (done) {
+    run('passes', ['-R', 'dot', '--colors'], function (code, stdout) {
+      assert.equal(stdout.trim().split('\n')[3], '  \u001b[90m.\u001b[0m');
       assert.equal(code, 0);
       done();
     });
