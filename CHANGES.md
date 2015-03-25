@@ -1,5 +1,9 @@
 # Changes
 
+## 2.7.0
+
+- Add options `--colors` and `--no-colors` to explicitly set Mocha colors
+
 ## 2.6.1
 
 - Fix consolify when used with `--watch`
