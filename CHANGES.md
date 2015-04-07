@@ -1,5 +1,9 @@
 # Changes
 
+## 2.7.1
+
+- Work around browserify `9.0.5` issue by setting the dependency to `9.0.4`
+
 ## 2.7.0
 
 - Add options `--colors` and `--no-colors` to explicitly set Mocha colors
