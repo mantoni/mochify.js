@@ -26,8 +26,4 @@ function error() {
 
 mochify(_, opts)
   .on('error', error)
-  .bundle(function (err) {
-    if (err) {
-      error();
-    }
-  });
+  .bundle();
