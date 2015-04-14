@@ -57,8 +57,8 @@ describe('phantom', function () {
     run('passes', ['--cover', '--no-colors'], function (code, stdout) {
       var lines = stdout.trim().split(/\n+/);
       assert.equal(lines[0], '# phantomjs:');
-      assert.equal(lines[2], '  .');
-      assert.equal(lines[4], '# coverage: 8/8 (100.00 %)');
+      assert.equal(lines[1], '  .');
+      assert.equal(lines[3], '# coverage: 8/8 (100.00 %)');
       assert.equal(code, 0);
       done();
     });
