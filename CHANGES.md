@@ -1,5 +1,11 @@
 # Changes
 
+## 2.7.2
+
+- Pipe internal pipeline to output instead of wrapped browserify output (Fixes
+  #80)
+- Remove obsolete error handling callback
+
 ## 2.7.1
 
 - Work around browserify `9.0.5` issue by setting the dependency to `9.0.4`
