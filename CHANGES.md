@@ -1,5 +1,10 @@
 # Changes
 
+## 2.8.0
+
+- Use the new consolify browserify plugin
+- Add `--bundle` to export JS as a separate file when using consolify
+
 ## 2.7.2
 
 - Pipe internal pipeline to output instead of wrapped browserify output (Fixes
