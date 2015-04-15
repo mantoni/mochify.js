@@ -101,6 +101,12 @@ describe('args', function () {
     assert.equal(opts.consolify, 'some.html');
   });
 
+  it('parses --bundle', function () {
+    var opts = args(['--bundle', 'some.js']);
+
+    assert.equal(opts.bundle, 'some.js');
+  });
+
   it('parses --port', function () {
     var opts = args(['--port', '8765']);
 

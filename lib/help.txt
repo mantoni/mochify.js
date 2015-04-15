@@ -48,6 +48,8 @@ Options:
 
        --consolify   Generate a standalone HTML page.
 
+          --bundle   Specify a separate JS file export when using --consolify
+
        --transform   Specifies a Browserify transform to add. Can be specified
                      multiple times. Options can be passed with subargs.
 
