@@ -1,5 +1,9 @@
 # Changes
 
+## 2.8.1
+
+- Revert to piping the readonly stream to output instead of `b.pipeline`
+
 ## 2.8.0
 
 - Use the new consolify browserify plugin
