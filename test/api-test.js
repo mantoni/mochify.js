@@ -16,35 +16,23 @@ var mochify = require('../lib/mochify');
 
 describe('api', function () {
   this.timeout(10000);
-  var out;
-  var output;
-
-  beforeEach(function () {
-    out = '';
-    output = through(function (chunk, enc, next) {
-      /*jslint unparam: true*/
-      out += chunk;
-      next();
-    });
-  });
 
   function validateOutput(expect, done) {
-    return function (err) {
+    return function (err, buf) {
       if (err) {
         done(err);
         return;
       }
-      assert.equal(out, expect);
+      assert.equal(String(buf), expect);
       done();
     };
   }
 
   it('runs phantomjs', function (done) {
     mochify('./test/fixture/passes/test/*.js', {
-      output   : output,
+      output   : through(),
       reporter : 'tap'
-    }).bundle(validateOutput('# phantomjs:\n'
-      + '1..1\n'
+    }).bundle(validateOutput('1..1\n'
       + 'ok 1 test passes\n'
       + '# tests 1\n'
       + '# pass 1\n'
@@ -53,11 +41,10 @@ describe('api', function () {
 
   it('runs node', function (done) {
     mochify('./test/fixture/passes/test/*.js', {
-      output   : output,
+      output   : through(),
       reporter : 'tap',
       node     : true
-    }).bundle(validateOutput('# node:\n'
-      + '1..1\n'
+    }).bundle(validateOutput('1..1\n'
       + 'ok 1 test passes\n'
       + '# tests 1\n'
       + '# pass 1\n'
