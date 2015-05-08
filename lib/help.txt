@@ -7,7 +7,9 @@ Options:
        -w, --watch   Use watchify to watch your files and run the tests on
                      change.
 
-    -R, --reporter   Change the Mocha reporter (see further down).
+    -R, --reporter   Change the Mocha reporter. 
+                     Mocha reporters known to work:
+                     doc, dot (default), json, landing, list, markdown, min, spec, tap, xunit
 
             --grep   Set Mocha grep option.
 
@@ -56,7 +58,7 @@ Options:
           --plugin   Specifies a Browserify plugin to add. Can be specified
                      multiple times. Options can be passed with subargs.
 
-       --extension   Search for files with the extension in "require" statments.
+       --extension   Search for files with the extension in "require" statements.
                      For example, "--extension .coffee". Can be specified
                      multiple times.
 
