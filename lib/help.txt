@@ -9,7 +9,8 @@ Options:
 
     -R, --reporter   Change the Mocha reporter. 
                      Mocha reporters known to work:
-                     doc, dot (default), json, landing, list, markdown, min, spec, tap, xunit
+                     doc, dot (default), json, landing, list, markdown, min,
+                     spec, tap, xunit
 
             --grep   Set Mocha grep option.
 
@@ -58,9 +59,9 @@ Options:
           --plugin   Specifies a Browserify plugin to add. Can be specified
                      multiple times. Options can be passed with subargs.
 
-       --extension   Search for files with the extension in "require" statements.
-                     For example, "--extension .coffee". Can be specified
-                     multiple times.
+       --extension   Search for files with the extension in "require"
+                     statements. For example, "--extension .coffee". Can be
+                     specified multiple times.
 
       -y, --yields   Changes the yield interval to allow pending I/O to happen.
 
