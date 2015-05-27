@@ -47,7 +47,7 @@ describe('phantom', function () {
         + 'ok 1 test passes\n'
         + '# tests 1\n'
         + '# pass 1\n'
-        + '# fail 0\n\n# coverage: 8/8 (100.00 %)\n\n');
+        + '# fail 0\n# coverage: 8/8 (100.00 %)\n\n');
       assert.equal(code, 0);
       done();
     });
