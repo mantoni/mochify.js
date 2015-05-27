@@ -195,6 +195,9 @@ Additional API options:
 
 - `output` a stream that receives the test output (e.g. [through2][])
 
+The `mochify` function returns a Browserify instance. Please refer to the
+[Browserify API][] for details.
+
 ## Code coverage with Istanbul
 
 Install the [mochify-istanbul][] plugin:
@@ -257,3 +260,4 @@ MIT
 [consolify]: https://github.com/mantoni/consolify
 [subargs]: https://github.com/substack/subarg
 [through2]: https://github.com/rvagg/through2
+[Browserify API]: https://github.com/substack/node-browserify#methods
