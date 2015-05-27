@@ -90,4 +90,20 @@ describe('api', function () {
     });
   });
 
+  it('should only run 1 test when glob options are passed', function (done) {
+    mochify('./test/fixture/glob/ignore/*.js', {
+      output   : through(),
+      reporter: 'tap',
+      glob: {
+        ignore: './test/fixture/glob/ignore/excluded.js'
+      }
+    }).bundle(function (err, buf) {
+      if (err) {
+        return done(err);
+      }
+      assert(String(buf).indexOf('# tests 1') !== -1);
+      done();
+    });
+  });
+
 });

@@ -33,7 +33,6 @@ describe('phantom', function () {
       assert.equal(stdout.indexOf('# phantomjs:\n'
         + '1..1\n'
         + 'not ok 1 test fails\n'
-        + '  Error: Oh noes!\n'
         + '      at test/fails.js:7'), 0);
       assert.equal(code, 1);
       done();
@@ -47,7 +46,7 @@ describe('phantom', function () {
         + 'ok 1 test passes\n'
         + '# tests 1\n'
         + '# pass 1\n'
-        + '# fail 0\n\n# coverage: 8/8 (100.00 %)\n\n');
+        + '# fail 0\n# coverage: 8/8 (100.00 %)\n\n');
       assert.equal(code, 0);
       done();
     });
