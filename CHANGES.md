@@ -1,5 +1,10 @@
 # Changes
 
+## 2.9.0
+
+- API: Pass `glob` options to glob (James Newell)
+- Added reporters to usage (Paul)
+
 ## 2.8.1
 
 - Revert to piping the readonly stream to output instead of `b.pipeline`
