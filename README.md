@@ -194,6 +194,7 @@ as `{ node : true }`, `--reporter tab` as `{ reporter : 'tab' }` and so on.
 Additional API options:
 
 - `output` a stream that receives the test output (e.g. [through2][])
+- `glob` options to pass to [glob][]
 
 The `mochify` function returns a Browserify instance. Please refer to the
 [Browserify API][] for details.
@@ -261,3 +262,4 @@ MIT
 [subargs]: https://github.com/substack/subarg
 [through2]: https://github.com/rvagg/through2
 [Browserify API]: https://github.com/substack/node-browserify#methods
+[glob]: https://github.com/isaacs/node-glob
