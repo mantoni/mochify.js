@@ -247,7 +247,7 @@ describe('args', function () {
     this.timeout(5000);
     run('passes', ['./unknown-file.js'], function (code, stdout) {
       assert.notEqual(code, 0);
-      assert(stdout.indexOf('./unknown-file.js') !== -1);
+      assert(stdout.indexOf('/unknown-file.js') !== -1);
       done();
     });
   });
