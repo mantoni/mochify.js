@@ -228,14 +228,17 @@ mochify().plugin(istanbul, {
 
 ## Compatibility
 
-- Node 0.10, 0.12
-- v2.5+
+- Node 0.10, 0.12, io.js
+- PhantomJS 1.9
+- v2.10+
+    - Browserify 10.x
+- v2.5 - v2.9
     - Browserify 9.x
 - v2.4
     - Browserify 8.x
 - v2.3
     - Browserify 7.x
-- v2.0, v2.1, v2.2
+- v2.0 - v2.2
     - Browserify 6.x
     - Mocha 2.x
 - v1.x
