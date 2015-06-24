@@ -1,5 +1,13 @@
 # Changes
 
+## 2.10.0
+
+- Major dependency upgrades:
+    - browserify `^10.2`
+    - watchify `^3.2`
+    - through2 `^1.1`
+    - glob `^5.0`
+
 ## 2.9.0
 
 - API: Pass `glob` options to glob (James Newell)
