@@ -1,5 +1,9 @@
 # Changes
 
+## 2.10.1
+
+- Do not override the min-wd timeout anymore
+
 ## 2.10.0
 
 - Major dependency upgrades:
