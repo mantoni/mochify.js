@@ -42,12 +42,14 @@ describe('phantom', function () {
 
   it('coverage tap', function (done) {
     run('passes', ['--cover', '-R', 'tap'], function (code, stdout) {
-      assert.equal(stdout, '# phantomjs:\n'
-        + '1..1\n'
-        + 'ok 1 test passes\n'
-        + '# tests 1\n'
-        + '# pass 1\n'
-        + '# fail 0\n# coverage: 8/8 (100.00 %)\n\n');
+      var lines = stdout.trim().split(/\n+/);
+      assert.equal(lines[0], '# phantomjs:');
+      assert.equal(lines[9], '1..1');
+      assert.equal(lines[11], 'ok 1 test passes');
+      assert.equal(lines[12], '# tests 1');
+      assert.equal(lines[13], '# pass 1');
+      assert.equal(lines[14], '# fail 0');
+      assert.equal(lines[15], '# coverage: 8/8 (100.00 %)');
       assert.equal(code, 0);
       done();
     });
@@ -57,8 +59,8 @@ describe('phantom', function () {
     run('passes', ['--cover', '--no-colors'], function (code, stdout) {
       var lines = stdout.trim().split(/\n+/);
       assert.equal(lines[0], '# phantomjs:');
-      assert.equal(lines[1], '  .');
-      assert.equal(lines[3], '# coverage: 8/8 (100.00 %)');
+      assert.equal(lines[10], '  .');
+      assert.equal(lines[12], '# coverage: 8/8 (100.00 %)');
       assert.equal(code, 0);
       done();
     });
