@@ -1,5 +1,9 @@
 # Changes
 
+## 2.11.0
+
+- Add ignore SSL errors option `--ignore-ssl-errors` (Adrian Chang)
+
 ## 2.10.1
 
 - Do not override the min-wd timeout anymore
