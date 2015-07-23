@@ -27,6 +27,7 @@ describe('args', function () {
     assert.equal(opts.timeout, 2000);
     assert.equal(opts.port, 0);
     assert.equal(opts.yields, 0);
+    assert.equal(opts['ignore-ssl-errors'], false);
   });
 
   it('parses --reporter', function () {
@@ -135,6 +136,11 @@ describe('args', function () {
     var opts = args(['--web-security', 'true']);
 
     assert.equal(opts['web-security'], true);
+  });
+
+  it('parses --ignore-ssl-errors', function () {
+    var opts = args(['--ignore-ssl-errors']);
+    assert(opts['ignore-ssl-errors']);
   });
 
   it('parses --debug', function () {
