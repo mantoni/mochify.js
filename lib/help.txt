@@ -3,7 +3,7 @@ Usage: mochify [options] [entry ...]
 Uses PhantomJS unless --wd or --node is specified.
 Defaults "entry" to "./test/*.js".
 
-Options:
+  Options:
        -w, --watch   Use watchify to watch your files and run the tests on
                      change.
 
@@ -38,6 +38,9 @@ Options:
 
     --web-security   Enables PhantomJS web security and forbids cross-domain
                      XHR (default is true)
+
+--ignore-ssl-errors  Tells PhantomJS whether or not to ignore ssl certificate
+                     issues (default is false)
 
            --cover   Check code coverage with coverify.
 
