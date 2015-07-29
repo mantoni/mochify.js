@@ -1,5 +1,10 @@
 # Changes
 
+## 2.12.0
+
+- Add postinstall script to use global phantomjs by default (Christopher
+  Hiller)
+
 ## 2.11.1
 
 - Pass `colors` through to mocaccino (Christopher Hiller)
