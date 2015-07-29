@@ -40,7 +40,8 @@
   "scripts": {
     "lint": "jslint --color \"**/*.js\"",
     "start": "mocha --watch",
-    "test": "npm run lint && mocha"
+    "test": "npm run lint && mocha",
+    "postinstall": "node scripts/postinstall.js"
   },
   "repository": {
     "type": "git",
@@ -60,7 +61,8 @@
     "glob": "^5.0",
     "min-wd": "^2.0",
     "brout": "^1.0",
-    "source-mapper": "^1.0"
+    "source-mapper": "^1.0",
+    "which": "^1.1.1"
   },
   "devDependencies": {
     "jslint": "^0.8"

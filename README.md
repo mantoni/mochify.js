@@ -27,7 +27,10 @@ This will install Mochify in your current project and add it to the
 npm install mochify --save-dev
 ```
 
-- Install Phantom.JS: `npm install phantomjs -g` or download from
+- If the `phantomjs` executable *is not* present in your `PATH`, it will be installed locally.
+- If the `phantomjs` executable *is* present in your path, it will not be installed.
+
+- Install PhantomJS: `npm install phantomjs -g` or download from
   <http://phantomjs.org/>
 - Make sure that the `phantomjs` executable is in your `PATH` or use
   `--phantomjs <path>`
