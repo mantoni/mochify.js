@@ -1,5 +1,9 @@
 # Changes
 
+## 2.11.1
+
+- Pass `colors` through to mocaccino (Christopher Hiller)
+
 ## 2.11.0
 
 - Add ignore SSL errors option `--ignore-ssl-errors` (Adrian Chang)
