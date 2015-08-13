@@ -27,8 +27,10 @@ This will install Mochify in your current project and add it to the
 npm install mochify --save-dev
 ```
 
-- If the `phantomjs` executable *is not* present in your `PATH`, it will be installed locally.
-- If the `phantomjs` executable *is* present in your path, it will not be installed.
+- If the `phantomjs` executable *is not* present in your `PATH`, it will be
+  installed locally.
+- If the `phantomjs` executable *is* present in your path, it will not be
+  installed.
 
 - Install PhantomJS: `npm install phantomjs -g` or download from
   <http://phantomjs.org/>
@@ -88,8 +90,8 @@ Run `mochify --help` to see all available options.
   `phantomjs` is expected on the `$PATH`.
 - `--web-security` enables PhantomJS web security and forbids cross-domain XHR
   (default is true)
-- `--ignore-ssl-errors` tells PhantomJS whether or not to ignore ssl certificate issues 
-  (default is false)
+- `--ignore-ssl-errors` tells PhantomJS whether or not to ignore ssl
+  certificate issues (default is false)
 - `--cover` checks code coverage with [coverify][].
 - `--node` runs test cases on node (useful with `--cover`).
 - `--wd` use [min-webdriver][] to run the tests in multiple real browsers.
@@ -127,6 +129,12 @@ Create `.min-wd` in your project root:
   "browsers"  : [{
     "name"    : "internet explorer",
     "version" : "9"
+  }, {
+    "name"    : "internet explorer",
+    "version" : "10"
+  }, {
+    "name"    : "internet explorer",
+    "version" : "11"
   }, {
     "name"    : "chrome"
   }, {
@@ -235,7 +243,9 @@ mochify().plugin(istanbul, {
 
 - Node 0.10, 0.12, io.js
 - PhantomJS 1.9
-- v2.10+
+- v2.13+
+    - Browserify 11.x
+- v2.10 - v2.12
     - Browserify 10.x
 - v2.5 - v2.9
     - Browserify 9.x
