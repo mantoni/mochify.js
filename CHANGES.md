@@ -1,5 +1,12 @@
 # Changes
 
+## 2.13.0
+
+- Browserify 11.0
+
+The current watchify dependency already used Browserify 11, causing Browserify
+to be installed twice.
+
 ## 2.12.0
 
 - Add postinstall script to use global phantomjs by default (Christopher
