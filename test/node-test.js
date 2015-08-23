@@ -230,4 +230,15 @@ describe('node', function () {
       });
   });
 
+  it('shows unicode diff', function (done) {
+    run('unicode', ['--node', '-R', 'tap'], function (code, stdout) {
+      assert.equal(stdout.indexOf('# node:\n'
+        + '1..1\n'
+        + 'not ok 1 unicode prints diff\n'
+        + '  AssertionError: \'€\' == \'3\''), 0);
+      assert.equal(code, 1);
+      done();
+    });
+  });
+
 });
