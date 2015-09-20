@@ -25,8 +25,8 @@ function installPhantom(callback) {
     if (err) {
       return callback('Failed to install PhantomJS.  Do it manually');
     }
-    log('Successfully installed PhantomJS.  To link it globally, ' +
-        'execute:\n\tcd node_modules/phantomjs && npm link');
+    log('Successfully installed PhantomJS.  To link it globally, '
+      + 'execute:\n\tcd node_modules/phantomjs && npm link');
     callback();
   });
   install.stdout.pipe(process.stdout);

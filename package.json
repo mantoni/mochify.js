@@ -39,7 +39,7 @@
   },
   "main": "lib/mochify.js",
   "scripts": {
-    "lint": "jslint --color \"**/*.js\"",
+    "lint": "eslint \"**/*.js\"",
     "start": "mocha --watch",
     "test": "npm run lint && mocha",
     "postinstall": "node scripts/postinstall.js"
@@ -66,7 +66,7 @@
     "which": "^1.1.1"
   },
   "devDependencies": {
-    "jslint": "^0.8"
+    "eslint": "^1.5.0"
   },
   "files": [
     "bin",

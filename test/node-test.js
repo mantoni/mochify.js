@@ -8,9 +8,8 @@
  */
 'use strict';
 
-var assert    = require('assert');
-var run       = require('./fixture/run');
-var transform = require('./fixture/transform');
+var assert = require('assert');
+var run    = require('./fixture/run');
 
 
 describe('node', function () {
@@ -124,66 +123,66 @@ describe('node', function () {
   });
 
   it('passes transform to browserify', function (done) {
-    run('passes', ['--node', '-R', 'tap', '--transform',
-        '../transform.js'], function (code, stdout) {
-      var lines = stdout.split('\n');
-      assert.equal(lines[0], 'passes/test/passes.js');
-      assert.equal(code, 0);
-      done();
-    });
+    run('passes', ['--node', '-R', 'tap', '--transform', '../transform.js'],
+      function (code, stdout) {
+        var lines = stdout.split('\n');
+        assert.equal(lines[0], 'passes/test/passes.js');
+        assert.equal(code, 0);
+        done();
+      });
   });
 
   it('passes transform with options to browserify', function (done) {
     run('passes', ['--node', '-R', 'tap', '--transform', '[',
-        '../transform.js', '-x', ']'], function (code, stdout) {
-      var lines = stdout.split('\n');
-      assert(JSON.parse(lines[1]).x);
-      assert.equal(code, 0);
-      done();
-    });
+      '../transform.js', '-x', ']'], function (code, stdout) {
+        var lines = stdout.split('\n');
+        assert(JSON.parse(lines[1]).x);
+        assert.equal(code, 0);
+        done();
+      });
   });
 
   it('passes multiple transforms to browserify', function (done) {
     run('passes', ['--node', '-R', 'tap', '--transform',
-        '../transform.js', '--transform',
-        '../transform.js'], function (code, stdout) {
-      var lines = stdout.split('\n');
-      assert.equal(lines[0], 'passes/test/passes.js');
-      assert.equal(lines[2], 'passes/test/passes.js');
-      assert.equal(code, 0);
-      done();
-    });
+      '../transform.js', '--transform',
+      '../transform.js'], function (code, stdout) {
+        var lines = stdout.split('\n');
+        assert.equal(lines[0], 'passes/test/passes.js');
+        assert.equal(lines[2], 'passes/test/passes.js');
+        assert.equal(code, 0);
+        done();
+      });
   });
 
   it('passes plugin to browserify', function (done) {
     run('passes', ['--node', '-R', 'tap', '--plugin',
-        '../plugin.js'], function (code, stdout) {
-      var lines = stdout.split('\n');
-      assert.equal(lines[0], 'passes/test/passes.js');
-      assert.equal(code, 0);
-      done();
-    });
+      '../plugin.js'], function (code, stdout) {
+        var lines = stdout.split('\n');
+        assert.equal(lines[0], 'passes/test/passes.js');
+        assert.equal(code, 0);
+        done();
+      });
   });
 
   it('passes plugin with options to browserify', function (done) {
     run('passes', ['--node', '-R', 'tap', '--plugin', '[',
-        '../plugin.js', '-x', ']'], function (code, stdout) {
-      var lines = stdout.split('\n');
-      assert(JSON.parse(lines[1]).x);
-      assert.equal(code, 0);
-      done();
-    });
+      '../plugin.js', '-x', ']'], function (code, stdout) {
+        var lines = stdout.split('\n');
+        assert(JSON.parse(lines[1]).x);
+        assert.equal(code, 0);
+        done();
+      });
   });
 
   it('passes multiple plugins to browserify', function (done) {
     run('passes', ['--node', '-R', 'tap', '--plugin', '../plugin.js',
-        '--plugin', '../plugin.js'], function (code, stdout) {
-      var lines = stdout.split('\n');
-      assert.equal(lines[0], 'passes/test/passes.js');
-      assert.equal(lines[2], 'passes/test/passes.js');
-      assert.equal(code, 0);
-      done();
-    });
+      '--plugin', '../plugin.js'], function (code, stdout) {
+        var lines = stdout.split('\n');
+        assert.equal(lines[0], 'passes/test/passes.js');
+        assert.equal(lines[2], 'passes/test/passes.js');
+        assert.equal(code, 0);
+        done();
+      });
   });
 
   it('requires file', function (done) {
@@ -208,12 +207,12 @@ describe('node', function () {
   it('passes multiple extensions to browserify', function (done) {
     run('extension-multiple', ['--node', '-R', 'tap', '--extension', '.coffee',
       '--extension', '.ts'], function (code, stdout) {
-      var lines = stdout.split('\n');
-      assert.equal(lines[1], 'coffeescript');
-      assert.equal(lines[2], 'typescript');
-      assert.equal(code, 0);
-      done();
-    });
+        var lines = stdout.split('\n');
+        assert.equal(lines[1], 'coffeescript');
+        assert.equal(lines[2], 'typescript');
+        assert.equal(code, 0);
+        done();
+      });
   });
 
   it('passes recursive', function (done) {

@@ -1,4 +1,4 @@
-/*global describe, it, beforeEach*/
+/*global describe, it*/
 /*
  * mochify.js
  *
