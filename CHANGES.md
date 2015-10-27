@@ -1,5 +1,9 @@
 # Changes
 
+## 2.14.0
+
+- Bump Mocha to `^2.3` and Mocaccino to `^1.6` to enable custom reporters
+
 ## 2.13.1
 
 - Only write to input if input stream is defined (Scott Corgan)
