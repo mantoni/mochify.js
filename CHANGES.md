@@ -1,5 +1,11 @@
 # Changes
 
+## 2.13.1
+
+- Only write to input if input stream is defined (Scott Corgan)
+- Only include minor changes rather than major for mocaccino (Chris Wheatley)
+- Move from `jslint` to `eslint`
+
 ## 2.13.0
 
 - Browserify 11.0
