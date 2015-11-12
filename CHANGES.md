@@ -1,5 +1,9 @@
 # Changes
 
+## 2.14.1
+
+- Fix trace filter to also work with relative paths
+
 ## 2.14.0
 
 - Bump Mocha to `^2.3` and Mocaccino to `^1.6` to enable custom reporters
