@@ -52,4 +52,10 @@ describe('trace', function () {
         out);
   });
 
+  it('removes relative unix mocha path', function () {
+    stream.write('    at fail (node_modules/mocha/x:7)\n');
+
+    assert.equal(out, '');
+  });
+
 });
