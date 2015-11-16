@@ -229,6 +229,34 @@ describe('node', function () {
       });
   });
 
+  it('passes non-default recursive', function (done) {
+    run('recursive', ['--node', '-R', 'tap', '--recursive', 'other'],
+      function (code, stdout) {
+        assert.equal(stdout, '# node:\n'
+          + '1..1\n'
+          + 'ok 1 other recursive passes\n'
+          + '# tests 1\n'
+          + '# pass 1\n'
+          + '# fail 0\n');
+        assert.equal(code, 0);
+        done();
+      });
+  });
+
+  it('passes non-default recursive with trailing /*.js', function (done) {
+    run('recursive', ['--node', '-R', 'tap', '--recursive', 'other/*.js'],
+      function (code, stdout) {
+        assert.equal(stdout, '# node:\n'
+          + '1..1\n'
+          + 'ok 1 other recursive passes\n'
+          + '# tests 1\n'
+          + '# pass 1\n'
+          + '# fail 0\n');
+        assert.equal(code, 0);
+        done();
+      });
+  });
+
   // This test case fails on node 0.10 only. The corresponding phantomjs test
   // passes on node 0.10 and 0.12.
   it.skip('shows unicode diff', function (done) {
