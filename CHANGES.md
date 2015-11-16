@@ -1,5 +1,11 @@
 # Changes
 
+## 2.14.2
+
+- Allow to combine a path with `--recursive`. Fixes [issue #120][].
+
+[issue #120]: https://github.com/mantoni/mochify.js/issues/120
+
 ## 2.14.1
 
 - Fix trace filter to also work with relative paths
