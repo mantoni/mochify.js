@@ -1,5 +1,11 @@
 # Changes
 
+## 2.14.3
+
+- Handle bundle errors in `--watch` mode. Fixed [issue #123][].
+
+[issue #123]: https://github.com/mantoni/mochify.js/issues/123
+
 ## 2.14.2
 
 - Allow to combine a path with `--recursive`. Fixes [issue #120][].
