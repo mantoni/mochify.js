@@ -1,6 +1,6 @@
 {
-  "name": "mochify",
-  "version": "2.14.3",
+  "name": "mochify-browserify",
+  "version": "2.14.4",
   "description": "TDD with Browserify, Mocha, PhantomJS and WebDriver",
   "keywords": [
     "mocha",
@@ -48,7 +48,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mantoni/mochify.js.git"
+    "url": "https://github.com/mateuszwrobel/mochify.js.git"
   },
   "dependencies": {
     "browserify": "^11.0",
