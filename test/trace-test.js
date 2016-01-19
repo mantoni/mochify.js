@@ -30,6 +30,18 @@ describe('trace', function () {
     assert.equal(out, '');
   });
 
+  it('removes unix browserify path', function () {
+    stream.write('    at fail (/test/node_modules/browserify/x:7)\n');
+
+    assert.equal(out, '');
+  });
+
+  it('removes unix browser-pack path', function () {
+    stream.write('    at fail (/test/node_modules/browser-pack/x:7)\n');
+
+    assert.equal(out, '');
+  });
+
   it('makes relative unix assert path', function () {
     stream.write('    at fail (/test/node_modules/assert/x:7)\n');
 
