@@ -41,8 +41,8 @@
   },
   "main": "lib/mochify.js",
   "scripts": {
-    "lint": "eslint \"**/*.js\"",
-    "start": "mocha --watch",
+    "lint": "eslint .",
+    "watch": "mocha --watch",
     "test": "npm run lint && mocha",
     "postinstall": "node scripts/postinstall.js"
   },
