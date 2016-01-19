@@ -1,5 +1,12 @@
 # Changes
 
+## 2.15.0
+
+- Browserify 13.0
+
+To align with Browserify 13, all dependencies have been updated to versions
+that use `through2@2` to use streams 3.
+
 ## 2.14.3
 
 - Handle bundle errors in `--watch` mode. Fixed [issue #123][].
