@@ -1,4 +1,4 @@
-/*global describe, it, beforeEach*/
+/*eslint-env mocha*/
 /*
  * mochify.js
  *
