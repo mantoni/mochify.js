@@ -128,12 +128,6 @@ Create `.min-wd` in your project root:
   "port"      : 4444,
   "browsers"  : [{
     "name"    : "internet explorer",
-    "version" : "9"
-  }, {
-    "name"    : "internet explorer",
-    "version" : "10"
-  }, {
-    "name"    : "internet explorer",
     "version" : "11"
   }, {
     "name"    : "chrome"
