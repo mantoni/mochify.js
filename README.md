@@ -96,6 +96,7 @@ Run `mochify --help` to see all available options.
 - `--node` runs test cases on node (useful with `--cover`).
 - `--wd` use [min-webdriver][] to run the tests in multiple real browsers.
 - `--url` (only with `--wd`) runs the tests in the context of the given URL.
+- `--wd-file` (only with `--wd`) specify the location of the `.min-wd` config file.
 - `--consolify output.html` generate a standalone HTML page with [consolify][].
 - `--bundle` specify a separate JS file export when using `--consolify`.
 - `--transform` specifies a Browserify transform to add. Can be specified
