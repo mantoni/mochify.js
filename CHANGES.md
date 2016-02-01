@@ -1,5 +1,9 @@
 # Changes
 
+## 2.16.0
+
+- Add `--wd-file` command line arg (Moshe Kolodny)
+
 ## 2.15.0
 
 - Browserify 13.0
