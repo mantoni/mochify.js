@@ -96,6 +96,12 @@ describe('args', function () {
     assert.equal(opts.url, 'localhost');
   });
 
+  it('parses --wd-file', function () {
+    var opts = args(['--wd-file', '.min-wd-other']);
+
+    assert.equal(opts['wd-file'], '.min-wd-other');
+  });
+
   it('parses --consolify', function () {
     var opts = args(['--consolify', 'some.html']);
 
