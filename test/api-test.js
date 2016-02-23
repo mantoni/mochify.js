@@ -106,4 +106,16 @@ describe('api', function () {
     });
   });
 
+  it('looks imported modules from specified path', function (done) {
+    mochify('./test/fixture/paths/test/*.js', {
+      node: true,
+      reporter: 'tap',
+      path : ['./test/fixture/']
+    }).bundle(validateOutput('1..1\n'
+      + 'ok 1 test passes\n'
+      + '# tests 1\n'
+      + '# pass 1\n'
+      + '# fail 0\n', done));
+  });
+
 });

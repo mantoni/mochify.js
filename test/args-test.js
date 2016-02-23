@@ -215,6 +215,12 @@ describe('args', function () {
     assert.equal(opts.colors, false);
   });
 
+  it('parses --path', function () {
+    var opts = args(['--path', './source/']);
+
+    assert.equal(opts.path, './source/');
+  });
+
   it('defaults colors to null', function () {
     var opts = args([]);
 
