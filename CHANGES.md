@@ -1,5 +1,9 @@
 # Changes
 
+## 2.17.0
+
+- Pass 'paths' option to Browserify. (Juha Hytönen)
+
 ## 2.16.0
 
 - Add `--wd-file` command line arg (Moshe Kolodny)
