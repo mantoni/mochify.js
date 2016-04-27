@@ -257,6 +257,32 @@ describe('node', function () {
       });
   });
 
+  it('passes browser-field', function (done) {
+    run('browser-field', ['--node', '-R', 'tap'],
+      function (code, stdout) {
+        assert.equal(stdout, '# node:\n'
+          + '1..1\n'
+          + 'ok 1 browser-field passes in browser\n'
+          + '# tests 1\n'
+          + '# pass 1\n'
+          + '# fail 0\n');
+        assert.equal(code, 0);
+        done();
+      });
+  });
+
+  it('fails browser-field with --browser-field disabled', function (done) {
+    run('browser-field', ['--node', '-R', 'tap', '--no-browser-field'],
+      function (code, stdout) {
+        assert.equal(stdout.indexOf('# node:\n'
+          + '1..1\n'
+          + 'not ok 1 browser-field passes in browser\n'
+          + '  Error'), 0);
+        assert.equal(code, 1);
+        done();
+      });
+  });
+
   // This test case fails on node 0.10 only. The corresponding phantomjs test
   // passes on node 0.10 and 0.12.
   it.skip('shows unicode diff', function (done) {
