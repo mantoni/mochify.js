@@ -32,7 +32,8 @@
     "Scott Corgan <scottcorgan@gmail.com>",
     "Chris Wheatley <swirlycheetah@users.noreply.github.com>",
     "Moshe Kolodny <kolodny.github@gmail.com>",
-    "Juha Hytönen <juha.hytonen@haahtela.fi>"
+    "Juha Hytönen <juha.hytonen@haahtela.fi>",
+    "Koki Takahashi <hakatasiloving@gmail.com>"
   ],
   "homepage": "https://github.com/mantoni/mochify.js",
   "engines": {
