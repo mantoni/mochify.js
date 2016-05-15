@@ -1,5 +1,9 @@
 # Changes
 
+## 2.18.0
+
+- Implement `--browser-field` option (Koki Takahashi)
+
 ## 2.17.0
 
 - Pass 'paths' option to Browserify. (Juha Hytönen)
