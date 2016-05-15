@@ -104,6 +104,7 @@ Run `mochify --help` to see all available options.
 - `--plugin` specifies a Browserify plugin to add. Can be specified multiple
   times. Options can be passed with [subargs][].
 - `--extension` search for files with the extension in "require" statements.
+- `--no-browser-field` turns off package.json browser field resolution.
 - `--yields` or `-y` changes the yield interval to allow pending I/O to happen.
 - `--version` or `-v` shows the Mochify version number.
 - `--help` or `-h` shows usage and all available options.
@@ -197,7 +198,8 @@ mochify('./test/*.js', {
 - `mochify(paths, opts)` combines custom paths and options
 
 All long form command line options can be used. E.g. `--node` can be configured
-as `{ node : true }`, `--reporter tab` as `{ reporter : 'tab' }` and so on.
+as `{ node : true }`, `--no-browser-field` as `{ 'browser-field': false }`,
+`--reporter tab` as `{ reporter : 'tab' }` and so on.
 
 Additional API options:
 
