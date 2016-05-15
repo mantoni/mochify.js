@@ -28,6 +28,7 @@ describe('args', function () {
     assert.equal(opts.port, 0);
     assert.equal(opts.yields, 0);
     assert.equal(opts['ignore-ssl-errors'], false);
+    assert.equal(opts['browser-field'], true);
   });
 
   it('parses --reporter', function () {
@@ -213,6 +214,18 @@ describe('args', function () {
     var opts = args(['--no-colors']);
 
     assert.equal(opts.colors, false);
+  });
+
+  it('parses --browser-field', function () {
+    var opts = args(['--browser-field']);
+
+    assert(opts['browser-field']);
+  });
+
+  it('parses --no-browser-field', function () {
+    var opts = args(['--no-browser-field']);
+
+    assert.equal(opts['browser-field'], false);
   });
 
   it('parses --path', function () {

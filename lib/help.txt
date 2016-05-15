@@ -7,7 +7,7 @@ Defaults "entry" to "./test/*.js".
        -w, --watch   Use watchify to watch your files and run the tests on
                      change.
 
-    -R, --reporter   Change the Mocha reporter. 
+    -R, --reporter   Change the Mocha reporter.
                      Mocha reporters known to work:
                      doc, dot (default), json, landing, list, markdown, min,
                      spec, tap, xunit
@@ -65,6 +65,9 @@ Defaults "entry" to "./test/*.js".
        --extension   Search for files with the extension in "require"
                      statements. For example, "--extension .coffee". Can be
                      specified multiple times.
+
+--no-browser-field   Turn off package.json browser field resolution. This is
+                     also handy if you need to run a bundle in node.
 
       -y, --yields   Changes the yield interval to allow pending I/O to happen.
 
