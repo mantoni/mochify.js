@@ -291,4 +291,12 @@ describe('args', function () {
     });
   });
 
+  it('fails with bundle but no consolify option', function (done) {
+    run('passes', ['--bundle', 'foo.js'], function (code, stdout) {
+      assert.equal(code, 1);
+      assert.equal(stdout, '--bundle must be used with --consolify option\n\n');
+      done();
+    });
+  });
+
 });
