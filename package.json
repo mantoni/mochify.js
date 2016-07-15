@@ -71,7 +71,8 @@
     "which": "^1.2.1"
   },
   "devDependencies": {
-    "eslint": "^1.10.3"
+    "eslint": "^1.10.3",
+    "tmp": "0.0.28"
   },
   "files": [
     "bin",

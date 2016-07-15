@@ -43,7 +43,6 @@ rules:
     no-return-assign: 2
     no-self-compare: 2
     no-spaced-func: 2
-    no-sync: 2
     no-throw-literal: 2
     no-trailing-spaces: 2
     no-undef-init: 2

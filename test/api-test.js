@@ -9,8 +9,10 @@
 'use strict';
 
 var assert  = require('assert');
+var fs      = require('fs');
 var through = require('through2');
 var api     = require('./fixture/api');
+var sandbox = require('./fixture/sandbox');
 var mochify = require('../lib/mochify');
 
 
@@ -117,5 +119,44 @@ describe('api', function () {
       + '# pass 1\n'
       + '# fail 0\n', done));
   });
+
+  it('should write a test-runner html document when --consolify is used',
+    sandbox(function (done, tmpdir) {
+      mochify('./test/fixture/passes/test/*.js', {
+        consolify: tmpdir + '/output.html'
+      }).bundle(function (err) {
+        if (err) {
+          return done(err);
+        }
+        try {
+          fs.statSync(tmpdir + '/output.html');
+          done();
+        } catch (e) {
+          done(e);
+        }
+      });
+    })
+  );
+
+  it('should extract the script to an external bundle when --bundle is used'
+    + ' with --consolify',
+    sandbox(function (done, tmpdir) {
+      mochify('./test/fixture/passes/test/*.js', {
+        consolify: tmpdir + '/output.html',
+        bundle: tmpdir + '/bundle.js'
+      }).bundle(function (err) {
+        if (err) {
+          return done(err);
+        }
+        try {
+          fs.statSync(tmpdir + '/output.html');
+          fs.statSync(tmpdir + '/bundle.js');
+          done();
+        } catch (e) {
+          done(e);
+        }
+      });
+    })
+  );
 
 });
