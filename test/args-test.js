@@ -275,7 +275,7 @@ describe('args', function () {
   });
 
   it('fails with meaningful message if file is missing', function (done) {
-    this.timeout(5000);
+    this.timeout(8000);
     run('passes', ['./unknown-file.js'], function (code, stdout) {
       assert.notEqual(code, 0);
       assert(stdout.indexOf('/unknown-file.js') !== -1);
