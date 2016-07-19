@@ -13,7 +13,7 @@ var run    = require('./fixture/run');
 
 
 describe('stack', function () {
-  this.timeout(5000);
+  this.timeout(8000);
 
   it('does not screw up xunit', function (done) {
     run('passes', ['-R', 'xunit'], function (code, stdout) {
