@@ -1,5 +1,15 @@
 # Changes
 
+## 2.18.1
+
+- Always set `process.exitCode = 1` on bundle errors. Fixes [issue #109][].
+- Loosen stack trace detection regexp to not require a leading "at".
+- Bump `glob` to `^7.0`.
+- Add test coverage for `--bundle` and `--consolify` args (Jonny Reeves)
+- Fix tests for new tap version that was pulled (Jarrett Cruger)
+
+[issue #109]: https://github.com/mantoni/mochify.js/issues/109
+
 ## 2.18.0
 
 - Implement `--browser-field` option (Koki Takahashi)
