@@ -66,7 +66,7 @@
     "through2": "^2.0.0",
     "resolve": "^1.1.6",
     "subarg": "^1.0.0",
-    "glob": "^6.0.4",
+    "glob": "^7.0.5",
     "min-wd": "^2.9.0",
     "brout": "^1.1.0",
     "source-mapper": "^2.0.0",
