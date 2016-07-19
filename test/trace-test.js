@@ -70,4 +70,10 @@ describe('trace', function () {
     assert.equal(out, '');
   });
 
+  it('removes mocha path without "at"', function () {
+    stream.write('    fail (/test/node_modules/mocha/x:7)\n');
+
+    assert.equal(out, '');
+  });
+
 });
