@@ -1,5 +1,9 @@
 # Changes
 
+## 2.18.2
+
+- Support passing reporterOptions to mocha reporter via API [issue #144][]
+
 ## 2.18.1
 
 - Always set `process.exitCode = 1` on bundle errors. Fixes [issue #109][].
