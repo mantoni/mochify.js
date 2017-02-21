@@ -108,6 +108,31 @@ describe('api', function () {
     });
   });
 
+  it('should support reporterOptions',
+    sandbox(function (done, tmpdir) {
+      mochify('./test/fixture/passes/test/*.js', {
+        node: true,
+        reporter: 'xunit',
+
+        // Pass an options object to xunit reporter.
+        // If successful, the reporter's output would be written to file
+        reporterOptions: {
+          output: tmpdir + '/report.xml'
+        }
+      }).bundle(function (err) {
+        if (err) {
+          return done(err);
+        }
+        try {
+          fs.statSync(tmpdir + '/report.xml');
+          done();
+        } catch (e) {
+          done(e);
+        }
+      });
+    })
+  );
+
   it('looks imported modules from specified path', function (done) {
     mochify('./test/fixture/paths/test/*.js', {
       node: true,

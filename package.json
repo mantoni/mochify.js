@@ -59,7 +59,7 @@
     "browserify": "^13.0.0",
     "watchify": "^3.7.0",
     "coverify": "^1.4.1",
-    "mocaccino": "^1.8.0",
+    "mocaccino": "^1.9.0",
     "mocha": "^2.3.4",
     "phantomic": "^1.4.0",
     "consolify": "^2.1.0",

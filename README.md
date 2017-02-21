@@ -205,6 +205,7 @@ Additional API options:
 
 - `output` a stream that receives the test output (e.g. [through2][])
 - `glob` options to pass to [glob][]
+- `reporterOptions` options to pass to mocha reporter
 
 The `mochify` function returns a Browserify instance. Please refer to the
 [Browserify API][] for details.
