@@ -1,8 +1,12 @@
 # Changes
 
-## Next
+## 2.19.0
 
-- Support passing reporterOptions to mocha reporter via API. Fixes [issue #144][].
+- Support passing `reporterOptions` to mocha reporter via API (Tomer Lahav).
+  [PR #144][], fixes [issue #143][].
+
+[PR #144]: https://github.com/mantoni/mochify.js/pull/144
+[issue #143]: https://github.com/mantoni/mochify.js/issues/143
 
 ## 2.18.1
 
