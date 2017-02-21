@@ -1,8 +1,8 @@
 # Changes
 
-## 2.18.2
+## Next
 
-- Support passing reporterOptions to mocha reporter via API [issue #144][]
+- Support passing reporterOptions to mocha reporter via API. Fixes [issue #144][].
 
 ## 2.18.1
 
