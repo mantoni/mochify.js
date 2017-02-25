@@ -1,5 +1,14 @@
 # Changes
 
+## 3.0.0
+
+- Use Mocha 3.2
+- Use Mocaccino 2
+- Use Browserify 14.1
+- Change default reporter to spec
+- Add new node and remove old node from travis config
+- Use `@studio/changes` instead of make
+
 ## 2.19.0
 
 - Support passing `reporterOptions` to mocha reporter via API (Tomer Lahav).
