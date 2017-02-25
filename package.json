@@ -49,8 +49,12 @@
   "scripts": {
     "lint": "eslint .",
     "watch": "mocha --watch",
-    "test": "npm run lint && mocha",
-    "postinstall": "node scripts/postinstall.js"
+    "test": "mocha",
+    "posttest": "npm run lint",
+    "postinstall": "node scripts/postinstall.js",
+    "preversion": "npm test",
+    "version": "changes",
+    "postversion": "git push --follow-tags && npm publish"
   },
   "repository": {
     "type": "git",
@@ -74,6 +78,7 @@
     "which": "^1.2.1"
   },
   "devDependencies": {
+    "@studio/changes": "^1.1.0",
     "eslint": "^1.10.3",
     "tmp": "0.0.28"
   },
