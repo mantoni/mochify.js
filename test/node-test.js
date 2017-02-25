@@ -52,7 +52,7 @@ describe('node', function () {
   });
 
   it('coverage dot', function (done) {
-    run('passes', ['--node', '--cover', '--no-colors'],
+    run('passes', ['--node', '--cover', '--no-colors', '-R', 'dot'],
       function (code, stdout) {
         var lines = stdout.trim().split(/\n+/);
         assert.equal(lines[0], '# node:');

@@ -23,7 +23,7 @@ describe('args', function () {
     assert.equal(opts.node, false);
     assert.equal(opts.wd, false);
     assert.equal(opts.recursive, false);
-    assert.equal(opts.reporter, 'dot');
+    assert.equal(opts.reporter, 'spec');
     assert.equal(opts.timeout, 2000);
     assert.equal(opts.port, 0);
     assert.equal(opts.yields, 0);
