@@ -5,6 +5,7 @@
 - Use Mocha 3.2
 - Use Mocaccino 2
 - Use Browserify 14.1
+- Drop support for Node 0.10, 0.12, 5.0 and io.js and add 6.0
 - Change default reporter to spec
 - Add new node and remove old node from travis config
 - Use `@studio/changes` instead of make
