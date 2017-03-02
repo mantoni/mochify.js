@@ -296,4 +296,29 @@ describe('node', function () {
     });
   });
 
+  it('fails external', function (done) {
+    run('external', ['--node', '-R', 'tap'],
+      function (code, stdout) {
+        assert.equal(
+          stdout.indexOf('Error: Cannot find module \'unresolvable\''),
+          0);
+        assert.equal(code, 1);
+        done();
+      });
+  });
+
+  it('passes external with --external enabled', function (done) {
+    run('external', ['--node', '-R', 'tap', '--external', 'unresolvable'],
+      function (code, stdout) {
+        assert.equal(stdout, '# node:\n'
+          + '1..1\n'
+          + 'ok 1 test external\n'
+          + '# tests 1\n'
+          + '# pass 1\n'
+          + '# fail 0\n');
+        assert.equal(code, 0);
+        done();
+      });
+  });
+
 });

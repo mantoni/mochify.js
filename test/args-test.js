@@ -234,6 +234,12 @@ describe('args', function () {
     assert.equal(opts.path, './source/');
   });
 
+  it('parses --external', function () {
+    var opts = args(['--external', 'foo']);
+
+    assert.equal(opts.external, 'foo');
+  });
+
   it('defaults colors to null', function () {
     var opts = args([]);
 
