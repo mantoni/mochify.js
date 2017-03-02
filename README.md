@@ -105,6 +105,8 @@ Run `mochify --help` to see all available options.
   times. Options can be passed with [subargs][].
 - `--extension` search for files with the extension in "require" statements.
 - `--no-browser-field` turns off package.json browser field resolution.
+- `--external` marks given path or module as external resource and
+  prevent from being loaded into the bundle.
 - `--yields` or `-y` changes the yield interval to allow pending I/O to happen.
 - `--version` or `-v` shows the Mochify version number.
 - `--help` or `-h` shows usage and all available options.
