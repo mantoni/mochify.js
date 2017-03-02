@@ -1,5 +1,9 @@
 # Changes
 
+## 3.1.0
+
+- Implement `--external` option (Koki Takahashi)
+
 ## 3.0.0
 
 - Use Mocha 3.2
