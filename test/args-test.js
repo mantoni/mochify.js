@@ -240,6 +240,12 @@ describe('args', function () {
     assert.equal(opts.external, 'foo');
   });
 
+  it('parses --exclude', function () {
+    var opts = args(['--exclude', 'foo']);
+
+    assert.equal(opts.exclude, ['foo']);
+  });
+
   it('defaults colors to null', function () {
     var opts = args([]);
 
