@@ -186,9 +186,10 @@ describe('node', function () {
   });
 
   it('requires file', function (done) {
-    run('passes', ['--node', '-R', 'tap', '-r', '../required'],
+    run('require', ['--node', '-R', 'tap', '-r', '../required'],
       function (code, stdout) {
-        assert.equal(stdout.split('\n')[1], 'required');
+        var lines = stdout.split('\n');
+        assert.equal(lines[2], 'required');
         assert.equal(code, 0);
         done();
       });
