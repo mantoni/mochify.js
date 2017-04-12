@@ -1,5 +1,9 @@
 # Changes
 
+## 3.1.1
+
+- fix behavior of `--require` flag (Wes)
+
 ## 3.1.0
 
 - Implement `--external` option (Koki Takahashi)
