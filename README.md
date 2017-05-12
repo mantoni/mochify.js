@@ -92,6 +92,8 @@ Run `mochify --help` to see all available options.
   (default is true)
 - `--ignore-ssl-errors` tells PhantomJS whether or not to ignore ssl
   certificate issues (default is false)
+- `--viewport-width` tells PhantomJS to use a certain width for its viewport
+- `--viewport-height` tells PhantomJS to use a certain height for its viewport
 - `--cover` checks code coverage with [coverify][].
 - `--node` runs test cases on node (useful with `--cover`).
 - `--wd` use [min-webdriver][] to run the tests in multiple real browsers.

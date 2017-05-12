@@ -150,6 +150,16 @@ describe('args', function () {
     assert(opts['ignore-ssl-errors']);
   });
 
+  it('parses --viewport-width', function () {
+    var opts = args(['--viewport-width', '999']);
+    assert.equal(opts['viewport-width'], 999);
+  });
+
+  it('parses --viewport-height', function () {
+    var opts = args(['--viewport-height', '888']);
+    assert.equal(opts['viewport-height'], 888);
+  });
+
   it('parses --debug', function () {
     var opts = args(['--debug']);
 
