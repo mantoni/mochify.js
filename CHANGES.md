@@ -1,5 +1,14 @@
 # Changes
 
+## 3.2.0
+
+- Add option to pass viewport sizing to PhantomJS ([PR #152][]) (Frederik Ring)
+
+    Allows to configure the viewport width and height with the new options
+    `--viewport-width` and `--viewport-height`.
+
+[PR #152]: https://github.com/mantoni/mochify.js/pull/152
+
 ## 3.1.1
 
 - fix behavior of `--require` flag (Wes)
