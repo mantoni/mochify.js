@@ -1,5 +1,11 @@
 # Changes
 
+## 3.2.1
+
+- Document viewport options in help.txt (Frederik Ring)
+  
+    Adds the viewport options to the CLI help output 
+
 ## 3.2.0
 
 - Add option to pass viewport sizing to PhantomJS ([PR #152][]) (Frederik Ring)
