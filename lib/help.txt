@@ -42,6 +42,12 @@ Defaults "entry" to "./test/*.js".
 --ignore-ssl-errors  Tells PhantomJS whether or not to ignore ssl certificate
                      issues (default is false)
 
+  --viewport-width   Tells PhantomJS to use the given width for its 
+                     viewport 
+
+ --viewport-height   Tells PhantomJS to use the given height for its 
+                     viewport 
+
            --cover   Check code coverage with coverify.
 
             --node   Run test cases on node (useful with --cover).
