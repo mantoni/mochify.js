@@ -1,4 +1,5 @@
 /*global describe, it*/
+/*eslint-disable consistent-return*/
 'use strict';
 
 describe('test', function () {

@@ -7,8 +7,8 @@
  */
 'use strict';
 
-var spawn  = require('child_process').spawn;
-var path   = require('path');
+var spawn = require('child_process').spawn;
+var path = require('path');
 
 
 function run(test, callback) {

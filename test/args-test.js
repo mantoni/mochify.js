@@ -9,8 +9,8 @@
 'use strict';
 
 var assert = require('assert');
-var args   = require('../lib/args');
-var run    = require('./fixture/run');
+var args = require('../lib/args');
+var run = require('./fixture/run');
 
 
 describe('args', function () {

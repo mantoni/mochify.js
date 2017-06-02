@@ -18,7 +18,8 @@ function sandbox(testfn) {
     };
     tmp.dir(tmpOpts, function (err, tmpdir) {
       if (err) {
-        return done(err);
+        done(err);
+        return;
       }
       testfn(done, tmpdir);
     });
