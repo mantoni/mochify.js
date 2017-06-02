@@ -9,7 +9,7 @@
 'use strict';
 
 var assert = require('assert');
-var run    = require('./fixture/run');
+var run = require('./fixture/run');
 
 
 describe('stack', function () {

@@ -8,10 +8,10 @@
  */
 'use strict';
 
-var assert  = require('assert');
-var fs      = require('fs');
+var assert = require('assert');
+var fs = require('fs');
 var through = require('through2');
-var api     = require('./fixture/api');
+var api = require('./fixture/api');
 var sandbox = require('./fixture/sandbox');
 var mochify = require('../lib/mochify');
 
@@ -101,7 +101,8 @@ describe('api', function () {
       }
     }).bundle(function (err, buf) {
       if (err) {
-        return done(err);
+        done(err);
+        return;
       }
       assert(String(buf).indexOf('# tests 1') !== -1);
       done();
@@ -121,7 +122,8 @@ describe('api', function () {
         }
       }).bundle(function (err) {
         if (err) {
-          return done(err);
+          done(err);
+          return;
         }
         try {
           fs.statSync(tmpdir + '/report.xml');
@@ -151,7 +153,8 @@ describe('api', function () {
         consolify: tmpdir + '/output.html'
       }).bundle(function (err) {
         if (err) {
-          return done(err);
+          done(err);
+          return;
         }
         try {
           fs.statSync(tmpdir + '/output.html');
@@ -171,7 +174,8 @@ describe('api', function () {
         bundle: tmpdir + '/bundle.js'
       }).bundle(function (err) {
         if (err) {
-          return done(err);
+          done(err);
+          return;
         }
         try {
           fs.statSync(tmpdir + '/output.html');

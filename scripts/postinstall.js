@@ -23,7 +23,8 @@ function installPhantom(callback) {
   log('Attempting to install PhantomJS locally');
   var install = exec('npm install phantomjs', function (err) {
     if (err) {
-      return callback('Failed to install PhantomJS.  Do it manually');
+      callback('Failed to install PhantomJS.  Do it manually');
+      return;
     }
     log('Successfully installed PhantomJS.  To link it globally, '
       + 'execute:\n\tcd node_modules/phantomjs && npm link');
@@ -37,7 +38,8 @@ function whichPhantom(callback) {
   require('which')('phantomjs', function (err) {
     if (err) {
       log('PhantomJS not present in PATH');
-      return installPhantom(callback);
+      installPhantom(callback);
+      return;
     }
     log('PhantomJS found in PATH');
     callback();
@@ -52,7 +54,8 @@ function lstatPhantom(callback) {
   require('fs').lstat(localPhantomPath, function (err, stats) {
     if (err) {
       log('PhantomJS not present locally; checking PATH');
-      return whichPhantom(callback);
+      whichPhantom(callback);
+      return;
     }
     if (!stats.isSymbolicLink()) {
       log('PhantomJS present as local package');
@@ -68,7 +71,8 @@ function main() {
 
   lstatPhantom(function (err) {
     if (err) {
-      return log('Mochify installed with warning(s): ' + err);
+      log('Mochify installed with warning(s): ' + err);
+      return;
     }
     log('Mochify install complete!');
   });

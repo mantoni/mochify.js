@@ -9,7 +9,7 @@
 'use strict';
 
 var assert = require('assert');
-var trace  = require('../lib/trace');
+var trace = require('../lib/trace');
 
 
 describe('trace', function () {
