@@ -172,7 +172,7 @@ found on the [min-webdriver][] project page.
 Mocha reporters known to work:
 
 - min
-- dot (default)
+- dot
 - list
 - spec
 - tap
@@ -181,6 +181,7 @@ Mocha reporters known to work:
 - xunit
 - markdown
 - landing
+- nyan
 
 Note: Consuming the output of a machine readable reporter may not work as
 expected with `--wd`.

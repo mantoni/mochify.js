@@ -7,10 +7,9 @@ Defaults "entry" to "./test/*.js".
        -w, --watch   Use watchify to watch your files and run the tests on
                      change.
 
-    -R, --reporter   Change the Mocha reporter.
-                     Mocha reporters known to work:
-                     doc, dot (default), json, landing, list, markdown, min,
-                     spec, tap, xunit
+    -R, --reporter   Change the Mocha reporter. Mocha reporters known to work:
+                     doc, dot, json, landing, list, markdown, min, spec, tap,
+                     xunit, nyan
 
             --grep   Set Mocha grep option.
 
