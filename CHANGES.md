@@ -1,17 +1,27 @@
 # Changes
 
+## 3.3.0
+
+- Add support for `--outfile`
+
+    > This allows to send test results to a specified file for node and
+    > browser tests, e.g. `mochify -R xunit --outfile xunit.xml`
+
+- Remove "default" from dot reporter and add nyan
+- Add `package-lock.json`
+
 ## 3.2.1
 
 - Document viewport options in help.txt (Frederik Ring)
   
-    Adds the viewport options to the CLI help output 
+    > Adds the viewport options to the CLI help output
 
 ## 3.2.0
 
 - Add option to pass viewport sizing to PhantomJS ([PR #152][]) (Frederik Ring)
 
-    Allows to configure the viewport width and height with the new options
-    `--viewport-width` and `--viewport-height`.
+    > Allows to configure the viewport width and height with the new options
+    > `--viewport-width` and `--viewport-height`.
 
 [PR #152]: https://github.com/mantoni/mochify.js/pull/152
 
