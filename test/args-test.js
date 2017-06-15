@@ -250,6 +250,18 @@ describe('args', function () {
     assert.equal(opts.external, 'foo');
   });
 
+  it('parses --outfile', function () {
+    var opts = args(['--outfile', 'foo']);
+
+    assert.equal(opts.outfile, 'foo');
+  });
+
+  it('parses -o as an alias for --outfile', function () {
+    var opts = args(['-o', 'foo']);
+
+    assert.equal(opts.outfile, 'foo');
+  });
+
   it('defaults colors to null', function () {
     var opts = args([]);
 

@@ -9,7 +9,9 @@
 'use strict';
 
 var assert = require('assert');
+var fs = require('fs');
 var run = require('./fixture/run');
+var sandbox = require('./fixture/sandbox');
 
 
 describe('node', function () {
@@ -321,5 +323,21 @@ describe('node', function () {
         done();
       });
   });
+
+  it('supports --outfile', sandbox(function (done, tmpdir) {
+    var outfile = tmpdir + '/report.txt';
+    run('passes', ['--node', '-R', 'tap', '--outfile', outfile],
+      function (code, stdout) {
+        assert.equal(code, 0);
+        assert.equal(stdout, '');
+        assert.equal(fs.readFileSync(outfile, 'utf8'), '# node:\n'
+          + '1..1\n'
+          + 'ok 1 test passes\n'
+          + '# tests 1\n'
+          + '# pass 1\n'
+          + '# fail 0\n');
+        done();
+      });
+  }));
 
 });

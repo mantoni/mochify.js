@@ -25,6 +25,9 @@ Defaults "entry" to "./test/*.js".
 
        --no-colors   Explicitly disables Mocha color output.
 
+     -o, --outfile   Write test output to this file. If unspecified, mochify
+                     prints to stdout.
+
      -r, --require   Require the given module.
 
            --debug   Launch the WebKit inspector for debugging.

@@ -83,6 +83,8 @@ Run `mochify --help` to see all available options.
 - `--timeout` or `-t` changes the Mocha timeout. Defaults to `2000`.
 - `--colors` explicitly enables color output.
 - `--no-colors` explicitly disables color output.
+- `--outfile` or `-o` writes output to this file. If unspecified, mochify
+  prints to stdout.
 - `--require` or `-r` requires the given module.
 - `--debug` launches the WebKit debugger.
 - `--port` uses a specific port for the PhantomJS server.
