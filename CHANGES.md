@@ -1,5 +1,11 @@
 # Changes
 
+## 4.0.0
+
+- Update Mocaccino 3 and Mocha 4 (Carl-Erik Kopseng)
+
+    > Gets rid of a Growl dependency that had a vulnerability
+
 ## 3.3.0
 
 - Add support for `--outfile`
