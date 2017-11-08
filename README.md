@@ -248,6 +248,8 @@ mochify().plugin(istanbul, {
 
 - Node 4.0+, 6.0+ (use `v2.x` for older versions)
 - PhantomJS 1.9, 2.0
+- v4.x
+    - Mocha ^4.0
 - v3.x
     - Mocha ^3.2
     - Browserify ^14.1
