@@ -14,12 +14,12 @@ var run = require('./fixture/run');
 var sandbox = require('./fixture/sandbox');
 
 
-describe('phantom', function () {
+describe('chromium', function () {
   this.timeout(8000);
 
   it('passes', function (done) {
     run('passes', ['-R', 'tap'], function (code, stdout) {
-      assert.equal(stdout, '# phantomjs:\n'
+      assert.equal(stdout, '# chromium:\n'
         + '1..1\n'
         + 'ok 1 test passes\n'
         + '# tests 1\n'
@@ -32,7 +32,7 @@ describe('phantom', function () {
 
   it('fails', function (done) {
     run('fails', ['-R', 'tap'], function (code, stdout) {
-      assert.equal(stdout.indexOf('# phantomjs:\n'
+      assert.equal(stdout.indexOf('# chromium:\n'
         + '1..1\n'
         + 'not ok 1 test fails\n'), 0);
       assert.equal(code, 1);
@@ -42,7 +42,7 @@ describe('phantom', function () {
 
   it('coverage tap', function (done) {
     run('passes', ['--cover', '-R', 'tap'], function (code, stdout) {
-      assert.equal(stdout, '# phantomjs:\n'
+      assert.equal(stdout, '# chromium:\n'
         + '1..1\n'
         + 'ok 1 test passes\n'
         + '# tests 1\n'
@@ -57,7 +57,7 @@ describe('phantom', function () {
     run('passes', ['--cover', '--no-colors', '-R', 'dot'],
       function (code, stdout) {
         var lines = stdout.trim().split(/\n+/);
-        assert.equal(lines[0], '# phantomjs:');
+        assert.equal(lines[0], '# chromium:');
         assert.equal(lines[1], '  .');
         assert.equal(lines[3], '# coverage: 8/8 (100.00 %)');
         assert.equal(code, 0);
@@ -67,9 +67,10 @@ describe('phantom', function () {
 
   it('times out', function (done) {
     run('timeout', ['-R', 'tap', '--timeout', '10'], function (code, stdout) {
-      assert.equal(stdout.indexOf('# phantomjs:\n'
-        + '1..1\n'
-        + 'not ok 1 test times out\n'), 0);
+      var lines = stdout.trim().split(/\n+/);
+      assert.equal(lines[0], '# chromium:');
+      assert.equal(lines[1], '1..1');
+      assert.equal(lines[2], 'not ok 1 test times out');
       assert.equal(code, 1);
       done();
     });
@@ -77,7 +78,7 @@ describe('phantom', function () {
 
   it('uses tdd ui', function (done) {
     run('ui-tdd', ['-R', 'tap', '--ui', 'tdd'], function (code, stdout) {
-      assert.equal(stdout, '# phantomjs:\n'
+      assert.equal(stdout, '# chromium:\n'
         + '1..1\n'
         + 'ok 1 test passes\n'
         + '# tests 1\n'
@@ -96,7 +97,7 @@ describe('phantom', function () {
     });
   });
 
-  it('uses custom phantomjs', function (done) {
+  it.skip('uses custom chromium', function (done) {
     run('passes', ['--phantomjs', 'some/path'], function (code, stdout) {
       assert.equal(stdout.indexOf('Cannot find phantomjs'), 0);
       assert.notEqual(code, 0);
@@ -114,7 +115,7 @@ describe('phantom', function () {
 
   it('passes recursive', function (done) {
     run('recursive', ['-R', 'tap', '--recursive'], function (code, stdout) {
-      assert.equal(stdout, '# phantomjs:\n'
+      assert.equal(stdout, '# chromium:\n'
         + '1..1\n'
         + 'ok 1 recursive passes\n'
         + '# tests 1\n'
@@ -127,7 +128,7 @@ describe('phantom', function () {
 
   it('shows unicode diff', function (done) {
     run('unicode', ['-R', 'tap'], function (code, stdout) {
-      assert.equal(stdout.indexOf('# phantomjs:\n'
+      assert.equal(stdout.indexOf('# chromium:\n'
         + '1..1\n'
         + 'not ok 1 unicode prints diff\n'), 0);
       assert.equal(code, 1);
@@ -141,7 +142,7 @@ describe('phantom', function () {
       function (code, stdout) {
         assert.equal(code, 0);
         assert.equal(stdout, '');
-        assert.equal(fs.readFileSync(outfile, 'utf8'), '# phantomjs:\n'
+        assert.equal(fs.readFileSync(outfile, 'utf8'), '# chromium:\n'
           + '1..1\n'
           + 'ok 1 test passes\n'
           + '# tests 1\n'
