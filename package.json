@@ -43,7 +43,7 @@
   ],
   "homepage": "https://github.com/mantoni/mochify.js",
   "engines": {
-    "node": ">=0.10"
+    "node": ">=6"
   },
   "bin": {
     "mochify": "bin/cmd.js"

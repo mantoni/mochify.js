@@ -4,11 +4,11 @@
 [![SemVer]](http://semver.org)
 [![License]](https://github.com/mantoni/mochify.js/blob/master/LICENSE)
 
-TDD with Browserify, Mocha, PhantomJS and WebDriver
+TDD with Browserify, Mocha, Headless Chrome and WebDriver
 
-- Fast roundtrip
-- No test HTML page
-- No server
+- Run tests in Headless Chrome
+- Fast roundtrip with watch mode
+- No server or test HTML page setup
 - Selenium WebDriver & SauceLabs support
 - Code coverage with [coverify][]
 - [Code coverage](#code-coverage-with-istanbul) with [istanbul][] using
@@ -27,31 +27,19 @@ This will install Mochify in your current project and add it to the
 npm install mochify --save-dev
 ```
 
-- If the `phantomjs` executable *is not* present in your `PATH`, it will be
-  installed locally.
-- If the `phantomjs` executable *is* present in your path, it will not be
-  installed.
-
-- Install PhantomJS: `npm install phantomjs -g` or download from
-  <http://phantomjs.org/>
-- Make sure that the `phantomjs` executable is in your `PATH` or use
-  `--phantomjs <path>`
-
 ## Usage
 
-Configure `"scripts"` in your package.json so that your project ships with the
-testing infrastructure:
+Configure `"scripts"` in your `package.json` so that your project ships with
+the testing infrastructure:
 
-```
-"devDependencies" : {
-  "mochify"       : "*"
+```json
+"devDependencies": {
+  "mochify": "*"
 },
-"scripts"         : {
-  "start"         : "mochify --watch",
-  "phantom"       : "mochify",
-  "wd"            : "mochify --wd",
-  "cover"         : "mochify --cover",
-  "test"          : "npm run phantom && npm run wd && npm run cover"
+"scripts": {
+  "test": "mochify",
+  "watch": "mochify --watch",
+  "webdriver": "mochify --wd"
 }
 ```
 
@@ -65,11 +53,17 @@ node_modules/.bin/mochify
 ## Default behavior
 
 Browserifies `./test/*.js`, decorated with a [Mocha test runner][], runs it in
-PhantomJS with [phantomic][] and pass the output back to your console. Cleans
-up your stack traces by mapping back to the original sources and throws out all
-the lines from the test framework.
+Headless Chrome and pass the output back to your console. Cleans up your stack
+traces by mapping back to the original sources and throws out all the lines
+from the test framework.
 
 Run `mochify --help` to see all available options.
+
+## Debugging
+
+Place a `debugger` statement in your source code and run `mochify --debug`.
+This will open a Chromium instance with developer tools opened and it will
+break at the `debugger` statement.
 
 ## Command line options
 
@@ -86,16 +80,13 @@ Run `mochify --help` to see all available options.
 - `--outfile` or `-o` writes output to this file. If unspecified, mochify
   prints to stdout.
 - `--require` or `-r` requires the given module.
-- `--debug` launches the WebKit debugger.
-- `--port` uses a specific port for the PhantomJS server.
-- `--phantomjs` uses a specific PhantomJS executable. If not specified,
-  `phantomjs` is expected on the `$PATH`.
-- `--web-security` enables PhantomJS web security and forbids cross-domain XHR
-  (default is true)
-- `--ignore-ssl-errors` tells PhantomJS whether or not to ignore ssl
-  certificate issues (default is false)
-- `--viewport-width` tells PhantomJS to use a certain width for its viewport
-- `--viewport-height` tells PhantomJS to use a certain height for its viewport
+- `--debug` launches a non-headless chromium instance with developer tools.
+- `--chrome` uses a specific Chrome executable. If not specified, the built-in
+  chromium is used.
+- `--ignore-ssl-errors` tells Chrome whether or not to ignore ssl certificate
+  issues (default is false)
+- `--viewport-width` tells Chrome to use a certain width for its viewport
+- `--viewport-height` tells Chrome to use a certain height for its viewport
 - `--cover` checks code coverage with [coverify][].
 - `--node` runs test cases on node (useful with `--cover`).
 - `--wd` use [min-webdriver][] to run the tests in multiple real browsers.
@@ -124,29 +115,29 @@ Run `mochify --help` to see all available options.
   <http://chromedriver.storage.googleapis.com/index.html>
 - Put the drivers in the same directory as the JAR file and run:
 
-```
+```bash
 java -jar selenium-server-standalone-2.39.0.jar
 ```
 
 Create `.min-wd` in your project root:
 
-```
+```json
 {
-  "hostname"  : "localhost",
-  "port"      : 4444,
-  "browsers"  : [{
-    "name"    : "internet explorer",
-    "version" : "11"
+  "hostname": "localhost",
+  "port": 4444,
+  "browsers": [{
+    "name": "internet explorer",
+    "version": "11"
   }, {
-    "name"    : "chrome"
+    "name": "chrome"
   }, {
-    "name"    : "firefox"
+    "name": "firefox"
   }]
 }
 ```
 
 That's it! Now `mochify --wd` will run your Mocha test cases in the configured
-browsers simultaniously. If you installed mochify without `-g`, you will have
+browsers simultaneously. If you installed mochify without `-g`, you will have
 to run `node_modules/.bin/mochify --wd`.
 
 ## SauceLabs setup
@@ -194,8 +185,7 @@ expected with `--wd`.
 var mochify = require('mochify');
 
 mochify('./test/*.js', {
-  reporter : 'tap',
-  cover    : true
+  reporter: 'tap'
 }).bundle();
 ```
 
@@ -246,11 +236,18 @@ mochify().plugin(istanbul, {
 
 ## Compatibility
 
-- Node 4.0+, 6.0+ (use `v2.x` for older versions)
-- PhantomJS 1.9, 2.0
-- v4.x
+- v5.x
+    - Node 6.0+, Node 8.0+
     - Mocha ^4.0
+    - Browserify ^14.4
+    - [Puppeteer][] ^0.13
+- v4.x
+    - Node 4.0+, 6.0+, Node 8.0+
+    - PhantomJS 1.9, 2.0
+    - Mocha ^4.0
+    - Browserify ^14.4
 - v3.x
+    - Node 4.0+
     - Mocha ^3.2
     - Browserify ^14.1
 - v2.15+
@@ -289,9 +286,9 @@ MIT
 [mochify-istanbul]: https://github.com/ferlores/mochify-istanbul
 [min-webdriver]: https://github.com/mantoni/min-webdriver
 [Mocha test runner]: https://github.com/mantoni/mocaccino.js
-[phantomic]: https://github.com/mantoni/phantomic
 [consolify]: https://github.com/mantoni/consolify
 [subargs]: https://github.com/substack/subarg
 [through2]: https://github.com/rvagg/through2
 [Browserify API]: https://github.com/substack/node-browserify#methods
 [glob]: https://github.com/isaacs/node-glob
+[Puppeteer]: https://github.com/GoogleChrome/puppeteer
