@@ -97,9 +97,9 @@ describe('chromium', function () {
     });
   });
 
-  it.skip('uses custom chromium', function (done) {
-    run('passes', ['--phantomjs', 'some/path'], function (code, stdout) {
-      assert.equal(stdout.indexOf('Cannot find phantomjs'), 0);
+  it('uses custom chrome', function (done) {
+    run('passes', ['--chrome', 'some/path'], function (code, stdout) {
+      assert.equal(stdout.indexOf('Error: Failed to launch chrome!'), 0);
       assert.notEqual(code, 0);
       done();
     });

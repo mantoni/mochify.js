@@ -133,6 +133,12 @@ describe('args', function () {
     assert.equal(opts.yields, 123);
   });
 
+  it('parses --chrome', function () {
+    var opts = args(['--chrome', '/foo/bar']);
+
+    assert.equal(opts.chrome, '/foo/bar');
+  });
+
   it('parses --phantomjs', function () {
     var opts = args(['--phantomjs', '/foo/bar']);
 
@@ -302,9 +308,7 @@ describe('args', function () {
     });
   });
 
-  // FIXME find out why this isn't working
-  it.skip('fails with meaningful message if file is missing', function (done) {
-    this.timeout(8000);
+  it('fails with meaningful message if file is missing', function (done) {
     run('passes', ['./unknown-file.js'], function (code, stdout) {
       assert.notEqual(code, 0);
       assert(stdout.indexOf('/unknown-file.js') !== -1);
