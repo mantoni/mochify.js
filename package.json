@@ -76,8 +76,7 @@
     "source-mapper": "^2.0.0",
     "subarg": "^1.0.0",
     "through2": "^2.0.0",
-    "watchify": "^3.7.0",
-    "which": "^1.2.14"
+    "watchify": "^3.7.0"
   },
   "devDependencies": {
     "@studio/changes": "^1.2.0",
