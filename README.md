@@ -16,6 +16,8 @@ the test framework.
 - Run tests in Headless Chrome
     - Supports watch-mode with pre-loaded Chrome page (with `--watch`)
     - Use the Chrome developer tools for debugging ([docs](#debugging))
+    - Load tests in the context of a file or URL (with `--url`)
+    - Optional built-in HTTPS server (with `--https-server 8080`)
 - Run tests in real browsers
     - Supports [SauceLabs][] ([docs](#saucelabs-setup))
     - Supports [WebDriver][] ([docs](#selenium-webdriver-setup))
