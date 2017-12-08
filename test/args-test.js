@@ -25,10 +25,10 @@ describe('args', function () {
     assert.equal(opts.recursive, false);
     assert.equal(opts.reporter, 'spec');
     assert.equal(opts.timeout, 2000);
-    assert.equal(opts.port, 0);
     assert.equal(opts.yields, 0);
     assert.equal(opts['ignore-ssl-errors'], false);
     assert.equal(opts['browser-field'], true);
+    assert.equal(opts.commondir, true);
   });
 
   it('parses --reporter', function () {
@@ -113,12 +113,6 @@ describe('args', function () {
     var opts = args(['--bundle', 'some.js']);
 
     assert.equal(opts.bundle, 'some.js');
-  });
-
-  it('parses --port', function () {
-    var opts = args(['--port', '8765']);
-
-    assert.equal(opts.port, 8765);
   });
 
   it('parses --yields', function () {
@@ -230,6 +224,18 @@ describe('args', function () {
     var opts = args(['--no-browser-field']);
 
     assert.equal(opts['browser-field'], false);
+  });
+
+  it('parses --commondir', function () {
+    var opts = args(['--commondir']);
+
+    assert(opts.commondir);
+  });
+
+  it('parses --no-commondir', function () {
+    var opts = args(['--no-commondir']);
+
+    assert.equal(opts.commondir, false);
   });
 
   it('parses --path', function () {

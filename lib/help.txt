@@ -72,6 +72,8 @@ Defaults "entry" to "./test/*.js".
 --no-browser-field   Turn off package.json browser field resolution. This is
                      also handy if you need to run a bundle in node.
 
+    --no-commondir   Preserve original paths.
+
         --external   Mark given path or module as external resource and
                      prevent from being loaded into the bundle.
 

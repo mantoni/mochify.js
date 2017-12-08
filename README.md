@@ -113,6 +113,7 @@ break at the `debugger` statement.
   times. Options can be passed with [subargs][].
 - `--extension` search for files with the extension in "require" statements.
 - `--no-browser-field` turns off package.json browser field resolution.
+- `--no-commondir` preserve original paths.
 - `--external` marks given path or module as external resource and
   prevent from being loaded into the bundle.
 - `--yields` or `-y` changes the yield interval to allow pending I/O to happen.
