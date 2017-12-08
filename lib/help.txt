@@ -1,6 +1,6 @@
 Usage: mochify [options] [entry ...]
 
-Uses PhantomJS unless --wd or --node is specified.
+Uses Headless Chrome unless --wd or --node is specified.
 Defaults "entry" to "./test/*.js".
 
   Options:
@@ -39,11 +39,11 @@ Defaults "entry" to "./test/*.js".
 --ignore-ssl-errors  Tells Chrome whether or not to ignore ssl certificate
                      issues (default is false)
 
-  --viewport-width   Tells PhantomJS to use the given width for its 
-                     viewport 
+    --https-server   Launch an HTTPS server on the specified port.
 
- --viewport-height   Tells PhantomJS to use the given height for its 
-                     viewport 
+  --viewport-width   Tells Chrome to use the given width for its viewport.
+
+ --viewport-height   Tells Chrome to use the given height for its viewport.
 
            --cover   Check code coverage with coverify.
 

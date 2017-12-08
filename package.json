@@ -87,7 +87,7 @@
   "files": [
     "bin",
     "lib",
-    "scripts",
+    "fixture",
     "README.md",
     "LICENSE"
   ],

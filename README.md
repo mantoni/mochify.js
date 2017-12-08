@@ -98,8 +98,9 @@ break at the `debugger` statement.
   chromium is used.
 - `--ignore-ssl-errors` tells Chrome whether or not to ignore ssl certificate
   issues (default is false)
-- `--viewport-width` tells Chrome to use a certain width for its viewport
-- `--viewport-height` tells Chrome to use a certain height for its viewport
+- `--https-server` launches an HTTPS server on the specified port.
+- `--viewport-width` tells Chrome to use a certain width for its viewport.
+- `--viewport-height` tells Chrome to use a certain height for its viewport.
 - `--cover` checks code coverage with [coverify][].
 - `--node` creates a bare bundle and runs test cases on node.
 - `--wd` use [min-webdriver][] to run the tests in multiple real browsers.

@@ -29,6 +29,7 @@ describe('args', function () {
     assert.equal(opts['ignore-ssl-errors'], false);
     assert.equal(opts['browser-field'], true);
     assert.equal(opts.commondir, true);
+    assert.equal(opts['https-server'], null);
   });
 
   it('parses --reporter', function () {
@@ -260,6 +261,12 @@ describe('args', function () {
     var opts = args(['-o', 'foo']);
 
     assert.equal(opts.outfile, 'foo');
+  });
+
+  it('parses --https-server', function () {
+    var opts = args(['--https-server', '8080']);
+
+    assert.equal(opts['https-server'], '8080');
   });
 
   it('defaults colors to null', function () {
