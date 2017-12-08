@@ -39,7 +39,8 @@ Defaults "entry" to "./test/*.js".
 --ignore-ssl-errors  Tells Chrome whether or not to ignore ssl certificate
                      issues (default is false)
 
-    --https-server   Launch an HTTPS server on the specified port.
+    --https-server   Launch an HTTPS server on the specified port and default
+                     --url to https://localhost:${port}
 
   --viewport-width   Tells Chrome to use the given width for its viewport.
 

@@ -152,18 +152,55 @@ describe('chromium', function () {
       });
   }));
 
-  it('runs tests in the context of a localhost https server', function (done) {
-    run('passes', ['-R', 'tap', '--https-server', '8080', '--url',
-      'https://localhost:8080'], function (code, stdout) {
-        assert.equal(stdout, '# chromium:\n'
-          + '1..1\n'
-          + 'ok 1 test passes\n'
-          + '# tests 1\n'
-          + '# pass 1\n'
-          + '# fail 0\n');
-        assert.equal(code, 0);
-        done();
-      });
+  it('runs tests in the context of the given URL', function (done) {
+    var url = 'file://' + __dirname + '/fixture/url/test.html';
+    run('url', ['-R', 'tap', '--url', url], function (code, stdout) {
+      assert.equal(stdout, '# chromium:\n'
+        + '1..1\n'
+        + 'location.href = file://' + __dirname + '/fixture/url/test.html\n'
+        + 'ok 1 url has H1 element\n'
+        + '# tests 1\n'
+        + '# pass 1\n'
+        + '# fail 0\n');
+      assert.equal(code, 0);
+      done();
+    });
   });
+
+  it('runs tests in the context of a localhost https server with specified URL',
+    function (done) {
+      var url = 'https://localhost:8080/test.html';
+      run('url', ['-R', 'tap', '--https-server', '8080', '--url', url],
+        function (code, stdout) {
+          assert.equal(stdout, '# chromium:\n'
+            + '1..1\n'
+            + 'location.href = ' + url + '\n'
+            + 'ok 1 url has H1 element\n'
+            + '# tests 1\n'
+            + '# pass 1\n'
+            + '# fail 0\n');
+          assert.equal(code, 0);
+          done();
+        });
+    });
+
+  it('runs tests in the context of a localhost https server with default URL',
+    function (done) {
+      run('url', ['-R', 'tap', '--https-server', '8080'],
+        function (code, stdout) {
+          assert.equal(stdout, '# chromium:\n'
+            + '1..1\n'
+            + 'location.href = https://localhost:8080/\n'
+            + 'not ok 1 url has H1 element\n'
+            + '  TypeError: Cannot read property \'textContent\' of null\n'
+            + '      at Context.<anonymous> (test/url.js:11)\n'
+            + '# tests 1\n'
+            + '# pass 0\n'
+            + '# fail 1\n'
+            + 'Error: Exit 1\n\n');
+          assert.equal(code, 1);
+          done();
+        });
+    });
 
 });

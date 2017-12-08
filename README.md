@@ -98,7 +98,8 @@ break at the `debugger` statement.
   chromium is used.
 - `--ignore-ssl-errors` tells Chrome whether or not to ignore ssl certificate
   issues (default is false)
-- `--https-server` launches an HTTPS server on the specified port.
+- `--https-server` launches an HTTPS server on the specified port and default
+  `--url` to `https://localhost:${port}`
 - `--viewport-width` tells Chrome to use a certain width for its viewport.
 - `--viewport-height` tells Chrome to use a certain height for its viewport.
 - `--cover` checks code coverage with [coverify][].
