@@ -47,7 +47,7 @@ Defaults "entry" to "./test/*.js".
 
            --cover   Check code coverage with coverify.
 
-            --node   Run test cases on node (useful with --cover).
+            --node   Creates a bare bundle and run test cases on node.
 
               --wd   Use min-webdriver to run the tests in multiple real
                      browsers.

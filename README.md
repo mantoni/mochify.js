@@ -7,12 +7,14 @@
 TDD with Browserify, Mocha, Headless Chrome and WebDriver
 
 - Run tests in Headless Chrome
-- Fast roundtrip with watch mode
-- No server or test HTML page setup
-- Selenium WebDriver & SauceLabs support
-- Code coverage with [coverify][]
-- [Code coverage](#code-coverage-with-istanbul) with [istanbul][] using
-  [mochify-istanbul][] plugin
+    - Supports watch-mode with pre-loaded Chrome page (with `--watch`)
+    - Use the Chrome developer tools for debugging ([docs](#debugging))
+- Run tests in real browsers
+    - Supports [SauceLabs][] ([docs](#saucelabs-setup))
+    - Supports WebDriver ([docs](#selenium-webdriver-setup))
+- Code coverage options:
+    - Using [istanbul][] ([docs](#code-coverage-with-istanbul))
+    - Using [coverify][] (with `--cover`)
 - Short stack traces with relative paths
 - Works with most Mocha reporters
 
@@ -27,19 +29,34 @@ This will install Mochify in your current project and add it to the
 npm install mochify --save-dev
 ```
 
+[Puppeteer][] will download a recent version of Chromium. If you want to skip
+the download and provide your own executable instead, define the
+`PUPPETEER_SKIP_CHROMIUM_DOWNLOAD` environment variable or add this to your
+`package.json`:
+
+```json
+{
+  "config": {
+    "puppeteer_skip_chromium_download": true
+  }
+}
+```
+
+For proxy settings and other environment variables, see the [Puppeteer
+documentation][puppeteer-envs].
+
 ## Usage
 
 Configure `"scripts"` in your `package.json` so that your project ships with
 the testing infrastructure:
 
 ```json
-"devDependencies": {
-  "mochify": "*"
-},
-"scripts": {
-  "test": "mochify",
-  "watch": "mochify --watch",
-  "webdriver": "mochify --wd"
+{
+  "scripts": {
+    "test": "mochify",
+    "watch": "mochify --watch",
+    "webdriver": "mochify --wd"
+  }
 }
 ```
 
@@ -88,7 +105,7 @@ break at the `debugger` statement.
 - `--viewport-width` tells Chrome to use a certain width for its viewport
 - `--viewport-height` tells Chrome to use a certain height for its viewport
 - `--cover` checks code coverage with [coverify][].
-- `--node` runs test cases on node (useful with `--cover`).
+- `--node` creates a bare bundle and runs test cases on node.
 - `--wd` use [min-webdriver][] to run the tests in multiple real browsers.
 - `--url` (only with `--wd`) runs the tests in the context of the given URL.
 - `--wd-file` (only with `--wd`) specify the location of the `.min-wd` config file.
@@ -142,16 +159,16 @@ to run `node_modules/.bin/mochify --wd`.
 
 ## SauceLabs setup
 
-Export your SauceLabs credentials:
+Export your [SauceLabs][] credentials:
 
-```
+```bash
 export SAUCE_USERNAME="your-user-name"
 export SAUCE_ACCESS_KEY="your-access-key"
 ```
 
 Enable SauceLabs in your `.min-wd` file:
 
-```
+```json
 {
   "sauceLabs": true
 }
@@ -217,9 +234,11 @@ $ npm install mochify-istanbul --save-dev
 
 Using a `package.json` script that can be run with `npm run cover`:
 
-```
-"scripts" : {
-  "cover" : "mochify --plugin [ mochify-istanbul --report cobertura ]"
+```json
+{
+  "scripts" : {
+    "cover" : "mochify --plugin [ mochify-istanbul --report cobertura ]"
+  }
 }
 ```
 
@@ -240,7 +259,7 @@ mochify().plugin(istanbul, {
     - Node 6.0+, Node 8.0+
     - Mocha ^4.0
     - Browserify ^14.4
-    - [Puppeteer][] ^0.13
+    - Puppeteer ^0.13
 - v4.x
     - Node 4.0+, 6.0+, Node 8.0+
     - PhantomJS 1.9, 2.0
@@ -285,6 +304,7 @@ MIT
 [istanbul]: https://github.com/gotwarlost/istanbul
 [mochify-istanbul]: https://github.com/ferlores/mochify-istanbul
 [min-webdriver]: https://github.com/mantoni/min-webdriver
+[SauceLabs]: https://saucelabs.com
 [Mocha test runner]: https://github.com/mantoni/mocaccino.js
 [consolify]: https://github.com/mantoni/consolify
 [subargs]: https://github.com/substack/subarg
@@ -292,3 +312,4 @@ MIT
 [Browserify API]: https://github.com/substack/node-browserify#methods
 [glob]: https://github.com/isaacs/node-glob
 [Puppeteer]: https://github.com/GoogleChrome/puppeteer
+[puppeteer-envs]: https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#environment-variables
