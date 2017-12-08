@@ -54,7 +54,6 @@
     "watch": "mocha --watch",
     "test": "mocha",
     "posttest": "npm run lint",
-    "postinstall": "node scripts/postinstall.js",
     "preversion": "npm test",
     "version": "changes",
     "postversion": "git push --follow-tags && npm publish"
