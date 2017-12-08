@@ -1,5 +1,48 @@
 # Changes
 
+## 5.0.0
+
+This release __REPLACES__ PhantomJS with Headless Chrome!
+
+> Not all features could be preserved, unfortunately (see known issues below).
+> The improved compatibility, performance and debugging features make this a
+> great step forward, but consider this release to be potentially immature as
+> the underlying [Puppeteer][] implementation is under heavy development.
+> Carefully test whether upgrading is acceptable for your project.
+
+### Breaking changes
+
+- Runs Headless Chrome by default
+- [Puppeteer][] requires Node 6, so support for Node 4 had to be dropped.
+- PhantomJS was removed entirely and with it the `--port` and `--phantomjs`
+  options.
+- Downloads a recent chromium version during installation. See the install
+  instructions in the `README.md` if this is causing trouble.
+
+### New features
+
+- `--url` to run tests in the context of a web page can now also be used with
+  Headless Chrome. This was previously limited to WebDriver. Can be a `file:`
+  URL.
+- `--https-server` launches a simple HTTPS server with a self-signed
+  certificate and tests are run in the context of an empty page. Additional
+  files that are requested are looked up from the current directory. This can
+  be used to run tests in a Worker. This can be combined with `--url` to load
+  a specific HTML page through the HTTPS server.
+- `--debug` runs the tests in a full chrome instance with developer tools. Use
+  the `debugger` statement to set a breakpoint.
+- `--chrome` allows to specify a Chrome executable to run instead of the
+  built-in chromium.
+- `--no-commondir` is now forwarded to Browserify
+
+### Known issues
+
+- Page navigation is not prevented with Headless Chrome. Whether this is an
+  issue depends on the way your test cases trigger page navigation.
+- Stack traces are missing in asynchronous test cases.
+
+[Puppeteer]: https://github.com/GoogleChrome/puppeteer
+
 ## 4.0.0
 
 - Update Mocaccino 3 and Mocha 4 (Carl-Erik Kopseng)
