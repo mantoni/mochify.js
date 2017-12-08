@@ -30,7 +30,7 @@ describe('api', function () {
     };
   }
 
-  it('runs phantomjs', function (done) {
+  it('runs chromium', function (done) {
     mochify('./test/fixture/passes/test/*.js', {
       output   : through(),
       reporter : 'tap'
@@ -56,7 +56,7 @@ describe('api', function () {
   it('uses defaults', function (done) {
     api('api-defaults.js', function (code, stdout) {
       assert.equal(code, 0);
-      assert.equal(stdout.split('\n')[0], '# phantomjs:');
+      assert.equal(stdout.split('\n')[0], '# chromium:');
       done();
     });
   });
@@ -64,7 +64,7 @@ describe('api', function () {
   it('uses only path', function (done) {
     api('api-only-path.js', function (code, stdout) {
       assert.equal(code, 0);
-      assert.equal(stdout.split('\n')[0], '# phantomjs:');
+      assert.equal(stdout.split('\n')[0], '# chromium:');
       done();
     });
   });

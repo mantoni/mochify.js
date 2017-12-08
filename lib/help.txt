@@ -1,6 +1,6 @@
 Usage: mochify [options] [entry ...]
 
-Uses PhantomJS unless --wd or --node is specified.
+Uses Headless Chrome unless --wd or --node is specified.
 Defaults "entry" to "./test/*.js".
 
   Options:
@@ -30,29 +30,25 @@ Defaults "entry" to "./test/*.js".
 
      -r, --require   Require the given module.
 
-           --debug   Launch the WebKit inspector for debugging.
+           --debug   Launches a non-headless chromium instance with developer
+                     tools.
 
-            --port   Use a specific port for phantomic server. Defaults to 0
-                     for auto-selecting a free port.
+          --chrome   Use a Chrome binary. If not specified, the built-in
+                     chromium is used.
 
-       --phantomjs   Use a PhantomJS binary. If not specified, phantomjs is
-                     expected on the $PATH.
-
-    --web-security   Enables PhantomJS web security and forbids cross-domain
-                     XHR (default is true)
-
---ignore-ssl-errors  Tells PhantomJS whether or not to ignore ssl certificate
+--ignore-ssl-errors  Tells Chrome whether or not to ignore ssl certificate
                      issues (default is false)
 
-  --viewport-width   Tells PhantomJS to use the given width for its 
-                     viewport 
+    --https-server   Launch an HTTPS server on the specified port and default
+                     --url to https://localhost:${port}
 
- --viewport-height   Tells PhantomJS to use the given height for its 
-                     viewport 
+  --viewport-width   Tells Chrome to use the given width for its viewport.
+
+ --viewport-height   Tells Chrome to use the given height for its viewport.
 
            --cover   Check code coverage with coverify.
 
-            --node   Run test cases on node (useful with --cover).
+            --node   Creates a bare bundle and run test cases on node.
 
               --wd   Use min-webdriver to run the tests in multiple real
                      browsers.
@@ -76,6 +72,8 @@ Defaults "entry" to "./test/*.js".
 
 --no-browser-field   Turn off package.json browser field resolution. This is
                      also handy if you need to run a bundle in node.
+
+    --no-commondir   Preserve original paths.
 
         --external   Mark given path or module as external resource and
                      prevent from being loaded into the bundle.

@@ -25,10 +25,11 @@ describe('args', function () {
     assert.equal(opts.recursive, false);
     assert.equal(opts.reporter, 'spec');
     assert.equal(opts.timeout, 2000);
-    assert.equal(opts.port, 0);
     assert.equal(opts.yields, 0);
     assert.equal(opts['ignore-ssl-errors'], false);
     assert.equal(opts['browser-field'], true);
+    assert.equal(opts.commondir, true);
+    assert.equal(opts['https-server'], null);
   });
 
   it('parses --reporter', function () {
@@ -115,12 +116,6 @@ describe('args', function () {
     assert.equal(opts.bundle, 'some.js');
   });
 
-  it('parses --port', function () {
-    var opts = args(['--port', '8765']);
-
-    assert.equal(opts.port, 8765);
-  });
-
   it('parses --yields', function () {
     var opts = args(['--yields', '123']);
 
@@ -133,16 +128,10 @@ describe('args', function () {
     assert.equal(opts.yields, 123);
   });
 
-  it('parses --phantomjs', function () {
-    var opts = args(['--phantomjs', '/foo/bar']);
+  it('parses --chrome', function () {
+    var opts = args(['--chrome', '/foo/bar']);
 
-    assert.equal(opts.phantomjs, '/foo/bar');
-  });
-
-  it('parses --web-security', function () {
-    var opts = args(['--web-security', 'true']);
-
-    assert.equal(opts['web-security'], true);
+    assert.equal(opts.chrome, '/foo/bar');
   });
 
   it('parses --ignore-ssl-errors', function () {
@@ -238,6 +227,18 @@ describe('args', function () {
     assert.equal(opts['browser-field'], false);
   });
 
+  it('parses --commondir', function () {
+    var opts = args(['--commondir']);
+
+    assert(opts.commondir);
+  });
+
+  it('parses --no-commondir', function () {
+    var opts = args(['--no-commondir']);
+
+    assert.equal(opts.commondir, false);
+  });
+
   it('parses --path', function () {
     var opts = args(['--path', './source/']);
 
@@ -260,6 +261,12 @@ describe('args', function () {
     var opts = args(['-o', 'foo']);
 
     assert.equal(opts.outfile, 'foo');
+  });
+
+  it('parses --https-server', function () {
+    var opts = args(['--https-server', '8080']);
+
+    assert.equal(opts['https-server'], '8080');
   });
 
   it('defaults colors to null', function () {
@@ -303,7 +310,6 @@ describe('args', function () {
   });
 
   it('fails with meaningful message if file is missing', function (done) {
-    this.timeout(8000);
     run('passes', ['./unknown-file.js'], function (code, stdout) {
       assert.notEqual(code, 0);
       assert(stdout.indexOf('/unknown-file.js') !== -1);
