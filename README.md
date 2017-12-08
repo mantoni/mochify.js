@@ -1,24 +1,29 @@
-# Mochify
+# [![Mochify](header.png)](https://github.com/mantoni/mochify.js/)
+
+> TDD with Browserify, Mocha, Headless Chrome and WebDriver
 
 [![Build Status]](https://travis-ci.org/mantoni/mochify.js)
 [![SemVer]](http://semver.org)
 [![License]](https://github.com/mantoni/mochify.js/blob/master/LICENSE)
 
-TDD with Browserify, Mocha, Headless Chrome and WebDriver
+Browserifies `./test/*.js`, decorated with a [Mocha test runner][], runs it in
+Headless Chrome and passes the output back to your console. Cleans up your
+stack traces by mapping back to the original sources and removing lines from
+the test framework.
+
+## Features
 
 - Run tests in Headless Chrome
     - Supports watch-mode with pre-loaded Chrome page (with `--watch`)
     - Use the Chrome developer tools for debugging ([docs](#debugging))
 - Run tests in real browsers
     - Supports [SauceLabs][] ([docs](#saucelabs-setup))
-    - Supports WebDriver ([docs](#selenium-webdriver-setup))
+    - Supports [WebDriver][] ([docs](#selenium-webdriver-setup))
 - Code coverage options:
     - Using [istanbul][] ([docs](#code-coverage-with-istanbul))
     - Using [coverify][] (with `--cover`)
-- Short stack traces with relative paths
-- Works with most Mocha reporters
-
-![mochify](http://maxantoni.de/img/mochify-1.8.0.png)
+- Works with most Mocha reporters ([docs](#reporters))
+- Exposes a Node API ([docs](#api))
 
 ## Install
 
@@ -66,15 +71,6 @@ To run from the command line, either run `npm install mochify -g` to have
 ```
 node_modules/.bin/mochify
 ```
-
-## Default behavior
-
-Browserifies `./test/*.js`, decorated with a [Mocha test runner][], runs it in
-Headless Chrome and pass the output back to your console. Cleans up your stack
-traces by mapping back to the original sources and throws out all the lines
-from the test framework.
-
-Run `mochify --help` to see all available options.
 
 ## Debugging
 
@@ -303,6 +299,7 @@ MIT
 [coverify]: https://github.com/substack/coverify
 [istanbul]: https://github.com/gotwarlost/istanbul
 [mochify-istanbul]: https://github.com/ferlores/mochify-istanbul
+[WebDriver]: http://www.seleniumhq.org/projects/webdriver/
 [min-webdriver]: https://github.com/mantoni/min-webdriver
 [SauceLabs]: https://saucelabs.com
 [Mocha test runner]: https://github.com/mantoni/mocaccino.js
