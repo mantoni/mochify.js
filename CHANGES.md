@@ -1,5 +1,14 @@
 # Changes
 
+## 5.1.0
+
+This release allows Mochify to be used in CircleCI!
+
+- Add `--allow-chrome-as-root` option to allow chrome to run as root (Phred)
+
+    > See https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#chrome-headless-fails-due-to-sandbox-issues
+
+
 ## 5.0.0
 
 This release __REPLACES__ PhantomJS with Headless Chrome!
