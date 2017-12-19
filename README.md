@@ -100,6 +100,7 @@ break at the `debugger` statement.
   chromium is used.
 - `--ignore-ssl-errors` tells Chrome whether or not to ignore ssl certificate
   issues (default is false)
+- `--allow-chrome-as-root` allows Chrome to run as root
 - `--https-server` launches an HTTPS server on the specified port and default
   `--url` to `https://localhost:${port}`
 - `--viewport-width` tells Chrome to use a certain width for its viewport.
