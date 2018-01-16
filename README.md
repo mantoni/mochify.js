@@ -257,7 +257,12 @@ mochify().plugin(istanbul, {
 
 ## Compatibility
 
-- v5.x
+- v5.2+
+    - Node 6.0+, Node 8.0+
+    - Mocha ^4.1
+    - Browserify ^15.2
+    - Puppeteer ^1.0
+- v5.0 - v5.1
     - Node 6.0+, Node 8.0+
     - Mocha ^4.0
     - Browserify ^14.4
