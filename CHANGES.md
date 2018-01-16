@@ -1,5 +1,9 @@
 # Changes
 
+## 5.2.0
+
+- Upgrade to Puppeteer 1 and Browserify 15
+
 ## 5.1.0
 
 This release allows Mochify to be used in CircleCI!
