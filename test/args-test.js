@@ -162,6 +162,12 @@ describe('args', function () {
     assert.equal(opts.transform, 'foo');
   });
 
+  it('parses --global-transform', function () {
+    var opts = args(['--global-transform', 'foo']);
+
+    assert.equal(opts['global-transform'], 'foo');
+  });
+
   it('parses --plugin', function () {
     var opts = args(['--plugin', 'foo']);
 
