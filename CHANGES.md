@@ -1,5 +1,9 @@
 # Changes
 
+## 5.3.0
+
+- Add support for the `--global-transform` Browserify option
+
 ## 5.2.0
 
 - Upgrade to Puppeteer 1 and Browserify 15
