@@ -114,6 +114,8 @@ break at the `debugger` statement.
 - `--bundle` specify a separate JS file export when using `--consolify`.
 - `--transform` specifies a Browserify transform to add. Can be specified
   multiple times. Options can be passed with [subargs][].
+- `--global-transform` specifies a Browserify transform to add globally. Can be
+  specified multiple times. Options can be passed with [subargs][].
 - `--plugin` specifies a Browserify plugin to add. Can be specified multiple
   times. Options can be passed with [subargs][].
 - `--extension` search for files with the extension in "require" statements.

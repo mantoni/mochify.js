@@ -63,6 +63,10 @@ Defaults "entry" to "./test/*.js".
        --transform   Specifies a Browserify transform to add. Can be specified
                      multiple times. Options can be passed with subargs.
 
+--global-transform   Specifies a Browserify transform to add globally. Can be
+                     specified multiple times. Options can be passed with
+                     subargs.
+
           --plugin   Specifies a Browserify plugin to add. Can be specified
                      multiple times. Options can be passed with subargs.
 
