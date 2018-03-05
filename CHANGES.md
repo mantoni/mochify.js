@@ -1,5 +1,9 @@
 # Changes
 
+## 5.3.1
+
+- Properly cast viewport parameters to integer values (fixes #166)  (Frederik Ring)
+
 ## 5.3.0
 
 - Add support for the `--global-transform` Browserify option
