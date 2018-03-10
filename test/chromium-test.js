@@ -10,6 +10,7 @@
 
 var assert = require('assert');
 var fs = require('fs');
+var net = require('net');
 var run = require('./fixture/run');
 var sandbox = require('./fixture/sandbox');
 
@@ -203,4 +204,60 @@ describe('chromium', function () {
         });
     });
 
+  it('runs tests in the context of a localhost https server with random port',
+    function (done) {
+      run('port', ['-R', 'tap', '--https-server'],
+        function (code, stdout) {
+          assert.equal(code, 0);
+          var lines = stdout.split('\n');
+          var expected = [
+            /^# chromium:$/,
+            /^1\.\.1$/,
+            /^location\.protocol = https:$/,
+            /^location\.port = \d{1,5}$/,
+            /^ok 1 port passes after printing protocol and port$/,
+            /^# tests 1$/,
+            /^# pass 1$/,
+            /^# fail 0$/
+          ];
+          expected.forEach(function (re, index) {
+            assert(
+              re.test(lines[index]),
+              'Unexpected line ' + index + ': ' + lines[index]
+            );
+          });
+          done();
+        });
+    });
+
+  context('https-server with a port value given', function () {
+    var server;
+
+    before(function (done) {
+      server = net.createServer();
+      server.listen(3001, function (err) {
+        done(err);
+      });
+    });
+
+    after(function () {
+      server.close();
+    });
+
+    it('creates a meaningful error when the port is already in use',
+        function (done) {
+          run('port', ['--https-server', '3001'],
+            function (code, stdout) {
+              assert.notEqual(
+                stdout.indexOf('EADDRINUSE'), -1,
+                'Error message did not contain error code'
+              );
+              assert.notEqual(stdout.indexOf('3001'), -1,
+                'Error message did not contain port value'
+              );
+              assert.equal(code, 1);
+              done();
+            });
+        });
+  });
 });
