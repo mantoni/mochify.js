@@ -17,7 +17,7 @@ the test framework.
     - Supports watch-mode with pre-loaded Chrome page (with `--watch`)
     - Use the Chrome developer tools for debugging ([docs](#debugging))
     - Load tests in the context of a file or URL (with `--url`)
-    - Optional built-in HTTPS server (with `--https-server 8080`)
+    - Optional built-in HTTPS server (with `--https-server`)
 - Run tests in real browsers
     - Supports [SauceLabs][] ([docs](#saucelabs-setup))
     - Supports [WebDriver][] ([docs](#selenium-webdriver-setup))
@@ -101,7 +101,7 @@ break at the `debugger` statement.
 - `--ignore-ssl-errors` tells Chrome whether or not to ignore ssl certificate
   issues (default is false)
 - `--allow-chrome-as-root` allows Chrome to run as root
-- `--https-server` launches an HTTPS server on the specified port and default
+- `--https-server` launches an HTTPS server on the specified port, if no port is given a random available port will be used.
   `--url` to `https://localhost:${port}`
 - `--viewport-width` tells Chrome to use a certain width for its viewport.
 - `--viewport-height` tells Chrome to use a certain height for its viewport.

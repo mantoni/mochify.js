@@ -30,7 +30,6 @@ describe('args', function () {
     assert.equal(opts['ignore-ssl-errors'], false);
     assert.equal(opts['browser-field'], true);
     assert.equal(opts.commondir, true);
-    assert.equal(opts['https-server'], null);
   });
 
   it('parses --reporter', function () {
@@ -272,8 +271,10 @@ describe('args', function () {
 
   it('parses --https-server', function () {
     var opts = args(['--https-server', '8080']);
+    assert.strictEqual(opts['https-server'], 8080);
 
-    assert.equal(opts['https-server'], '8080');
+    var noValueOpts = args(['--https-server']);
+    assert.strictEqual(noValueOpts['https-server'], 0);
   });
 
   it('parses --allow-chrome-as-root', function () {
