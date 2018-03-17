@@ -1,5 +1,13 @@
 # Changes
 
+## 5.4.0
+
+- improve port handling for https server (Frederik Ring)
+
+    > When no port is given for the --https-server arg, pick a random free one.
+    > When a port is specified but already in use, fail with a meaningful error message.
+
+
 ## 5.3.1
 
 - Properly cast viewport parameters to integer values (fixes #166)  (Frederik Ring)
