@@ -93,9 +93,16 @@ describe('args', function () {
   });
 
   it('parses --url', function () {
-    var opts = args(['--url', 'localhost']);
+    var opts = args(['--url', 'https://localhost:8080/test.html']);
 
-    assert.equal(opts.url, 'localhost');
+    assert.equal(opts.url.href, 'https://localhost:8080/test.html');
+    assert.equal(opts['https-server'], 8080);
+
+    var withPort = args(
+      ['--url', 'https://localhost:8080/test.html', '--https-server', '4040']
+    );
+    assert.equal(withPort.url.href, 'https://localhost:8080/test.html');
+    assert.equal(withPort['https-server'], 4040);
   });
 
   it('parses --wd-file', function () {
