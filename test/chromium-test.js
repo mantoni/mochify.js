@@ -158,7 +158,7 @@ describe('chromium', function () {
     run('url', ['-R', 'tap', '--url', url], function (code, stdout) {
       assert.equal(stdout, '# chromium:\n'
         + '1..1\n'
-        + 'location.href = file://' + __dirname + '/fixture/url/test.html\n'
+        + 'location.href = ' + url + '\n'
         + 'ok 1 url has H1 element\n'
         + '# tests 1\n'
         + '# pass 1\n'
@@ -168,7 +168,7 @@ describe('chromium', function () {
     });
   });
 
-  it('runs tests in the context of a localhost https server with specified URL',
+  it('runs tests in the context of a localhost https server with URL and port',
     function (done) {
       var url = 'https://localhost:8080/test.html';
       run('url', ['-R', 'tap', '--https-server', '8080', '--url', url],
@@ -185,7 +185,24 @@ describe('chromium', function () {
         });
     });
 
-  it('runs tests in the context of a localhost https server with default URL',
+  it('runs tests in the context of a localhost https server with URL only',
+    function (done) {
+      var url = 'https://localhost:7070/test.html';
+      run('url', ['-R', 'tap', '--url', url],
+        function (code, stdout) {
+          assert.equal(stdout, '# chromium:\n'
+            + '1..1\n'
+            + 'location.href = ' + url + '\n'
+            + 'ok 1 url has H1 element\n'
+            + '# tests 1\n'
+            + '# pass 1\n'
+            + '# fail 0\n');
+          assert.equal(code, 0);
+          done();
+        });
+    });
+
+  it('runs tests in the context of a localhost https server with port only',
     function (done) {
       run('url', ['-R', 'tap', '--https-server', '8080'],
         function (code, stdout) {
@@ -214,8 +231,38 @@ describe('chromium', function () {
             /^# chromium:$/,
             /^1\.\.1$/,
             /^location\.protocol = https:$/,
+            /^location\.hostname = localhost$/,
             /^location\.port = \d{1,5}$/,
-            /^ok 1 port passes after printing protocol and port$/,
+            /^location\.pathname = \//,
+            /^ok 1 port passes after printing location info$/,
+            /^# tests 1$/,
+            /^# pass 1$/,
+            /^# fail 0$/
+          ];
+          expected.forEach(function (re, index) {
+            assert(
+              re.test(lines[index]),
+              'Unexpected line ' + index + ': ' + lines[index]
+            );
+          });
+          done();
+        });
+    });
+
+  it('runs tests in the context of a localhost https server with naked url',
+    function (done) {
+      run('port', ['-R', 'tap', '--url', 'https://localhost/index.html'],
+        function (code, stdout) {
+          assert.equal(code, 0);
+          var lines = stdout.split('\n');
+          var expected = [
+            /^# chromium:$/,
+            /^1\.\.1$/,
+            /^location\.protocol = https:$/,
+            /^location\.hostname = localhost$/,
+            /^location\.port = \d{1,5}$/,
+            /^location\.pathname = \/index.html$/,
+            /^ok 1 port passes after printing location info$/,
             /^# tests 1$/,
             /^# pass 1$/,
             /^# fail 0$/

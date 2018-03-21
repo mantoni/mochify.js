@@ -93,9 +93,33 @@ describe('args', function () {
   });
 
   it('parses --url', function () {
-    var opts = args(['--url', 'localhost']);
+    var opts = args(['--url', 'https://localhost:8080/test.html']);
 
-    assert.equal(opts.url, 'localhost');
+    assert.equal(opts.url.href, 'https://localhost:8080/test.html');
+    assert.equal(opts['https-server'], 8080);
+  });
+
+  context('with conflicting values given', function () {
+    var nativeExit;
+    var exitCalledWith;
+
+    before(function () {
+      nativeExit = process.exit;
+      process.exit = function () {
+        exitCalledWith = [].slice.call(arguments);
+      };
+    });
+
+    after(function () {
+      process.exit = nativeExit;
+    });
+
+    it('logs and exits with status code 1', function () {
+      args(
+        ['--url', 'https://localhost:8080/test.html', '--https-server', '4040']
+      );
+      assert.deepStrictEqual(exitCalledWith, [1]);
+    });
   });
 
   it('parses --wd-file', function () {
@@ -276,6 +300,7 @@ describe('args', function () {
     var noValueOpts = args(['--https-server']);
     assert.strictEqual(noValueOpts['https-server'], 0);
   });
+
 
   it('parses --allow-chrome-as-root', function () {
     var opts = args(['--allow-chrome-as-root']);
