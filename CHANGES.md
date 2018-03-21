@@ -1,5 +1,14 @@
 # Changes
 
+## 5.5.0
+
+- Align help.txt file with README (Frederik Ring)
+- Enable passing of url without additionally specifying port (Frederik Ring)
+
+    > when --url is given, the port to be used by the local https server
+    > can be derived in case the --https-server arg is empty
+
+
 ## 5.4.0
 
 - improve port handling for https server (Frederik Ring)
