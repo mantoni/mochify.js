@@ -4,86 +4,93 @@ Uses Headless Chrome unless --wd or --node is specified.
 Defaults "entry" to "./test/*.js".
 
   Options:
-       -w, --watch   Use watchify to watch your files and run the tests on
-                     change.
+           -w, --watch  Use watchify to watch your files and run the tests on
+                        change.
 
-    -R, --reporter   Change the Mocha reporter. Mocha reporters known to work:
-                     doc, dot, json, landing, list, markdown, min, spec, tap,
-                     xunit, nyan
+        -R, --reporter  Change the Mocha reporter. Mocha reporters known to
+                        work: doc, dot, json, landing, list, markdown, min,
+                        spec, tap, xunit, nyan
 
-            --grep   Set Mocha grep option.
+                --grep  Set Mocha grep option.
 
-          --invert   Set Mocha grep invert flag.
+              --invert  Set Mocha grep invert flag.
 
-       --recursive   Include sub directories.
+           --recursive  Include sub directories.
 
-          -U, --ui   Change the Mocha UI. Defaults to 'bdd'.
+              -U, --ui  Change the Mocha UI. Defaults to 'bdd'.
 
-     -t, --timeout   Change the Mocha timeout. Defaults to 2000.
+         -t, --timeout  Change the Mocha timeout. Defaults to 2000.
 
-          --colors   Explicitly enables Mocha color output.
+              --colors  Explicitly enables Mocha color output.
 
-       --no-colors   Explicitly disables Mocha color output.
+           --no-colors  Explicitly disables Mocha color output.
 
-     -o, --outfile   Write test output to this file. If unspecified, mochify
-                     prints to stdout.
+         -o, --outfile  Write test output to this file. If unspecified,
+                        mochify prints to stdout.
 
-     -r, --require   Require the given module.
+         -r, --require  Require the given module.
 
-           --debug   Launches a non-headless chromium instance with developer
-                     tools.
+               --debug  Launches a non-headless chromium instance with
+                        developer tools.
 
-          --chrome   Use a Chrome binary. If not specified, the built-in
-                     chromium is used.
+              --chrome  Use a Chrome binary. If not specified, the built-in
+                        chromium is used.
 
---ignore-ssl-errors  Tells Chrome whether or not to ignore ssl certificate
-                     issues (default is false)
+   --ignore-ssl-errors  Tells Chrome whether or not to ignore ssl certificate
+                        issues (default is false)
 
-    --https-server   Launch an HTTPS server on the specified port and default
-                     --url to https://localhost:${port}
+--allow-chrome-as-root  allows Chrome to run as root
 
-  --viewport-width   Tells Chrome to use the given width for its viewport.
+        --https-server  Launches an HTTPS server using the specified port at
+                        https://localhost:${port}
 
- --viewport-height   Tells Chrome to use the given height for its viewport.
+      --viewport-width  Tells Chrome to use the given width for its viewport.
 
-           --cover   Check code coverage with coverify.
+     --viewport-height  Tells Chrome to use the given height for its viewport.
 
-            --node   Creates a bare bundle and run test cases on node.
+               --cover  Check code coverage with coverify.
 
-              --wd   Use min-webdriver to run the tests in multiple real
-                     browsers.
+                --node  Creates a bare bundle and run test cases on node.
 
-             --url   (only with --wd) runs the tests in the context of the
-                     given URL.
+                  --wd  Use min-webdriver to run the tests in multiple real
+                        browsers.
 
-       --consolify   Generate a standalone HTML page.
+             --wd-file  specify the location of the .min-wd config file.
+                        (only with `--wd`)
 
-          --bundle   Specify a separate JS file export when using --consolify
+                 --url  runs the tests in the context of the given URL.
 
-       --transform   Specifies a Browserify transform to add. Can be specified
-                     multiple times. Options can be passed with subargs.
+           --consolify  Generate a standalone HTML page.
 
---global-transform   Specifies a Browserify transform to add globally. Can be
-                     specified multiple times. Options can be passed with
-                     subargs.
+              --bundle  Specify a separate JS file export when using
+                        --consolify
 
-          --plugin   Specifies a Browserify plugin to add. Can be specified
-                     multiple times. Options can be passed with subargs.
+           --transform  Specifies a Browserify transform to add. Can be
+                        specified multiple times. Options can be passed with
+                        subargs.
 
-       --extension   Search for files with the extension in "require"
-                     statements. For example, "--extension .coffee". Can be
-                     specified multiple times.
+    --global-transform  Specifies a Browserify transform to add globally. Can
+                        be specified multiple times. Options can be passed
+                        with subargs.
 
---no-browser-field   Turn off package.json browser field resolution. This is
-                     also handy if you need to run a bundle in node.
+              --plugin  Specifies a Browserify plugin to add. Can be specified
+                        multiple times. Options can be passed with subargs.
 
-    --no-commondir   Preserve original paths.
+           --extension  Search for files with the extension in "require"
+                        statements. For example, "--extension .coffee". Can be
+                        specified multiple times.
 
-        --external   Mark given path or module as external resource and
-                     prevent from being loaded into the bundle.
+    --no-browser-field  Turn off package.json browser field resolution. This
+                        is also handy if you need to run a bundle in node.
 
-      -y, --yields   Changes the yield interval to allow pending I/O to happen.
+        --no-commondir  Preserve original paths.
 
-     -v, --version   Print mochify version and exit.
+            --external  Mark given path or module as external resource and
+                        prevent from being loaded into the bundle.
 
-        -h, --help   Show this message and exit.
+          -y, --yields  Changes the yield interval to allow pending I/O to
+                        happen.
+
+         -v, --version  Print mochify version and exit.
+
+            -h, --help  Show this message and exit.
