@@ -69,7 +69,7 @@
     "consolify": "^2.1.0",
     "coverify": "^1.4.1",
     "glob": "^7.1.2",
-    "min-wd": "^2.9.0",
+    "min-wd": "^2.10.0",
     "mocaccino": "^3.0.0",
     "mocha": "^4.1.0",
     "puppeteer": "^1.0.0",

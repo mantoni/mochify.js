@@ -314,6 +314,18 @@ describe('args', function () {
     assert.strictEqual(opts.colors, null);
   });
 
+  it('default async-polling to true', function () {
+    var opts = args([]);
+
+    assert(opts['async-polling']);
+  });
+
+  it('parses --async-polling', function () {
+    var opts = args(['--async-polling', 'false']);
+
+    assert.equal(opts['async-polling'], false);
+  });
+
   it('fails with invert but no grep option', function (done) {
     run('passes', ['--invert'], function (code, stdout) {
       assert.equal(code, 1);
