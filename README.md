@@ -20,6 +20,7 @@ the test framework.
     - Optional built-in HTTPS server (with `--https-server`)
 - Run tests in real browsers
     - Supports [SauceLabs][] ([docs](#saucelabs-setup))
+    - Supports [Appium][] ([docs](#appium-setup))
     - Supports [WebDriver][] ([docs](#selenium-webdriver-setup))
 - Code coverage options:
     - Using [istanbul][] ([docs](#code-coverage-with-istanbul))
@@ -126,6 +127,59 @@ break at the `debugger` statement.
 - `--version` or `-v` shows the Mochify version number.
 - `--help` or `-h` shows usage and all available options.
 
+## SauceLabs setup
+
+Export your [SauceLabs][] credentials:
+
+```bash
+export SAUCE_USERNAME="your-user-name"
+export SAUCE_ACCESS_KEY="your-access-key"
+```
+
+Enable SauceLabs in your `.min-wd` file or in the `"webdriver"` property in
+your `package.json`:
+
+```json
+{
+  "sauceLabs": true
+}
+```
+
+For more information about Selenium WebDriver and SourceLabs support can be
+found on the [min-webdriver][] project page.
+
+## Appium setup
+
+__Note__: This has only be tested on Mac OS X High Sierra with the iOS
+Simulator so far. If you have successfully tested with other configurations,
+please file an issue so that we can extend the docs.
+
+Setup for iOS Simulator on Mac OS X (requires XCode):
+
+- `npm install -g appium`
+- `brew install carthage`
+- Configure your `.min-wd` file or the `"webdriver"` property in your
+  `package.json` like this:
+
+```json
+{
+  "hostname": "localhost",
+  "port": 4723,
+  "browsers": [{
+    "name": "Safari",
+    "platformName": "iOS",
+    "platformVersion": "11.2",
+    "deviceName": "iPhone Simulator"
+  }]
+}
+```
+
+- Run `appium --log-level error` which should start a server on port `4723`
+- Run `mochify --wd --async-polling false`
+
+It's important to use `--async-polling false` here. The default asynchronous
+polling does not work with this setup.
+
 ## Selenium WebDriver setup
 
 - Download the «Selenium Server Standalone» JAR from here:
@@ -159,26 +213,6 @@ Create `.min-wd` in your project root:
 That's it! Now `mochify --wd` will run your Mocha test cases in the configured
 browsers simultaneously. If you installed mochify without `-g`, you will have
 to run `node_modules/.bin/mochify --wd`.
-
-## SauceLabs setup
-
-Export your [SauceLabs][] credentials:
-
-```bash
-export SAUCE_USERNAME="your-user-name"
-export SAUCE_ACCESS_KEY="your-access-key"
-```
-
-Enable SauceLabs in your `.min-wd` file:
-
-```json
-{
-  "sauceLabs": true
-}
-```
-
-For more information about Selenium WebDriver and SourceLabs support can be
-found on the [min-webdriver][] project page.
 
 ## Reporters
 
@@ -314,6 +348,7 @@ MIT
 [WebDriver]: http://www.seleniumhq.org/projects/webdriver/
 [min-webdriver]: https://github.com/mantoni/min-webdriver
 [SauceLabs]: https://saucelabs.com
+[Appium]: http://appium.io
 [Mocha test runner]: https://github.com/mantoni/mocaccino.js
 [consolify]: https://github.com/mantoni/consolify
 [subargs]: https://github.com/substack/subarg
