@@ -1,5 +1,12 @@
 # Changes
 
+## 5.6.0
+
+- Support iOS Simulator via Appium
+- Apply server url also when using `--wd`
+- Add `--async-polling` option
+
+
 ## 5.5.0
 
 - Align help.txt file with README (Frederik Ring)
