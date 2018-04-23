@@ -31,11 +31,20 @@ describe('chromium', function () {
     });
   });
 
-  it('fails', function (done) {
+  it('fails if `it` throws', function (done) {
     run('fails', ['-R', 'tap'], function (code, stdout) {
       assert.equal(stdout.indexOf('# chromium:\n'
         + '1..1\n'
         + 'not ok 1 test fails\n'), 0);
+      assert.equal(code, 1);
+      done();
+    });
+  });
+
+  it('fails if `describe` throws', function (done) {
+    run('describe-throws', ['-R', 'tap'], function (code, stdout) {
+      assert.equal(stdout.indexOf('# chromium:\n'
+        + 'Evaluation failed: Error: Oh noes!\n'), 0);
       assert.equal(code, 1);
       done();
     });
