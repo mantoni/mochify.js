@@ -1,5 +1,15 @@
 # Changes
 
+## 5.6.1
+
+- Make chromium wrapper more resilient
+
+    > - Handle thrown errors in global execution
+    > - Cleanup resources in race conditions
+    > - Avoid cyclic page load execution
+    > - Do not log parser errors twice
+    > - Do not close server in watch mode
+
 ## 5.6.0
 
 - Support iOS Simulator via Appium
