@@ -94,3 +94,6 @@ Defaults "entry" to "./test/*.js".
          -v, --version  Print mochify version and exit.
 
             -h, --help  Show this message and exit.
+
+       --async-polling  If false, async polling will be disabled
+                        (use when running in Appium). Defaults to true.
