@@ -126,6 +126,7 @@ break at the `debugger` statement.
 - `--yields` or `-y` changes the yield interval to allow pending I/O to happen.
 - `--version` or `-v` shows the Mochify version number.
 - `--help` or `-h` shows usage and all available options.
+- `--async-polling` disables async polling when set to false (for use in Appium).
 
 ## SauceLabs setup
 
