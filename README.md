@@ -128,6 +128,40 @@ break at the `debugger` statement.
 - `--help` or `-h` shows usage and all available options.
 - `--async-polling` disables async polling when set to false (for use in Appium).
 
+## Selenium WebDriver setup
+
+- Download the «Selenium Server Standalone» JAR from here:
+  <http://selenium-release.storage.googleapis.com/index.html>
+- Except for Firefox, you will also need drivers for each browser.
+- The driver for Google Chrome can be found here:
+  <http://chromedriver.storage.googleapis.com/index.html>
+- Put the drivers in the same directory as the JAR file and run:
+
+```bash
+java -jar selenium-server-standalone-2.39.0.jar
+```
+
+Create `.min-wd` in your project root:
+
+```json
+{
+  "hostname": "localhost",
+  "port": 4444,
+  "browsers": [{
+    "name": "internet explorer",
+    "version": "11"
+  }, {
+    "name": "chrome"
+  }, {
+    "name": "firefox"
+  }]
+}
+```
+
+That's it! Now `mochify --wd` will run your Mocha test cases in the configured
+browsers simultaneously. If you installed mochify without `-g`, you will have
+to run `node_modules/.bin/mochify --wd`.
+
 ## SauceLabs setup
 
 Export your [SauceLabs][] credentials:
@@ -180,40 +214,6 @@ Setup for iOS Simulator on Mac OS X (requires XCode):
 
 It's important to use `--async-polling false` here. The default asynchronous
 polling does not work with this setup.
-
-## Selenium WebDriver setup
-
-- Download the «Selenium Server Standalone» JAR from here:
-  <http://selenium-release.storage.googleapis.com/index.html>
-- Except for Firefox, you will also need drivers for each browser.
-- The driver for Google Chrome can be found here:
-  <http://chromedriver.storage.googleapis.com/index.html>
-- Put the drivers in the same directory as the JAR file and run:
-
-```bash
-java -jar selenium-server-standalone-2.39.0.jar
-```
-
-Create `.min-wd` in your project root:
-
-```json
-{
-  "hostname": "localhost",
-  "port": 4444,
-  "browsers": [{
-    "name": "internet explorer",
-    "version": "11"
-  }, {
-    "name": "chrome"
-  }, {
-    "name": "firefox"
-  }]
-}
-```
-
-That's it! Now `mochify --wd` will run your Mocha test cases in the configured
-browsers simultaneously. If you installed mochify without `-g`, you will have
-to run `node_modules/.bin/mochify --wd`.
 
 ## Reporters
 
