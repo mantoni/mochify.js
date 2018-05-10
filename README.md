@@ -131,7 +131,7 @@ break at the `debugger` statement.
 
 ## Travis
 
-To run builds on Travis, you must pass `--allow-chrom-as-root`. Here is a
+To run builds on Travis, you must pass `--allow-chrome-as-root`. Here is a
 minimal `.travis.yml`:
 
 ```yml
