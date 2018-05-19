@@ -41,25 +41,27 @@ describe('node', function () {
   });
 
   it('coverage tap', function (done) {
-    run('passes', ['--node', '--cover', '-R', 'tap'], function (code, stdout) {
-      assert.equal(stdout, '# node:\n'
-        + '1..1\n'
-        + 'ok 1 test passes\n'
-        + '# tests 1\n'
-        + '# pass 1\n'
-        + '# fail 0\n# coverage: 8/8 (100.00 %)\n\n');
-      assert.equal(code, 0);
-      done();
-    });
+    run('passes', ['--node', '--cover', '-R', 'tap'],
+      function (code, stdout, stderr) {
+        assert.equal(stdout, '# node:\n'
+          + '1..1\n'
+          + 'ok 1 test passes\n'
+          + '# tests 1\n'
+          + '# pass 1\n'
+          + '# fail 0\n');
+        assert.equal(stderr, '# coverage: 8/8 (100.00 %)\n\n');
+        assert.equal(code, 0);
+        done();
+      });
   });
 
   it('coverage dot', function (done) {
     run('passes', ['--node', '--cover', '--no-colors', '-R', 'dot'],
-      function (code, stdout) {
+      function (code, stdout, stderr) {
         var lines = stdout.trim().split(/\n+/);
         assert.equal(lines[0], '# node:');
         assert.equal(lines[1], '  .');
-        assert.equal(lines[3], '# coverage: 8/8 (100.00 %)');
+        assert.equal(stderr, '# coverage: 8/8 (100.00 %)\n\n');
         assert.equal(code, 0);
         done();
       });
@@ -74,16 +76,15 @@ describe('node', function () {
 
   it('fails cover', function (done) {
     run('fails-cover', ['--node', '--cover', '-R', 'tap'],
-      function (code, stdout) {
-        var testOut = '# node:\n'
+      function (code, stdout, stderr) {
+        assert.equal(stdout, '# node:\n'
           + '1..1\n'
           + 'ok 1 test does not cover\n'
           + '# tests 1\n'
           + '# pass 1\n'
-          + '# fail 0\n';
+          + '# fail 0\n');
         var coverOut = '\n# coverage: 9/10 (90.00 %)\n\nError: Exit 1\n\n';
-        assert.equal(stdout.substring(0, testOut.length), testOut);
-        assert.equal(stdout.substring(stdout.length - coverOut.length),
+        assert.equal(stderr.substring(stderr.length - coverOut.length),
             coverOut);
         assert.equal(code, 1);
         done();
@@ -286,8 +287,8 @@ describe('node', function () {
       });
   });
 
-  // This test case fails on node 0.10 only. The corresponding phantomjs test
-  // passes on node 0.10 and 0.12.
+  // This test case passes on node 6 but fails on node 8 and 10. The
+  // corresponding chromium test also passes.
   it.skip('shows unicode diff', function (done) {
     run('unicode', ['--node', '-R', 'tap'], function (code, stdout) {
       assert.equal(stdout.indexOf('# node:\n'
@@ -301,9 +302,9 @@ describe('node', function () {
 
   it('fails external', function (done) {
     run('external', ['--node', '-R', 'tap'],
-      function (code, stdout) {
+      function (code, stdout, stderr) {
         assert.equal(
-          stdout.indexOf('Error: Cannot find module \'unresolvable\''),
+          stderr.indexOf('Error: Cannot find module \'unresolvable\''),
           0);
         assert.equal(code, 1);
         done();

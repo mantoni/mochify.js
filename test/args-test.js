@@ -344,34 +344,35 @@ describe('args', function () {
   });
 
   it('requires single glob to match', function (done) {
-    run('passes', ['./unknown/*'], function (code, stdout) {
+    run('passes', ['./unknown/*'], function (code, stdout, stderr) {
       assert.equal(code, 1);
-      assert.equal(stdout, 'Error: Nothing found for "./unknown/*".\n\n');
+      assert.equal(stderr, 'Error: Nothing found for "./unknown/*".\n\n');
       done();
     });
   });
 
   it('requires multiple globs to match', function (done) {
-    run('passes', ['./thing-a/*', './thing-b/*'], function (code, stdout) {
-      assert.equal(code, 1);
-      assert.equal(stdout,
-          'Error: Nothing found for "./thing-a/*" or "./thing-b/*".\n\n');
-      done();
-    });
+    run('passes', ['./thing-a/*', './thing-b/*'],
+      function (code, stdout, stderr) {
+        assert.equal(code, 1);
+        assert.equal(stderr,
+            'Error: Nothing found for "./thing-a/*" or "./thing-b/*".\n\n');
+        done();
+      });
   });
 
   it('fails with meaningful message if file is missing', function (done) {
-    run('passes', ['./unknown-file.js'], function (code, stdout) {
+    run('passes', ['./unknown-file.js'], function (code, stdout, stderr) {
       assert.notEqual(code, 0);
-      assert(stdout.indexOf('/unknown-file.js') !== -1);
+      assert(stderr.indexOf('/unknown-file.js') !== -1);
       done();
     });
   });
 
   it('fails with meaningful message for defaults', function (done) {
-    run('.', [], function (code, stdout) {
+    run('.', [], function (code, stdout, stderr) {
       assert.equal(code, 1);
-      assert.equal(stdout, 'Error: Nothing found for "./test/*.js".\n\n');
+      assert.equal(stderr, 'Error: Nothing found for "./test/*.js".\n\n');
       done();
     });
   });
