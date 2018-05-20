@@ -19,14 +19,15 @@ function run(test, args, callback) {
   });
 
   var stdout = '';
-  var handle = function (data) {
+  mochify.stdout.on('data', function (data) {
     stdout += data;
-  };
-  mochify.stdout.on('data', handle);
-  mochify.stderr.on('data', handle);
-
+  });
+  var stderr = '';
+  mochify.stderr.on('data', function (data) {
+    stderr += data;
+  });
   mochify.on('close', function (code) {
-    callback(code, stdout);
+    callback(code, stdout, stderr);
   });
 }
 

@@ -51,13 +51,14 @@ describe('chromium', function () {
   });
 
   it('coverage tap', function (done) {
-    run('passes', ['--cover', '-R', 'tap'], function (code, stdout) {
+    run('passes', ['--cover', '-R', 'tap'], function (code, stdout, stderr) {
       assert.equal(stdout, '# chromium:\n'
         + '1..1\n'
         + 'ok 1 test passes\n'
         + '# tests 1\n'
         + '# pass 1\n'
-        + '# fail 0\n# coverage: 8/8 (100.00 %)\n\n');
+        + '# fail 0\n');
+      assert.equal(stderr, '# coverage: 8/8 (100.00 %)\n\n');
       assert.equal(code, 0);
       done();
     });
@@ -65,11 +66,11 @@ describe('chromium', function () {
 
   it('coverage dot', function (done) {
     run('passes', ['--cover', '--no-colors', '-R', 'dot'],
-      function (code, stdout) {
+      function (code, stdout, stderr) {
         var lines = stdout.trim().split(/\n+/);
         assert.equal(lines[0], '# chromium:');
         assert.equal(lines[1], '  .');
-        assert.equal(lines[3], '# coverage: 8/8 (100.00 %)');
+        assert.equal(stderr, '# coverage: 8/8 (100.00 %)\n\n');
         assert.equal(code, 0);
         done();
       });
@@ -108,8 +109,9 @@ describe('chromium', function () {
   });
 
   it('uses custom chrome', function (done) {
-    run('passes', ['--chrome', 'some/path'], function (code, stdout) {
-      assert.equal(stdout.indexOf('Error: Failed to launch chrome!'), 0);
+    run('passes', ['--chrome', 'some/path'], function (code, stdout, stderr) {
+      assert.equal(stdout, '');
+      assert.equal(stderr.indexOf('Error: Failed to launch chrome!'), 0);
       assert.notEqual(code, 0);
       done();
     });
@@ -142,6 +144,26 @@ describe('chromium', function () {
         + '1..1\n'
         + 'not ok 1 unicode prints diff\n'), 0);
       assert.equal(code, 1);
+      done();
+    });
+  });
+
+  it('shows console output', function (done) {
+    run('console', ['-R', 'tap'], function (code, stdout, stderr) {
+      assert.equal(stdout, '# chromium:\n'
+        + '1..4\n'
+        + 'log\n'
+        + 'ok 1 console log\n'
+        + 'info\n'
+        + 'ok 2 console info\n'
+        + 'warn\n'
+        + 'ok 3 console warn\n'
+        + 'ok 4 console error\n'
+        + '# tests 4\n'
+        + '# pass 4\n'
+        + '# fail 0\n');
+      assert.equal(stderr, 'error\n');
+      assert.equal(code, 0);
       done();
     });
   });
@@ -214,7 +236,7 @@ describe('chromium', function () {
   it('runs tests in the context of a localhost https server with port only',
     function (done) {
       run('url', ['-R', 'tap', '--https-server', '8080'],
-        function (code, stdout) {
+        function (code, stdout, stderr) {
           assert.equal(stdout, '# chromium:\n'
             + '1..1\n'
             + 'location.href = https://localhost:8080/\n'
@@ -223,8 +245,8 @@ describe('chromium', function () {
             + '      at Context.<anonymous> (test/url.js:11)\n'
             + '# tests 1\n'
             + '# pass 0\n'
-            + '# fail 1\n'
-            + 'Error: Exit 1\n\n');
+            + '# fail 1\n');
+          assert.notEqual(stderr.split('\n').indexOf('Error: Exit 1'), -1);
           assert.equal(code, 1);
           done();
         });
@@ -303,12 +325,12 @@ describe('chromium', function () {
     it('creates a meaningful error when the port is already in use',
         function (done) {
           run('port', ['--https-server', '3001'],
-            function (code, stdout) {
+            function (code, stdout, stderr) {
               assert.notEqual(
-                stdout.indexOf('EADDRINUSE'), -1,
+                stderr.indexOf('EADDRINUSE'), -1,
                 'Error message did not contain error code'
               );
-              assert.notEqual(stdout.indexOf('3001'), -1,
+              assert.notEqual(stderr.indexOf('3001'), -1,
                 'Error message did not contain port value'
               );
               assert.equal(code, 1);
