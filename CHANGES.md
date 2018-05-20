@@ -1,5 +1,20 @@
 # Changes
 
+## 5.7.0
+
+- Print non-log console messages to stderr
+
+    > Puppeteer >= 1.4.0 introduced changes that alter which
+    > messages trigger `console` events. Non-log messages are now 
+    > written to stderr.
+    > Bump puppeteer to ^1.4.0.
+    > Add Node 10 to .travis.yml.
+
+- Dependency hygiene (npm audit) (Morgan Roderick)
+- Add Travis configuration example
+- Move Selenium WebDriver instructions up
+- Document async polling arg in readme and help text (Frederik Ring)
+
 ## 5.6.1
 
 - Make chromium wrapper more resilient
