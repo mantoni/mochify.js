@@ -22,6 +22,7 @@ the test framework.
 - Run tests in real browsers
     - Supports [SauceLabs][] ([docs](#saucelabs-setup))
     - Supports [Appium][] ([docs](#appium-setup))
+    - Supports [BrowserStack][] ([docs](#browserstack-setup))
     - Supports [WebDriver][] ([docs](#selenium-webdriver-setup))
 - Code coverage options:
     - Using [istanbul][] ([docs](#code-coverage-with-istanbul))
@@ -179,6 +180,24 @@ That's it! Now `mochify --wd` will run your Mocha test cases in the configured
 browsers simultaneously. If you installed mochify without `-g`, you will have
 to run `node_modules/.bin/mochify --wd`.
 
+Additional Selenium capabilities and browser-specific capabilities can be
+specified with the `capabilities` property:
+
+```json
+{
+  "hostname": "localhost",
+  "port": 4444,
+  "browsers": [{
+    "name": "chrome",
+    "capabilities": {
+      "chromeOptions": {
+        "args": ["--headless", "--disable-gpu"]
+      }
+    }
+  }]
+}
+```
+
 ## SauceLabs setup
 
 Export your [SauceLabs][] credentials:
@@ -231,6 +250,32 @@ Setup for iOS Simulator on Mac OS X (requires XCode):
 
 It's important to use `--async-polling false` here. The default asynchronous
 polling does not work with this setup.
+
+## BrowserStack setup
+
+Export your [BrowserStack][] credentials:
+
+```bash
+export BROWSERSTACK_USERNAME="your-user-name"
+export BROWSERSTACK_ACCESS_KEY="your-access-key"
+```
+
+Example `.min-wd` file:
+
+```js
+module.exports = {
+  "hostname": "hub-cloud.browserstack.com",
+  "port": 80,
+  "browsers": [{
+    "name": "chrome",
+    "capabilities": {
+      "browser": "Chrome",
+      "browserstack.user": process.env.BROWSERSTACK_USERNAME,
+      "browserstack.key": process.env.BROWSERSTACK_ACCESS_KEY
+    }
+  }]
+}
+```
 
 ## Reporters
 
@@ -367,6 +412,7 @@ MIT
 [min-webdriver]: https://github.com/mantoni/min-webdriver
 [SauceLabs]: https://saucelabs.com
 [Appium]: http://appium.io
+[BrowserStack]: https://www.browserstack.com
 [Mocha test runner]: https://github.com/mantoni/mocaccino.js
 [consolify]: https://github.com/mantoni/consolify
 [subargs]: https://github.com/substack/subarg
