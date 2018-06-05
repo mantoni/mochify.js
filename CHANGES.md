@@ -1,5 +1,10 @@
 # Changes
 
+## 5.8.0
+
+- Add examples for custom Selenium capabilities and BrowserStack (Steffen André Langnes)
+- Update min-wd to 2.11.0 (Steffen André Langnes)
+
 ## 5.7.0
 
 - Print non-log console messages to stderr
