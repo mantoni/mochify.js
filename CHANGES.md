@@ -1,5 +1,10 @@
 # Changes
 
+## 5.8.1
+
+- Ensure browserify plugins are always mounted in the same order - fixes #177 (Frederik Ring)
+- Use `puppeteer` v1.6 and `source-mapper` v2.1 to ensure correct stack traces
+
 ## 5.8.0
 
 - Add examples for custom Selenium capabilities and BrowserStack (Steffen André Langnes)
