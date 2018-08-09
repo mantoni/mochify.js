@@ -74,9 +74,9 @@
     "min-wd": "^2.11.0",
     "mocaccino": "^3.0.0",
     "mocha": "^4.1.0",
-    "puppeteer": "^1.4.0",
+    "puppeteer": "^1.6.2",
     "resolve": "^1.5.0",
-    "source-mapper": "^2.0.0",
+    "source-mapper": "^2.1.0",
     "subarg": "^1.0.0",
     "through2": "^2.0.0",
     "watchify": "^3.7.0"
