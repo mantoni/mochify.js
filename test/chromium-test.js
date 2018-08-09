@@ -139,7 +139,7 @@ describe('chromium', function () {
   });
 
   it('passes transform to browserify', function (done) {
-    run('passes', ['--node', '-R', 'tap', '--transform', '../transform.js'],
+    run('passes', ['-R', 'tap', '--transform', '../transform.js'],
       function (code, stdout) {
         var lines = stdout.split('\n');
         assert.equal(lines[0], 'passes/test/passes.js');
@@ -149,7 +149,7 @@ describe('chromium', function () {
   });
 
   it('passes transform with options to browserify', function (done) {
-    run('passes', ['--node', '-R', 'tap', '--transform', '[',
+    run('passes', ['-R', 'tap', '--transform', '[',
       '../transform.js', '-x', ']'], function (code, stdout) {
         var lines = stdout.split('\n');
         assert(JSON.parse(lines[1]).x);
@@ -159,7 +159,7 @@ describe('chromium', function () {
   });
 
   it('passes multiple transforms to browserify', function (done) {
-    run('passes', ['--node', '-R', 'tap', '--transform',
+    run('passes', ['-R', 'tap', '--transform',
       '../transform.js', '--transform',
       '../transform.js'], function (code, stdout) {
         var lines = stdout.split('\n');
@@ -171,7 +171,7 @@ describe('chromium', function () {
   });
 
   it('passes plugin to browserify', function (done) {
-    run('passes', ['--node', '-R', 'tap', '--plugin',
+    run('passes', ['-R', 'tap', '--plugin',
       '../plugin.js'], function (code, stdout) {
         var lines = stdout.split('\n');
         assert.equal(lines[0], 'passes/test/passes.js');
@@ -181,7 +181,7 @@ describe('chromium', function () {
   });
 
   it('passes plugin with options to browserify', function (done) {
-    run('passes', ['--node', '-R', 'tap', '--plugin', '[',
+    run('passes', ['-R', 'tap', '--plugin', '[',
       '../plugin.js', '-x', ']'], function (code, stdout) {
         var lines = stdout.split('\n');
         assert(JSON.parse(lines[1]).x);
@@ -191,7 +191,7 @@ describe('chromium', function () {
   });
 
   it('passes multiple plugins to browserify', function (done) {
-    run('passes', ['--node', '-R', 'tap', '--plugin', '../plugin.js',
+    run('passes', ['-R', 'tap', '--plugin', '../plugin.js',
       '--plugin', '../plugin.js'], function (code, stdout) {
         var lines = stdout.split('\n');
         assert.equal(lines[0], 'passes/test/passes.js');
