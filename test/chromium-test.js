@@ -138,6 +138,70 @@ describe('chromium', function () {
     });
   });
 
+  it('passes transform to browserify', function (done) {
+    run('passes', ['-R', 'tap', '--transform', '../transform.js'],
+      function (code, stdout) {
+        var lines = stdout.split('\n');
+        assert.equal(lines[0], 'passes/test/passes.js');
+        assert.equal(code, 0);
+        done();
+      });
+  });
+
+  it('passes transform with options to browserify', function (done) {
+    run('passes', ['-R', 'tap', '--transform', '[',
+      '../transform.js', '-x', ']'], function (code, stdout) {
+        var lines = stdout.split('\n');
+        assert(JSON.parse(lines[1]).x);
+        assert.equal(code, 0);
+        done();
+      });
+  });
+
+  it('passes multiple transforms to browserify', function (done) {
+    run('passes', ['-R', 'tap', '--transform',
+      '../transform.js', '--transform',
+      '../transform.js'], function (code, stdout) {
+        var lines = stdout.split('\n');
+        assert.equal(lines[0], 'passes/test/passes.js');
+        assert.equal(lines[2], 'passes/test/passes.js');
+        assert.equal(code, 0);
+        done();
+      });
+  });
+
+  it('passes plugin to browserify', function (done) {
+    run('passes', ['-R', 'tap', '--plugin',
+      '../plugin.js'], function (code, stdout) {
+        var lines = stdout.split('\n');
+        assert.equal(lines[0], 'passes/test/passes.js');
+        assert.equal(code, 0);
+        done();
+      });
+  });
+
+  it('passes plugin with options to browserify', function (done) {
+    run('passes', ['-R', 'tap', '--plugin', '[',
+      '../plugin.js', '-x', ']'], function (code, stdout) {
+        var lines = stdout.split('\n');
+        assert(JSON.parse(lines[1]).x);
+        assert.equal(code, 0);
+        done();
+      });
+  });
+
+  it('passes multiple plugins to browserify', function (done) {
+    run('passes', ['-R', 'tap', '--plugin', '../plugin.js',
+      '--plugin', '../plugin.js'], function (code, stdout) {
+        var lines = stdout.split('\n');
+        assert.equal(lines[0], 'passes/test/passes.js');
+        assert.equal(lines[2], 'passes/test/passes.js');
+        assert.equal(code, 0);
+        done();
+      });
+  });
+
+
   it('shows unicode diff', function (done) {
     run('unicode', ['-R', 'tap'], function (code, stdout) {
       assert.equal(stdout.indexOf('# chromium:\n'
