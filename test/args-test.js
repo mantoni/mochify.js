@@ -99,29 +99,6 @@ describe('args', function () {
     assert.equal(opts['https-server'], 8080);
   });
 
-  context('with conflicting values given', function () {
-    var nativeExit;
-    var exitCalledWith;
-
-    before(function () {
-      nativeExit = process.exit;
-      process.exit = function () {
-        exitCalledWith = [].slice.call(arguments);
-      };
-    });
-
-    after(function () {
-      process.exit = nativeExit;
-    });
-
-    it('logs and exits with status code 1', function () {
-      args(
-        ['--url', 'https://localhost:8080/test.html', '--https-server', '4040']
-      );
-      assert.deepStrictEqual(exitCalledWith, [1]);
-    });
-  });
-
   it('parses --wd-file', function () {
     var opts = args(['--wd-file', '.min-wd-other']);
 
@@ -385,4 +362,14 @@ describe('args', function () {
     });
   });
 
+  it('fails with meaningful message when given conflicting port values',
+    function (done) {
+      run('passes', ['--url', 'https://localhost:8080/test.html',
+        '--https-server', '4040'],
+        function (code, stdout) {
+          assert.strictEqual(code, 1);
+          assert(stdout.indexOf('got "4040" and "8080"') !== -1);
+          done();
+        });
+    });
 });
