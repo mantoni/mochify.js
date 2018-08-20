@@ -2,7 +2,7 @@
 
 > TDD with Browserify, Mocha, Headless Chrome and WebDriver
 
-[![Build Status]](https://travis-ci.org/mantoni/mochify.js)
+[![Build Status](https://travis-ci.org/mantoni/mochify.js.svg?branch=master)](https://travis-ci.org/mantoni/mochify.js)
 [![SemVer]](http://semver.org)
 [![License]](https://github.com/mantoni/mochify.js/blob/master/LICENSE)
 
