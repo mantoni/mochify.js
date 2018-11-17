@@ -67,7 +67,7 @@
   },
   "dependencies": {
     "brout": "^1.1.0",
-    "browserify": "^15.2.0",
+    "browserify": "^16.2.3",
     "consolify": "^2.1.0",
     "coverify": "^1.4.1",
     "glob": "^7.1.2",
@@ -79,7 +79,7 @@
     "source-mapper": "^2.1.0",
     "subarg": "^1.0.0",
     "through2": "^2.0.0",
-    "watchify": "^3.7.0"
+    "watchify": "^3.11.0"
   },
   "devDependencies": {
     "@studio/changes": "^1.4.0",
