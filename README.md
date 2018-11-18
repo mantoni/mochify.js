@@ -25,6 +25,7 @@ the test framework.
     - Supports [BrowserStack][] ([docs](#browserstack-setup))
     - Supports [WebDriver][] ([docs](#selenium-webdriver-setup))
 - Code coverage options:
+    - Using [nyc][] ([docs](#code-coverage-with-nyc))
     - Using [istanbul][] ([docs](#code-coverage-with-istanbul))
     - Using [coverify][] (with `--cover`)
 - Works with most Mocha reporters ([docs](#reporters))
@@ -323,6 +324,25 @@ Additional API options:
 
 The `mochify` function returns a Browserify instance. Please refer to the
 [Browserify API][] for details.
+
+## Code coverage with NYC
+
+Install `nyc`, the `babelify` transform, `@babel/core` and
+`babel-plugin-istanbul`:
+
+```bash
+$ npm install nyc babelify @babel/core babel-plugin-istanbul --save-dev
+```
+
+Using a `package.json` script that can be run with `npm run cover`:
+
+```json
+{
+  "scripts" : {
+    "cover" : "nyc --instrument false mochify --transform [ babelify --ignore [ test ] --plugins [ babel-plugin-istanbul ] ]"
+  }
+}
+```
 
 ## Code coverage with Istanbul
 
