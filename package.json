@@ -58,7 +58,7 @@
     "test": "mocha",
     "posttest": "npm run lint",
     "preversion": "npm test",
-    "version": "changes",
+    "version": "changes --commits --footer",
     "postversion": "git push --follow-tags && npm publish"
   },
   "repository": {
@@ -82,7 +82,7 @@
     "watchify": "^3.11.0"
   },
   "devDependencies": {
-    "@studio/changes": "^1.4.0",
+    "@studio/changes": "^1.7.0",
     "eslint": "^3.19.0",
     "tmp": "0.0.28"
   },
