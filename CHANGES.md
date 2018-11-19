@@ -1,5 +1,19 @@
 # Changes
 
+## 6.0.2
+
+- [`78dcbe9`](https://github.com/mantoni/mochify.js/commit/78dcbe99bcfffa7679fa790aeca0c365488614b2)
+  Add link to nyc
+- [`3512b7f`](https://github.com/mantoni/mochify.js/commit/3512b7f52bcb497bfd5c60ce1465c71546dd56c5)
+  Serve files with content-type headers
+    >
+    > This adds `mime` as a dependency to lookup the content-type based on the
+    > file extension. This package was chosen because it's already used by
+    > Puppeteer, hence it's not adding any weight.
+    >
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2018-11-19._
+
 ## 6.0.1
 
 - [`d667e7c`](https://github.com/mantoni/mochify.js/commit/d667e7c89d888f1901a150f9755e5ac1621f91e4)
