@@ -71,6 +71,7 @@
     "consolify": "^2.1.0",
     "coverify": "^1.4.1",
     "glob": "^7.1.2",
+    "mime": "^2.3.1",
     "min-wd": "^2.11.0",
     "mocaccino": "^4.0.0",
     "mocha": "^5.2.0",
