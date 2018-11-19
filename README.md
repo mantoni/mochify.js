@@ -345,6 +345,11 @@ Using a `package.json` script that can be run with `npm run cover`:
 
 ## Compatibility
 
+- v6.x
+    - Node 6.0+, Node 8.0+, Node 10.0+
+    - Mocha ^5.2
+    - Browserify ^16.2
+    - Puppeteer ^1.10
 - v5.2+
     - Node 6.0+, Node 8.0+
     - Mocha ^4.1
