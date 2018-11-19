@@ -1,5 +1,16 @@
 # Changes
 
+## 6.0.1
+
+- [`d667e7c`](https://github.com/mantoni/mochify.js/commit/d667e7c89d888f1901a150f9755e5ac1621f91e4)
+  Upgrade Mocaccino to v4
+    >
+    > Mocaccino used to load Mocha 4 still, causing two Mocha versions to be
+    > installed.
+    >
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2018-11-19._
+
 ## 6.0.0
 
 __Highlights:__ Mocha 5, Browserify 16, Puppeteer 1.10 and Istanbul `nyc` code
