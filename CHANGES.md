@@ -1,5 +1,43 @@
 # Changes
 
+## 6.0.0
+
+__Highlights:__ Mocha 5, Browserify 16, Puppeteer 1.10 and Istanbul `nyc` code
+coverage support.
+
+- [`999c56e`](https://github.com/mantoni/mochify.js/commit/999c56e03d25716964c25fab305c97d78b6160a1)
+  Add compatibility notes for v6
+- [`0211b75`](https://github.com/mantoni/mochify.js/commit/0211b750eabb21a43688433b216339ce91bac306)
+  Remove `mochify-istanbul` documentation
+    >
+    > With support for nyc and the `mochify-istanbul` project being
+    > unmaintained, we shouldn't send people down that road any longer.
+    >
+- [`3b0c553`](https://github.com/mantoni/mochify.js/commit/3b0c553b8994e0cfff1d2643a1f3da54e5c9ea75)
+  Istanbul nyc support
+- [`8f2dfff`](https://github.com/mantoni/mochify.js/commit/8f2dfff80067daeaa5371e0ac024f47801835d08)
+  Update @studio/changes for `--commits` and `--footer` support
+- [`ddf1297`](https://github.com/mantoni/mochify.js/commit/ddf129759482e976d5e9481459c6cf56361cd84c)
+  Update Puppeteer to v1.10
+- [`50f1aa6`](https://github.com/mantoni/mochify.js/commit/50f1aa6856193a19c0ac74e76385af51e73399bf)
+  Update Mocha to v5.2
+- [`1bf51a2`](https://github.com/mantoni/mochify.js/commit/1bf51a26911de02e44a61b089676b5705b4ea0d6)
+  Upgrade browserify and watchify (Morgan Roderick)
+    >
+    > This means that cached-path-relative will be upgraded to 1.0.2, which
+    > fixes a security warning:
+    >
+    > See: https://nvd.nist.gov/vuln/detail/CVE-2018-16472
+    >
+- [`f32782a`](https://github.com/mantoni/mochify.js/commit/f32782a19f9972bb14aee98a8b8f1c326df94a15)
+  Display build status from master in README (Frederik Ring)
+- [`e18817a`](https://github.com/mantoni/mochify.js/commit/e18817ab265306acddcf066b6982d85eadb34a51)
+  Do not call methods on browserify object asynchronously to ensure predictable order (Frederik Ring)
+- [`3973602`](https://github.com/mantoni/mochify.js/commit/3973602ffceaf20c114027b05433c3c09b4a8bc2)
+  Consolidate validation of options in one place (Frederik Ring)
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2018-11-19._
+
 ## 5.8.1
 
 - Ensure browserify plugins are always mounted in the same order - fixes #177 (Frederik Ring)
