@@ -416,3 +416,4 @@ MIT
 [glob]: https://github.com/isaacs/node-glob
 [Puppeteer]: https://github.com/GoogleChrome/puppeteer
 [puppeteer-envs]: https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#environment-variables
+[nyc]: https://github.com/istanbuljs/nyc
