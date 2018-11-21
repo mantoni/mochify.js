@@ -1,5 +1,18 @@
 # Changes
 
+## 6.0.3
+
+- [`28633c4`](https://github.com/mantoni/mochify.js/commit/28633c4626501a5a2e6d36ea63acdca4cfef03c8)
+  Handle promise rejection when calling browser.newPage() (Frederik Ring)
+- [`cd89125`](https://github.com/mantoni/mochify.js/commit/cd89125ede026326c4347875c8dfafa357bd4ded)
+  Add note about required flags in CircleCI (Frederik Ring)
+    >
+    > Starting with v6, mochify will require the --allow-chrome-as-root
+    > flag to passed on CircleCI just like on Travis
+    >
+
+_Released on 2018-11-21._
+
 ## 6.0.2
 
 - [`78dcbe9`](https://github.com/mantoni/mochify.js/commit/78dcbe99bcfffa7679fa790aeca0c365488614b2)

@@ -1,6 +1,6 @@
 {
   "name": "mochify",
-  "version": "6.0.2",
+  "version": "6.0.3",
   "description": "TDD with Browserify, Mocha, Headless Chrome and WebDriver",
   "keywords": [
     "mocha",
