@@ -16,7 +16,7 @@ the test framework.
 - Run tests in Headless Chrome
     - Supports watch-mode with pre-loaded Chrome page (with `--watch`)
     - Use the Chrome developer tools for debugging ([docs](#debugging))
-    - Run builds on Travis ([docs](#travis))
+    - Run builds in CI ([docs](#continuous-integration))
     - Load tests in the context of a file or URL (with `--url`)
     - Optional built-in HTTPS server (with `--https-server`)
 - Run tests in real browsers
@@ -130,10 +130,11 @@ break at the `debugger` statement.
 - `--help` or `-h` shows usage and all available options.
 - `--async-polling` disables async polling when set to false (for use in Appium).
 
-## Travis
+## Continuous Integration
 
-To run builds on Travis, you must pass `--allow-chrome-as-root`. Here is a
-minimal `.travis.yml`:
+To run builds in CI services like Travis or CircleCI, you must pass `--allow-chrome-as-root`.
+
+Here is a minimal `.travis.yml`:
 
 ```yml
 language: node_js
