@@ -1,5 +1,12 @@
 # Changes
 
+## 6.0.4
+
+- [`b15cf0f`](https://github.com/mantoni/mochify.js/commit/b15cf0fe91e430749e16d8ef8d2dfdd68123feb2)
+  Do not exit on puppeteer pageerror event (Frederik Ring)
+
+_Released on 2018-11-24._
+
 ## 6.0.3
 
 - [`28633c4`](https://github.com/mantoni/mochify.js/commit/28633c4626501a5a2e6d36ea63acdca4cfef03c8)
