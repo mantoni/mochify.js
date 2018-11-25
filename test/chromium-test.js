@@ -56,7 +56,7 @@ describe('chromium', function () {
 
       var lines = stdout.trim();
       var expectedStart = '# chromium:\n'
-        + '1..3\n'
+        + '1..4\n'
         + 'ok 1 test passes asynchronously\n'
         + 'not ok 2 test fails asynchronously';
       assert.equal(lines.indexOf(expectedStart), 0);
@@ -64,8 +64,9 @@ describe('chromium', function () {
       // so we need to skip an assertion for the actual error.
       // See issue: https://github.com/mantoni/mochify.js/issues/92
       var expectedEnd = 'ok 3 test passes synchronously\n'
-        + '# tests 3\n'
-        + '# pass 2\n'
+        + 'ok 4 test passes asynchronously once more\n'
+        + '# tests 4\n'
+        + '# pass 3\n'
         + '# fail 1';
       assert.equal(
         lines.indexOf(expectedEnd),

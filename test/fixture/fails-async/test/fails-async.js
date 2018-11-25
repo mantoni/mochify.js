@@ -18,4 +18,10 @@ describe('test', function () {
   it('passes synchronously', function () {
     return;
   });
+
+  it('passes asynchronously once more', function (done) {
+    setTimeout(function () {
+      done();
+    }, 50);
+  });
 });

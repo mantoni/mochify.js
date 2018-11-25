@@ -46,15 +46,16 @@ describe('node', function () {
 
       var lines = stdout.trim();
       var expectedStart = '# node:\n'
-        + '1..3\n'
+        + '1..4\n'
         + 'ok 1 test passes asynchronously\n'
         + 'not ok 2 test fails asynchronously\n'
         + '  Error: Oh noes!';
       assert.equal(lines.indexOf(expectedStart), 0);
 
       var expectedEnd = 'ok 3 test passes synchronously\n'
-        + '# tests 3\n'
-        + '# pass 2\n'
+        + 'ok 4 test passes asynchronously once more\n'
+        + '# tests 4\n'
+        + '# pass 3\n'
         + '# fail 1';
       assert.equal(
         lines.indexOf(expectedEnd),
