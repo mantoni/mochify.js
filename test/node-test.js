@@ -29,43 +29,34 @@ describe('node', function () {
     });
   });
 
-  it('fails', function (done) {
+  it('fails and continues if `it` throws', function (done) {
     run('fails', ['--node', '-R', 'tap'], function (code, stdout) {
-      assert.equal(stdout.indexOf('# node:\n'
-        + '1..1\n'
-        + 'not ok 1 test fails\n'
-        + '  Error: Oh noes!'), 0);
       assert.equal(code, 1);
+
+      var lines = stdout.trim().split(/\n+/);
+      assert.equal(lines[0], '# node:');
+      assert.equal(lines[1], '1..4');
+      assert.equal(lines[2], 'not ok 1 test fails synchronously');
+      assert.equal(lines[3], '  Error: Oh noes!');
+      assert.equal(lines[5], 'not ok 2 test fails asynchronously');
+      assert.equal(lines[6], '  Error: Oh noes!');
+      assert.equal(lines[8], 'ok 3 test passes synchronously');
+      assert.equal(lines[9], 'ok 4 test passes asynchronously');
+      assert.equal(lines[10], '# tests 4');
+      assert.equal(lines[11], '# pass 2');
+      assert.equal(lines[12], '# fail 2');
       done();
     });
   });
 
-  it('handles async failures', function (done) {
-    run('fails-async', ['--node', '-R', 'tap'], function (code, stdout) {
+  it('fails and exits if `describe` throws', function (done) {
+    run('describe-throws', ['--node', '-R', 'tap'], function (code, stdout) {
+      assert.equal(stdout.indexOf('# node:'), 0);
+      assert.equal(stdout.indexOf('i should not show up'), -1);
       assert.equal(code, 1);
-
-      var lines = stdout.trim();
-      var expectedStart = '# node:\n'
-        + '1..4\n'
-        + 'ok 1 test passes asynchronously\n'
-        + 'not ok 2 test fails asynchronously\n'
-        + '  Error: Oh noes!';
-      assert.equal(lines.indexOf(expectedStart), 0);
-
-      var expectedEnd = 'ok 3 test passes synchronously\n'
-        + 'ok 4 test passes asynchronously once more\n'
-        + '# tests 4\n'
-        + '# pass 3\n'
-        + '# fail 1';
-      assert.equal(
-        lines.indexOf(expectedEnd),
-        lines.length - expectedEnd.length
-      );
-
       done();
     });
   });
-
 
   it('coverage tap', function (done) {
     run('passes', ['--node', '--cover', '-R', 'tap'],
