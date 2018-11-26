@@ -31,47 +31,34 @@ describe('chromium', function () {
     });
   });
 
-  it('fails if `it` throws', function (done) {
+  it('fails and continues if `it` throws', function (done) {
     run('fails', ['-R', 'tap'], function (code, stdout) {
-      assert.equal(stdout.indexOf('# chromium:\n'
-        + '1..1\n'
-        + 'not ok 1 test fails\n'), 0);
-      assert.equal(code, 1);
-      done();
-    });
-  });
-
-  it('fails if `describe` throws', function (done) {
-    run('describe-throws', ['-R', 'tap'], function (code, stdout) {
-      assert.equal(stdout.indexOf('# chromium:\n'
-        + 'Evaluation failed: Error: Oh noes!\n'), 0);
-      assert.equal(code, 1);
-      done();
-    });
-  });
-
-  it('handles async failures', function (done) {
-    run('fails-async', ['-R', 'tap'], function (code, stdout) {
       assert.equal(code, 1);
 
-      var lines = stdout.trim();
-      var expectedStart = '# chromium:\n'
-        + '1..3\n'
-        + 'ok 1 test passes asynchronously\n'
-        + 'not ok 2 test fails asynchronously';
-      assert.equal(lines.indexOf(expectedStart), 0);
+      var lines = stdout.trim().split(/\n+/);
+      assert.equal(lines[0], '# chromium:');
+      assert.equal(lines[1], '1..4');
+      assert.equal(lines[2], 'not ok 1 test fails synchronously');
+      assert.equal(lines[3], '  Error: Oh noes!');
+      assert.equal(lines[5], 'not ok 2 test fails asynchronously');
       // The stack trace output for async errors is slightly unpredictable
       // so we need to skip an assertion for the actual error.
       // See issue: https://github.com/mantoni/mochify.js/issues/92
-      var expectedEnd = 'ok 3 test passes synchronously\n'
-        + '# tests 3\n'
-        + '# pass 2\n'
-        + '# fail 1';
-      assert.equal(
-        lines.indexOf(expectedEnd),
-        lines.length - expectedEnd.length
-      );
+      assert.equal(lines[9], 'ok 3 test passes synchronously');
+      assert.equal(lines[10], 'ok 4 test passes asynchronously');
+      assert.equal(lines[11], '# tests 4');
+      assert.equal(lines[12], '# pass 2');
+      assert.equal(lines[13], '# fail 2');
+      done();
+    });
+  });
 
+  it('fails and exits if `describe` throws', function (done) {
+    run('describe-throws', ['-R', 'tap'], function (code, stdout) {
+      assert.equal(stdout.indexOf('# chromium:\n'
+        + 'Evaluation failed: Error: Oh noes!\n'), 0);
+      assert.equal(stdout.indexOf('i should not show up'), -1);
+      assert.equal(code, 1);
       done();
     });
   });
