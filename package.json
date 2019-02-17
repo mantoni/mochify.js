@@ -84,7 +84,7 @@
   },
   "devDependencies": {
     "@studio/changes": "^1.7.0",
-    "eslint": "^3.19.0",
+    "eslint": "^5.14.0",
     "tmp": "0.0.28"
   },
   "files": [
