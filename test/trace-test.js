@@ -46,7 +46,7 @@ describe('trace', function () {
     stream.write('    at fail (/test/node_modules/assert/x:7)\n');
 
     assert(out.match(/^ {4}at fail \((..\/)+test\/node_modules\/assert\/x:7/),
-        out);
+      out);
   });
 
   it('removes windows mocha path', function () {
@@ -61,7 +61,7 @@ describe('trace', function () {
     stream.write(line);
 
     assert(out.match(/^ {4}at fail \((..\/)+test\/node_modules\/assert\/x:7/),
-        out);
+      out);
   });
 
   it('removes relative unix mocha path', function () {

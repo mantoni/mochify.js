@@ -166,24 +166,24 @@ describe('api', function () {
 
   it('should extract the script to an external bundle when --bundle is used'
     + ' with --consolify',
-    sandbox(function (done, tmpdir) {
-      mochify('./test/fixture/passes/test/*.js', {
-        consolify: tmpdir + '/output.html',
-        bundle: tmpdir + '/bundle.js'
-      }).bundle(function (err) {
-        if (err) {
-          done(err);
-          return;
-        }
-        try {
-          fs.statSync(tmpdir + '/output.html');
-          fs.statSync(tmpdir + '/bundle.js');
-          done();
-        } catch (e) {
-          done(e);
-        }
-      });
-    })
+  sandbox(function (done, tmpdir) {
+    mochify('./test/fixture/passes/test/*.js', {
+      consolify: tmpdir + '/output.html',
+      bundle: tmpdir + '/bundle.js'
+    }).bundle(function (err) {
+      if (err) {
+        done(err);
+        return;
+      }
+      try {
+        fs.statSync(tmpdir + '/output.html');
+        fs.statSync(tmpdir + '/bundle.js');
+        done();
+      } catch (e) {
+        done(e);
+      }
+    });
+  })
   );
 
 });

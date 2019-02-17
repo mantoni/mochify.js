@@ -164,54 +164,54 @@ describe('chromium', function () {
   it('passes transform with options to browserify', function (done) {
     run('passes', ['-R', 'tap', '--transform', '[',
       '../transform.js', '-x', ']'], function (code, stdout) {
-        var lines = stdout.split('\n');
-        assert(JSON.parse(lines[1]).x);
-        assert.equal(code, 0);
-        done();
-      });
+      var lines = stdout.split('\n');
+      assert(JSON.parse(lines[1]).x);
+      assert.equal(code, 0);
+      done();
+    });
   });
 
   it('passes multiple transforms to browserify', function (done) {
     run('passes', ['-R', 'tap', '--transform',
       '../transform.js', '--transform',
       '../transform.js'], function (code, stdout) {
-        var lines = stdout.split('\n');
-        assert.equal(lines[0], 'passes/test/passes.js');
-        assert.equal(lines[2], 'passes/test/passes.js');
-        assert.equal(code, 0);
-        done();
-      });
+      var lines = stdout.split('\n');
+      assert.equal(lines[0], 'passes/test/passes.js');
+      assert.equal(lines[2], 'passes/test/passes.js');
+      assert.equal(code, 0);
+      done();
+    });
   });
 
   it('passes plugin to browserify', function (done) {
     run('passes', ['-R', 'tap', '--plugin',
       '../plugin.js'], function (code, stdout) {
-        var lines = stdout.split('\n');
-        assert.equal(lines[0], 'passes/test/passes.js');
-        assert.equal(code, 0);
-        done();
-      });
+      var lines = stdout.split('\n');
+      assert.equal(lines[0], 'passes/test/passes.js');
+      assert.equal(code, 0);
+      done();
+    });
   });
 
   it('passes plugin with options to browserify', function (done) {
     run('passes', ['-R', 'tap', '--plugin', '[',
       '../plugin.js', '-x', ']'], function (code, stdout) {
-        var lines = stdout.split('\n');
-        assert(JSON.parse(lines[1]).x);
-        assert.equal(code, 0);
-        done();
-      });
+      var lines = stdout.split('\n');
+      assert(JSON.parse(lines[1]).x);
+      assert.equal(code, 0);
+      done();
+    });
   });
 
   it('passes multiple plugins to browserify', function (done) {
     run('passes', ['-R', 'tap', '--plugin', '../plugin.js',
       '--plugin', '../plugin.js'], function (code, stdout) {
-        var lines = stdout.split('\n');
-        assert.equal(lines[0], 'passes/test/passes.js');
-        assert.equal(lines[2], 'passes/test/passes.js');
-        assert.equal(code, 0);
-        done();
-      });
+      var lines = stdout.split('\n');
+      assert.equal(lines[0], 'passes/test/passes.js');
+      assert.equal(lines[2], 'passes/test/passes.js');
+      assert.equal(code, 0);
+      done();
+    });
   });
 
 
@@ -400,19 +400,19 @@ describe('chromium', function () {
     });
 
     it('creates a meaningful error when the port is already in use',
-        function (done) {
-          run('port', ['--https-server', '3001'],
-            function (code, stdout, stderr) {
-              assert.notEqual(
-                stderr.indexOf('EADDRINUSE'), -1,
-                'Error message did not contain error code'
-              );
-              assert.notEqual(stderr.indexOf('3001'), -1,
-                'Error message did not contain port value'
-              );
-              assert.equal(code, 1);
-              done();
-            });
-        });
+      function (done) {
+        run('port', ['--https-server', '3001'],
+          function (code, stdout, stderr) {
+            assert.notEqual(
+              stderr.indexOf('EADDRINUSE'), -1,
+              'Error message did not contain error code'
+            );
+            assert.notEqual(stderr.indexOf('3001'), -1,
+              'Error message did not contain port value'
+            );
+            assert.equal(code, 1);
+            done();
+          });
+      });
   });
 });

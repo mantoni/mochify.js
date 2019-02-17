@@ -333,7 +333,7 @@ describe('args', function () {
       function (code, stdout, stderr) {
         assert.equal(code, 1);
         assert.equal(stderr,
-            'Error: Nothing found for "./thing-a/*" or "./thing-b/*".\n\n');
+          'Error: Nothing found for "./thing-a/*" or "./thing-b/*".\n\n');
         done();
       });
   });
@@ -366,10 +366,10 @@ describe('args', function () {
     function (done) {
       run('passes', ['--url', 'https://localhost:8080/test.html',
         '--https-server', '4040'],
-        function (code, stdout) {
-          assert.strictEqual(code, 1);
-          assert(stdout.indexOf('got "4040" and "8080"') !== -1);
-          done();
-        });
+      function (code, stdout) {
+        assert.strictEqual(code, 1);
+        assert(stdout.indexOf('got "4040" and "8080"') !== -1);
+        done();
+      });
     });
 });
