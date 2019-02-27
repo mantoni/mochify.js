@@ -359,4 +359,18 @@ describe('node', function () {
       });
   }));
 
+  it('supports --mocha-path', sandbox(function (done) {
+    var mochaPath = './node_modules/mocha';
+    run('passes', ['--node', '-R', 'tap', '--mocha-path', mochaPath],
+      function (code, stdout) {
+        assert.equal(stdout, '# node:\n'
+        + '1..1\n'
+        + 'ok 1 test passes\n'
+        + '# tests 1\n'
+        + '# pass 1\n'
+        + '# fail 0\n');
+        assert.equal(code, 0);
+        done();
+      });
+  }));
 });

@@ -261,6 +261,20 @@ describe('chromium', function () {
       });
   }));
 
+  it('supports --mocha-path', function (done) {
+    run('passes', ['-R', 'tap', '--mocha-path', '../../../node_modules/mocha'],
+      function (code, stdout) {
+        assert.equal(stdout, '# chromium:\n'
+          + '1..1\n'
+          + 'ok 1 test passes\n'
+          + '# tests 1\n'
+          + '# pass 1\n'
+          + '# fail 0\n');
+        assert.equal(code, 0);
+        done();
+      });
+  });
+
   it('runs tests in the context of the given URL', function (done) {
     var url = 'file://' + __dirname + '/fixture/url/test.html';
     run('url', ['-R', 'tap', '--url', url], function (code, stdout) {

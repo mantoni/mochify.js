@@ -97,3 +97,5 @@ Defaults "entry" to "./test/*.js".
 
        --async-polling  If false, async polling will be disabled
                         (use when running in Appium). Defaults to true.
+
+          --mocha-path  Path to custom Mocha module
