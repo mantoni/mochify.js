@@ -1,5 +1,22 @@
 # Changes
 
+## 6.1.0
+
+Introduce the `--mocha-path` option to specify a custom Mocha module.
+
+- [`a8685b4`](https://github.com/mantoni/mochify.js/commit/a8685b40f6b1d4826b9fbf155f904e2ea2006661)
+  Add support for custom mocha path (#195) (Christopher Hiller)
+- [`d8a0a9c`](https://github.com/mantoni/mochify.js/commit/d8a0a9c3238017dcdbc067834dcb5121ea3bcf11)
+  Fix linter issues
+- [`3a49f42`](https://github.com/mantoni/mochify.js/commit/3a49f429fada83dbf270f9d2f822a9c59f336df8)
+  Update eslint to address security issues
+- [`7551a07`](https://github.com/mantoni/mochify.js/commit/7551a0748cbf38a349b933562c6f779492c78e43)
+  Merge test cases for sync and async failure, test for early exit on evaluation error (Frederik Ring)
+- [`ccc4138`](https://github.com/mantoni/mochify.js/commit/ccc413878d515a663109bb1307a41daddc0d7f4d)
+  Improve test case for async failure (Frederik Ring)
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2019-03-02._
+
 ## 6.0.4
 
 - [`b15cf0f`](https://github.com/mantoni/mochify.js/commit/b15cf0fe91e430749e16d8ef8d2dfdd68123feb2)
