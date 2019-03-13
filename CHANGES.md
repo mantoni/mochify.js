@@ -1,5 +1,16 @@
 # Changes
 
+## 6.1.1
+
+- [`ed2dfd7`](https://github.com/mantoni/mochify.js/commit/ed2dfd7bdbf6ce778babc89ec8ec0f010d210eb1)
+  Inspect page error objects
+- [`4012da9`](https://github.com/mantoni/mochify.js/commit/4012da936bb57ef71bb80640efad3abeb2a9e0b7)
+  Update puppeteer
+- [`e34a074`](https://github.com/mantoni/mochify.js/commit/e34a074c6a9e4ae6f82dd2b25d6e56fd5f513619)
+  Fix security issues
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2019-03-13._
+
 ## 6.1.0
 
 Introduce the `--mocha-path` option to specify a custom Mocha module.
