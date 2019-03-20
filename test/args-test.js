@@ -135,6 +135,12 @@ describe('args', function () {
     assert.equal(opts.chrome, '/foo/bar');
   });
 
+  it('parses --dumpio', function () {
+    var opts = args(['--dumpio']);
+
+    assert(opts.dumpio);
+  });
+
   it('parses --ignore-ssl-errors', function () {
     var opts = args(['--ignore-ssl-errors']);
     assert(opts['ignore-ssl-errors']);
