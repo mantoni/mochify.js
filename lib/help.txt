@@ -41,6 +41,8 @@ Defaults "entry" to "./test/*.js".
 
 --allow-chrome-as-root  allows Chrome to run as root
 
+              --dumpio  passed to puppeteer to dump all IO
+
         --https-server  Launches an HTTPS server using the specified port at
                         https://localhost:${port}
 
