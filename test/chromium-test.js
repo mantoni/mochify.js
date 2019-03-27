@@ -134,47 +134,35 @@ describe('chromium', function () {
 
   it('receives all console errors on stderr when --dumpio is given',
     function (done) {
-      run('fails', ['-R', 'dot', '--no-colors', '--dumpio'],
-        function (code, stdout, stderr) {
+      run('passes', ['-R', 'tap', '--dumpio'], function (code, stdout, stderr) {
 
-          var stdoutLines = stdout.split('\n').slice(1); // skip 'chromium:'
+        assert.equal(code, 0);
+        assert.equal(stdout, '# chromium:\n');
 
-          /* eslint-disable max-len */
-          // The sub-set lines actually relating to the console output.
-          // Other lines may relate to internal Chrome errors, such as
-          // '[0322/162300.874805:ERROR:command_buffer_proxy_impl.cc(125)] ContextResult::kTransientFailure: Failed to send GpuChannelMsg_CreateCommandBuffer.'
-          var stderrLines = stderr
-            .split('\n')
-            .filter(function (l) { return l.indexOf('INFO:CONSOLE') >= 0; });
-
-          // What actually ends up on the output is quite unstable:
-          // Ref https://gist.github.com/fatso83/2bb8c4ff82fa66f66db5030b0af06d66
-          // Sometimes you get a stack dump, sometimes not.
-          // We just check the portion that actually seems to always be present
-          /* eslint-enable */
-          var numberOfLinesToCheck = 3;
-
-          for (var index = 0; index < numberOfLinesToCheck; index++) {
-            var stdoutLine = stdoutLines[index];
-            var stderrLine = stderrLines[index];
-            var assertionError = 'Should have matched: \''
-              + stdoutLine
-              + '\' with \''
-              + stderrLine
-              + '\'';
-
-            assert(stderrLine.match(stdoutLine), assertionError);
-            assert(
-              stderrLine.match(/^\[.*:INFO:CONSOLE\(\d+\)\] "/),
-              assertionError);
-            assert(
-              stderrLine.match(/source: __puppeteer_evaluation_script__/),
-              assertionError);
-          }
-
-          assert.equal(code, 1);
-          done();
+        // The sub-set lines actually relating to the console output. Other
+        // lines may relate to internal Chrome errors, such as
+        // '[0322/162300.874805:ERROR:command_buffer_proxy_impl.cc(125)]
+        // ContextResult::kTransientFailure: Failed to send
+        // GpuChannelMsg_CreateCommandBuffer.'
+        var stderrLines = stderr
+          .split('\n')
+          .filter(function (l) { return l.indexOf('INFO:CONSOLE') >= 0; });
+        var expectedLines = [
+          '1..1',
+          'ok 1 test passes',
+          '# tests 1',
+          '# pass 1',
+          '# fail 0'
+        ];
+        var source = '", source: __puppeteer_evaluation_script__';
+        expectedLines.forEach(function (expectedLine, i) {
+          var actual = stderrLines[i];
+          var expected = '"' + expectedLines[i] + source;
+          assert.equal(actual.indexOf(expected), 40,
+            actual + ' should contain ' + expected);
         });
+        done();
+      });
     });
 
   it('uses custom chrome', function (done) {
