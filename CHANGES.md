@@ -1,5 +1,13 @@
 # Changes
 
+## 6.2.0
+
+- [`8f70a5e`](https://github.com/mantoni/mochify.js/commit/8f70a5e7ae78b8b33ec364e84bb6ce9e5517e995) +
+  [`5bf4aa8`](https://github.com/mantoni/mochify.js/commit/5bf4aa8f5bfa7ba1fbd8910a4fb4447b77ffee91)
+  Enable support for passing --dumpio to Puppeteer (Carl-Erik Kopseng)
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2019-03-27._
+
 ## 6.1.1
 
 - [`ed2dfd7`](https://github.com/mantoni/mochify.js/commit/ed2dfd7bdbf6ce778babc89ec8ec0f010d210eb1)
