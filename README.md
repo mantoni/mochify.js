@@ -131,6 +131,7 @@ break at the `debugger` statement.
 - `--help` or `-h` shows usage and all available options.
 - `--async-polling` disables async polling when set to false (for use in Appium).
 - `--mocha-path` specifies path to a custom Mocha module
+- `--web-security` allows disabling same-origin policy (when set to `false`, passes down `--disable-web-security` to Chromium)
 
 ## Continuous Integration
 

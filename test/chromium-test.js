@@ -174,6 +174,25 @@ describe('chromium', function () {
     });
   });
 
+  it('passes through web-security flag', function (done) {
+    run('web-security', ['--web-security', 'false'],
+      function (code, stdout, stderr) {
+        assert.equal(stderr, '');
+        assert.equal(code, 0);
+        done();
+      });
+  });
+
+  it('fails a cross-site XHR when web-security is not disabled',
+    function (done) {
+      run('web-security', ['--web-security', 'true'],
+        function (code, stdout, stderr) {
+          assert.ok(stderr.indexOf('CORS') > -1);
+          assert.notEqual(code, 0);
+          done();
+        });
+    });
+
   it('requires file', function (done) {
     run('require', ['-R', 'tap', '-r', '../required'], function (code, stdout) {
       assert.equal(stdout.split('\n')[2], 'required');

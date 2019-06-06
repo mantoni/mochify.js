@@ -309,6 +309,20 @@ describe('args', function () {
     assert.equal(opts['async-polling'], false);
   });
 
+  it('parses --web-security', function () {
+    var opts = args(['--web-security', 'true']);
+
+    assert.equal(opts['web-security'], true);
+
+    opts = args(['--web-security', 'false']);
+
+    assert.equal(opts['web-security'], false);
+
+    opts = args(['--web-security', 'blah']);
+
+    assert.equal(opts['web-security'], false);
+  });
+
   it('fails with invert but no grep option', function (done) {
     run('passes', ['--invert'], function (code, stdout) {
       assert.equal(code, 1);
