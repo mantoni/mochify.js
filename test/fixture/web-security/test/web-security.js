@@ -11,7 +11,7 @@ describe('test', function () {
     xhr.addEventListener('error', function () {
       done(new Error('XHR error'));
     });
-    xhr.open('GET', 'https://www.github.com/mantoni/mochify.js');
+    xhr.open('GET', 'http://localhost:3001');
     xhr.send();
   });
 
