@@ -11,6 +11,7 @@
 var assert = require('assert');
 var fs = require('fs');
 var net = require('net');
+var http = require('http');
 var run = require('./fixture/run');
 var sandbox = require('./fixture/sandbox');
 
@@ -469,6 +470,42 @@ describe('chromium', function () {
               'Error message did not contain port value'
             );
             assert.equal(code, 1);
+            done();
+          });
+      });
+  });
+
+  context('--web-security flag', function () {
+    /** @type {http.Server} */
+    var server;
+
+    before(function (done) {
+      server = http.createServer(function (req, res) {
+        res.statusCode = 200;
+        res.end();
+      });
+      server.listen(3001, 'localhost', done);
+    });
+
+    after(function () {
+      server.close();
+    });
+
+    it('can be disabled', function (done) {
+      run('web-security', ['--web-security', 'false'],
+        function (code, stdout, stderr) {
+          assert.equal(stderr, '');
+          assert.equal(code, 0);
+          done();
+        });
+    });
+
+    it('defaults to enabled',
+      function (done) {
+        run('web-security', [],
+          function (code, stdout, stderr) {
+            assert.ok(stderr.indexOf('CORS') > -1);
+            assert.notEqual(code, 0);
             done();
           });
       });
