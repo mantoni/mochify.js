@@ -1,5 +1,32 @@
 # Changes
 
+## 6.3.0
+
+- 🍏 [`74b2ab7`](https://github.com/mantoni/mochify.js/commit/74b2ab79bf1ec7511a9254564f6f3b9e70d97819)
+  [feat] Bring back `--web-security` flag (#203) (Jonathan Keslin)
+- 🍏 [`a314590`](https://github.com/mantoni/mochify.js/commit/a314590a92c953d9c372303e410706b22a96858d)
+  Add node 12 to Travis config
+- 🐛 [`14ff389`](https://github.com/mantoni/mochify.js/commit/14ff389256c9a5e2caa1abe5d1c466ef25ae459e)
+  Always pass `--disable-dev-shm-usage` to chromium
+    >
+    > This is suggested in on the chromium troubleshooting page when running
+    > in docker (like most CI systems). See
+    > https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#tips
+    >
+- 🐛 [`01bdea8`](https://github.com/mantoni/mochify.js/commit/01bdea824bbce4db831b20404da343ad64896863)
+  Address Chromium test case fragility
+- 🐛 [`3ec7b00`](https://github.com/mantoni/mochify.js/commit/3ec7b0098bfb21567761f15dbab51066b8e2a16b)
+  Fix test on node 12
+- 🐛 [`1767f1f`](https://github.com/mantoni/mochify.js/commit/1767f1ff0578835c9059b5d8e758ab9e8015c5e4)
+  Bump js-yaml from 3.12.1 to 3.13.1 (#202) (dependabot[bot])
+    >
+    > Bumps [js-yaml](https://github.com/nodeca/js-yaml) from 3.12.1 to 3.13.1.
+    > - [Release notes](https://github.com/nodeca/js-yaml/releases)
+    > - [Changelog](https://github.com/nodeca/js-yaml/blob/master/CHANGELOG.md)
+    > - [Commits](https://github.com/nodeca/js-yaml/compare/3.12.1...3.13.1)
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2019-06-10._
+
 ## 6.2.0
 
 - [`8f70a5e`](https://github.com/mantoni/mochify.js/commit/8f70a5e7ae78b8b33ec364e84bb6ce9e5517e995) +
