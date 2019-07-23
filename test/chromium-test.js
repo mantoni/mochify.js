@@ -446,37 +446,36 @@ describe('chromium', function () {
 
   context('https-server with a port value given', function () {
     var server;
+    var port;
 
     before(function (done) {
       server = net.createServer();
-      server.listen(3001, function (err) {
+      server.listen(function (err) {
+        if (!err) {
+          port = String(server.address().port);
+        }
         done(err);
       });
     });
 
-    after(function () {
-      server.close();
+    after(function (done) {
+      server.close(done);
     });
 
     it('creates a meaningful error when the port is already in use',
       function (done) {
-        run('port', ['--https-server', '3001'],
-          function (code, stdout, stderr) {
-            assert.notEqual(
-              stderr.indexOf('EADDRINUSE'), -1,
-              'Error message did not contain error code'
-            );
-            assert.notEqual(stderr.indexOf('3001'), -1,
-              'Error message did not contain port value'
-            );
-            assert.equal(code, 1);
-            done();
-          });
+        run('port', ['--https-server', port], function (code, stdout, stderr) {
+          assert.notEqual(stderr.indexOf('EADDRINUSE'), -1,
+            'Error message did not contain error code');
+          assert.notEqual(stderr.indexOf(port), -1,
+            'Error message did not contain port value');
+          assert.equal(code, 1);
+          done();
+        });
       });
   });
 
   context('--web-security flag', function () {
-    /** @type {http.Server} */
     var server;
 
     before(function (done) {
@@ -487,8 +486,8 @@ describe('chromium', function () {
       server.listen(3001, 'localhost', done);
     });
 
-    after(function () {
-      server.close();
+    after(function (done) {
+      server.close(done);
     });
 
     it('can be disabled', function (done) {
@@ -500,14 +499,12 @@ describe('chromium', function () {
         });
     });
 
-    it('defaults to enabled',
-      function (done) {
-        run('web-security', [],
-          function (code, stdout, stderr) {
-            assert.ok(stderr.indexOf('CORS') > -1);
-            assert.notEqual(code, 0);
-            done();
-          });
+    it('defaults to enabled', function (done) {
+      run('web-security', [], function (code, stdout, stderr) {
+        assert.ok(stderr.indexOf('CORS') > -1);
+        assert.notEqual(code, 0);
+        done();
       });
+    });
   });
 });
