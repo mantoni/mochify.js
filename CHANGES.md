@@ -1,5 +1,34 @@
 # Changes
 
+## 6.4.0
+
+- 🍏 [`ff7decb`](https://github.com/mantoni/mochify.js/commit/ff7decbbc4c7d6b64f0d2ca2ba1d5bae39e12070)
+  Prevent resources from logging errors
+    >
+    > - Swallow SSL certificate warning on https page load
+    > - Handle image, font and stylesheet requests to prevent warnings
+    >
+- 🍏 [`3f96b8c`](https://github.com/mantoni/mochify.js/commit/3f96b8c22a2ebb490e69989797dc0719b396d28f)
+  Upgrade puppeteer to v1.19.0
+- 🐛 [`e663ea8`](https://github.com/mantoni/mochify.js/commit/e663ea88665639955c85c890d4465f06e32b7563)
+  Make chromium tests less flaky
+    >
+    > - Use a random port in https-server tests.
+    > - Wait for `server.close` to finish.
+    >
+- 🛡 [`abebbf3`](https://github.com/mantoni/mochify.js/commit/abebbf3a6a2755c8221b842cd92b9705d041d0fe)
+  npm audit
+- 🛡 [`34a3392`](https://github.com/mantoni/mochify.js/commit/34a33926753d823019c06ad7baded2aa9a6f7841)
+  Bump lodash from 4.17.11 to 4.17.14 (#204) (dependabot[bot])
+    >
+    > Bumps [lodash](https://github.com/lodash/lodash) from 4.17.11 to 4.17.14.    >
+    > - [Release notes](https://github.com/lodash/lodash/releases)    >
+    > - [Commits](https://github.com/lodash/lodash/compare/4.17.11...4.17.14)    >
+    >     >
+    > Signed-off-by: dependabot[bot] <support@github.com>
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2019-08-09._
+
 ## 6.3.0
 
 - 🍏 [`74b2ab7`](https://github.com/mantoni/mochify.js/commit/74b2ab79bf1ec7511a9254564f6f3b9e70d97819)
