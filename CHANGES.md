@@ -1,5 +1,12 @@
 # Changes
 
+## 6.4.1
+
+- 🐛 [`28de861`](https://github.com/mantoni/mochify.js/commit/28de8612ab353784c604e48e6a97f495c714b9c6)
+  Fix SSL certificate warning filter
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2019-08-09._
+
 ## 6.4.0
 
 - 🍏 [`ff7decb`](https://github.com/mantoni/mochify.js/commit/ff7decbbc4c7d6b64f0d2ca2ba1d5bae39e12070)
