@@ -284,7 +284,7 @@ describe('chromium', function () {
         + '# tests 4\n'
         + '# pass 4\n'
         + '# fail 0\n');
-      assert.equal(stderr, 'error\n\n');
+      assert.equal(stderr, 'error\n');
       assert.equal(code, 0);
       done();
     });
@@ -339,7 +339,7 @@ describe('chromium', function () {
     function (done) {
       var url = 'https://localhost:7070/test.html';
       run('url', ['-R', 'tap', '--https-server', '7070', '--url', url],
-        function (code, stdout) {
+        function (code, stdout, stderr) {
           assert.equal(stdout, '# chromium:\n'
             + '1..1\n'
             + 'location.href = ' + url + '\n'
@@ -347,6 +347,7 @@ describe('chromium', function () {
             + '# tests 1\n'
             + '# pass 1\n'
             + '# fail 0\n');
+          assert.equal(stderr, ''); // does not complain about the certificate
           assert.equal(code, 0);
           done();
         });
