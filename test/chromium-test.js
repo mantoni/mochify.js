@@ -284,7 +284,7 @@ describe('chromium', function () {
         + '# tests 4\n'
         + '# pass 4\n'
         + '# fail 0\n');
-      assert.equal(stderr, 'error\n');
+      assert.equal(stderr, 'error\n\n');
       assert.equal(code, 0);
       done();
     });
@@ -337,8 +337,8 @@ describe('chromium', function () {
 
   it('runs tests in the context of a localhost https server with URL and port',
     function (done) {
-      var url = 'https://localhost:8080/test.html';
-      run('url', ['-R', 'tap', '--https-server', '8080', '--url', url],
+      var url = 'https://localhost:7070/test.html';
+      run('url', ['-R', 'tap', '--https-server', '7070', '--url', url],
         function (code, stdout) {
           assert.equal(stdout, '# chromium:\n'
             + '1..1\n'
@@ -371,11 +371,11 @@ describe('chromium', function () {
 
   it('runs tests in the context of a localhost https server with port only',
     function (done) {
-      run('url', ['-R', 'tap', '--https-server', '8080'],
+      run('url', ['-R', 'tap', '--https-server', '7070'],
         function (code, stdout, stderr) {
           assert.equal(stdout, '# chromium:\n'
             + '1..1\n'
-            + 'location.href = https://localhost:8080/\n'
+            + 'location.href = https://localhost:7070/\n'
             + 'not ok 1 url has H1 element\n'
             + '  TypeError: Cannot read property \'textContent\' of null\n'
             + '      at Context.<anonymous> (test/url.js:11)\n'
@@ -443,6 +443,14 @@ describe('chromium', function () {
           done();
         });
     });
+
+  it('does not warn about image loading failure', function (done) {
+    run('requests', ['-R', 'tap'], function (code, stdout, stderr) {
+      assert.equal(stderr, '');
+      assert.equal(code, 0);
+      done();
+    });
+  });
 
   context('https-server with a port value given', function () {
     var server;
