@@ -1,5 +1,23 @@
 # Changes
 
+## 6.5.0
+
+- 🍏 [`79ea89d`](https://github.com/mantoni/mochify.js/commit/79ea89d0cab9148f9dfc87ba811a56ef1eb6be33)
+  Introduce `--no-request-interception` (#207)
+    >
+    > This works around a puppeteer issue when running scripts within a web    >
+    > worker. See https://github.com/GoogleChrome/puppeteer/issues/4208.
+- 🐛 [`5c7325c`](https://github.com/mantoni/mochify.js/commit/5c7325c708fe82fc6962e1bbb50b78ae0101b7d7)
+  Bump eslint-utils from 1.3.1 to 1.4.2 (dependabot[bot])
+    >
+    > Bumps [eslint-utils](https://github.com/mysticatea/eslint-utils) from 1.3.1 to 1.4.2.
+    > - [Release notes](https://github.com/mysticatea/eslint-utils/releases)
+    > - [Commits](https://github.com/mysticatea/eslint-utils/compare/v1.3.1...v1.4.2)
+    >
+    > Signed-off-by: dependabot[bot] <support@github.com>
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2019-10-05._
+
 ## 6.4.1
 
 - 🐛 [`28de861`](https://github.com/mantoni/mochify.js/commit/28de8612ab353784c604e48e6a97f495c714b9c6)
