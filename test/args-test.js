@@ -30,6 +30,7 @@ describe('args', function () {
     assert.equal(opts['ignore-ssl-errors'], false);
     assert.equal(opts['browser-field'], true);
     assert.equal(opts.commondir, true);
+    assert.equal(opts['request-interception'], true);
   });
 
   it('parses --reporter', function () {
@@ -321,6 +322,12 @@ describe('args', function () {
     opts = args(['--web-security', 'blah']);
 
     assert.equal(opts['web-security'], false);
+  });
+
+  it('parses --no-request-interception', function () {
+    var opts = args(['--no-request-interception']);
+
+    assert.equal(opts['request-interception'], false);
   });
 
   it('fails with invert but no grep option', function (done) {

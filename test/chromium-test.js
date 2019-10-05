@@ -453,6 +453,16 @@ describe('chromium', function () {
     });
   });
 
+  it('allows to turn off request interception', function (done) {
+    run('requests', ['-R', 'tap', '--no-request-interception'],
+      function (code, stdout, stderr) {
+        assert.equal(stderr,
+          'Failed to load resource: net::ERR_FILE_NOT_FOUND\n');
+        assert.equal(code, 0);
+        done();
+      });
+  });
+
   context('https-server with a port value given', function () {
     var server;
     var port;
