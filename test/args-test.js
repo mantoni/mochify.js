@@ -31,6 +31,7 @@ describe('args', function () {
     assert.equal(opts['browser-field'], true);
     assert.equal(opts.commondir, true);
     assert.equal(opts['request-interception'], true);
+    assert.equal(opts['detect-globals'], true);
   });
 
   it('parses --reporter', function () {
@@ -328,6 +329,18 @@ describe('args', function () {
     var opts = args(['--no-request-interception']);
 
     assert.equal(opts['request-interception'], false);
+  });
+
+  it('parses --detect-globals', function () {
+    var opts = args(['--detect-globals']);
+
+    assert(opts['detect-globals']);
+  });
+
+  it('parses --no-detect-globals', function () {
+    var opts = args(['--no-detect-globals']);
+
+    assert.equal(opts['detect-globals'], false);
   });
 
   it('fails with invert but no grep option', function (done) {

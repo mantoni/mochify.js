@@ -463,6 +463,34 @@ describe('chromium', function () {
       });
   });
 
+  it('detects globals by default', function (done) {
+    run('detect-globals', ['-R', 'tap'],
+      function (code, stdout, stderr) {
+        assert.equal(stderr, 'object\n');
+        assert.equal(code, 0);
+        done();
+      });
+  });
+
+  it('allows to turn off global detection', function (done) {
+    run('detect-globals', ['--no-detect-globals'],
+      function (code, stdout, stderr) {
+        assert.equal(stderr, 'undefined\n');
+        assert.equal(code, 0);
+        done();
+      });
+  });
+
+  // Verify that the `--yields` option does not assume `process.nextTick`.
+  it('works with async tests and yields', function (done) {
+    run('async', ['--no-detect-globals', '--yields', '1'],
+      function (code, stdout, stderr) {
+        assert.equal(stderr, '');
+        assert.equal(code, 0);
+        done();
+      });
+  });
+
   context('https-server with a port value given', function () {
     var server;
     var port;
