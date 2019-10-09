@@ -481,6 +481,16 @@ describe('chromium', function () {
       });
   });
 
+  // Verify that the `--yields` option does not assume `process.nextTick`.
+  it('works with async tests and yields', function (done) {
+    run('async', ['--no-detect-globals', '--yields', '1'],
+      function (code, stdout, stderr) {
+        assert.equal(stderr, '');
+        assert.equal(code, 0);
+        done();
+      });
+  });
+
   context('https-server with a port value given', function () {
     var server;
     var port;

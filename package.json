@@ -73,7 +73,7 @@
     "glob": "^7.1.2",
     "mime": "^2.3.1",
     "min-wd": "^2.11.0",
-    "mocaccino": "^4.1.0",
+    "mocaccino": "^4.1.2",
     "mocha": "^5.2.0",
     "puppeteer": "^1.19.0",
     "resolve": "^1.5.0",
