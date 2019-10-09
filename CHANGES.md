@@ -1,5 +1,14 @@
 # Changes
 
+## 6.6.0
+
+- 🍏 [`615584c`](https://github.com/mantoni/mochify.js/commit/615584c083ccdb3ecca2e9568df6367870e31781)
+  Introduce `--no-detect-globals`
+- 🐛 [`03c3976`](https://github.com/mantoni/mochify.js/commit/03c3976b8edce4b6b2d3c9f8ebca7005b2e174a5)
+  Fix `--yields` assuming `process.nextTick`
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2019-10-09._
+
 ## 6.5.0
 
 - 🍏 [`79ea89d`](https://github.com/mantoni/mochify.js/commit/79ea89d0cab9148f9dfc87ba811a56ef1eb6be33)
