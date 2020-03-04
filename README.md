@@ -330,8 +330,8 @@ The `mochify` function returns a Browserify instance. Please refer to the
 
 ## Code coverage with NYC
 
-Install `nyc`, the `babelify` transform, `@babel/core` and
-`babel-plugin-istanbul`:
+Install `nyc@14` (v15 is not yet supported!), the `babelify` transform,
+`@babel/core` and `babel-plugin-istanbul`:
 
 ```bash
 $ npm install nyc babelify @babel/core babel-plugin-istanbul --save-dev
