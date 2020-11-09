@@ -169,7 +169,7 @@ describe('chromium', function () {
   it('uses custom chrome', function (done) {
     run('passes', ['--chrome', 'some/path'], function (code, stdout, stderr) {
       assert.equal(stdout, '');
-      assert.equal(stderr.indexOf('Error: Failed to launch chrome!'), 0);
+      assert.equal(stderr.indexOf('Error: Failed to launch'), 0);
       assert.notEqual(code, 0);
       done();
     });
