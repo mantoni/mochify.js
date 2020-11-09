@@ -75,7 +75,7 @@
     "min-wd": "^2.11.0",
     "mocaccino": "^4.1.2",
     "mocha": "^5.2.0",
-    "puppeteer": "^1.19.0",
+    "puppeteer": "^5.3.1",
     "resolve": "^1.5.0",
     "source-mapper": "^2.1.0",
     "subarg": "^1.0.0",
