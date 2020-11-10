@@ -1,5 +1,30 @@
 # Changes
 
+## 7.0.0
+
+- 💥 [`4eb8c25`](https://github.com/mantoni/mochify.js/commit/4eb8c25fc61bd4c1213068c1a165fe429465300b)
+  Use Node LTS versions (Morgan Roderick)
+- 🍏 [`c2f2ffd`](https://github.com/mantoni/mochify.js/commit/c2f2ffd916254cdc3e303e4d7e8dae982c0e93b6)
+  Upgrade puppeteer to v5.3.1 (chrome-86)
+- 🍏 [`eaec923`](https://github.com/mantoni/mochify.js/commit/eaec923a80f2753ab42605233855e03ed05b0161)
+  Update browserify
+- 🍏 [`1f1dcac`](https://github.com/mantoni/mochify.js/commit/1f1dcac41eb2d44da181fe8d389f784fd1dab0ac)
+  Update min-wd
+- 🛡 [`6f54831`](https://github.com/mantoni/mochify.js/commit/6f54831446467bfefa3239274bb9902f68d9add9)
+  npm audit
+- ✨ [`298f173`](https://github.com/mantoni/mochify.js/commit/298f1734510c1bc588aedd2b4c18ad30f28c67bd)
+  Update coverify
+- ✨ [`9a004f9`](https://github.com/mantoni/mochify.js/commit/9a004f9e9ead81697501a47fe6883c65c161ebad)
+  Upgrade Studio Changes
+- ✨ [`e026ff3`](https://github.com/mantoni/mochify.js/commit/e026ff3c67e7cd98d17ad95157bb59dce0c563e9)
+  Upgrade ESLint to latest (Morgan Roderick)
+- 📚 [`82dc5c6`](https://github.com/mantoni/mochify.js/commit/82dc5c6484c1e75ae075efadb440d651eb998360)
+  Add compatibility notes for v7
+- 📚 [`62a3145`](https://github.com/mantoni/mochify.js/commit/62a31454590c5f502360dc4a7d58162e93e14be5)
+  State that `nyc@15` is not yet supported
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2020-11-10._
+
 ## 6.6.0
 
 - 🍏 [`615584c`](https://github.com/mantoni/mochify.js/commit/615584c083ccdb3ecca2e9568df6367870e31781)
