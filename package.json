@@ -69,7 +69,7 @@
     "brout": "^1.3.0",
     "browserify": "^16.5.2",
     "consolify": "^2.1.0",
-    "coverify": "^1.4.1",
+    "coverify": "^1.5.1",
     "glob": "^7.1.2",
     "mime": "^2.3.1",
     "min-wd": "^2.12.0",
