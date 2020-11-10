@@ -323,9 +323,10 @@ describe('node', function () {
   it('fails external', function (done) {
     run('external', ['--node', '-R', 'tap'],
       function (code, stdout, stderr) {
-        assert.equal(
-          stderr.indexOf('Error: Cannot find module \'unresolvable\''),
-          0);
+        console.log(stderr);
+        assert.notEqual(
+          stderr.indexOf('Cannot find module \'unresolvable\''),
+          -1);
         assert.equal(code, 1);
         done();
       });
