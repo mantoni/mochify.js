@@ -83,7 +83,7 @@
     "watchify": "^3.11.1"
   },
   "devDependencies": {
-    "@studio/changes": "^1.7.0",
+    "@studio/changes": "^2.0.1",
     "eslint": "^7.13.0",
     "tmp": "0.0.28"
   },
