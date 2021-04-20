@@ -1,5 +1,20 @@
 # Changes
 
+## 7.1.0
+
+- 🍏 [`1248c7f`](https://github.com/mantoni/mochify.js/commit/1248c7ffd0a0e9342b35c173d05a770e12a860c2)
+  Upgrade puppeteer to v8
+- 🐛 [`b23b3bd`](https://github.com/mantoni/mochify.js/commit/b23b3bdf039c8b0f4b5af92b18c8ec05cd44f58f)
+  Workaround `PUPPETEER_EXECUTABLE_PATH` not being respected
+- 📚 [`2806265`](https://github.com/mantoni/mochify.js/commit/280626503f1c5e5c98d915a59280a9712e05bbfa)
+  Document workaround for Apple Silicon
+- 🛡 [`cccf180`](https://github.com/mantoni/mochify.js/commit/cccf1801aab72592235653622c9125c21fa8acd8)
+  Bump elliptic from 6.5.3 to 6.5.4 (dependabot[bot])
+- ✨ [`63f4dc5`](https://github.com/mantoni/mochify.js/commit/63f4dc59776207f7b5a3ce7f1543f15619307c28)
+  Update Studio Changes
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2021-04-20._
+
 ## 7.0.0
 
 - 💥 [`4eb8c25`](https://github.com/mantoni/mochify.js/commit/4eb8c25fc61bd4c1213068c1a165fe429465300b)
