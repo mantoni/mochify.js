@@ -347,6 +347,18 @@ Using a `package.json` script that can be run with `npm run cover`:
 }
 ```
 
+## Workaround for Apple Silicon
+
+Puppeteer fails to launch on M1. Follow these steps to work around:
+
+- Install Google Chrome
+- Define these environment variables:
+
+  ```bash
+  export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+  export PUPPETEER_EXECUTABLE_PATH=/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
+  ```
+
 ## Compatibility
 
 - v7.x
