@@ -1,5 +1,18 @@
 # Changes
 
+## 7.1.1
+
+- 🐛 [`eb70de7`](https://github.com/mantoni/mochify.js/commit/eb70de7280cd7356962e3d602edba796cf816762)
+  Remove dependency on removed nyc feature (Albert Wang)
+- 🛡 [`59e4350`](https://github.com/mantoni/mochify.js/commit/59e4350f520d63a696e7c809a6a57ce796e3b76d)
+  Npm update (Albert Wang)
+- 📚 [`1bc13ff`](https://github.com/mantoni/mochify.js/commit/1bc13ffa4235e0ba0c2d3d3856ecba1a831c581e)
+  Update readme (Albert Wang)
+- ✨ [`b039a55`](https://github.com/mantoni/mochify.js/commit/b039a551f0f24b8643994fd1a96edcbbbc2b9a71)
+  Test with node 16 (Albert Wang)
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2021-05-23._
+
 ## 7.1.0
 
 - 🍏 [`1248c7f`](https://github.com/mantoni/mochify.js/commit/1248c7ffd0a0e9342b35c173d05a770e12a860c2)
