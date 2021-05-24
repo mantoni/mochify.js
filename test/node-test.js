@@ -19,11 +19,11 @@ describe('node', function () {
   it('passes', function (done) {
     run('passes', ['--node', '-R', 'tap'], function (code, stdout) {
       assert.equal(stdout, '# node:\n'
-        + '1..1\n'
         + 'ok 1 test passes\n'
         + '# tests 1\n'
         + '# pass 1\n'
-        + '# fail 0\n');
+        + '# fail 0\n'
+        + '1..1\n');
       assert.equal(code, 0);
       done();
     });
@@ -35,18 +35,18 @@ describe('node', function () {
 
       var lines = stdout.trim().split(/\n+/);
       assert.equal(lines[0], '# node:');
-      assert.equal(lines[1], '1..4');
-      assert.equal(lines[2], 'not ok 1 test fails synchronously');
+      assert.equal(lines[1], 'not ok 1 test fails synchronously');
       assert.equal(lines[3], '  Error: Oh noes!');
       var p = lines.indexOf('not ok 2 test fails asynchronously');
       assert.notEqual(p, -1);
-      assert.equal(lines[p + 1], '  Error: Oh noes!');
+      assert.equal(lines[p + 2], '  Error: Oh noes!');
       p = lines.indexOf('ok 3 test passes synchronously', p + 2);
       assert.notEqual(p, -1);
       assert.equal(lines[p + 1], 'ok 4 test passes asynchronously');
       assert.equal(lines[p + 2], '# tests 4');
       assert.equal(lines[p + 3], '# pass 2');
       assert.equal(lines[p + 4], '# fail 2');
+      assert.equal(lines[p + 5], '1..4');
       done();
     });
   });
@@ -64,11 +64,11 @@ describe('node', function () {
     run('passes', ['--node', '--cover', '-R', 'tap'],
       function (code, stdout, stderr) {
         assert.equal(stdout, '# node:\n'
-          + '1..1\n'
           + 'ok 1 test passes\n'
           + '# tests 1\n'
           + '# pass 1\n'
-          + '# fail 0\n');
+          + '# fail 0\n'
+          + '1..1\n');
         assert.equal(stderr, '# coverage: 8/8 (100.00 %)\n\n');
         assert.equal(code, 0);
         done();
@@ -98,11 +98,11 @@ describe('node', function () {
     run('fails-cover', ['--node', '--cover', '-R', 'tap'],
       function (code, stdout, stderr) {
         assert.equal(stdout, '# node:\n'
-          + '1..1\n'
           + 'ok 1 test does not cover\n'
           + '# tests 1\n'
           + '# pass 1\n'
-          + '# fail 0\n');
+          + '# fail 0\n'
+          + '1..1\n');
         var coverOut = '\n# coverage: 9/10 (90.00 %)\n\nError: Exit 1\n\n';
         assert.equal(stderr.substring(stderr.length - coverOut.length),
           coverOut);
@@ -115,7 +115,6 @@ describe('node', function () {
     run('timeout', ['--node', '-R', 'tap', '--timeout', '10'],
       function (code, stdout) {
         assert.equal(stdout.indexOf('# node:\n'
-          + '1..1\n'
           + 'not ok 1 test times out\n'), 0);
         assert.equal(code, 1);
         done();
@@ -126,11 +125,11 @@ describe('node', function () {
     run('ui-tdd', ['--node', '-R', 'tap', '--ui', 'tdd'],
       function (code, stdout) {
         assert.equal(stdout, '# node:\n'
-          + '1..1\n'
           + 'ok 1 test passes\n'
           + '# tests 1\n'
           + '# pass 1\n'
-          + '# fail 0\n');
+          + '# fail 0\n'
+          + '1..1\n');
         assert.equal(code, 0);
         done();
       });
@@ -212,7 +211,7 @@ describe('node', function () {
     run('require', ['--node', '-R', 'tap', '-r', '../required'],
       function (code, stdout) {
         var lines = stdout.split('\n');
-        assert.equal(lines[2], 'required');
+        assert.equal(lines[1], 'required');
         assert.equal(code, 0);
         done();
       });
@@ -243,11 +242,11 @@ describe('node', function () {
     run('recursive', ['--node', '-R', 'tap', '--recursive'],
       function (code, stdout) {
         assert.equal(stdout, '# node:\n'
-          + '1..1\n'
           + 'ok 1 recursive passes\n'
           + '# tests 1\n'
           + '# pass 1\n'
-          + '# fail 0\n');
+          + '# fail 0\n'
+          + '1..1\n');
         assert.equal(code, 0);
         done();
       });
@@ -257,11 +256,11 @@ describe('node', function () {
     run('recursive', ['--node', '-R', 'tap', '--recursive', 'other'],
       function (code, stdout) {
         assert.equal(stdout, '# node:\n'
-          + '1..1\n'
           + 'ok 1 other recursive passes\n'
           + '# tests 1\n'
           + '# pass 1\n'
-          + '# fail 0\n');
+          + '# fail 0\n'
+          + '1..1\n');
         assert.equal(code, 0);
         done();
       });
@@ -271,11 +270,11 @@ describe('node', function () {
     run('recursive', ['--node', '-R', 'tap', '--recursive', 'other/*.js'],
       function (code, stdout) {
         assert.equal(stdout, '# node:\n'
-          + '1..1\n'
           + 'ok 1 other recursive passes\n'
           + '# tests 1\n'
           + '# pass 1\n'
-          + '# fail 0\n');
+          + '# fail 0\n'
+          + '1..1\n');
         assert.equal(code, 0);
         done();
       });
@@ -285,11 +284,11 @@ describe('node', function () {
     run('browser-field', ['--node', '-R', 'tap'],
       function (code, stdout) {
         assert.equal(stdout, '# node:\n'
-          + '1..1\n'
           + 'ok 1 browser-field passes in browser\n'
           + '# tests 1\n'
           + '# pass 1\n'
-          + '# fail 0\n');
+          + '# fail 0\n'
+          + '1..1\n');
         assert.equal(code, 0);
         done();
       });
@@ -299,7 +298,6 @@ describe('node', function () {
     run('browser-field', ['--node', '-R', 'tap', '--no-browser-field'],
       function (code, stdout) {
         assert.equal(stdout.indexOf('# node:\n'
-          + '1..1\n'
           + 'not ok 1 browser-field passes in browser\n'
           + '  Error'), 0);
         assert.equal(code, 1);
@@ -312,7 +310,6 @@ describe('node', function () {
   it.skip('shows unicode diff', function (done) {
     run('unicode', ['--node', '-R', 'tap'], function (code, stdout) {
       assert.equal(stdout.indexOf('# node:\n'
-        + '1..1\n'
         + 'not ok 1 unicode prints diff\n'
         + '  AssertionError: \'€\' == \'3\''), 0);
       assert.equal(code, 1);
@@ -336,11 +333,11 @@ describe('node', function () {
     run('external', ['--node', '-R', 'tap', '--external', 'unresolvable'],
       function (code, stdout) {
         assert.equal(stdout, '# node:\n'
-          + '1..1\n'
           + 'ok 1 test external\n'
           + '# tests 1\n'
           + '# pass 1\n'
-          + '# fail 0\n');
+          + '# fail 0\n'
+          + '1..1\n');
         assert.equal(code, 0);
         done();
       });
@@ -353,11 +350,11 @@ describe('node', function () {
         assert.equal(code, 0);
         assert.equal(stdout, '');
         assert.equal(fs.readFileSync(outfile, 'utf8'), '# node:\n'
-          + '1..1\n'
           + 'ok 1 test passes\n'
           + '# tests 1\n'
           + '# pass 1\n'
-          + '# fail 0\n');
+          + '# fail 0\n'
+          + '1..1\n');
         done();
       });
   }));
@@ -367,11 +364,11 @@ describe('node', function () {
     run('passes', ['--node', '-R', 'tap', '--mocha-path', mochaPath],
       function (code, stdout) {
         assert.equal(stdout, '# node:\n'
-        + '1..1\n'
         + 'ok 1 test passes\n'
         + '# tests 1\n'
         + '# pass 1\n'
-        + '# fail 0\n');
+        + '# fail 0\n'
+        + '1..1\n');
         assert.equal(code, 0);
         done();
       });

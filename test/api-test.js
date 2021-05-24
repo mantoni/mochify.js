@@ -34,11 +34,11 @@ describe('api', function () {
     mochify('./test/fixture/passes/test/*.js', {
       output   : through(),
       reporter : 'tap'
-    }).bundle(validateOutput('1..1\n'
-      + 'ok 1 test passes\n'
+    }).bundle(validateOutput('ok 1 test passes\n'
       + '# tests 1\n'
       + '# pass 1\n'
-      + '# fail 0\n', done));
+      + '# fail 0\n'
+      + '1..1\n', done));
   });
 
   it('runs node', function (done) {
@@ -46,11 +46,11 @@ describe('api', function () {
       output   : through(),
       reporter : 'tap',
       node     : true
-    }).bundle(validateOutput('1..1\n'
-      + 'ok 1 test passes\n'
+    }).bundle(validateOutput('ok 1 test passes\n'
       + '# tests 1\n'
       + '# pass 1\n'
-      + '# fail 0\n', done));
+      + '# fail 0\n'
+      + '1..1\n', done));
   });
 
   it('uses defaults', function (done) {
@@ -138,11 +138,11 @@ describe('api', function () {
       node: true,
       reporter: 'tap',
       path : ['./test/fixture/']
-    }).bundle(validateOutput('1..1\n'
-      + 'ok 1 test passes\n'
+    }).bundle(validateOutput('ok 1 test passes\n'
       + '# tests 1\n'
       + '# pass 1\n'
-      + '# fail 0\n', done));
+      + '# fail 0\n'
+      + '1..1\n', done));
   });
 
   it('should write a test-runner html document when --consolify is used',
