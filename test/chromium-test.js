@@ -22,11 +22,11 @@ describe('chromium', function () {
   it('passes', function (done) {
     run('passes', ['-R', 'tap'], function (code, stdout) {
       assert.equal(stdout, '# chromium:\n'
-        + '1..1\n'
         + 'ok 1 test passes\n'
         + '# tests 1\n'
         + '# pass 1\n'
-        + '# fail 0\n');
+        + '# fail 0\n'
+        + '1..1\n');
       assert.equal(code, 0);
       done();
     });
@@ -38,18 +38,18 @@ describe('chromium', function () {
 
       var lines = stdout.trim().split(/\n+/);
       assert.equal(lines[0], '# chromium:');
-      assert.equal(lines[1], '1..4');
-      assert.equal(lines[2], 'not ok 1 test fails synchronously');
+      assert.equal(lines[1], 'not ok 1 test fails synchronously');
       assert.equal(lines[3], '  Error: Oh noes!');
       assert.equal(lines[5], 'not ok 2 test fails asynchronously');
       // The stack trace output for async errors is slightly unpredictable
       // so we need to skip an assertion for the actual error.
       // See issue: https://github.com/mantoni/mochify.js/issues/92
-      assert.equal(lines[9], 'ok 3 test passes synchronously');
-      assert.equal(lines[10], 'ok 4 test passes asynchronously');
-      assert.equal(lines[11], '# tests 4');
-      assert.equal(lines[12], '# pass 2');
-      assert.equal(lines[13], '# fail 2');
+      assert.equal(lines[8], 'ok 3 test passes synchronously');
+      assert.equal(lines[9], 'ok 4 test passes asynchronously');
+      assert.equal(lines[10], '# tests 4');
+      assert.equal(lines[11], '# pass 2');
+      assert.equal(lines[12], '# fail 2');
+      assert.equal(lines[13], '1..4');
       done();
     });
   });
@@ -67,11 +67,11 @@ describe('chromium', function () {
   it('coverage tap', function (done) {
     run('passes', ['--cover', '-R', 'tap'], function (code, stdout, stderr) {
       assert.equal(stdout, '# chromium:\n'
-        + '1..1\n'
         + 'ok 1 test passes\n'
         + '# tests 1\n'
         + '# pass 1\n'
-        + '# fail 0\n');
+        + '# fail 0\n'
+        + '1..1\n');
       assert.equal(stderr, '# coverage: 8/8 (100.00 %)\n\n');
       assert.equal(code, 0);
       done();
@@ -94,8 +94,8 @@ describe('chromium', function () {
     run('timeout', ['-R', 'tap', '--timeout', '10'], function (code, stdout) {
       var lines = stdout.trim().split(/\n+/);
       assert.equal(lines[0], '# chromium:');
-      assert.equal(lines[1], '1..1');
-      assert.equal(lines[2], 'not ok 1 test times out');
+      assert.equal(lines[1], 'not ok 1 test times out');
+      assert.equal(lines[lines.length - 1], '1..1');
       assert.equal(code, 1);
       done();
     });
@@ -104,11 +104,11 @@ describe('chromium', function () {
   it('uses tdd ui', function (done) {
     run('ui-tdd', ['-R', 'tap', '--ui', 'tdd'], function (code, stdout) {
       assert.equal(stdout, '# chromium:\n'
-        + '1..1\n'
         + 'ok 1 test passes\n'
         + '# tests 1\n'
         + '# pass 1\n'
-        + '# fail 0\n');
+        + '# fail 0\n'
+        + '1..1\n');
       assert.equal(code, 0);
       done();
     });
@@ -149,11 +149,11 @@ describe('chromium', function () {
           .split('\n')
           .filter(function (l) { return l.indexOf('INFO:CONSOLE') >= 0; });
         var expectedLines = [
-          '1..1',
           'ok 1 test passes',
           '# tests 1',
           '# pass 1',
-          '# fail 0'
+          '# fail 0',
+          '1..1'
         ];
         var source = '", source: __puppeteer_evaluation_script__';
         expectedLines.forEach(function (expectedLine, i) {
@@ -177,7 +177,7 @@ describe('chromium', function () {
 
   it('requires file', function (done) {
     run('require', ['-R', 'tap', '-r', '../required'], function (code, stdout) {
-      assert.equal(stdout.split('\n')[2], 'required');
+      assert.equal(stdout.split('\n')[1], 'required');
       assert.equal(code, 0);
       done();
     });
@@ -186,11 +186,11 @@ describe('chromium', function () {
   it('passes recursive', function (done) {
     run('recursive', ['-R', 'tap', '--recursive'], function (code, stdout) {
       assert.equal(stdout, '# chromium:\n'
-        + '1..1\n'
         + 'ok 1 recursive passes\n'
         + '# tests 1\n'
         + '# pass 1\n'
-        + '# fail 0\n');
+        + '# fail 0\n'
+        + '1..1\n');
       assert.equal(code, 0);
       done();
     });
@@ -263,7 +263,6 @@ describe('chromium', function () {
   it('shows unicode diff', function (done) {
     run('unicode', ['-R', 'tap'], function (code, stdout) {
       assert.equal(stdout.indexOf('# chromium:\n'
-        + '1..1\n'
         + 'not ok 1 unicode prints diff\n'), 0);
       assert.equal(code, 1);
       done();
@@ -273,7 +272,6 @@ describe('chromium', function () {
   it('shows console output', function (done) {
     run('console', ['-R', 'tap'], function (code, stdout, stderr) {
       assert.equal(stdout, '# chromium:\n'
-        + '1..4\n'
         + 'log\n'
         + 'ok 1 console log\n'
         + 'info\n'
@@ -283,7 +281,8 @@ describe('chromium', function () {
         + 'ok 4 console error\n'
         + '# tests 4\n'
         + '# pass 4\n'
-        + '# fail 0\n');
+        + '# fail 0\n'
+        + '1..4\n');
       assert.equal(stderr, 'error\n');
       assert.equal(code, 0);
       done();
@@ -297,11 +296,11 @@ describe('chromium', function () {
         assert.equal(code, 0);
         assert.equal(stdout, '');
         assert.equal(fs.readFileSync(outfile, 'utf8'), '# chromium:\n'
-          + '1..1\n'
           + 'ok 1 test passes\n'
           + '# tests 1\n'
           + '# pass 1\n'
-          + '# fail 0\n');
+          + '# fail 0\n'
+          + '1..1\n');
         done();
       });
   }));
@@ -310,11 +309,11 @@ describe('chromium', function () {
     run('passes', ['-R', 'tap', '--mocha-path', '../../../node_modules/mocha'],
       function (code, stdout) {
         assert.equal(stdout, '# chromium:\n'
-          + '1..1\n'
           + 'ok 1 test passes\n'
           + '# tests 1\n'
           + '# pass 1\n'
-          + '# fail 0\n');
+          + '# fail 0\n'
+          + '1..1\n');
         assert.equal(code, 0);
         done();
       });
@@ -324,12 +323,12 @@ describe('chromium', function () {
     var url = 'file://' + __dirname + '/fixture/url/test.html';
     run('url', ['-R', 'tap', '--url', url], function (code, stdout) {
       assert.equal(stdout, '# chromium:\n'
-        + '1..1\n'
         + 'location.href = ' + url + '\n'
         + 'ok 1 url has H1 element\n'
         + '# tests 1\n'
         + '# pass 1\n'
-        + '# fail 0\n');
+        + '# fail 0\n'
+        + '1..1\n');
       assert.equal(code, 0);
       done();
     });
@@ -341,12 +340,12 @@ describe('chromium', function () {
       run('url', ['-R', 'tap', '--https-server', '7070', '--url', url],
         function (code, stdout, stderr) {
           assert.equal(stdout, '# chromium:\n'
-            + '1..1\n'
             + 'location.href = ' + url + '\n'
             + 'ok 1 url has H1 element\n'
             + '# tests 1\n'
             + '# pass 1\n'
-            + '# fail 0\n');
+            + '# fail 0\n'
+            + '1..1\n');
           assert.equal(stderr, ''); // does not complain about the certificate
           assert.equal(code, 0);
           done();
@@ -359,12 +358,12 @@ describe('chromium', function () {
       run('url', ['-R', 'tap', '--url', url],
         function (code, stdout) {
           assert.equal(stdout, '# chromium:\n'
-            + '1..1\n'
             + 'location.href = ' + url + '\n'
             + 'ok 1 url has H1 element\n'
             + '# tests 1\n'
             + '# pass 1\n'
-            + '# fail 0\n');
+            + '# fail 0\n'
+            + '1..1\n');
           assert.equal(code, 0);
           done();
         });
@@ -375,14 +374,15 @@ describe('chromium', function () {
       run('url', ['-R', 'tap', '--https-server', '7070'],
         function (code, stdout, stderr) {
           assert.equal(stdout, '# chromium:\n'
-            + '1..1\n'
             + 'location.href = https://localhost:7070/\n'
             + 'not ok 1 url has H1 element\n'
+            + '  Cannot read property \'textContent\' of null\n'
             + '  TypeError: Cannot read property \'textContent\' of null\n'
             + '      at Context.<anonymous> (test/url.js:11)\n'
             + '# tests 1\n'
             + '# pass 0\n'
-            + '# fail 1\n');
+            + '# fail 1\n'
+            + '1..1\n');
           assert.notEqual(stderr.split('\n').indexOf('Error: Exit 1'), -1);
           assert.equal(code, 1);
           done();
@@ -397,7 +397,6 @@ describe('chromium', function () {
           var lines = stdout.split('\n');
           var expected = [
             /^# chromium:$/,
-            /^1\.\.1$/,
             /^location\.protocol = https:$/,
             /^location\.hostname = localhost$/,
             /^location\.port = \d{1,5}$/,
@@ -405,7 +404,8 @@ describe('chromium', function () {
             /^ok 1 port passes after printing location info$/,
             /^# tests 1$/,
             /^# pass 1$/,
-            /^# fail 0$/
+            /^# fail 0$/,
+            /^1\.\.1$/
           ];
           expected.forEach(function (re, index) {
             assert(
@@ -425,7 +425,6 @@ describe('chromium', function () {
           var lines = stdout.split('\n');
           var expected = [
             /^# chromium:$/,
-            /^1\.\.1$/,
             /^location\.protocol = https:$/,
             /^location\.hostname = localhost$/,
             /^location\.port = \d{1,5}$/,
@@ -433,7 +432,8 @@ describe('chromium', function () {
             /^ok 1 port passes after printing location info$/,
             /^# tests 1$/,
             /^# pass 1$/,
-            /^# fail 0$/
+            /^# fail 0$/,
+            /^1\.\.1$/
           ];
           expected.forEach(function (re, index) {
             assert(

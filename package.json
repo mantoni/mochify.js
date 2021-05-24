@@ -74,9 +74,8 @@
     "glob": "^7.1.2",
     "mime": "^2.3.1",
     "min-wd": "^2.12.0",
-    "mocaccino": "^4.1.2",
-    "mocha": "^5.2.0",
-    "puppeteer": "^8.0.0",
+    "mocaccino": "^5.0.0",
+    "puppeteer": "^9.1.1",
     "resolve": "^1.5.0",
     "source-mapper": "^2.1.0",
     "subarg": "^1.0.0",
@@ -86,6 +85,7 @@
   "devDependencies": {
     "@studio/changes": "^2.0.1",
     "eslint": "^7.13.0",
+    "mocha": "^8.4.0",
     "tmp": "0.0.28"
   },
   "files": [
