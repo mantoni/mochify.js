@@ -139,7 +139,6 @@ describe('chromium', function () {
 
         assert.equal(code, 0);
         assert.equal(stdout, '# chromium:\n');
-
         // The sub-set lines actually relating to the console output. Other
         // lines may relate to internal Chrome errors, such as
         // '[0322/162300.874805:ERROR:command_buffer_proxy_impl.cc(125)]
@@ -147,7 +146,10 @@ describe('chromium', function () {
         // GpuChannelMsg_CreateCommandBuffer.'
         var stderrLines = stderr
           .split('\n')
-          .filter(function (l) { return l.indexOf('INFO:CONSOLE') >= 0; });
+          .filter(function (l) {
+            return l.indexOf('INFO:CONSOLE') >= 0
+              && l.indexOf('window.webkitStorageInfo') === -1;
+          });
         var expectedLines = [
           'ok 1 test passes',
           '# tests 1',
