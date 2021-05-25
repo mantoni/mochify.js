@@ -1,5 +1,18 @@
 # Changes
 
+## 8.0.0
+
+- 💥 [`119d6f0`](https://github.com/mantoni/mochify.js/commit/119d6f0a678a32ce39fb381ce7819c7280fd202b)
+  Update mocaccino, mocha and puppeteer (Frederik Ring)
+- 💥 [`9655108`](https://github.com/mantoni/mochify.js/commit/965510885b7c262a603a2bd8a5caad68a688707b)
+  Drop node 10 support (Frederik Ring)
+- 📚 [`4147ccc`](https://github.com/mantoni/mochify.js/commit/4147ccc7ebc70b83db1d0fcbed0075a283429b18)
+  Document compatibility for v8.x
+- 🐛 [`9a706fe`](https://github.com/mantoni/mochify.js/commit/9a706febc9bb0e7318e07b0653028a009b4488d8)
+  Swallow deprecation notices about window.webkitStorageInfo (Frederik Ring)
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2021-05-25._
+
 ## 7.1.1
 
 - 🐛 [`eb70de7`](https://github.com/mantoni/mochify.js/commit/eb70de7280cd7356962e3d602edba796cf816762)
