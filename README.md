@@ -142,7 +142,7 @@ Here is a minimal `.travis.yml`:
 ```yml
 language: node_js
 node_js:
-  - "8"
+  - "16"
 
 sudo: false
 
@@ -361,6 +361,11 @@ Puppeteer fails to launch on M1. Follow these steps to work around:
 
 ## Compatibility
 
+- v8.x
+    - Node Node 12.0+, Node 14.0+, Node 16.0+
+    - Mocha ^8.4
+    - Browserify ^16.5
+    - Puppeteer ^9.1
 - v7.x
     - Node 10.0+, Node 12.0+, Node 14.0+
     - Mocha ^5.2
