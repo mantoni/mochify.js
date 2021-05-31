@@ -57,7 +57,7 @@ describe('chromium', function () {
   it('fails and exits if `describe` throws', function (done) {
     run('describe-throws', ['-R', 'tap'], function (code, stdout) {
       assert.equal(stdout.indexOf('# chromium:\n'
-        + 'Evaluation failed: Error: Oh noes!\n'), 0);
+        + 'page.evaluate: Evaluation failed: Error: Oh noes!\n'), 0);
       assert.equal(stdout.indexOf('i should not show up'), -1);
       assert.equal(code, 1);
       done();
