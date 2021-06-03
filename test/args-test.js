@@ -32,6 +32,7 @@ describe('args', function () {
     assert.equal(opts.commondir, true);
     assert.equal(opts['request-interception'], true);
     assert.equal(opts['detect-globals'], true);
+    assert.equal(opts.engine, 'chromium');
   });
 
   it('parses --reporter', function () {
@@ -341,6 +342,18 @@ describe('args', function () {
     var opts = args(['--no-detect-globals']);
 
     assert.equal(opts['detect-globals'], false);
+  });
+
+  it('parses --engine', function () {
+    var opts = args(['--engine', 'firefox']);
+
+    assert.equal(opts.engine, 'firefox');
+  });
+
+  it('parses -e as an alias for --engine', function () {
+    var opts = args(['-e', 'webkit']);
+
+    assert.equal(opts.engine, 'webkit');
   });
 
   it('fails with invert but no grep option', function (done) {
