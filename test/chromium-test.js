@@ -133,37 +133,18 @@ describe('chromium', function () {
     }
   );
 
-  it.skip('receives all console errors on stderr when --dumpio is given',
+  it('receives all console errors on stderr when --dumpio is given',
     function (done) {
       run('passes', ['-R', 'tap', '--dumpio'], function (code, stdout, stderr) {
-
-        assert.equal(code, 0);
-        assert.equal(stdout, '# chromium:\n');
-        // The sub-set lines actually relating to the console output. Other
-        // lines may relate to internal Chrome errors, such as
-        // '[0322/162300.874805:ERROR:command_buffer_proxy_impl.cc(125)]
-        // ContextResult::kTransientFailure: Failed to send
-        // GpuChannelMsg_CreateCommandBuffer.'
-        var stderrLines = stderr
-          .split('\n')
-          .filter(function (l) {
-            return l.indexOf('INFO:CONSOLE') >= 0
-              && l.indexOf('window.webkitStorageInfo') === -1;
-          });
-        var expectedLines = [
-          'ok 1 test passes',
-          '# tests 1',
-          '# pass 1',
-          '# fail 0',
-          '1..1'
-        ];
-        var source = '", source: __puppeteer_evaluation_script__';
-        expectedLines.forEach(function (expectedLine, i) {
-          var actual = stderrLines[i];
-          var expected = '"' + expectedLines[i] + source;
-          assert.equal(actual.indexOf(expected), 40,
-            actual + ' should contain ' + expected);
-        });
+        assert.equal(stdout, '# chromium:\n'
+          + 'ok 1 test passes\n'
+          + '# tests 1\n'
+          + '# pass 1\n'
+          + '# fail 0\n'
+          + '1..1\n');
+        assert(stderr.split('\n').filter(Boolean).every(function (line) {
+          return /^api <?=>?/.test(line.trim());
+        }));
         done();
       });
     });
