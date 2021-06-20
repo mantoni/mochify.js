@@ -1,5 +1,18 @@
 # Changes
 
+## 8.0.1
+
+- 🛡 [`20f8748`](https://github.com/mantoni/mochify.js/commit/20f874807581e908d8595238c4d060a31292ecf6)
+  Update transient `ws` dependency through npm audit (Frederik Ring)
+- 🛡 [`255aaea`](https://github.com/mantoni/mochify.js/commit/255aaea385aa81b924101abb9e07c03c7e053cca)
+  Update watchify package to v4.0.0 (#226) (Albert Wang)
+- 🛡 [`9a9e1ac`](https://github.com/mantoni/mochify.js/commit/9a9e1acd9065837fd37ba9a7152d11c13dfc4fa3)
+  Clean up package-lock.json (#227) (Albert Wang)
+- ✨ [`3179da8`](https://github.com/mantoni/mochify.js/commit/3179da828bbe913be7efd6002aba3a869bccfc66)
+  Migrate CI to GitHub actions (Frederik Ring)
+
+_Released by Frederik Ring on 2021-06-20._
+
 ## 8.0.0
 
 - 💥 [`119d6f0`](https://github.com/mantoni/mochify.js/commit/119d6f0a678a32ce39fb381ce7819c7280fd202b)
