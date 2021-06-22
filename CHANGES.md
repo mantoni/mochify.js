@@ -1,5 +1,12 @@
 # Changes
 
+## 8.1.0
+
+- ✨ [`71f4376`](https://github.com/mantoni/mochify.js/commit/71f4376cc1bda70d9f71f38680c8c4fba03eb509)
+  Update puppeteer to 10.0.0 (#228) (Albert Wang)
+
+_Released by Frederik Ring on 2021-06-22._
+
 ## 8.0.1
 
 - 🛡 [`20f8748`](https://github.com/mantoni/mochify.js/commit/20f874807581e908d8595238c4d060a31292ecf6)
