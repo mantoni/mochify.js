@@ -56,7 +56,8 @@
     "lint": "eslint .",
     "test": "exit 1",
     "prettier:check": "prettier --check *.{js,json,md}",
-    "prettier:write": "prettier --write *.{js,json,md}"
+    "prettier:write": "prettier --write *.{js,json,md}",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -73,6 +74,8 @@
     "eslint": "^7.30.0",
     "eslint-plugin-mocha": "^8.2.0",
     "eslint-plugin-node": "^11.1.0",
+    "husky": "^7.0.0",
+    "lint-staged": "^11.0.0",
     "prettier": "^2.3.2"
   },
   "license": "MIT"
