@@ -12,11 +12,14 @@ const opts = yargs(hideBin(process.argv))
     alias: 'R',
     type: 'string'
   })
+  .option('bundle', {
+    type: 'string'
+  })
   .parse();
 
 // The bundle command to run (from config):
 const config = {
-  bundle: 'browserify --debug',
+  bundle: opts.bundle,
   reporter: opts.reporter
 };
 

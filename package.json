@@ -54,7 +54,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "exit 1",
+    "test": "cli/index.js --bundle 'browserify --debug' ./test.js",
     "prettier:check": "prettier --check *.{js,json,md}",
     "prettier:write": "prettier --write *.{js,json,md}",
     "prepare": "husky install"
