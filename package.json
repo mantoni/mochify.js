@@ -57,7 +57,13 @@
     "type": "git",
     "url": "https://github.com/mantoni/mochify.js.git"
   },
+  "workspaces": [
+    "cli",
+    "mochify",
+    "driver-puppeteer"
+  ],
   "devDependencies": {
+    "browserify": "^17.0.0"
   },
   "license": "MIT"
 }

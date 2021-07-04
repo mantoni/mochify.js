@@ -40,6 +40,10 @@ documentation][puppeteer-envs].
 
 > TODO Rewrite usage
 
+```bash
+node cli --reporter nyan
+```
+
 ## Workaround for Apple Silicon
 
 Puppeteer fails to launch on M1. Follow these steps to work around:
