@@ -126,14 +126,15 @@ mocha.setup(/* MOCHIFY_UI */);
 mocha.timeout(/* MOCHIFY_TIMEOUT */);
 mocha.mochify_pollEvents = pollEvents;
 
-let script = '';
+const chunks = [];
 mocha.mochify_receive = (chunk) => {
-  script += chunk;
+  chunks.push(chunk);
 };
 mocha.mochify_run = () => {
   // Inject script
   const s = document.createElement('script');
-  s.textContent = script;
+  s.type = 'text/javascript';
+  s.textContent = chunks.join('');
   document.body.appendChild(s);
   // Run mocha
   mocha.run((code) => write('mochify.callback', { code }));
