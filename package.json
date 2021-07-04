@@ -49,6 +49,9 @@
   "engines": {
     "node": ">=12"
   },
+  "eslintConfig": {
+    "extends": "@studio"
+  },
   "scripts": {
     "lint": "eslint .",
     "test": "exit 1"
@@ -63,7 +66,11 @@
     "driver-puppeteer"
   ],
   "devDependencies": {
-    "browserify": "^17.0.0"
+    "@studio/eslint-config": "^2.0.0",
+    "browserify": "^17.0.0",
+    "eslint": "^7.30.0",
+    "eslint-plugin-mocha": "^8.2.0",
+    "eslint-plugin-node": "^11.1.0"
   },
   "license": "MIT"
 }

@@ -1,8 +1,9 @@
+/*eslint-env mocha*/
 'use strict';
 
 describe('test', () => {
   it('passes', () => {
-    console.log('Oh, hi!')
+    console.log('Oh, hi!');
   });
 
   it('skipped');

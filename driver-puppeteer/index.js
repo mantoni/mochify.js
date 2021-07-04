@@ -22,7 +22,7 @@ async function mochifyDriver(options = { url: default_url }) {
   });
 
   const page = await browser.newPage();
-  page.on('console', async (msg) => {
+  page.on('console', (msg) => {
     const type = msg.type();
     const text = msg.text();
     if (type === 'log') {

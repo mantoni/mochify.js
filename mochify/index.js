@@ -30,5 +30,6 @@ async function mochify(config = {}) {
 }
 
 function resolveMochifyDriver(name = 'puppeteer') {
+  // eslint-disable-next-line node/global-require
   return require(`@mochify/driver-${name}`);
 }

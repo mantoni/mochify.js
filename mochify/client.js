@@ -1,4 +1,4 @@
-/*globals Mocha*/
+/*globals Mocha, mocha, document*/
 'use strict';
 
 const {
@@ -86,7 +86,7 @@ function forward(runner, event, processor) {
 }
 
 class MochifyReporter {
-  constructor(runner, options = {}) {
+  constructor(runner) {
     const { stats } = runner;
 
     forward(runner, EVENT_RUN_BEGIN, () => ({

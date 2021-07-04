@@ -1,7 +1,7 @@
 'use strict';
 
-const execa = require('execa')
-const { parseArgsStringToArgv } = require('string-argv')
+const execa = require('execa');
+const { parseArgsStringToArgv } = require('string-argv');
 
 exports.resolveBundle = resolveBundle;
 

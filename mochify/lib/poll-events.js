@@ -13,7 +13,7 @@ async function pollEvents(driver, emit) {
       return; // stop polling
     }
     if (event.startsWith('console.')) {
-      console[event.substring(8)].apply(console, data);
+      console[event.substring(8)](...data);
     } else {
       emit(event, data);
     }

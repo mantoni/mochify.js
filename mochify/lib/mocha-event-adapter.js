@@ -49,7 +49,7 @@ function mochaEventAdapter(runner, mapStack) {
   return (event, data) => {
     event_handlers[event](data);
   };
-};
+}
 
 function identity(object) {
   return object;
