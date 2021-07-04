@@ -54,7 +54,9 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "exit 1"
+    "test": "exit 1",
+    "prettier:check": "prettier --check *.{js,json,md}",
+    "prettier:write": "prettier --write *.{js,json,md}"
   },
   "repository": {
     "type": "git",
@@ -70,7 +72,8 @@
     "browserify": "^17.0.0",
     "eslint": "^7.30.0",
     "eslint-plugin-mocha": "^8.2.0",
-    "eslint-plugin-node": "^11.1.0"
+    "eslint-plugin-node": "^11.1.0",
+    "prettier": "^2.3.2"
   },
   "license": "MIT"
 }
