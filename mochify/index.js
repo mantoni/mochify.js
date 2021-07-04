@@ -26,7 +26,7 @@ async function mochify(config = {}) {
   const configured_client = setupClient(client);
   await driver.evaluate(`${mocha}\n${configured_client}`);
 
-  await run(driver, mocha_runner, bundle.toString());
+  await run(driver, mocha_runner, bundle);
 }
 
 function resolveMochifyDriver(name = 'puppeteer') {
