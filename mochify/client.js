@@ -1,4 +1,4 @@
-/*globals Mocha, mocha, document*/
+/*globals Mocha, mocha, window, document*/
 'use strict';
 
 const {
@@ -139,10 +139,18 @@ mocha.mochify_run = () => {
   mocha.run((code) => write('mochify.callback', { code }));
 };
 
-['debug', 'log', 'info', 'warn', 'errror'].forEach((name) => {
+['debug', 'log', 'info', 'warn', 'error'].forEach((name) => {
   if (console[name]) {
     console[name] = function () {
       write(`console.${name}`, slice.call(arguments));
     };
   }
 });
+
+window.onerror = (msg, file, line, column, err) => {
+  if (err) {
+    console.error(err.stack);
+  } else {
+    console.error(`${msg}\n    at ${file}:${line}:${column}`);
+  }
+};
