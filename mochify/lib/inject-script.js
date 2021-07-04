@@ -17,15 +17,16 @@ const MAX_SCRIPT_CHUNK = 700 * 1000;
  * then inject a script tag there.
  */
 async function injectScript(driver, script) {
-  let next_script = null;
   do {
+    let chunk;
     if (script.length > MAX_SCRIPT_CHUNK) {
-      next_script = script.substring(MAX_SCRIPT_CHUNK);
-      script = script.substring(0, MAX_SCRIPT_CHUNK);
+      chunk = script.substring(0, MAX_SCRIPT_CHUNK);
+      script = script.substring(MAX_SCRIPT_CHUNK);
     } else {
-      next_script = null;
+      chunk = script;
+      script = null;
     }
-    await driver.evaluate(`mocha.mochify_receive(${JSON.stringify(script)})`);
-  } while (next_script);
+    await driver.evaluate(`mocha.mochify_receive(${JSON.stringify(chunk)})`);
+  } while (script);
   await driver.evaluate(`mocha.mochify_run()`);
 }
