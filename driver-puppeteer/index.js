@@ -37,11 +37,11 @@ async function mochifyDriver(options = {}) {
     stderr.write('\n');
   });
 
-  page.on('error', async (err) => {
+  page.on('error', (err) => {
     stderr.write(err.stack || String(err));
     stderr.write('\n');
     process.exitCode = 1;
-    await end();
+    end();
   });
 
   async function end() {
@@ -52,9 +52,7 @@ async function mochifyDriver(options = {}) {
   await page.goto(options.url || default_url);
 
   return {
-    evaluate(script) {
-      return page.evaluate(script);
-    },
+    evaluate: (script) => page.evaluate(script),
     end
   };
 }

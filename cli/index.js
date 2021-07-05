@@ -15,6 +15,9 @@ const opts = yargs(hideBin(process.argv))
   .option('bundle', {
     type: 'string'
   })
+  .option('serve', {
+    type: 'string'
+  })
   .option('server', {
     type: 'boolean'
   })
@@ -24,6 +27,7 @@ const opts = yargs(hideBin(process.argv))
 const config = {
   bundle: opts.bundle,
   reporter: opts.reporter,
+  serve: opts.serve,
   server: opts.server
 };
 

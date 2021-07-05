@@ -53,7 +53,7 @@ function pollEvents() {
   if (queue.length) {
     const events = queue.slice();
     queue.length = 0;
-    return events;
+    return Promise.resolve(events);
   }
   return new Promise((resolve) => {
     pollResolve = resolve;

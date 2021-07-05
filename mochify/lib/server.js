@@ -1,6 +1,7 @@
 'use strict';
 
-const fs = require('fs/promises');
+const fs = require('fs');
+const fs_promises = require('fs/promises');
 const { promisify } = require('util');
 const path = require('path');
 const https = require('https');
@@ -8,30 +9,32 @@ const mime = require('mime');
 
 exports.startServer = startServer;
 
-async function startServer(port = null) {
+async function startServer(options = {}) {
   const [key, cert] = await Promise.all([
-    fs.readFile(path.join(__dirname, '..', 'fixture', 'key.pem')),
-    fs.readFile(path.join(__dirname, '..', 'fixture', 'cert.pem'))
+    fs_promises.readFile(path.join(__dirname, '..', 'fixture', 'key.pem')),
+    fs_promises.readFile(path.join(__dirname, '..', 'fixture', 'cert.pem'))
   ]);
 
-  const server = https.createServer({ key, cert }, (req, res) => {
+  const base_path = options.serve || process.cwd();
+
+  const server = https.createServer({ key, cert }, async (req, res) => {
     if (req.url === '/') {
       res.writeHead(200);
       res.end('<!DOCTYPE html>\n<html><body></body></html>');
-    } else {
-      const file = req.url.substring(1);
-      fs.stat(file, (err) => {
-        if (err) {
-          res.writeHead(404);
-          res.end();
-          return;
-        }
-        res.writeHead(200, {
-          'Content-Type': mime.getType(file)
-        });
-        fs.createReadStream(file).pipe(res);
-      });
+      return;
     }
+    const file = path.join(base_path, req.url.substring(1));
+    try {
+      await fs_promises.stat(file);
+    } catch (err) {
+      res.writeHead(404);
+      res.end();
+      return;
+    }
+    res.writeHead(200, {
+      'Content-Type': mime.getType(file)
+    });
+    fs.createReadStream(file).pipe(res);
   });
 
   server.on('error', (err) => {
@@ -39,7 +42,7 @@ async function startServer(port = null) {
     process.stderr.write('\n');
   });
 
-  await promisify(server.listen).call(server, port);
+  await promisify(server.listen).call(server, options.port);
 
   return {
     port: server.address().port,
