@@ -6,10 +6,11 @@ exports.mochifyDriver = mochifyDriver;
 
 const default_url = `file:${__dirname}/index.html`;
 
-async function mochifyDriver(options = { url: default_url }) {
+async function mochifyDriver(options = {}) {
   const stderr = options.stderr || process.stderr;
 
   const browser = await driver.launch({
+    ignoreHTTPSErrors: true
     /*
     args: [
       '--allow-insecure-localhost',
@@ -35,6 +36,7 @@ async function mochifyDriver(options = { url: default_url }) {
     stderr.write(text);
     stderr.write('\n');
   });
+
   page.on('error', async (err) => {
     stderr.write(err.stack || String(err));
     stderr.write('\n');
@@ -47,7 +49,7 @@ async function mochifyDriver(options = { url: default_url }) {
     await browser.close();
   }
 
-  await page.goto(options.url);
+  await page.goto(options.url || default_url);
 
   return {
     evaluate(script) {

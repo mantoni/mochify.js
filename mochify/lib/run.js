@@ -8,7 +8,7 @@ const { mochaEventAdapter } = require('./mocha-event-adapter');
 
 exports.run = run;
 
-async function run(driver, mocha_runner, script) {
+function run(driver, mocha_runner, script) {
   let mapStack = null;
   const source_map = fromSource(script);
   if (source_map) {
@@ -16,8 +16,8 @@ async function run(driver, mocha_runner, script) {
     script = removeComments(script);
   }
 
-  const emit = mochaEventAdapter(mocha_runner, mapStack);
-  pollEvents(driver, emit);
+  injectScript(driver, script);
 
-  await injectScript(driver, script);
+  const emit = mochaEventAdapter(mocha_runner, mapStack);
+  return pollEvents(driver, emit);
 }

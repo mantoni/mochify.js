@@ -15,12 +15,16 @@ const opts = yargs(hideBin(process.argv))
   .option('bundle', {
     type: 'string'
   })
+  .option('server', {
+    type: 'boolean'
+  })
   .parse();
 
 // The bundle command to run (from config):
 const config = {
   bundle: opts.bundle,
-  reporter: opts.reporter
+  reporter: opts.reporter,
+  server: opts.server
 };
 
 (async () => {
