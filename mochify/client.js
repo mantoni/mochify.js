@@ -128,7 +128,12 @@ mocha.mochify_run = () => {
   s.textContent = chunks.join('');
   document.body.appendChild(s);
   // Run mocha
-  mocha.run((code) => write('mochify.callback', { code }));
+  mocha.run((code) => {
+    if (typeof __coverage__ !== 'undefined') {
+      write('mochify.coverage', window.__coverage__);
+    }
+    write('mochify.callback', { code });
+  });
 };
 
 ['debug', 'log', 'info', 'warn', 'error'].forEach((name) => {

@@ -12,7 +12,9 @@ async function pollEvents(driver, emit) {
       if (event === 'mochify.callback') {
         return data.code || 0; // stop polling
       }
-      if (event.startsWith('console.')) {
+      if (event === 'mochify.coverage') {
+        global.__coverage__ = data;
+      } else if (event.startsWith('console.')) {
         console[event.substring(8)](...data);
       } else {
         emit(event, data);
