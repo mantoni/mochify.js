@@ -15,9 +15,24 @@ async function startServer(options = {}) {
     fs_promises.readFile(path.join(__dirname, '..', 'fixture', 'cert.pem'))
   ]);
 
-  const base_path = options.serve || process.cwd();
+  const server = https.createServer({ key, cert }, requestHandler(options));
 
-  const server = https.createServer({ key, cert }, async (req, res) => {
+  server.on('error', (err) => {
+    process.stderr.write(err.stack || String(err));
+    process.stderr.write('\n');
+  });
+
+  await promisify(server.listen).call(server, options.port);
+
+  return {
+    port: server.address().port,
+    close: () => promisify(server.close).call(server)
+  };
+}
+
+function requestHandler(options) {
+  const base_path = options.serve || process.cwd();
+  return async (req, res) => {
     if (req.url === '/') {
       res.writeHead(200);
       res.end('<!DOCTYPE html>\n<html><body></body></html>');
@@ -35,17 +50,5 @@ async function startServer(options = {}) {
       'Content-Type': mime.getType(file)
     });
     fs.createReadStream(file).pipe(res);
-  });
-
-  server.on('error', (err) => {
-    process.stderr.write(err.stack || String(err));
-    process.stderr.write('\n');
-  });
-
-  await promisify(server.listen).call(server, options.port);
-
-  return {
-    port: server.address().port,
-    close: () => promisify(server.close).call(server)
   };
 }
