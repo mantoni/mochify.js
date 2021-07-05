@@ -51,8 +51,13 @@ async function mochifyDriver(options = {}) {
 
   await page.goto(options.url || default_url);
 
+  function evaluate(script) {
+    return page.evaluate(script);
+  }
+
   return {
-    evaluate: (script) => page.evaluate(script),
+    evaluate,
+    evaluateReturn: evaluate,
     end
   };
 }

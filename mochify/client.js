@@ -47,27 +47,18 @@ function copy(keys, from, to) {
 }
 
 const queue = [];
-let pollResolve = null;
 
 function pollEvents() {
-  if (queue.length) {
-    const events = queue.slice();
-    queue.length = 0;
-    return Promise.resolve(events);
+  if (!queue.length) {
+    return null;
   }
-  return new Promise((resolve) => {
-    pollResolve = resolve;
-  });
+  const events = queue.slice();
+  queue.length = 0;
+  return events;
 }
 
 function write(event, data) {
-  const queue_entry = [event, data];
-  if (pollResolve) {
-    pollResolve([queue_entry]);
-    pollResolve = null;
-  } else {
-    queue.push(queue_entry);
-  }
+  queue.push([event, data]);
 }
 
 function getTestData(test) {

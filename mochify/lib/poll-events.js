@@ -4,7 +4,10 @@ exports.pollEvents = pollEvents;
 
 async function pollEvents(driver, emit) {
   for (;;) {
-    const events = await driver.evaluate('mocha.mochify_pollEvents()');
+    const events = await driver.evaluateReturn('mocha.mochify_pollEvents()');
+    if (!events) {
+      continue;
+    }
     for (const [event, data] of events) {
       if (event === 'mochify.callback') {
         return data.code || 0; // stop polling
