@@ -35,9 +35,12 @@ async function mochify(config = {}) {
   const configured_client = setupClient(client);
   await driver.evaluate(`${mocha}\n${configured_client}`);
 
-  const exit_code = await run(driver, mocha_runner, bundle, server);
-
-  await shutdown(driver, server);
+  let exit_code;
+  try {
+    exit_code = await run(driver, mocha_runner, bundle, server);
+  } finally {
+    await shutdown(driver, server);
+  }
 
   if (exit_code) {
     process.exitCode = exit_code;
