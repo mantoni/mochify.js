@@ -8,6 +8,9 @@ const { hideBin } = require('yargs/helpers');
 const { mochify } = require('@mochify/mochify');
 
 const opts = yargs(hideBin(process.argv))
+  .option('driver', {
+    type: 'string'
+  })
   .option('reporter', {
     alias: 'R',
     type: 'string'
@@ -25,6 +28,7 @@ const opts = yargs(hideBin(process.argv))
 
 // The bundle command to run (from config):
 const config = {
+  driver: opts.driver,
   bundle: opts.bundle,
   reporter: opts.reporter,
   serve: opts.serve,
