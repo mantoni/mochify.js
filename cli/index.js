@@ -21,9 +21,6 @@ const opts = yargs(hideBin(process.argv))
   .option('serve', {
     type: 'string'
   })
-  .option('server', {
-    type: 'boolean'
-  })
   .parse();
 
 // The bundle command to run (from config):

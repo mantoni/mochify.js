@@ -15,7 +15,10 @@ async function startServer(options = {}) {
     fs_promises.readFile(path.join(__dirname, '..', 'fixture', 'cert.pem'))
   ]);
 
-  const server = https.createServer({ key, cert }, requestHandler(options));
+  const server = https.createServer(
+    { key, cert },
+    requestHandler(options.serve)
+  );
 
   server.on('error', (err) => {
     process.stderr.write(err.stack || String(err));
@@ -30,8 +33,7 @@ async function startServer(options = {}) {
   };
 }
 
-function requestHandler(options) {
-  const base_path = options.serve || process.cwd();
+function requestHandler(base_path) {
   return async (req, res) => {
     if (req.url === '/') {
       res.writeHead(200);
