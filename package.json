@@ -67,7 +67,8 @@
     "cli",
     "mochify",
     "driver-puppeteer",
-    "driver-webdriver"
+    "driver-webdriver",
+    "driver-playwright"
   ],
   "devDependencies": {
     "@studio/eslint-config": "^2.0.0",
