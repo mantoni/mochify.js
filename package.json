@@ -66,9 +66,10 @@
   "workspaces": [
     "cli",
     "mochify",
+    "driver-jsdom",
+    "driver-playwright",
     "driver-puppeteer",
-    "driver-webdriver",
-    "driver-playwright"
+    "driver-webdriver"
   ],
   "devDependencies": {
     "@studio/eslint-config": "^2.0.0",
