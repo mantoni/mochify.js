@@ -37,12 +37,14 @@ async function mochifyDriver(options = {}) {
     stderr.write('\n');
   });
 
-  page.on('error', (err) => {
+  function handlePuppeteerError(err) {
     stderr.write(err.stack || String(err));
     stderr.write('\n');
     process.exitCode = 1;
     end();
-  });
+  }
+
+  page.on('pageerror', handlePuppeteerError).on('error', handlePuppeteerError);
 
   async function end() {
     await page.close();
