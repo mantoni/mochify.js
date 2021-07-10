@@ -2,23 +2,32 @@
 
 exports.pollEvents = pollEvents;
 
-async function pollEvents(driver, emit) {
-  for (;;) {
-    const events = await driver.evaluateReturn('mocha.mochify_pollEvents()');
-    if (!events) {
-      continue;
-    }
-    for (const [event, data] of events) {
-      if (event === 'mochify.callback') {
-        return data.code || 0; // stop polling
+function pollEvents(driver, emit) {
+  return new Promise((resolve) => {
+    async function doPoll() {
+      const events = await driver.evaluateReturn('mocha.mochify_pollEvents()');
+      if (!events) {
+        setImmediate(doPoll);
+        return;
       }
-      if (event === 'mochify.coverage') {
-        global.__coverage__ = data;
-      } else if (event.startsWith('console.')) {
-        console[event.substring(8)](...data);
-      } else {
-        emit(event, data);
+
+      for (const [event, data] of events) {
+        if (event === 'mochify.callback') {
+          resolve(data.code || 0);
+          return;
+        }
+        if (event === 'mochify.coverage') {
+          global.__coverage__ = data;
+        } else if (event.startsWith('console.')) {
+          console[event.substring(8)](...data);
+        } else {
+          emit(event, data);
+        }
       }
+
+      setImmediate(doPoll);
     }
-  }
+
+    doPoll();
+  });
 }
