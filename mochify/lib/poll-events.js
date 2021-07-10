@@ -2,18 +2,19 @@
 
 exports.pollEvents = pollEvents;
 
-async function pollEvents(driver, emit) {
-  let interval;
-  const result = await new Promise((resolve) => {
-    interval = setInterval(async () => {
+function pollEvents(driver, emit) {
+  return new Promise((resolve) => {
+    async function doPoll() {
       const events = await driver.evaluateReturn('mocha.mochify_pollEvents()');
       if (!events) {
+        setImmediate(doPoll);
         return;
       }
+
       for (const [event, data] of events) {
         if (event === 'mochify.callback') {
           resolve(data.code || 0);
-          return; // stop polling
+          return;
         }
         if (event === 'mochify.coverage') {
           global.__coverage__ = data;
@@ -23,8 +24,10 @@ async function pollEvents(driver, emit) {
           emit(event, data);
         }
       }
-    }, 1);
+
+      setImmediate(doPoll);
+    }
+
+    doPoll();
   });
-  clearInterval(interval);
-  return result;
 }
