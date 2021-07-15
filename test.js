@@ -1,9 +1,10 @@
 /*eslint-env mocha*/
+/*global navigator*/
 'use strict';
 
 describe('test', () => {
   it('passes', () => {
-    console.log('Oh, hi!');
+    console.log('Oh, hi!', navigator.userAgent);
   });
 
   it('skipped');
