@@ -11,6 +11,9 @@ const opts = yargs(hideBin(process.argv))
   .option('driver', {
     type: 'string'
   })
+  .option('driver-option', {
+    type: 'object'
+  })
   .option('reporter', {
     alias: 'R',
     type: 'string'
@@ -26,6 +29,7 @@ const opts = yargs(hideBin(process.argv))
 // The bundle command to run (from config):
 const config = {
   driver: opts.driver,
+  driver_options: opts['driver-option'],
   bundle: opts.bundle,
   reporter: opts.reporter,
   serve: opts.serve,

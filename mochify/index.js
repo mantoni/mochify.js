@@ -14,7 +14,7 @@ async function mochify(config = {}) {
   const mocha_runner = createMochaRunner(config.reporter || 'spec');
   const { mochifyDriver } = resolveMochifyDriver(config.driver);
 
-  const driver_options = {};
+  const driver_options = config.driver_options || {};
   let server = null;
   if (config.serve) {
     server = await startServer({ serve: config.serve });
