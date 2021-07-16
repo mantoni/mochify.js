@@ -24,6 +24,9 @@ const opts = yargs(hideBin(process.argv))
   .option('serve', {
     type: 'string'
   })
+  .option('server-option', {
+    type: 'object'
+  })
   .parse();
 
 // The bundle command to run (from config):
@@ -33,7 +36,7 @@ const config = {
   bundle: opts.bundle,
   reporter: opts.reporter,
   serve: opts.serve,
-  server: opts.server
+  server_options: opts['server-option']
 };
 
 (async () => {

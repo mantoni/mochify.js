@@ -9,8 +9,8 @@ const mime = require('mime');
 
 exports.startServer = startServer;
 
-async function startServer(options = {}) {
-  const server = http.createServer(requestHandler(options.serve));
+async function startServer(base_path, options = {}) {
+  const server = http.createServer(requestHandler(base_path));
 
   server.on('error', (err) => {
     process.stderr.write(err.stack || String(err));

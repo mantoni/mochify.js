@@ -17,7 +17,7 @@ async function mochify(config = {}) {
   const driver_options = config.driver_options || {};
   let server = null;
   if (config.serve) {
-    server = await startServer({ serve: config.serve });
+    server = await startServer(config.serve, config.server_options);
     driver_options.url = `http://localhost:${server.port}`;
   }
 
