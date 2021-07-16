@@ -4,21 +4,13 @@ const fs = require('fs');
 const fs_promises = require('fs/promises');
 const { promisify } = require('util');
 const path = require('path');
-const https = require('https');
+const http = require('http');
 const mime = require('mime');
 
 exports.startServer = startServer;
 
 async function startServer(options = {}) {
-  const [key, cert] = await Promise.all([
-    fs_promises.readFile(path.join(__dirname, '..', 'fixture', 'key.pem')),
-    fs_promises.readFile(path.join(__dirname, '..', 'fixture', 'cert.pem'))
-  ]);
-
-  const server = https.createServer(
-    { key, cert },
-    requestHandler(options.serve)
-  );
+  const server = http.createServer(requestHandler(options.serve));
 
   server.on('error', (err) => {
     process.stderr.write(err.stack || String(err));
