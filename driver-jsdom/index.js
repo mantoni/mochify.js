@@ -1,29 +1,23 @@
 'use strict';
 
-const fs = require('fs/promises');
-const path = require('path');
 const jsdom = require('jsdom');
 
 exports.mochifyDriver = mochifyDriver;
 
-async function mochifyDriver(options = {}) {
-  options = Object.assign(
-    {
-      url: path.resolve(__dirname, './index.html'),
-      origin: 'http://localhost'
-    },
-    options
-  );
+function mochifyDriver(options = {}) {
   const stderr = options.stderr || process.stderr;
 
-  const host_document = await fs.readFile(options.url);
   const virtual_console = new jsdom.VirtualConsole();
-
-  const { window } = new jsdom.JSDOM(host_document, {
-    runScripts: 'dangerously',
-    url: options.origin,
-    virtualConsole: virtual_console
-  });
+  const { window } = new jsdom.JSDOM(
+    '<!DOCTYPE html>\n<html><body></body></html>',
+    {
+      url: options.url || 'http://localhost',
+      virtualConsole: virtual_console,
+      runScripts: 'dangerously',
+      pretendToBeVisual: true,
+      strictSSL: false
+    }
+  );
 
   function end() {
     return null;
