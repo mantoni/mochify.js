@@ -18,11 +18,14 @@ Configuration for local Selenium:
 
 ```json
 {
-  "hostname": "localhost",
-  "path": "/wd/hub",
-  "port": 4444,
-  "capabilities": {
-    "browserName": "firefox"
+  "driver": "webdriver",
+  "driver_options": {
+    "hostname": "localhost",
+    "path": "/wd/hub",
+    "port": 4444,
+    "capabilities": {
+      "browserName": "firefox"
+    }
   }
 }
 ```
@@ -47,11 +50,14 @@ Configuration for local Safari:
 
 ```json
 {
-  "hostname": "localhost",
-  "path": "/",
-  "port": 4444,
-  "capabilities": {
-    "browserName": "safari"
+  "driver": "webdriver",
+  "driver_options": {
+    "hostname": "localhost",
+    "path": "/",
+    "port": 4444,
+    "capabilities": {
+      "browserName": "safari"
+    }
   }
 }
 ```
@@ -60,14 +66,17 @@ Running tests in iOS simulator:
 
 ```json
 {
-  "hostname": "localhost",
-  "path": "/",
-  "port": 4444,
-  "capabilities": {
-    "browserName": "safari",
-    "platformName": "iOS",
-    "safari:useSimulator": true,
-    "safari:deviceType": "iPhone"
+  "driver": "webdriver",
+  "driver_options": {
+    "hostname": "localhost",
+    "path": "/",
+    "port": 4444,
+    "capabilities": {
+      "browserName": "safari",
+      "platformName": "iOS",
+      "safari:useSimulator": true,
+      "safari:deviceType": "iPhone"
+    }
   }
 }
 ```
@@ -84,14 +93,17 @@ Config for SauceLabs:
 
 ```js
 module.exports = {
-  hostname: 'ondemand.saucelabs.com',
-  path: '/wd/hub',
-  port: 80,
-  capabilities: {
-    browserName: process.env.BROWSER_NAME,
-    'sauce:options': {
-      username: process.env.SAUCE_USERNAME,
-      accessKey: process.env.SAUCE_ACCESS_KEY
+  driver: 'webdriver',
+  driver_options: {
+    hostname: 'ondemand.saucelabs.com',
+    path: '/wd/hub',
+    port: 80,
+    capabilities: {
+      browserName: process.env.BROWSER_NAME,
+      'sauce:options': {
+        username: process.env.SAUCE_USERNAME,
+        accessKey: process.env.SAUCE_ACCESS_KEY
+      }
     }
   }
 };
