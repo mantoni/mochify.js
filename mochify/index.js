@@ -1,6 +1,7 @@
 'use strict';
 
 const { readFile } = require('fs/promises');
+const { loadConfig } = require('./lib/load-config');
 const { setupClient } = require('./lib/setup-client');
 const { createMochaRunner } = require('./lib/mocha-runner');
 const { resolveBundle } = require('./lib/resolve-bundle');
@@ -9,7 +10,9 @@ const { run } = require('./lib/run');
 
 exports.mochify = mochify;
 
-async function mochify(config = {}) {
+async function mochify(options = {}) {
+  const config = await loadConfig(options);
+
   // Create runner early to verify the reporter exists:
   const mocha_runner = createMochaRunner(config.reporter || 'spec');
   const { mochifyDriver } = resolveMochifyDriver(config.driver);
