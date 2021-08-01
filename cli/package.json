@@ -4,14 +4,24 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:integration": "mocha '**/*.integration.js'"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
+  "mocha": {
+    "reporter": "dot",
+    "require": "../test/hooks.js",
+    "ignore": "node_modules/**"
+  },
   "dependencies": {
     "@mochify/mochify": "*",
     "glob": "^7.1.7",
     "yargs": "^16.2.0"
+  },
+  "devDependencies": {
+    "@sinonjs/referee-sinon": "^10.1.0",
+    "execa": "^5.1.1"
   }
 }
