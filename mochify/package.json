@@ -28,6 +28,7 @@
     "string-argv": "^0.3.1"
   },
   "devDependencies": {
-    "@sinonjs/referee-sinon": "^10.1.0"
+    "@sinonjs/referee-sinon": "^10.1.0",
+    "proxyquire": "^2.1.3"
   }
 }
