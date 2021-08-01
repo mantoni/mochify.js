@@ -29,6 +29,9 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+      - name: npm7
+        if: matrix.node-version != '16.x'
+        run: npm i -g npm@7
       - name: Install
         run: npm ci
       - name: Lint
