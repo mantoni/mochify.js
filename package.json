@@ -54,7 +54,8 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "cli/index.js --bundle 'browserify --debug' ./test.js",
+    "test": "npm test -w mochify",
+    "test:integration": "npm run test:integration -w mochify -w cli",
     "prettier:check": "prettier --check *.{js,json,md}",
     "prettier:write": "prettier --write *.{js,json,md}",
     "prepare": "husky install"
