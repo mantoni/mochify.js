@@ -9,23 +9,19 @@ async function loadConfig(options) {
 
   const default_config_promise = explorer.search();
 
-  const config_path = options.config;
-  if (config_path) {
-    const [default_config, specified_config] = await Promise.all([
-      default_config_promise,
-      explorer.load(config_path)
-    ]);
-
-    const config = Object.assign(specified_config.config, options);
-    if (default_config) {
-      return Object.assign(default_config.config, config);
-    }
-    return config;
+  if (options.config) {
+    const specified = await explorer.load(options.config);
+    const config = Object.assign(specified.config, options);
+    return mergeWithDefault(default_config_promise, config);
   }
 
+  return mergeWithDefault(default_config_promise, options);
+}
+
+async function mergeWithDefault(default_config_promise, config) {
   const default_config = await default_config_promise;
   if (default_config) {
-    return Object.assign(default_config.config, options);
+    return Object.assign(default_config.config, config);
   }
-  return options;
+  return config;
 }
