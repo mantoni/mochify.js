@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha '**/*.test.js'",
+    "test:integration": "mocha '**/*.integration.js'",
     "watch": "npm test -- --watch"
   },
   "keywords": [],
