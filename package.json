@@ -74,7 +74,6 @@
   "devDependencies": {
     "@sinonjs/referee-sinon": "^10.1.0",
     "@studio/eslint-config": "^2.2.0",
-    "browserify": "^17.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-mocha": "^9.0.0",
     "eslint-plugin-node": "^11.1.0",
