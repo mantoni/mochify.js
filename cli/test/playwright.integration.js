@@ -8,7 +8,13 @@ describe('playwright', () => {
   it('passes', async () => {
     const result = await execa(
       '../../index.js',
-      ['--driver', 'playwright', 'passes.js'],
+      [
+        '--driver',
+        'playwright',
+        '--driver-option.engine',
+        'chromium',
+        'passes.js'
+      ],
       {
         cwd: path.join(__dirname, 'fixture')
       }
@@ -25,7 +31,13 @@ describe('playwright', () => {
     try {
       result = await execa(
         '../../index.js',
-        ['--driver', 'playwright', 'fails.js'],
+        [
+          '--driver',
+          'playwright',
+          '--driver-option.engine',
+          'chromium',
+          'fails.js'
+        ],
         {
           cwd: path.join(__dirname, 'fixture')
         }
