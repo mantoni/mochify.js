@@ -28,7 +28,6 @@
   },
   "dependencies": {
     "@mochify/mochify": "^0.1.0",
-    "glob": "^7.1.7",
     "yargs": "^16.2.0"
   },
   "devDependencies": {

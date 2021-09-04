@@ -10,7 +10,7 @@ describe('bundle', () => {
     await mochify({
       driver: 'jsdom',
       reporter: 'json',
-      files: [],
+      spec: 'unknown-file.js',
       bundle: 'echo \'it("works", function(){});\''
     });
     const output = process.stdout.write.firstCall.args[0];
@@ -24,7 +24,7 @@ describe('bundle', () => {
   it('fails with error from command', async () => {
     const promise = mochify({
       driver: 'jsdom',
-      files: [],
+      spec: 'unknown-file.js',
       bundle: 'false'
     });
 

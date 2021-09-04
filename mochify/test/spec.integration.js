@@ -3,14 +3,14 @@
 const { assert, sinon } = require('@sinonjs/referee-sinon');
 const { mochify } = require('..');
 
-describe('files', () => {
-  it('passes files to bundle command', async () => {
+describe('spec', () => {
+  it('passes resolved files to bundle command', async () => {
     sinon.replace(process.stdout, 'write', sinon.fake());
 
     await mochify({
       driver: 'jsdom',
       reporter: 'json',
-      files: [`${__dirname}/fixture/passes.js`],
+      spec: `${__dirname}/fixture/pass*.js`,
       bundle: 'cat'
     });
     const output = process.stdout.write.firstCall.args[0];
