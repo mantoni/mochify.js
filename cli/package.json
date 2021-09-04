@@ -27,7 +27,7 @@
     "ignore": "node_modules/**"
   },
   "dependencies": {
-    "@mochify/mochify": "^0.1.0",
+    "@mochify/mochify": "^0.1.1",
     "yargs": "^16.2.0"
   },
   "devDependencies": {
