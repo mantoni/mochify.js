@@ -1,6 +1,6 @@
 {
   "name": "@mochify/driver-jsdom",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "JSDom driver for Mochify",
   "main": "index.js",
   "scripts": {
