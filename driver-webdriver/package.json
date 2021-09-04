@@ -1,7 +1,7 @@
 {
   "name": "@mochify/driver-webdriver",
   "version": "0.0.0",
-  "description": "",
+  "description": "WebDriver driver for Mochify",
   "main": "index.js",
   "scripts": {
     "test": "echo \"No unit tests yet\"",
@@ -9,8 +9,13 @@
     "preversion": "npm test && npm run test:integration",
     "postversion": "npm publish"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "mocha",
+    "webdriver",
+    "headless",
+    "testing"
+  ],
+  "author": "Maximilian Antoni <mail@maxantoni.de> (http://maxantoni.de)",
   "license": "MIT",
   "dependencies": {
     "webdriver": "^7.7.4"

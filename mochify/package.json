@@ -1,7 +1,7 @@
 {
   "name": "@mochify/mochify",
   "version": "0.0.0",
-  "description": "",
+  "description": "Run mocha tests in headless browsers",
   "main": "index.js",
   "scripts": {
     "test": "mocha '**/*.test.js'",
@@ -10,8 +10,13 @@
     "preversion": "npm test && npm run test:integration",
     "postversion": "npm publish"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "mocha",
+    "headless",
+    "browser",
+    "testing"
+  ],
+  "author": "Maximilian Antoni <mail@maxantoni.de> (http://maxantoni.de)",
   "license": "ISC",
   "engines": {
     "node": ">=12"

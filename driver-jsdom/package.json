@@ -1,7 +1,7 @@
 {
   "name": "@mochify/driver-jsdom",
   "version": "0.0.0",
-  "description": "",
+  "description": "JSDom driver for Mochify",
   "main": "index.js",
   "scripts": {
     "test": "echo \"No unit tests yet\"",
@@ -9,8 +9,13 @@
     "preversion": "npm test && npm run test:integration",
     "postversion": "npm publish"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "mocha",
+    "jsdom",
+    "headless",
+    "testing"
+  ],
+  "author": "Maximilian Antoni <mail@maxantoni.de> (http://maxantoni.de)",
   "license": "MIT",
   "dependencies": {
     "jsdom": "^16.6.0"
