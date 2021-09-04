@@ -2,6 +2,9 @@
   "name": "@mochify/cli",
   "version": "0.1.0",
   "description": "Run mocha tests in headless browsers from the command line",
+  "bin": {
+    "mochify": "index.js"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"No unit tests yet\"",
