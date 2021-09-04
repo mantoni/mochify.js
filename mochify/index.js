@@ -5,6 +5,7 @@ const { loadConfig } = require('./lib/load-config');
 const { setupClient } = require('./lib/setup-client');
 const { createMochaRunner } = require('./lib/mocha-runner');
 const { resolveBundle } = require('./lib/resolve-bundle');
+const { resolveSpec } = require('./lib/resolve-spec');
 const { startServer } = require('./lib/server');
 const { run } = require('./lib/run');
 
@@ -24,8 +25,10 @@ async function mochify(options = {}) {
     driver_options.url = `http://localhost:${server.port}`;
   }
 
+  const files = await resolveSpec(config.spec);
+
   const driver_promise = mochifyDriver(driver_options);
-  const bundler_promise = resolveBundle(config.bundle, config.files);
+  const bundler_promise = resolveBundle(config.bundle, files);
 
   const [driver, bundle, mocha, client] = await Promise.all([
     driver_promise,
