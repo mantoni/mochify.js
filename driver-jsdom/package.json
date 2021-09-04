@@ -21,7 +21,7 @@
     "jsdom": "^16.6.0"
   },
   "peerDependencies": {
-    "@mochify/mochify": "*"
+    "@mochify/mochify": "^0.1.0"
   },
   "files": [
     "**/*.js",
