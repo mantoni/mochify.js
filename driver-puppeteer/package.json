@@ -24,6 +24,7 @@
     "@mochify/mochify": "^0.1.0"
   },
   "files": [
+    "index.html",
     "**/*.js",
     "!**/*.test.js",
     "!test/**",
