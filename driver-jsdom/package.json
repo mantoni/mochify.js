@@ -22,5 +22,11 @@
   },
   "peerDependencies": {
     "@mochify/mochify": "*"
-  }
+  },
+  "files": [
+    "**/*.js",
+    "!**/*.test.js",
+    "!test/**",
+    "!.*"
+  ]
 }

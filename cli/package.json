@@ -31,5 +31,11 @@
   "devDependencies": {
     "@sinonjs/referee-sinon": "^10.1.0",
     "execa": "^5.1.1"
-  }
+  },
+  "files": [
+    "**/*.js",
+    "!**/*.test.js",
+    "!test/**",
+    "!.*"
+  ]
 }
