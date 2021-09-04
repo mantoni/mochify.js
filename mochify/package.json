@@ -6,7 +6,9 @@
   "scripts": {
     "test": "mocha '**/*.test.js'",
     "test:integration": "mocha '**/*.integration.js'",
-    "watch": "npm test -- --watch"
+    "watch": "npm test -- --watch",
+    "preversion": "npm test && npm run test:integration",
+    "postversion": "npm publish"
   },
   "keywords": [],
   "author": "",
