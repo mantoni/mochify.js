@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha '**/*.test.js'",
-    "test:integration": "mocha '**/*.integration.js'",
+    "test:integration": "mocha --timeout 10000 '**/*.integration.js'",
     "watch": "npm test -- --watch",
     "preversion": "npm test && npm run test:integration",
     "postversion": "npm publish"
