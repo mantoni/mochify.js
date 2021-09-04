@@ -1,7 +1,7 @@
 {
   "name": "@mochify/cli",
   "version": "0.0.0",
-  "description": "",
+  "description": "Run mocha tests in headless browsers from the command line",
   "main": "index.js",
   "scripts": {
     "test": "echo \"No unit tests yet\"",
@@ -9,8 +9,14 @@
     "preversion": "npm run test && npm run test:integration",
     "postversion": "npm publish"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "mocha",
+    "browser",
+    "testing",
+    "headless",
+    "cli"
+  ],
+  "author": "Maximilian Antoni <mail@maxantoni.de> (http://maxantoni.de)",
   "license": "MIT",
   "mocha": {
     "reporter": "dot",
