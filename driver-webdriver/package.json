@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"No unit tests yet\"",
+    "test:integration": "echo \"No integration tests yet\"",
+    "preversion": "npm test && npm run test:integration",
+    "postversion": "npm publish"
   },
   "keywords": [],
   "author": "",

@@ -54,11 +54,14 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "npm test -w mochify",
-    "test:integration": "npm run test:integration -w mochify -w cli",
+    "test": "npm test --workspaces",
+    "test:integration": "npm run test:integration --workspaces",
     "prettier:check": "prettier --check *.{js,json,md}",
     "prettier:write": "prettier --write *.{js,json,md}",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "preversion": "npm run lint && npm run prettier:check && npm test && npm run test:integration",
+    "version": "changes --commits --footer",
+    "postversion": "git push --follow-tags"
   },
   "repository": {
     "type": "git",
@@ -74,6 +77,7 @@
   ],
   "devDependencies": {
     "@sinonjs/referee-sinon": "^10.1.0",
+    "@studio/changes": "^2.2.0",
     "@studio/eslint-config": "^2.2.0",
     "eslint": "^7.32.0",
     "eslint-plugin-mocha": "^9.0.0",
