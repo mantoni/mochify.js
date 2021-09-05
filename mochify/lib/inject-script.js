@@ -26,7 +26,9 @@ async function injectScript(driver, script) {
       chunk = script;
       script = null;
     }
-    await driver.evaluate(`mocha.mochify_receive(${JSON.stringify(chunk)})`);
+    await driver.evaluate(
+      `window.mocha.mochify_receive(${JSON.stringify(chunk)})`
+    );
   } while (script);
-  await driver.evaluate(`mocha.mochify_run()`);
+  await driver.evaluate(`window.mocha.mochify_run()`);
 }

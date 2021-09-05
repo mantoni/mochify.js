@@ -116,6 +116,14 @@ function MochifyReporter(runner) {
 mocha.reporter(MochifyReporter);
 mocha.ui(/* MOCHIFY_UI */);
 mocha.timeout(/* MOCHIFY_TIMEOUT */);
+
+// Workaround for https://github.com/mozilla/geckodriver/issues/1798
+if (typeof globalThis !== 'undefined' && globalThis !== window) {
+  // Register globals on window. Mocha uses globalThis, if defined.
+  window.mocha = mocha;
+  mocha.suite.emit('pre-require', window, null, mocha);
+}
+
 mocha.mochify_pollEvents = pollEvents;
 
 var chunks = [];
