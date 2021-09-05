@@ -13,7 +13,7 @@ describe('mochify/lib/inject-script', () => {
 
     assert.calledOnceWith(
       driver.evaluate,
-      'mocha.mochify_receive("console.log(\\"Hi!\\")")'
+      'window.mocha.mochify_receive("console.log(\\"Hi!\\")")'
     );
   });
 
@@ -24,7 +24,7 @@ describe('mochify/lib/inject-script', () => {
 
     await assert.resolves(promise);
     assert.calledTwice(driver.evaluate);
-    assert.calledWith(driver.evaluate, 'mocha.mochify_run()');
+    assert.calledWith(driver.evaluate, 'window.mocha.mochify_run()');
   });
 
   it('splits script into chunks and invokes mochify_receive twice', async () => {
@@ -41,8 +41,11 @@ describe('mochify/lib/inject-script', () => {
     assert.calledWith(script.substring, 0, MAX_SCRIPT_CHUNK);
     assert.calledWith(script.substring, MAX_SCRIPT_CHUNK);
     assert.calledThrice(driver.evaluate);
-    assert.calledWith(driver.evaluate, 'mocha.mochify_receive("first")');
-    assert.calledWith(driver.evaluate, 'mocha.mochify_receive("second")');
-    assert.calledWith(driver.evaluate, 'mocha.mochify_run()');
+    assert.calledWith(driver.evaluate, 'window.mocha.mochify_receive("first")');
+    assert.calledWith(
+      driver.evaluate,
+      'window.mocha.mochify_receive("second")'
+    );
+    assert.calledWith(driver.evaluate, 'window.mocha.mochify_run()');
   });
 });

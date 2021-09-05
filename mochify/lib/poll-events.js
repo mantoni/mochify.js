@@ -5,7 +5,9 @@ exports.pollEvents = pollEvents;
 function pollEvents(driver, emit) {
   return new Promise((resolve) => {
     async function doPoll() {
-      const events = await driver.evaluateReturn('mocha.mochify_pollEvents()');
+      const events = await driver.evaluateReturn(
+        'window.mocha.mochify_pollEvents()'
+      );
       if (!events) {
         setImmediate(doPoll);
         return;
