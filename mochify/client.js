@@ -114,7 +114,7 @@ function MochifyReporter(runner) {
 }
 
 mocha.reporter(MochifyReporter);
-mocha.setup(/* MOCHIFY_UI */);
+mocha.ui(/* MOCHIFY_UI */);
 mocha.timeout(/* MOCHIFY_TIMEOUT */);
 mocha.mochify_pollEvents = pollEvents;
 
