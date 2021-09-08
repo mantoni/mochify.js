@@ -53,8 +53,16 @@ async function mochify(options = {}) {
 }
 
 function resolveMochifyDriver(name = 'puppeteer') {
-  // eslint-disable-next-line node/global-require
-  return require(`@mochify/driver-${name}`);
+  try {
+    // eslint-disable-next-line node/global-require
+    return require(`@mochify/driver-${name}`);
+  } catch (err) {
+    if (err.code !== 'MODULE_NOT_FOUND') {
+      throw err;
+    }
+    // eslint-disable-next-line node/global-require
+    return require(name);
+  }
 }
 
 async function shutdown(driver, server) {
