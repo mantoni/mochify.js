@@ -7,19 +7,19 @@ exports.mochifyDriver = mochifyDriver;
 const default_url = `file:${__dirname}/index.html`;
 
 async function mochifyDriver(options = {}) {
-  const stderr = options.stderr || process.stderr;
+  const { stderr = process.stderr, ...launch_options } = options;
+
+  launch_options.args = [
+    '--allow-insecure-localhost',
+    '--disable-dev-shm-usage',
+    ...(launch_options.args || [])
+  ];
 
   const browser = await driver.launch({
-    ignoreHTTPSErrors: true
-    /*
-    args: [
-      '--allow-insecure-localhost',
-      '--disable-dev-shm-usage',
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--disable-web-security'
-    ]
-    */
+    ignoreHTTPSErrors: true,
+    // Workaround for https://github.com/puppeteer/puppeteer/issues/6957
+    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
+    ...launch_options
   });
 
   const page = await browser.newPage();
