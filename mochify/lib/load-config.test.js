@@ -73,6 +73,26 @@ describe('mochify/lib/load-config', () => {
     });
   });
 
+  it('merges nested values', async () => {
+    setDefaultConfig({
+      driver: 'puppeteer',
+      driver_options: { args: ['--flag'] }
+    });
+    const loadConfig = requireLoadConfig();
+
+    const promise = loadConfig({
+      driver_options: { executable: '/usr/bin/runme', args: ['--color'] }
+    });
+
+    await assert.resolves(promise, {
+      driver: 'puppeteer',
+      driver_options: {
+        args: ['--flag', '--color'],
+        executable: '/usr/bin/runme'
+      }
+    });
+  });
+
   it('options override default config', async () => {
     setDefaultConfig({ reporter: 'dot' });
     const loadConfig = requireLoadConfig();
