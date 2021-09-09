@@ -12,10 +12,7 @@ async function mochifyDriver(options = {}) {
   // In case this arrives through CLI flags, yargs will pass a string
   // when a single arg is given and an Array of strings when multiple
   // args are given.
-  const extra_args = Array.isArray(launch_options.args)
-    ? launch_options.args
-    : [launch_options.args].filter(Boolean);
-
+  const extra_args = [].concat(launch_options.args).filter(Boolean);
   launch_options.args = [
     '--allow-insecure-localhost',
     '--disable-dev-shm-usage',
