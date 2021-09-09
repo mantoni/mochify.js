@@ -9,10 +9,14 @@ const default_url = `file:${__dirname}/index.html`;
 async function mochifyDriver(options = {}) {
   const { stderr = process.stderr, ...launch_options } = options;
 
+  // In case this arrives through CLI flags, yargs will pass a string
+  // when a single arg is given and an Array of strings when multiple
+  // args are given.
+  const extra_args = [].concat(launch_options.args).filter(Boolean);
   launch_options.args = [
     '--allow-insecure-localhost',
     '--disable-dev-shm-usage',
-    ...(launch_options.args || [])
+    ...extra_args
   ];
 
   const browser = await driver.launch({
