@@ -62,7 +62,10 @@ async function mochify(options = {}) {
   return { exit_code };
 }
 
-function resolveMochifyDriver(name = 'puppeteer') {
+function resolveMochifyDriver(name) {
+  if (!name) {
+    throw new Error('Specifying a driver option is required.');
+  }
   try {
     // eslint-disable-next-line node/global-require
     return require(`@mochify/driver-${name}`);
