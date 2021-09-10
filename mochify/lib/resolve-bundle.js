@@ -1,6 +1,6 @@
 'use strict';
 
-const fs = require('fs/promises');
+const fs = require('fs').promises;
 const execa = require('execa');
 const { parseArgsStringToArgv } = require('string-argv');
 

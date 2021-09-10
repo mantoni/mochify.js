@@ -1,6 +1,6 @@
 'use strict';
 
-const { readFile } = require('fs/promises');
+const { readFile } = require('fs').promises;
 const { loadConfig } = require('./lib/load-config');
 const { setupClient } = require('./lib/setup-client');
 const { createMochaRunner } = require('./lib/mocha-runner');
