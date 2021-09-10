@@ -30,7 +30,7 @@ describe('config', () => {
   it('overrides config with command line option', async () => {
     const result = await execa(
       '../../index.js',
-      ['--reporter', 'tap', 'passes.js'],
+      ['--reporter', 'tap', '--driver', 'jsdom', 'passes.js'],
       {
         cwd: path.join(__dirname, 'fixture')
       }

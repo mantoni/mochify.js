@@ -62,17 +62,32 @@ async function mochify(options = {}) {
   return { exit_code };
 }
 
-function resolveMochifyDriver(name = 'puppeteer') {
+function resolveMochifyDriver(name) {
+  if (!name) {
+    throw new Error(
+      'Specifying a driver option is required. Mochify drivers need to be installed separately from the API or the CLI.'
+    );
+  }
+
+  let driverModule;
   try {
     // eslint-disable-next-line node/global-require
-    return require(`@mochify/driver-${name}`);
+    driverModule = require(`@mochify/driver-${name}`);
   } catch (err) {
     if (err.code !== 'MODULE_NOT_FOUND') {
       throw err;
     }
     // eslint-disable-next-line node/global-require
-    return require(name);
+    driverModule = require(name);
   }
+
+  if (!driverModule || typeof driverModule.mochifyDriver !== 'function') {
+    throw new Error(
+      `Expected driver "${name}" to export a "mochifyDriver(options)" method. Did you forget to install the "@mochify/driver-${name}" package?`
+    );
+  }
+
+  return driverModule;
 }
 
 async function shutdown(driver, server) {
