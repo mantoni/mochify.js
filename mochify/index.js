@@ -26,13 +26,10 @@ async function mochify(options = {}) {
   }
 
   const files = await resolveSpec(config.spec);
+  const bundle = await resolveBundle(config.bundle, files);
 
-  const driver_promise = mochifyDriver(driver_options);
-  const bundler_promise = resolveBundle(config.bundle, files);
-
-  const [driver, bundle, mocha, client] = await Promise.all([
-    driver_promise,
-    bundler_promise,
+  const [driver, mocha, client] = await Promise.all([
+    mochifyDriver(driver_options),
     readFile(require.resolve('mocha/mocha.js'), 'utf8'),
     readFile(require.resolve('./client'), 'utf8')
   ]);
