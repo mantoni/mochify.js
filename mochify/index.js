@@ -30,12 +30,24 @@ async function mochify(options = {}) {
   const driver_promise = mochifyDriver(driver_options);
   const bundler_promise = resolveBundle(config.bundle, files);
 
-  const [driver, bundle, mocha, client] = await Promise.all([
-    driver_promise,
-    bundler_promise,
-    readFile(require.resolve('mocha/mocha.js'), 'utf8'),
-    readFile(require.resolve('./client'), 'utf8')
-  ]);
+  let driver, bundle, mocha, client;
+  try {
+    [driver, bundle, mocha, client] = await Promise.all([
+      driver_promise,
+      bundler_promise,
+      readFile(require.resolve('mocha/mocha.js'), 'utf8'),
+      readFile(require.resolve('./client'), 'utf8')
+    ]);
+  } catch (e) {
+    driver_promise
+      .then((pending_driver) => {
+        shutdown(pending_driver, server);
+      })
+      .catch(() => {
+        shutdown(null, server);
+      });
+    throw e;
+  }
 
   const configured_client = setupClient(client);
   await driver.evaluate(`${mocha}\n${configured_client}`);
@@ -66,7 +78,10 @@ function resolveMochifyDriver(name = 'puppeteer') {
 }
 
 async function shutdown(driver, server) {
-  const shutdown_promises = [driver.end()];
+  const shutdown_promises = [];
+  if (driver) {
+    shutdown_promises.push(driver.end());
+  }
   if (server) {
     shutdown_promises.push(server.close());
   }
