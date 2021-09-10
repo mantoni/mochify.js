@@ -46,6 +46,6 @@ if (opts['server-option']) {
     await mochify(opts);
   } catch (e) {
     console.error(e.stack);
-    process.exitCode = 1;
+    process.exit(1);
   }
 })();
