@@ -1,7 +1,7 @@
 'use strict';
 
 const fs = require('fs');
-const fs_promises = require('fs/promises');
+const fs_promises = require('fs').promises;
 const { promisify } = require('util');
 const path = require('path');
 const http = require('http');
