@@ -38,9 +38,9 @@ function mochifyDriver(options = {}) {
     return Promise.resolve(window.eval(script));
   }
 
-  return {
+  return Promise.resolve({
     evaluate,
     evaluateReturn: evaluate,
     end
-  };
+  });
 }
