@@ -43,7 +43,8 @@ if (opts['server-option']) {
   }
   delete opts._;
   try {
-    await mochify(opts);
+    const { exit_code } = await mochify(opts);
+    process.exitCode = exit_code;
   } catch (e) {
     console.error(e.stack);
     process.exitCode = 1;

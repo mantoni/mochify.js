@@ -59,9 +59,7 @@ async function mochify(options = {}) {
     await shutdown(driver, server);
   }
 
-  if (exit_code) {
-    process.exitCode = exit_code;
-  }
+  return { exit_code };
 }
 
 function resolveMochifyDriver(name = 'puppeteer') {
