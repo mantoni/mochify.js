@@ -9,7 +9,7 @@ describe('playwright', () => {
     try {
       return await execa(
         '../../index.js',
-        ['--driver', 'playwright', '--driver-option.engine', 'chromium', file],
+        ['--driver', 'playwright', '--driver-option.engine', 'firefox', file],
         {
           cwd: path.join(__dirname, 'fixture')
         }
