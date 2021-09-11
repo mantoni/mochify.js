@@ -28,6 +28,9 @@ const opts = yargs(hideBin(process.argv))
   .option('server-option', {
     type: 'object'
   })
+  .option('esm', {
+    type: 'boolean'
+  })
   .parse();
 
 if (opts['driver-option']) {

@@ -5,6 +5,7 @@ const { loadConfig } = require('./lib/load-config');
 const { setupClient } = require('./lib/setup-client');
 const { createMochaRunner } = require('./lib/mocha-runner');
 const { resolveBundle } = require('./lib/resolve-bundle');
+const { resolveModules } = require('./lib/resolve-modules');
 const { resolveSpec } = require('./lib/resolve-spec');
 const { startServer } = require('./lib/server');
 const { run } = require('./lib/run');
@@ -28,11 +29,13 @@ async function mochify(options = {}) {
   const files = await resolveSpec(config.spec);
 
   const driver_promise = mochifyDriver(driver_options);
-  const bundler_promise = resolveBundle(config.bundle, files);
+  const bundler_promise = config.esm
+    ? resolveModules(config.serve, files)
+    : resolveBundle(config.bundle, files);
 
-  let driver, bundle, mocha, client;
+  let driver, bundle_or_files, mocha, client;
   try {
-    [driver, bundle, mocha, client] = await Promise.all([
+    [driver, bundle_or_files, mocha, client] = await Promise.all([
       driver_promise,
       bundler_promise,
       readFile(require.resolve('mocha/mocha.js'), 'utf8'),
@@ -54,7 +57,7 @@ async function mochify(options = {}) {
 
   let exit_code;
   try {
-    exit_code = await run(driver, mocha_runner, bundle, server);
+    exit_code = await run(driver, mocha_runner, bundle_or_files);
   } finally {
     await shutdown(driver, server);
   }
