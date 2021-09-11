@@ -133,25 +133,17 @@
   };
   mocha.mochify_run = function () {
     // Inject script
-    if (chunks.length) {
-      var s = document.createElement('script');
-      s.type = 'text/javascript';
-      s.textContent = chunks.join('');
-      document.body.appendChild(s);
-    }
+    var s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.textContent = chunks.join('');
+    document.body.appendChild(s);
     // Run mocha
-    Promise.all(window.mochify_pending || [])
-      .then(function () {
-        mocha.run(function (code) {
-          if (typeof __coverage__ !== 'undefined') {
-            write('mochify.coverage', window.__coverage__);
-          }
-          write('mochify.callback', { code: code });
-        });
-      })
-      .catch(function () {
-        write('mochify.callback', { code: 1 });
-      });
+    mocha.run(function (code) {
+      if (typeof __coverage__ !== 'undefined') {
+        write('mochify.coverage', window.__coverage__);
+      }
+      write('mochify.callback', { code: code });
+    });
   };
 
   ['debug', 'log', 'info', 'warn', 'error'].forEach(function (name) {
@@ -169,6 +161,4 @@
       console.error(msg + '\n    at ' + file + ':' + line + ':' + column);
     }
   };
-
-  window.mochify_pending = [];
 })();

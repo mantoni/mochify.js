@@ -22,14 +22,14 @@ const opts = yargs(hideBin(process.argv))
   .option('bundle', {
     type: 'string'
   })
+  .option('esm', {
+    type: 'boolean'
+  })
   .option('serve', {
     type: 'string'
   })
   .option('server-option', {
     type: 'object'
-  })
-  .option('esm', {
-    type: 'boolean'
   })
   .parse();
 

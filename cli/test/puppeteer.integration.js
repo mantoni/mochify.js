@@ -50,8 +50,7 @@ describe('puppeteer', () => {
   });
 
   it('handles esm', async () => {
-    // `.` is passed to serve instead of `fixture` as run offsets process.cwd
-    const result = await run('esm.test.js', '--esm', '--serve', '.');
+    const result = await run('esm.test.js', '--esm');
     assert.isFalse(result.failed);
     const json = JSON.parse(result.stdout);
     assert.equals(json.tests.length, 1);
