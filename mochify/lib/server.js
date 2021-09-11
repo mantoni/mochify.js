@@ -10,7 +10,12 @@ const mime = require('mime');
 exports.startServer = startServer;
 
 async function startServer(base_path, options = {}) {
-  const server = http.createServer(requestHandler(base_path, options.scripts));
+  const server = http.createServer(
+    requestHandler(base_path, {
+      scripts: options._scripts,
+      modules: options._modules
+    })
+  );
 
   server.on('error', (err) => {
     process.stderr.write(err.stack || String(err));
@@ -25,22 +30,17 @@ async function startServer(base_path, options = {}) {
   };
 }
 
-function requestHandler(base_path, scripts = []) {
+function requestHandler(base_path, { scripts = [], modules = [] }) {
   return async (req, res) => {
     if (req.url === '/') {
       res.writeHead(200);
       res.end(`
 <!DOCTYPE html>
 <html>
-${scripts
-  .map((script) => {
-    const { content = '', ...attrs } = script;
-    const s_attrs = Object.keys(attrs)
-      .map((k) => `${k}="${script[k]}"`)
-      .join(' ');
-    return `<script ${s_attrs}>${content}</script>`;
-  })
-  .join('')}
+<head>
+${scripts.map((script) => `<script>${script}</script>`).join('')}
+${modules.map((mod) => `<script type="module" src="${mod}"></script>`).join('')}
+</head>
 <body></body>
 </html>
       `);

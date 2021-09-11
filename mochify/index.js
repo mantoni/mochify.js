@@ -25,21 +25,15 @@ async function mochify(options = {}) {
   ]);
 
   const configured_client = setupClient(client, config);
-
   const driver_options = config.driver_options || {};
+
   let server = null;
   if (config.serve || config.esm) {
-    const scripts = [];
-    if (config.esm) {
-      scripts.push({ content: mocha });
-      scripts.push({ content: configured_client });
-      for (const file of files) {
-        scripts.push({ type: 'module', src: file });
-      }
-    }
+    const _scripts = [mocha, configured_client];
+    const _modules = config.esm ? files : [];
     server = await startServer(
       config.serve || process.cwd(),
-      Object.assign({ scripts }, config.server_options)
+      Object.assign({ _scripts, _modules }, config.server_options)
     );
     driver_options.url = `http://localhost:${server.port}`;
   }
@@ -63,7 +57,7 @@ async function mochify(options = {}) {
     throw e;
   }
 
-  if (!config.esm) {
+  if (!server) {
     await driver.evaluate(`${mocha}\n${configured_client}`);
   }
 
