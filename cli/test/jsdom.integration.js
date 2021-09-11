@@ -5,11 +5,15 @@ const { assert } = require('@sinonjs/referee-sinon');
 const execa = require('execa');
 
 describe('jsdom', () => {
-  async function run(file) {
+  async function run(file, ...extra_args) {
     try {
-      return await execa('../../index.js', ['--driver', 'jsdom', file], {
-        cwd: path.join(__dirname, 'fixture')
-      });
+      return await execa(
+        '../../index.js',
+        [file, '--driver', 'jsdom', ...extra_args],
+        {
+          cwd: path.join(__dirname, 'fixture')
+        }
+      );
     } catch (error) {
       return error;
     }

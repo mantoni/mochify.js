@@ -18,26 +18,34 @@ async function mochify(options = {}) {
   const mocha_runner = createMochaRunner(config.reporter || 'spec');
   const { mochifyDriver } = resolveMochifyDriver(config.driver);
 
+  const [mocha, client, files] = await Promise.all([
+    readFile(require.resolve('mocha/mocha.js'), 'utf8'),
+    readFile(require.resolve('./client'), 'utf8'),
+    resolveSpec(config.spec)
+  ]);
+
+  const configured_client = setupClient(client, config);
   const driver_options = config.driver_options || {};
+
   let server = null;
-  if (config.serve) {
-    server = await startServer(config.serve, config.server_options);
+  if (config.serve || config.esm) {
+    const _scripts = [mocha, configured_client];
+    const _modules = config.esm ? files : [];
+    server = await startServer(
+      config.serve || process.cwd(),
+      Object.assign({ _scripts, _modules }, config.server_options)
+    );
     driver_options.url = `http://localhost:${server.port}`;
   }
 
-  const files = await resolveSpec(config.spec);
-
   const driver_promise = mochifyDriver(driver_options);
-  const bundler_promise = resolveBundle(config.bundle, files);
+  const bundler_promise = config.esm
+    ? Promise.resolve('')
+    : resolveBundle(config.bundle, files);
 
-  let driver, bundle, mocha, client;
+  let driver, bundle;
   try {
-    [driver, bundle, mocha, client] = await Promise.all([
-      driver_promise,
-      bundler_promise,
-      readFile(require.resolve('mocha/mocha.js'), 'utf8'),
-      readFile(require.resolve('./client'), 'utf8')
-    ]);
+    [driver, bundle] = await Promise.all([driver_promise, bundler_promise]);
   } catch (e) {
     driver_promise
       .then((pending_driver) => {
@@ -49,8 +57,9 @@ async function mochify(options = {}) {
     throw e;
   }
 
-  const configured_client = setupClient(client);
-  await driver.evaluate(`${mocha}\n${configured_client}`);
+  if (!server) {
+    await driver.evaluate(`${mocha}\n${configured_client}`);
+  }
 
   let exit_code;
   try {

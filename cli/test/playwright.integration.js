@@ -5,11 +5,18 @@ const { assert } = require('@sinonjs/referee-sinon');
 const execa = require('execa');
 
 describe('playwright', () => {
-  async function run(file) {
+  async function run(file, ...extra_args) {
     try {
       return await execa(
         '../../index.js',
-        ['--driver', 'playwright', '--driver-option.engine', 'firefox', file],
+        [
+          file,
+          '--driver',
+          'playwright',
+          '--driver-option.engine',
+          'firefox',
+          ...extra_args
+        ],
         {
           cwd: path.join(__dirname, 'fixture')
         }
@@ -47,5 +54,13 @@ describe('playwright', () => {
       json.tests[0].fullTitle,
       'test does not leak client functions into global scope'
     );
+  });
+
+  it('handles esm', async () => {
+    const result = await run('esm.test.js', '--esm');
+    assert.isFalse(result.failed);
+    const json = JSON.parse(result.stdout);
+    assert.equals(json.tests.length, 1);
+    assert.equals(json.tests[0].fullTitle, 'test passes');
   });
 });
