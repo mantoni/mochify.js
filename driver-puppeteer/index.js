@@ -22,7 +22,7 @@ exports.mochifyDriver = mochifyDriver;
  */
 async function mochifyDriver(options = {}) {
   const {
-    url = `file:${__dirname}/index.html`,
+    url = `file:${__dirname}/empty.html`,
     stderr = /** @type {Writable} */ (process.stderr),
     ...launch_options
   } = options;

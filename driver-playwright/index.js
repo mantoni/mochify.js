@@ -16,7 +16,7 @@ async function mochifyDriver(options = {}) {
   const {
     stderr = process.stderr,
     engine = 'firefox',
-    url = `file:${__dirname}/index.html`,
+    url = `file:${__dirname}/empty.html`,
     ...launch_options
   } = options;
 
