@@ -53,6 +53,7 @@
     "extends": "@studio"
   },
   "scripts": {
+    "start": "eleventy --config=site/eleventy.js --serve --quiet",
     "lint": "eslint .",
     "types": "npm run types --workspaces",
     "test": "npm test --workspaces",
@@ -74,6 +75,8 @@
     "driver-webdriver"
   ],
   "devDependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
     "@sinonjs/referee-sinon": "^11.0.0",
     "@studio/changes": "^3.0.0",
     "@studio/eslint-config": "^6.0.0",

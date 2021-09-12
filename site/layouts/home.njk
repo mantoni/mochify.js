@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>{{ title }}</title>
+  <link rel="stylesheet" type="text/css" href="/assets/bootstrap.min.css">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/b4e34f8cca.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="d-flex">
+    <nav class="d-flex flex-column p-3 bg-light" style="min-height: 100vh;">
+      <a href="/" class="navbar-brand d-flex text-decoration-none align-items-center">
+        <i class="fas fa-coffee"></i>
+        <span class="mx-2">Mochify</span>
+      </a>
+      <hr/>
+      <ul class="nav nav-pills flex-column text-nowrap">
+        {% for nav_link in nav.links %}
+          <li class="nav-item">
+            <a class="nav-link{% if nav_link.href == page.url %} active{% endif %}" href="{{ nav_link.href }}">
+              <i class="{{ nav_link.icon }}"></i>
+              <span class="mx-2">{{ nav_link.label }}</span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+    <div class="d-flex flex-column w-100">
+      <main class="container mb-auto py-3 px-5">
+        {{ content | safe }}
+      </main>
+      <footer class="mt-3 bg-light">
+        <div class="container">
+          <nav class="py-3 px-5">
+            <ul class="nav">
+              {% for footer_link in footer.links %}
+              <li class="nav-item">
+                <a class="nav-link text-muted" href="{{ footer_link.href }}">
+                  <i class="{{ footer_link.icon }}"></i>
+                  {{ footer_link.label }}
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+          </nav>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>

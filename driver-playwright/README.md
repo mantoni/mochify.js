@@ -1,3 +1,8 @@
+---
+permalink: /driver-playwright/
+tags: nav
+title: Mochify driver for Playwright
+---
 # Mochify driver for Playwright
 
 Run tests in [Playwright][web].

@@ -1,3 +1,8 @@
+---
+permalink: /driver-jsdom/
+tags: nav
+title: Mochify driver for JSDOM
+---
 # Mochify driver for JSDOM
 
 Run tests in [JSDOM][web].

@@ -1,3 +1,8 @@
+---
+permalink: /driver-puppeteer/
+tags: nav
+title: Mochify driver for Puppeteer
+---
 # Mochify driver for Puppeteer
 
 Run tests in [Puppeteer][web].
