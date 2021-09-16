@@ -8,7 +8,7 @@ const { mochify } = require('@mochify/mochify');
 const opts = yargs(hideBin(process.argv))
   .usage(
     '$0 [options] <spec...>',
-    'Run Mocha tests using Mochify.',
+    'Run Mocha tests in real browsers.',
     (local) => {
       local
         .example(
@@ -16,12 +16,20 @@ const opts = yargs(hideBin(process.argv))
           'Bundle all files matching the given spec using browserify and run them using @mochify/driver-puppeteer.'
         )
         .example(
-          '$0 --config package.json "./src/**/*.test.js" ',
-          'Run all tests matching the given spec using the configuration from package.json\'s "mochify" key.'
+          '$0 --esm --reporter dot --driver puppeteer "./src/**/*.test.js" ',
+          'Run all tests matching the given spec as ES modules in puppeteer and use the "dot" reporter for output.'
         )
         .example(
-          '$0 --esm --reporter dot "./src/**/*.test.js" ',
-          'Run all tests matching the given spec as ES modules and use the "dot" reporter for output.'
+          '$0 "./src/**/*.test.js" ',
+          'Run all tests matching the given spec using the configuration from package.json'
+        )
+        .example(
+          '$0 --config .mochifyrc.yml "./src/**/*.test.js" ',
+          'Run all tests matching the given spec using the configuration from .mochifyrc.yml'
+        )
+        .epilogue(
+          `Mochify Resources:
+GitHub: https://github.com/mantoni/mochify.js`
         );
     }
   )
@@ -29,59 +37,53 @@ const opts = yargs(hideBin(process.argv))
     alias: 'C',
     type: 'string',
     group: 'Options:',
-    describe:
-      'The config file to use. In case `package.json` is given, the configuration is expected to be stored in a top-level "mochify" key. In case an option is present in both the config file and as a CLI flag, the flag takes precedence. Refer to the documentation of `@mochify/mochify` for available configuration options.'
+    describe: 'The config file to use (defaults to "package.json")'
   })
   .option('driver', {
     alias: 'D',
     type: 'string',
     group: 'Options:',
-    describe:
-      'The driver to use for running the tests. Drivers published to the @mochify scope can be referenced using their suffix only (e.g. `puppeteer`), third-party or local drivers will need to use the full package name or file path. Drivers need to be installed separately from the Mochify CLI.'
+    describe: 'The driver module to use'
   })
   .option('driver-option', {
     type: 'object',
     group: 'Options:',
-    describe:
-      'Free form options to pass to the driver in use. Pass an arbitrary number of options using `--driver-option.foo 1 --driver-option.bar 2`. Refer to the documentation of the driver in use for available options.'
+    describe: 'Options to pass to the driver'
   })
   .option('reporter', {
     alias: 'R',
     type: 'string',
     group: 'Options:',
-    describe:
-      'The Mocha reporter to use. Right now, only reporters that are included with Mocha itself can be used.'
+    describe: 'Specify Mocha reporter to use'
   })
   .option('bundle', {
     alias: 'B',
     type: 'string',
     group: 'Options:',
-    describe:
-      'The command used for bundling the given spec. The called executable is expected to be installed by the consumer. In case no bundle command is given and --esm is not used, spec files will be concatenated instead of bundling before running the test suite. The command will be passed the resolved value of <spec>.'
+    describe: 'Command used for bundling the given spec'
   })
   .option('esm', {
     type: 'boolean',
     group: 'Options:',
-    describe:
-      'Run a local web server and inject all files in the spec as <script type="module"> instead of bundling. The server serves the contents of the current working directory unless `--serve` is given, in which case the contents of the given location will be served instead.'
+    describe: 'Run a local server and inject spec files as ES modules'
   })
   .option('serve', {
     alias: 'S',
     type: 'string',
     group: 'Options:',
     describe:
-      'Run the tests in the context of a local web server. Files in the given directory will be served as static assets.'
+      'Run tests in the context of a local web server and serve the given directory'
   })
   .option('server-option', {
     type: 'object',
     group: 'Options:',
     describe:
-      'Options to pass to the server in case `--serve` or `--esm` is being used. Currently only `--server-option.port` for passing the port to use is supported.'
+      'Options to pass to the server in case --serve or --esm is being used'
   })
   .updateStrings({
     'Options:': 'Other:'
   })
-  .conflicts('bundle', 'esm')
+  .wrap(process.stdout.columns ? Math.min(process.stdout.columns, 80) : 80)
   .parse();
 
 if (opts['driver-option']) {
