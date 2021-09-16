@@ -7,25 +7,8 @@ const { parseArgsStringToArgv } = require('string-argv');
 exports.resolveBundle = resolveBundle;
 
 async function resolveBundle(command, files) {
-  if (command && files) {
-    throw new Error(
-      'Cannot use a stream as input when a bundle command is given.'
-    );
-  }
-
   if (typeof files === 'object' && typeof files.pipe === 'function') {
-    return new Promise((resolve, reject) => {
-      let buf;
-      files.on('data', (data) => {
-        buf += data;
-      });
-      files.on('error', (err) => {
-        reject(err);
-      });
-      files.on('end', () => {
-        resolve(buf);
-      });
-    });
+    return bufferStream(files);
   }
 
   if (!command) {
@@ -48,4 +31,13 @@ async function resolveBundle(command, files) {
 async function concatFiles(files) {
   const buffers = await Promise.all(files.map((file) => fs.readFile(file)));
   return Buffer.concat(buffers).toString('utf8');
+}
+
+function bufferStream(stream) {
+  return new Promise((resolve, reject) => {
+    const bs = [];
+    stream.on('data', (chunk) => bs.push(chunk));
+    stream.on('error', (err) => reject(err));
+    stream.on('end', () => resolve(Buffer.concat(bs).toString()));
+  });
 }

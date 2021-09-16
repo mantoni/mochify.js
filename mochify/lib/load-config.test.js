@@ -154,4 +154,14 @@ describe('mochify/lib/load-config', () => {
       reporter: 'nyan'
     });
   });
+
+  it('rejects on invalid configuration', async () => {
+    setDefaultConfig({ esm: true });
+    setSpecifiedConfig({ bundle: 'browserify' });
+    const loadConfig = requireLoadConfig();
+
+    const promise = loadConfig({ config: 'some.config.js' });
+
+    await assert.rejects(promise);
+  });
 });
