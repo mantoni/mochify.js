@@ -9,8 +9,8 @@ const opts = yargs(hideBin(process.argv))
   .usage(
     '$0 [options] <spec...>',
     'Run Mocha tests in real browsers.',
-    (local) => {
-      local
+    (cmd) => {
+      cmd
         .example(
           '$0 --driver puppeteer --bundle browserify "./src/**/*.test.js" ',
           'Bundle all files matching the given spec using browserify and run them using @mochify/driver-puppeteer.'
@@ -21,11 +21,11 @@ const opts = yargs(hideBin(process.argv))
         )
         .example(
           '$0 "./src/**/*.test.js" ',
-          'Run all tests matching the given spec using the configuration from package.json'
+          'Run all tests matching the given spec using the default configuration lookup.'
         )
         .example(
-          '$0 --config .mochifyrc.yml "./src/**/*.test.js" ',
-          'Run all tests matching the given spec using the configuration from .mochifyrc.yml'
+          '$0 --config mochify.webdriver.js "./src/**/*.test.js" ',
+          'Run all tests matching the given spec using the configuration from mochify.webdriver.js.'
         )
         .epilogue(
           `Mochify Resources:
@@ -37,48 +37,47 @@ GitHub: https://github.com/mantoni/mochify.js`
     alias: 'C',
     type: 'string',
     group: 'Options:',
-    describe: 'The config file to use (defaults to "package.json")'
+    describe: 'Specify a config file, skipping default lookup'
   })
   .option('driver', {
     alias: 'D',
     type: 'string',
     group: 'Options:',
-    describe: 'The driver module to use'
+    describe: 'Specify the driver module'
   })
   .option('driver-option', {
     type: 'object',
     group: 'Options:',
-    describe: 'Options to pass to the driver'
+    describe: 'Pass options to the driver'
   })
   .option('reporter', {
     alias: 'R',
     type: 'string',
     group: 'Options:',
-    describe: 'Specify Mocha reporter to use'
+    describe: 'Specify the Mocha reporter'
   })
   .option('bundle', {
     alias: 'B',
     type: 'string',
     group: 'Options:',
-    describe: 'Command used for bundling the given spec'
+    describe: 'Bundle the resolved spec using the given command'
   })
   .option('esm', {
     type: 'boolean',
     group: 'Options:',
-    describe: 'Run a local server and inject spec files as ES modules'
+    describe: 'Run a local web server, inject spec files as ES modules'
   })
   .option('serve', {
     alias: 'S',
     type: 'string',
     group: 'Options:',
     describe:
-      'Run tests in the context of a local web server and serve the given directory'
+      'Run tests in the context of a local web server, serve the given directory'
   })
   .option('server-option', {
     type: 'object',
     group: 'Options:',
-    describe:
-      'Options to pass to the server in case --serve or --esm is being used'
+    describe: 'Pass options to the server (requires --serve or --esm)'
   })
   .updateStrings({
     'Options:': 'Other:'
