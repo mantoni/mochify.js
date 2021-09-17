@@ -14,11 +14,7 @@ exports.mochify = mochify;
 
 async function mochify(options = {}) {
   const config = await loadConfig(options);
-
-  const validation_error = validateConfig(config);
-  if (validation_error) {
-    throw validation_error;
-  }
+  validateConfig(config);
 
   // Create runner early to verify the reporter exists:
   const mocha_runner = createMochaRunner(config.reporter || 'spec');
