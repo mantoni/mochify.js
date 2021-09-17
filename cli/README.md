@@ -64,3 +64,21 @@ Files in the given directory will be served as static assets.
 
 Options to pass to the server in case `--serve` or `--esm` is being used.
 Currently only `--server-option.port` for passing the port to use is supported.
+
+## Spec
+
+The `spec` argument can be a list of files or a glob pattern that will be resolved by Mochify.
+
+```
+mochify ./src/foo.test.js ./src/bar.test.js
+mochify ./src/*.test.js # Let the shell handle glob expansion
+mochify "./src/*.test.js" # Let Mochify handle glob expansion
+```
+
+### Reading a bundle from `stdin`
+
+When given `-` as the spec, Mochify expects to read a bundled test suite from `stdin`:
+
+```
+browserify -t babelify ./src/*.test.js | mochify -
+```

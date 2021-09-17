@@ -72,6 +72,10 @@ const opts = yargs(hideBin(process.argv))
     '$0 --config mochify.webdriver.js "./src/**/*.test.js" ',
     'Run all tests matching the given spec using the configuration from mochify.webdriver.js.'
   )
+  .example(
+    'browserify "./src/**/*.test.js"  | $0 -',
+    'Read a bundled test suite from stdin.'
+  )
   .epilogue(
     `Mochify Resources:
 GitHub: https://github.com/mantoni/mochify.js`
@@ -86,16 +90,19 @@ if (opts['server-option']) {
   opts.server_options = opts['server-option'];
 }
 
-(async () => {
-  if (opts._.length) {
+if (opts._.length) {
+  if (opts._[0] === '-') {
+    opts.spec = process.stdin;
+  } else {
     opts.spec = opts._;
   }
-  delete opts._;
-  try {
-    const { exit_code } = await mochify(opts);
+}
+delete opts._;
+mochify(opts)
+  .catch((err) => {
+    console.error(err.stack);
+    return { exit_code: 1 };
+  })
+  .then(({ exit_code }) => {
     process.exitCode = exit_code;
-  } catch (e) {
-    console.error(e.stack);
-    process.exitCode = 1;
-  }
-})();
+  });

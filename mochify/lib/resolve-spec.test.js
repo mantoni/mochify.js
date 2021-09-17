@@ -1,5 +1,6 @@
 'use strict';
 
+const fs = require('fs');
 const proxyquire = require('proxyquire');
 const { assert, sinon } = require('@sinonjs/referee-sinon');
 
@@ -74,5 +75,11 @@ describe('mochify/lib/resolve-spec', () => {
     glob.secondCall.callback(error);
 
     await assert.rejects(promise, error);
+  });
+
+  it('passes through streams', async () => {
+    const stream = fs.createReadStream(__filename);
+    const promise = resolveSpec(stream);
+    await assert.resolves(promise, stream);
   });
 });

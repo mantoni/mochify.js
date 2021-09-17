@@ -2,6 +2,7 @@
 
 const { readFile } = require('fs').promises;
 const { loadConfig } = require('./lib/load-config');
+const { validateConfig } = require('./lib/validate-config');
 const { setupClient } = require('./lib/setup-client');
 const { createMochaRunner } = require('./lib/mocha-runner');
 const { resolveBundle } = require('./lib/resolve-bundle');
@@ -13,12 +14,13 @@ exports.mochify = mochify;
 
 async function mochify(options = {}) {
   const config = await loadConfig(options);
+  validateConfig(config);
 
   // Create runner early to verify the reporter exists:
   const mocha_runner = createMochaRunner(config.reporter || 'spec');
   const { mochifyDriver } = resolveMochifyDriver(config.driver);
 
-  const [mocha, client, files] = await Promise.all([
+  const [mocha, client, resolved_spec] = await Promise.all([
     readFile(require.resolve('mocha/mocha.js'), 'utf8'),
     readFile(require.resolve('./client'), 'utf8'),
     resolveSpec(config.spec)
@@ -30,7 +32,7 @@ async function mochify(options = {}) {
   let server = null;
   if (config.serve || config.esm) {
     const _scripts = [mocha, configured_client];
-    const _modules = config.esm ? files : [];
+    const _modules = config.esm ? resolved_spec : [];
     server = await startServer(
       config.serve || process.cwd(),
       Object.assign({ _scripts, _modules }, config.server_options)
@@ -41,7 +43,7 @@ async function mochify(options = {}) {
   const driver_promise = mochifyDriver(driver_options);
   const bundler_promise = config.esm
     ? Promise.resolve('')
-    : resolveBundle(config.bundle, files);
+    : resolveBundle(config.bundle, resolved_spec);
 
   let driver, bundle;
   try {
@@ -72,12 +74,6 @@ async function mochify(options = {}) {
 }
 
 function resolveMochifyDriver(name) {
-  if (!name) {
-    throw new Error(
-      'Specifying a driver option is required. Mochify drivers need to be installed separately from the API or the CLI.'
-    );
-  }
-
   let driverModule;
   try {
     // eslint-disable-next-line node/global-require
