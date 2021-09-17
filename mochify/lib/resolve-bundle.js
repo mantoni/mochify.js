@@ -6,18 +6,21 @@ const { parseArgsStringToArgv } = require('string-argv');
 
 exports.resolveBundle = resolveBundle;
 
-async function resolveBundle(command, files) {
-  if (typeof files === 'object' && typeof files.pipe === 'function') {
-    return bufferStream(files);
+async function resolveBundle(command, resolved_spec) {
+  if (
+    typeof resolved_spec === 'object' &&
+    typeof resolved_spec.pipe === 'function'
+  ) {
+    return bufferStream(resolved_spec);
   }
 
   if (!command) {
-    return concatFiles(files);
+    return concatFiles(resolved_spec);
   }
 
   const [cmd, ...args] = parseArgsStringToArgv(command);
 
-  const result = await execa(cmd, args.concat(files), {
+  const result = await execa(cmd, args.concat(resolved_spec), {
     preferLocal: true
   });
 
@@ -35,9 +38,9 @@ async function concatFiles(files) {
 
 function bufferStream(stream) {
   return new Promise((resolve, reject) => {
-    const bs = [];
-    stream.on('data', (chunk) => bs.push(chunk));
+    const buffers = [];
+    stream.on('data', (chunk) => buffers.push(chunk));
     stream.on('error', (err) => reject(err));
-    stream.on('end', () => resolve(Buffer.concat(bs).toString()));
+    stream.on('end', () => resolve(Buffer.concat(buffers).toString('utf8')));
   });
 }

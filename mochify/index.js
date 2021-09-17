@@ -24,7 +24,7 @@ async function mochify(options = {}) {
   const mocha_runner = createMochaRunner(config.reporter || 'spec');
   const { mochifyDriver } = resolveMochifyDriver(config.driver);
 
-  const [mocha, client, files] = await Promise.all([
+  const [mocha, client, resolved_spec] = await Promise.all([
     readFile(require.resolve('mocha/mocha.js'), 'utf8'),
     readFile(require.resolve('./client'), 'utf8'),
     resolveSpec(config.spec)
@@ -36,7 +36,7 @@ async function mochify(options = {}) {
   let server = null;
   if (config.serve || config.esm) {
     const _scripts = [mocha, configured_client];
-    const _modules = config.esm ? files : [];
+    const _modules = config.esm ? resolved_spec : [];
     server = await startServer(
       config.serve || process.cwd(),
       Object.assign({ _scripts, _modules }, config.server_options)
@@ -47,7 +47,7 @@ async function mochify(options = {}) {
   const driver_promise = mochifyDriver(driver_options);
   const bundler_promise = config.esm
     ? Promise.resolve('')
-    : resolveBundle(config.bundle, files);
+    : resolveBundle(config.bundle, resolved_spec);
 
   let driver, bundle;
   try {

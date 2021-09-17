@@ -72,6 +72,10 @@ const opts = yargs(hideBin(process.argv))
     '$0 --config mochify.webdriver.js "./src/**/*.test.js" ',
     'Run all tests matching the given spec using the configuration from mochify.webdriver.js.'
   )
+  .example(
+    'browserify "./src/**/*.test.js"  | $0 -',
+    'Read a bundled test suite from stdin.'
+  )
   .epilogue(
     `Mochify Resources:
 GitHub: https://github.com/mantoni/mochify.js`
