@@ -2,6 +2,7 @@
 
 const { readFile } = require('fs').promises;
 const { loadConfig } = require('./lib/load-config');
+const { validateConfig } = require('./lib/validate-config');
 const { setupClient } = require('./lib/setup-client');
 const { createMochaRunner } = require('./lib/mocha-runner');
 const { resolveBundle } = require('./lib/resolve-bundle');
@@ -13,6 +14,11 @@ exports.mochify = mochify;
 
 async function mochify(options = {}) {
   const config = await loadConfig(options);
+
+  const validation_error = validateConfig(config);
+  if (validation_error) {
+    throw validation_error;
+  }
 
   // Create runner early to verify the reporter exists:
   const mocha_runner = createMochaRunner(config.reporter || 'spec');

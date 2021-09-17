@@ -86,20 +86,19 @@ if (opts['server-option']) {
   opts.server_options = opts['server-option'];
 }
 
-(async () => {
-  if (opts._.length) {
-    if (opts._[0] === '-') {
-      opts.spec = process.stdin;
-    } else {
-      opts.spec = opts._;
-    }
+if (opts._.length) {
+  if (opts._[0] === '-') {
+    opts.spec = process.stdin;
+  } else {
+    opts.spec = opts._;
   }
-  delete opts._;
-  try {
-    const { exit_code } = await mochify(opts);
-    process.exitCode = exit_code; // eslint-disable-line require-atomic-updates
-  } catch (e) {
-    console.error(e.stack);
-    process.exitCode = 1; // eslint-disable-line require-atomic-updates
-  }
-})();
+}
+delete opts._;
+mochify(opts)
+  .catch((err) => {
+    console.error(err.stack);
+    return { exit_code: 1 };
+  })
+  .then(({ exit_code }) => {
+    process.exitCode = exit_code;
+  });
