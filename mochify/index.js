@@ -78,12 +78,6 @@ async function mochify(options = {}) {
 }
 
 function resolveMochifyDriver(name) {
-  if (!name) {
-    throw new Error(
-      'Specifying a driver option is required. Mochify drivers need to be installed separately from the API or the CLI.'
-    );
-  }
-
   let driverModule;
   try {
     // eslint-disable-next-line node/global-require
