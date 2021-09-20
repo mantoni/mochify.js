@@ -5,19 +5,14 @@ const driver = require('playwright');
 exports.mochifyDriver = mochifyDriver;
 
 async function mochifyDriver(options = {}) {
-  options = Object.assign(
-    {
-      engine: 'firefox',
-      url: `file:${__dirname}/index.html`,
-      stderr: process.stderr
-    },
-    options
-  );
+  const {
+    stderr = process.stderr,
+    engine = 'firefox',
+    url = `file:${__dirname}/index.html`,
+    ...launch_options
+  } = options;
 
-  const stderr = options.stderr;
-  const browser = await driver[options.engine].launch({
-    ignoreHTTPSErrors: true
-  });
+  const browser = await driver[engine].launch(launch_options);
 
   const page = await browser.newPage();
   page.on('console', (msg) => {
@@ -53,7 +48,7 @@ async function mochifyDriver(options = {}) {
     await browser.close();
   }
 
-  await page.goto(options.url);
+  await page.goto(url);
 
   function evaluate(script) {
     return page.evaluate(script);

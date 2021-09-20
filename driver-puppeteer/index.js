@@ -4,10 +4,12 @@ const driver = require('puppeteer');
 
 exports.mochifyDriver = mochifyDriver;
 
-const default_url = `file:${__dirname}/index.html`;
-
 async function mochifyDriver(options = {}) {
-  const { stderr = process.stderr, ...launch_options } = options;
+  const {
+    url = `file:${__dirname}/index.html`,
+    stderr = process.stderr,
+    ...launch_options
+  } = options;
 
   // In case this arrives through CLI flags, yargs will pass a string
   // when a single arg is given and an Array of strings when multiple
@@ -55,7 +57,7 @@ async function mochifyDriver(options = {}) {
     await browser.close();
   }
 
-  await page.goto(options.url || default_url);
+  await page.goto(url);
 
   function evaluate(script) {
     return page.evaluate(script);
