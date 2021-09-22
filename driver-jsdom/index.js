@@ -5,17 +5,24 @@ const jsdom = require('jsdom');
 exports.mochifyDriver = mochifyDriver;
 
 function mochifyDriver(options = {}) {
-  const stderr = options.stderr || process.stderr;
+  const {
+    stderr = process.stderr,
+    url = 'http://localhost',
+    pretendToBeVisual = true,
+    strictSSL = false,
+    ...jsdom_options
+  } = options;
 
   const virtual_console = new jsdom.VirtualConsole();
   const { window } = new jsdom.JSDOM(
     '<!DOCTYPE html>\n<html><body></body></html>',
     {
-      url: options.url || 'http://localhost',
+      url,
+      pretendToBeVisual,
+      strictSSL,
+      ...jsdom_options,
       virtualConsole: virtual_console,
-      runScripts: 'dangerously',
-      pretendToBeVisual: true,
-      strictSSL: false
+      runScripts: 'dangerously'
     }
   );
 

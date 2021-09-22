@@ -42,7 +42,7 @@ In case neither the env var nor a value is given, Puppeteer uses the bundled Chr
 
 An optional array of command line flags to pass to Chromium. `--allow-insecure-localhost` and `--disable-dev-shm-usage` will always be used in addition to the given values.
 
-## `url`
+### `url`
 
 Run tests in the context of the given URL.
 Defaults to an empty document served using the `file:` scheme.
