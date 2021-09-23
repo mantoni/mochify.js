@@ -96,9 +96,17 @@ describe('webdriver', () => {
 });
 
 function pingSelenium() {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     http
-      .get('http://localhost:4444/wd/hub/status', () => {
+      .get('http://localhost:4444/wd/hub/status', ({ statusCode }) => {
+        if (statusCode !== 200) {
+          reject(
+            new Error(
+              `Received unexpected ${statusCode} response from "/wd/hub/status"`
+            )
+          );
+          return;
+        }
         resolve(true);
       })
       .on('error', () => {
