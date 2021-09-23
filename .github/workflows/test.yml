@@ -42,5 +42,17 @@ jobs:
         run: npm run prettier:check
       - name: Test
         run: npm test
+      # N.B.: The selenium server cannot run as a GitHub Actions "service" as
+      # the tests need to mount local data into the container.
+      - name: Start Selenium Server
+        run: |
+          docker run -d -p 4444:4444 \
+            --shm-size="2g" \
+            --name selenium_server \
+            -v ${PWD}:${PWD} \
+            selenium/standalone-firefox:4.0.0-rc-2-prerelease-20210916
       - name: Integration
         run: npm run test:integration
+      - name: Stop Selenium Server
+        if: always()
+        run: docker stop selenium_server && docker rm selenium_server
