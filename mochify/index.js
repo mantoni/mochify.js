@@ -7,6 +7,7 @@ const { setupClient } = require('./lib/setup-client');
 const { createMochaRunner } = require('./lib/mocha-runner');
 const { resolveBundle } = require('./lib/resolve-bundle');
 const { resolveSpec } = require('./lib/resolve-spec');
+const { resolveMochifyDriver } = require('./lib/mochify-driver');
 const { startServer } = require('./lib/server');
 const { run } = require('./lib/run');
 
@@ -71,28 +72,6 @@ async function mochify(options = {}) {
   }
 
   return { exit_code };
-}
-
-function resolveMochifyDriver(name) {
-  let driverModule;
-  try {
-    // eslint-disable-next-line node/global-require
-    driverModule = require(`@mochify/driver-${name}`);
-  } catch (err) {
-    if (err.code !== 'MODULE_NOT_FOUND') {
-      throw err;
-    }
-    // eslint-disable-next-line node/global-require
-    driverModule = require(name);
-  }
-
-  if (!driverModule || typeof driverModule.mochifyDriver !== 'function') {
-    throw new Error(
-      `Expected driver "${name}" to export a "mochifyDriver(options)" method. Did you forget to install the "@mochify/driver-${name}" package?`
-    );
-  }
-
-  return driverModule;
 }
 
 async function shutdown(driver, server) {
