@@ -21,8 +21,14 @@ describe('webdriver', () => {
     }
   }
 
+  let skip;
+  before(async () => {
+    const selenium_running = await pingSelenium();
+    skip = !process.env.CI && !selenium_running;
+  });
+
   it('passes', async function () {
-    if (!process.env.CI && !(await pingSelenium())) {
+    if (skip) {
       this.skip();
     }
 
@@ -35,7 +41,7 @@ describe('webdriver', () => {
   });
 
   it('reads from stdin', async function () {
-    if (!process.env.CI && !(await pingSelenium())) {
+    if (skip) {
       this.skip();
     }
 
@@ -60,7 +66,7 @@ describe('webdriver', () => {
   });
 
   it('fails', async function () {
-    if (!process.env.CI && !(await pingSelenium())) {
+    if (skip) {
       this.skip();
     }
 
@@ -73,7 +79,7 @@ describe('webdriver', () => {
   });
 
   it('does not leak client functions into global scope', async function () {
-    if (!process.env.CI && !(await pingSelenium())) {
+    if (skip) {
       this.skip();
     }
 
