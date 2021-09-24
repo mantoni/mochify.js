@@ -65,7 +65,6 @@ async function mochifyDriver(options = {}) {
 
   return {
     evaluate,
-    evaluateReturn: evaluate,
     end
   };
 }

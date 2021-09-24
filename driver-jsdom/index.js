@@ -47,7 +47,6 @@ function mochifyDriver(options = {}) {
 
   return Promise.resolve({
     evaluate,
-    evaluateReturn: evaluate,
     end
   });
 }
