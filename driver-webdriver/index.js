@@ -28,8 +28,11 @@ async function mochifyDriver(options = {}) {
   await client.navigateTo(url || default_url);
 
   return {
-    evaluate: (script) => client.executeScript(script, []),
-    evaluateReturn: (script) => client.executeScript(`return ${script}`, []),
+    evaluate: (script) =>
+      client.executeScript(
+        `return (function () { var __mochify_return_value = ${script}; return __mochify_return_value; })()`,
+        []
+      ),
     end: () => client.deleteSession()
   };
 }
