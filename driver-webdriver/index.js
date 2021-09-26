@@ -29,8 +29,11 @@ async function mochifyDriver(options = {}) {
 
   return {
     evaluate: (script) =>
-      client.executeScript(
-        `return (function () { var __mochify_return_value = ${script}; return __mochify_return_value; })()`,
+      client.executeAsyncScript(
+        `
+          var __mochify_return_value = ${script};
+          arguments[arguments.length - 1](__mochify_return_value)
+        `,
         []
       ),
     end: () => client.deleteSession()
