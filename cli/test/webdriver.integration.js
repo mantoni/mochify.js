@@ -21,17 +21,14 @@ describe('webdriver', () => {
     }
   }
 
-  let skip;
-  before(async () => {
+  before(async function () {
     const selenium_running = await pingSelenium();
-    skip = !process.env.CI && !selenium_running;
-  });
-
-  it('passes', async function () {
-    if (skip) {
+    if (!process.env.CI && !selenium_running) {
       this.skip();
     }
+  });
 
+  it('passes', async () => {
     const result = await run('passes.js');
 
     assert.isFalse(result.failed);
@@ -40,11 +37,7 @@ describe('webdriver', () => {
     assert.equals(json.tests[0].fullTitle, 'test passes');
   });
 
-  it('reads from stdin', async function () {
-    if (skip) {
-      this.skip();
-    }
-
+  it('reads from stdin', async () => {
     let result;
     try {
       const cp = execa('../../index.js', ['--driver', 'webdriver', '-'], {
@@ -65,11 +58,7 @@ describe('webdriver', () => {
     assert.equals(json.tests[0].fullTitle, 'test passes');
   });
 
-  it('fails', async function () {
-    if (skip) {
-      this.skip();
-    }
-
+  it('fails', async () => {
     const result = await run('fails.js');
 
     assert.isTrue(result.failed);
@@ -78,11 +67,7 @@ describe('webdriver', () => {
     assert.equals(json.tests[0].fullTitle, 'test fails');
   });
 
-  it('does not leak client functions into global scope', async function () {
-    if (skip) {
-      this.skip();
-    }
-
+  it('does not leak client functions into global scope', async () => {
     const result = await run('client-leak.js');
 
     assert.isFalse(result.failed);
