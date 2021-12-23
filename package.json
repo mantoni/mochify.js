@@ -85,7 +85,7 @@
   "devDependencies": {
     "@studio/changes": "^2.0.1",
     "eslint": "^7.13.0",
-    "mocha": "^8.4.0",
+    "mocha": "^9.1.0",
     "tmp": "0.0.28"
   },
   "files": [
