@@ -1,5 +1,12 @@
 # Changes
 
+## 9.0.0
+
+- 💥 [`27c355e`](https://github.com/mantoni/mochify.js/commit/27c355e07a81b48eee7eb814b0481e44c9f9d891)
+  Update mocaccino to v6 and mocha to v9 (#276) (Albert Wang)
+
+_Released by Frederik Ring on 2021-12-29._
+
 ## 8.1.0
 
 - ✨ [`71f4376`](https://github.com/mantoni/mochify.js/commit/71f4376cc1bda70d9f71f38680c8c4fba03eb509)
