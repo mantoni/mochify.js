@@ -1,5 +1,12 @@
 # Changes
 
+## 9.1.0
+
+- 🛡 [`8393306`](https://github.com/mantoni/mochify.js/commit/83933060fc2e30b59ba8d990e3ffdab708f05562)
+  Update mocaccino/mocha to 9.2.0 (#277) (Frederik Ring)
+
+_Released by Frederik Ring on 2022-01-24._
+
 ## 9.0.0
 
 - 💥 [`27c355e`](https://github.com/mantoni/mochify.js/commit/27c355e07a81b48eee7eb814b0481e44c9f9d891)
