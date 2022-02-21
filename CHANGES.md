@@ -1,5 +1,28 @@
 # Changes
 
+## 9.2.0
+
+- 🛡 [`36380f6`](https://github.com/mantoni/mochify.js/commit/36380f633f5ead2cc6e30f5b2cb7792e575c45da)
+  Update puppeteer to v13 (#279) (Albert Wang)
+- 🛡 [`f382310`](https://github.com/mantoni/mochify.js/commit/f38231000a0056381f63fb850039e6f283f1c278)
+  Bump cached-path-relative from 1.0.2 to 1.1.0 (#278) (dependabot[bot])
+    >
+    > Bumps [cached-path-relative](https://github.com/ashaffer/cached-path-relative) from 1.0.2 to 1.1.0.    >
+    > - [Release notes](https://github.com/ashaffer/cached-path-relative/releases)    >
+    > - [Commits](https://github.com/ashaffer/cached-path-relative/commits)    >
+    >     >
+    > ---    >
+    > updated-dependencies:    >
+    > - dependency-name: cached-path-relative    >
+    >   dependency-type: indirect    >
+    > ...    >
+    >     >
+    > Signed-off-by: dependabot[bot] <support@github.com>    >
+    >     >
+    > Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
+
+_Released by Frederik Ring on 2022-02-21._
+
 ## 9.1.0
 
 - 🛡 [`8393306`](https://github.com/mantoni/mochify.js/commit/83933060fc2e30b59ba8d990e3ffdab708f05562)
