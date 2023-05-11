@@ -1,17 +1,18 @@
-# Mochify Driver for WebDriver
+# Mochify driver for WebDriver
 
 ## Local Selenium
 
 Installing selenium server on Mac OS:
 
 ```bash
-brew install selenium-server-standalone
+brew install selenium-server
+brew install geckodriver
 ```
 
 Starting the server:
 
 ```bash
-selenium-server -port 4444
+selenium-server standalone --port 4444
 ```
 
 Configuration for local Selenium:
