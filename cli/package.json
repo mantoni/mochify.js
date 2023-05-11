@@ -34,6 +34,9 @@
     "@sinonjs/referee-sinon": "^10.1.0",
     "execa": "^5.1.1"
   },
+  "engines": {
+    "node": ">=16"
+  },
   "files": [
     "**/*.js",
     "!**/*.test.js",

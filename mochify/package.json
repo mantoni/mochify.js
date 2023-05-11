@@ -17,9 +17,9 @@
     "testing"
   ],
   "author": "Maximilian Antoni <mail@maxantoni.de> (http://maxantoni.de)",
-  "license": "ISC",
+  "license": "MIT",
   "engines": {
-    "node": ">=12"
+    "node": ">=16"
   },
   "mocha": {
     "reporter": "dot",

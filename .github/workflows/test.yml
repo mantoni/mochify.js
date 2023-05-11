@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: ['12.x', '14.x', '16.x']
+        node-version: ['16.x', '18.x', '20.x']
 
     steps:
       - name: Checkout
@@ -29,16 +29,13 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      - name: npm7
-        if: matrix.node-version != '16.x'
-        run: npm i -g npm@7
       - name: Install
         run: npm ci
       - name: Lint
-        if: matrix.node-version == '16.x'
+        if: matrix.node-version == '18.x'
         run: npm run lint
       - name: Prettier
-        if: matrix.node-version == '16.x'
+        if: matrix.node-version == '18.x'
         run: npm run prettier:check
       - name: Test
         run: npm test
