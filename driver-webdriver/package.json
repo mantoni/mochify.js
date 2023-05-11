@@ -18,7 +18,7 @@
   "author": "Maximilian Antoni <mail@maxantoni.de> (http://maxantoni.de)",
   "license": "MIT",
   "dependencies": {
-    "webdriver": "^7.7.4"
+    "webdriver": "^8.10.2"
   },
   "peerDependencies": {
     "@mochify/mochify": "^0.1.0 || ^0.2.0"

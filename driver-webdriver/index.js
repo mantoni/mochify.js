@@ -1,6 +1,6 @@
 'use strict';
 
-const WebDriver = require('webdriver').default;
+const { WebDriver } = require('webdriver');
 
 exports.mochifyDriver = mochifyDriver;
 
