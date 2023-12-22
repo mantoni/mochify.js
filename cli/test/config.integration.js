@@ -7,7 +7,8 @@ const execa = require('execa');
 describe('config', () => {
   it('mochify.config.js', async () => {
     const result = await execa('../../index.js', ['passes.js'], {
-      cwd: path.join(__dirname, 'fixture')
+      cwd: path.join(__dirname, 'fixture'),
+      stderr: process.stderr
     });
 
     const json = JSON.parse(result.stdout);
@@ -20,7 +21,8 @@ describe('config', () => {
       '../../index.js',
       ['--config', 'custom.config.yaml', 'passes.js'],
       {
-        cwd: path.join(__dirname, 'fixture')
+        cwd: path.join(__dirname, 'fixture'),
+        stderr: process.stderr
       }
     );
 
@@ -32,7 +34,8 @@ describe('config', () => {
       '../../index.js',
       ['--reporter', 'tap', '--driver', 'jsdom', 'passes.js'],
       {
-        cwd: path.join(__dirname, 'fixture')
+        cwd: path.join(__dirname, 'fixture'),
+        stderr: process.stderr
       }
     );
 

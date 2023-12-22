@@ -12,7 +12,8 @@ describe('jsdom', () => {
         '../../index.js',
         [file, '--driver', 'jsdom', ...extra_args],
         {
-          cwd: path.join(__dirname, 'fixture')
+          cwd: path.join(__dirname, 'fixture'),
+          stderr: process.stderr
         }
       );
     } catch (error) {
