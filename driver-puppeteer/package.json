@@ -2,11 +2,13 @@
   "name": "@mochify/driver-puppeteer",
   "version": "0.2.2",
   "description": "Puppeteer driver for Mochify",
+  "homepage": "https://github.com/mantoni/mochify.js",
   "main": "index.js",
   "scripts": {
     "test": "echo \"No unit tests yet\"",
     "test:integration": "echo \"No integration tests yet\"",
     "preversion": "npm test && npm run test:integration",
+    "version": "changes --commits --footer --workspace",
     "postversion": "npm publish"
   },
   "keywords": [

@@ -2,6 +2,7 @@
   "name": "@mochify/cli",
   "version": "0.1.2",
   "description": "Run mocha tests in headless browsers from the command line",
+  "homepage": "https://github.com/mantoni/mochify.js",
   "bin": {
     "mochify": "index.js"
   },
@@ -10,6 +11,7 @@
     "test": "echo \"No unit tests yet\"",
     "test:integration": "mocha --timeout 10000 -R spec '**/*.integration.js'",
     "preversion": "npm run test && npm run test:integration",
+    "version": "changes --commits --footer --workspace",
     "postversion": "npm publish"
   },
   "keywords": [

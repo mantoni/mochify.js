@@ -2,12 +2,14 @@
   "name": "@mochify/mochify",
   "version": "0.2.2",
   "description": "Run mocha tests in headless browsers",
+  "homepage": "https://github.com/mantoni/mochify.js",
   "main": "index.js",
   "scripts": {
     "test": "mocha '**/*.test.js'",
     "test:integration": "mocha --timeout 10000 -R spec '**/*.integration.js'",
     "watch": "npm test -- --watch",
     "preversion": "npm test && npm run test:integration",
+    "version": "changes --commits --footer --workspace",
     "postversion": "npm publish"
   },
   "keywords": [
