@@ -1,4 +1,4 @@
-# cli
+# Mochify CLI
 
 ## Usage
 

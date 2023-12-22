@@ -1,4 +1,4 @@
-# driver-puppeteer
+# Mochify driver for Puppeteer
 
 Run tests in [Puppeteer][web].
 
