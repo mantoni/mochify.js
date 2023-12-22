@@ -37,6 +37,7 @@ function requestHandler(base_path, { scripts = [], modules = [] }) {
       res.end(`
 <!DOCTYPE html>
 <html>
+<meta charset="utf-8">
 <head>
 ${scripts.map((script) => `<script>${script}</script>`).join('')}
 ${modules.map((mod) => `<script type="module" src="${mod}"></script>`).join('')}
