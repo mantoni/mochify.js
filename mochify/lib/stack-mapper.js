@@ -4,19 +4,23 @@ const { SourceMapConsumer } = require('source-map');
 
 exports.stackMapper = stackMapper;
 
-const stack_re = new RegExp('([a-z0-9]+\\.html|\\[stdin\\]|about:blank|'
-  + 'http:\\/\\/[a-z0-9\\-_\\.]+(:[0-9]+)?\\/[^:]+|'
-  + 'file:[^:]+|Unknown script code|<anonymous>|'
-  + '__puppeteer_evaluation_script__)'
-  + ':(\\d+)(:\\d+)?(\\D*)$', 'i');
+const stack_re = new RegExp(
+  '([a-z0-9]+\\.html|\\[stdin\\]|about:blank|' +
+    'http:\\/\\/[a-z0-9\\-_\\.]+(:[0-9]+)?\\/[^:]+|' +
+    'file:[^:]+|Unknown script code|<anonymous>|' +
+    '__puppeteer_evaluation_script__)' +
+    ':(\\d+)(:\\d+)?(\\D*)$',
+  'i'
+);
 
 function stackMapper(map) {
   const consumer = new SourceMapConsumer(map);
-  return (stack) => stack
-    .split('\n')
-    .map((line) => mapLine(consumer, line))
-    .filter(Boolean)
-    .join('\n');
+  return (stack) =>
+    stack
+      .split('\n')
+      .map((line) => mapLine(consumer, line))
+      .filter(Boolean)
+      .join('\n');
 }
 
 function mapLine(consumer, line) {

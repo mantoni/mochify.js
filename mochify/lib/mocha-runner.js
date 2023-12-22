@@ -15,16 +15,15 @@ const {
 exports.createMochaRunner = createMochaRunner;
 
 class MochaRunner extends EventEmitter {
-
   constructor() {
     super();
-    const stats = this.stats = {
+    const stats = (this.stats = {
       suites: 0,
       tests: 0,
       passes: 0,
       pending: 0,
       failures: 0
-    };
+    });
     this.on(EVENT_RUN_BEGIN, (json) => {
       stats.start = json.start;
     });
