@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"No unit tests yet\"",
-    "test:integration": "mocha --timeout 10000 '**/*.integration.js'",
+    "test:integration": "mocha --timeout 10000 -R spec '**/*.integration.js'",
     "preversion": "npm run test && npm run test:integration",
     "postversion": "npm publish"
   },
