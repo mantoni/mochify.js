@@ -16,19 +16,6 @@ describe('config', () => {
     assert.equals(json.tests[0].fullTitle, 'test passes');
   });
 
-  it('custom.config.yaml', async () => {
-    const result = await execa(
-      '../../index.js',
-      ['--config', 'custom.config.yaml', 'passes.js'],
-      {
-        cwd: path.join(__dirname, 'fixture'),
-        stderr: process.stderr
-      }
-    );
-
-    assert.match(result.stdout, 'ok 1 test passes');
-  });
-
   it('overrides config with command line option', async () => {
     const result = await execa(
       '../../index.js',

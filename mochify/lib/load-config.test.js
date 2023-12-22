@@ -4,32 +4,32 @@ const proxyquire = require('proxyquire');
 const { assert, refute, sinon } = require('@sinonjs/referee-sinon');
 
 describe('mochify/lib/load-config', () => {
-  let cosmiconfig_api;
-  let cosmiconfig;
+  let lilconfig_api;
+  let lilconfig;
 
   beforeEach(() => {
-    cosmiconfig_api = {
+    lilconfig_api = {
       search: sinon.fake.resolves(null),
       load: sinon.fake.resolves(null)
     };
-    cosmiconfig = sinon.fake.returns(cosmiconfig_api);
+    lilconfig = sinon.fake.returns(lilconfig_api);
   });
 
   function requireLoadConfig() {
     const { loadConfig } = proxyquire('./load-config', {
-      cosmiconfig: {
-        cosmiconfig
+      lilconfig: {
+        lilconfig
       }
     });
     return loadConfig;
   }
 
   function setDefaultConfig(config) {
-    sinon.replace(cosmiconfig_api, 'search', sinon.fake.resolves({ config }));
+    sinon.replace(lilconfig_api, 'search', sinon.fake.resolves({ config }));
   }
 
   function setSpecifiedConfig(config) {
-    sinon.replace(cosmiconfig_api, 'load', sinon.fake.resolves({ config }));
+    sinon.replace(lilconfig_api, 'load', sinon.fake.resolves({ config }));
   }
 
   it('searches for default config only', async () => {
@@ -38,9 +38,9 @@ describe('mochify/lib/load-config', () => {
     const promise = loadConfig({});
 
     await assert.resolves(promise);
-    assert.calledOnceWithExactly(cosmiconfig, 'mochify');
-    assert.calledOnceWithExactly(cosmiconfig_api.search);
-    refute.called(cosmiconfig_api.load);
+    assert.calledOnceWithExactly(lilconfig, 'mochify');
+    assert.calledOnceWithExactly(lilconfig_api.search);
+    refute.called(lilconfig_api.load);
   });
 
   it('returns given options', async () => {
@@ -112,8 +112,8 @@ describe('mochify/lib/load-config', () => {
       config: 'some.config.js',
       reporter: 'dot'
     });
-    assert.calledOnceWithExactly(cosmiconfig_api.search);
-    assert.calledOnceWithExactly(cosmiconfig_api.load, 'some.config.js');
+    assert.calledOnceWithExactly(lilconfig_api.search);
+    assert.calledOnceWithExactly(lilconfig_api.load, 'some.config.js');
   });
 
   it('options override specified config', async () => {
