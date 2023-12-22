@@ -47,6 +47,13 @@ ${modules.map((mod) => `<script type="module" src="${mod}"></script>`).join('')}
       `);
       return;
     }
+    if (req.url === '/favicon.ico') {
+      res.writeHead(200, {
+        'Content-Type': mime.getType('favicon.ico')
+      });
+      res.end();
+      return;
+    }
     const file = path.join(base_path, req.url.substring(1));
     try {
       await fs_promises.stat(file);
