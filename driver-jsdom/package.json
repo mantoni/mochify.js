@@ -2,11 +2,13 @@
   "name": "@mochify/driver-jsdom",
   "version": "0.1.1",
   "description": "JSDom driver for Mochify",
+  "homepage": "https://github.com/mantoni/mochify.js",
   "main": "index.js",
   "scripts": {
     "test": "echo \"No unit tests yet\"",
     "test:integration": "echo \"No integration tests yet\"",
     "preversion": "npm test && npm run test:integration",
+    "version": "changes --commits --footer --workspace",
     "postversion": "npm publish"
   },
   "keywords": [
