@@ -7,13 +7,13 @@ function resolveMochifyDriver(driver) {
   let driverReference = 'given driver object';
   if (typeof driver === 'string') {
     try {
-      // eslint-disable-next-line node/global-require
+      // eslint-disable-next-line n/global-require
       driverModule = require(`@mochify/driver-${driver}`);
     } catch (err) {
       if (err.code !== 'MODULE_NOT_FOUND') {
         throw err;
       }
-      // eslint-disable-next-line node/global-require
+      // eslint-disable-next-line n/global-require
       driverModule = require(driver);
     }
     driverReference = `driver "${driver}"`;
