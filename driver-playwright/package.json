@@ -20,7 +20,7 @@
   "author": "Maximilian Antoni <mail@maxantoni.de> (http://maxantoni.de)",
   "license": "MIT",
   "dependencies": {
-    "playwright": "^1.33.0"
+    "playwright": "^1.40.1"
   },
   "peerDependencies": {
     "@mochify/mochify": "^0.1.0 || ^0.2.0"
