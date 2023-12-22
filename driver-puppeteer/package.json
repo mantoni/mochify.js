@@ -18,7 +18,7 @@
   "author": "Maximilian Antoni <mail@maxantoni.de> (http://maxantoni.de)",
   "license": "MIT",
   "dependencies": {
-    "puppeteer": "^20.1.2"
+    "puppeteer": "^21.6.1"
   },
   "peerDependencies": {
     "@mochify/mochify": "^0.1.0 || ^0.2.0"
