@@ -1,4 +1,4 @@
-# driver-jsdom
+# Mochify driver for JSDOM
 
 Run tests in [JSDOM][web].
 

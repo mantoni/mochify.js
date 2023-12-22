@@ -1,4 +1,4 @@
-# driver-playwright
+# Mochify driver for Playwright
 
 Run tests in [Playwright][web].
 
