@@ -31,7 +31,7 @@
     "yargs": "^16.2.0"
   },
   "devDependencies": {
-    "@sinonjs/referee-sinon": "^10.1.0",
+    "@sinonjs/referee-sinon": "^11.0.0",
     "execa": "^5.1.1"
   },
   "engines": {
