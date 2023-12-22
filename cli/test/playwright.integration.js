@@ -19,7 +19,8 @@ describe('playwright', () => {
           ...extra_args
         ],
         {
-          cwd: path.join(__dirname, 'fixture')
+          cwd: path.join(__dirname, 'fixture'),
+          stderr: process.stderr
         }
       );
     } catch (error) {
