@@ -33,7 +33,7 @@ describe('webdriver', () => {
     const result = await run('passes.js');
 
     assert.isFalse(result.failed);
-    const json = JSON.parse(result.stdout);
+    const json = getResultStdoutAsJson(result);
     assert.equals(json.tests.length, 1);
     assert.equals(json.tests[0].fullTitle, 'test passes');
   });
@@ -54,7 +54,7 @@ describe('webdriver', () => {
     }
 
     assert.isFalse(result.failed);
-    const json = JSON.parse(result.stdout);
+    const json = getResultStdoutAsJson(result);
     assert.equals(json.tests.length, 1);
     assert.equals(json.tests[0].fullTitle, 'test passes');
   });
@@ -63,7 +63,7 @@ describe('webdriver', () => {
     const result = await run('fails.js');
 
     assert.isTrue(result.failed);
-    const json = JSON.parse(result.stdout);
+    const json = getResultStdoutAsJson(result);
     assert.equals(json.tests.length, 1);
     assert.equals(json.tests[0].fullTitle, 'test fails');
   });
@@ -72,7 +72,7 @@ describe('webdriver', () => {
     const result = await run('client-leak.js');
 
     assert.isFalse(result.failed);
-    const json = JSON.parse(result.stdout);
+    const json = getResultStdoutAsJson(result);
     assert.equals(json.tests.length, 1);
     assert.equals(
       json.tests[0].fullTitle,
@@ -100,4 +100,12 @@ function pingSelenium() {
         resolve(false);
       });
   });
+}
+
+function getResultStdoutAsJson(result) {
+  // At some point between v8.10 and v8.27 WebDriver started to log one line
+  // with level INFO, even though the log level is set to "warn".
+  //
+  // 2023-12-22T14:01:31.855Z INFO @wdio/utils: Connecting to existing driver …
+  return JSON.parse(result.stdout.substring(result.stdout.indexOf('{')));
 }
