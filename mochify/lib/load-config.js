@@ -1,12 +1,12 @@
 'use strict';
 
 const deepmerge = require('deepmerge');
-const { cosmiconfig } = require('cosmiconfig');
+const { lilconfig } = require('lilconfig');
 
 exports.loadConfig = loadConfig;
 
 async function loadConfig(options) {
-  const explorer = cosmiconfig('mochify');
+  const explorer = lilconfig('mochify');
 
   const default_config_promise = explorer.search();
 
