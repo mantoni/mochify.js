@@ -22,6 +22,7 @@ async function mochifyDriver(options = {}) {
   ];
 
   const browser = await driver.launch({
+    headless: 'new',
     ignoreHTTPSErrors: true,
     // Workaround for https://github.com/puppeteer/puppeteer/issues/6957
     executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
