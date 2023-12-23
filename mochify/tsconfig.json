@@ -1,0 +1,9 @@
+{
+  "extends": "@studio/tsconfig",
+  "compilerOptions": {
+    "types": ["node", "mocha"],
+    "lib": ["dom"]
+  },
+  "include": ["**/*.js"],
+  "exclude": ["node_modules"]
+}

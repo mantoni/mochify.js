@@ -1,0 +1,10 @@
+{
+  "extends": "@studio/tsconfig",
+  "compilerOptions": {
+    "types": ["node"],
+    "lib": ["dom"],
+    "esModuleInterop": true
+  },
+  "include": ["**/*.js"],
+  "exclude": ["node_modules"]
+}

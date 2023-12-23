@@ -39,13 +39,17 @@ class MochaRunner extends EventEmitter {
   }
 }
 
+/**
+ * @param {keyof Mocha.reporters} reporter
+ * @returns {Mocha.Runner}
+ */
 function createMochaRunner(reporter) {
   const MochaReporter = Mocha.reporters[reporter];
   if (!MochaReporter) {
     throw new Error(`Invalid reporter "${reporter}"`);
   }
 
-  const runner = new MochaRunner();
+  const runner = /** @type {Mocha.Runner} */ (new MochaRunner());
   new MochaReporter(runner); // eslint-disable-line no-new
   return runner;
 }

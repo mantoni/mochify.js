@@ -1,7 +1,14 @@
 'use strict';
 
+/**
+ * @typedef {import('./load-config').MochifyConfig} MochifyConfig
+ */
+
 exports.validateConfig = validateConfig;
 
+/**
+ * @param {MochifyConfig} config
+ */
 function validateConfig(config) {
   if (!config.driver) {
     throw new Error(
@@ -14,6 +21,7 @@ function validateConfig(config) {
   if (
     config.bundle &&
     typeof config.spec === 'object' &&
+    !Array.isArray(config.spec) &&
     typeof config.spec.pipe === 'function'
   ) {
     throw new Error('`bundle` cannot be used when `spec` is a stream.');

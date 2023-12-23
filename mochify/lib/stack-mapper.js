@@ -13,6 +13,10 @@ const stack_re = new RegExp(
   'i'
 );
 
+/**
+ * @param {Object} map
+ * @returns {function(string): string}
+ */
 function stackMapper(map) {
   const consumer = new SourceMapConsumer(map);
   return (stack) =>
@@ -23,6 +27,11 @@ function stackMapper(map) {
       .join('\n');
 }
 
+/**
+ * @param {SourceMapConsumer} consumer
+ * @param {string} line
+ * @returns {string | null}
+ */
 function mapLine(consumer, line) {
   const match = stack_re.exec(line);
   if (!match) {

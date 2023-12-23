@@ -4,6 +4,10 @@ const fs = require('fs').promises;
 const execa = require('execa');
 const { parseArgsStringToArgv } = require('string-argv');
 
+/**
+ * @typedef {import('execa').ExecaError} ExecaError
+ */
+
 exports.resolveBundle = resolveBundle;
 
 async function resolveBundle(command, resolved_spec) {
@@ -25,7 +29,7 @@ async function resolveBundle(command, resolved_spec) {
   });
 
   if (result.failed || result.killed) {
-    throw new Error(result.shortMessage);
+    throw new Error(/** @type {ExecaError} */ (result).shortMessage);
   }
 
   return result.stdout;

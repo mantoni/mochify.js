@@ -58,10 +58,7 @@
     "test:integration": "npm run test:integration --workspaces",
     "prettier:check": "prettier --check '**/*.{js,json,md}'",
     "prettier:write": "prettier --write '**/*.{js,json,md}'",
-    "prepare": "husky install && playwright install",
-    "preversion": "npm run lint && npm run prettier:check && npm test && npm run test:integration",
-    "version": "changes --commits --footer",
-    "postversion": "git push --follow-tags"
+    "prepare": "husky install && playwright install"
   },
   "repository": {
     "type": "git",
@@ -79,11 +76,15 @@
     "@sinonjs/referee-sinon": "^11.0.0",
     "@studio/changes": "^3.0.0",
     "@studio/eslint-config": "^6.0.0",
+    "@studio/tsconfig": "^1.3.0",
+    "@types/node": "^20.10.5",
     "eslint": "^8.56.0",
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
     "mocha": "^10.2.0",
-    "prettier": "^2.3.2"
+    "prettier": "^2.3.2",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.3.3"
   },
   "license": "MIT"
 }

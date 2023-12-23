@@ -16,7 +16,13 @@ const {
 
 exports.mochaEventAdapter = mochaEventAdapter;
 
+/**
+ * @param {Mocha.Runner} runner
+ * @param {(function(string): string) | null} mapStack
+ * @returns {function(string, Object): void}
+ */
 function mochaEventAdapter(runner, mapStack) {
+  /** @type {Record<string, function(Object): void>} */
   const event_handlers = {};
 
   function forward(event, process = identity) {
@@ -51,10 +57,19 @@ function mochaEventAdapter(runner, mapStack) {
   };
 }
 
+/**
+ * @template T
+ * @param {T} object
+ * @returns {T}
+ */
 function identity(object) {
   return object;
 }
 
+/**
+ * @param {Object} object
+ * @returns {Object}
+ */
 function processTest(object) {
   const test = Object.create(object);
   test.duration = object.duration;
@@ -65,16 +80,28 @@ function processTest(object) {
   return test;
 }
 
+/**
+ * @param {Object} object
+ * @returns {Object}
+ */
 function processStart(object) {
   object.start = new Date(object.start);
   return object;
 }
 
+/**
+ * @param {Object} object
+ * @returns {Object}
+ */
 function processEnd(object) {
   object.end = new Date(object.end);
   return object;
 }
 
+/**
+ * @param {Object} from
+ * @param {Object} to
+ */
 function copy(from, to) {
   for (const key of Object.keys(from)) {
     to[key] = from[key];

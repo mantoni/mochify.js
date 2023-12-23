@@ -5,10 +5,16 @@
   "homepage": "https://github.com/mantoni/mochify.js",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint .",
     "test": "mocha '**/*.test.js'",
     "test:integration": "mocha --timeout 10000 -R spec '**/*.integration.js'",
     "watch": "npm test -- --watch",
-    "preversion": "npm test && npm run test:integration",
+    "prettier:check": "prettier --check '**/*.{js,json,md}'",
+    "build": "tsc --project tsconfig.pack.json",
+    "clean": "rimraf --glob '!(node_modules)/**/*.d.ts' '*.d.ts'",
+    "prepack": "npm run build",
+    "postpack": "npm run clean",
+    "preversion": "npm run lint && npm run prettier:check && tsc && npm test && npm run test:integration",
     "version": "changes --commits --footer --workspace",
     "postversion": "npm publish"
   },
@@ -45,6 +51,7 @@
   },
   "files": [
     "**/*.js",
+    "**/*.d.ts",
     "!**/*.test.js",
     "!test/**",
     "!.*"

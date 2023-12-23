@@ -1,0 +1,8 @@
+{
+  "extends": "@studio/tsconfig",
+  "compilerOptions": {
+    "types": ["node"]
+  },
+  "include": ["**/*.js"],
+  "exclude": ["node_modules"]
+}

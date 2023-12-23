@@ -9,6 +9,20 @@ const mime = require('mime');
 
 exports.startServer = startServer;
 
+/**
+ * @typedef {Object} MochifyServer
+ * @property {number} port
+ * @property {function (): Promise<void>} close
+ */
+
+/**
+ * @param {string} base_path
+ * @param {Object} [options]
+ * @param {number} [options.port]
+ * @param {string[]} [options._scripts]
+ * @param {string[]} [options._modules]
+ * @returns {Promise<MochifyServer>}
+ */
 async function startServer(base_path, options = {}) {
   const server = http.createServer(
     requestHandler(base_path, {
@@ -22,9 +36,11 @@ async function startServer(base_path, options = {}) {
     process.stderr.write('\n');
   });
 
+  // @ts-ignore
   await promisify(server.listen).call(server, options.port);
 
   return {
+    // @ts-ignore
     port: server.address().port,
     close: () => promisify(server.close).call(server)
   };

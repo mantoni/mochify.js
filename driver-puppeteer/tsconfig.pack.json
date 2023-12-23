@@ -1,0 +1,12 @@
+{
+  "extends": "@studio/tsconfig",
+  "compilerOptions": {
+    "types": ["node"],
+    "lib": ["dom"],
+    "declaration": true,
+    "noEmit": false,
+    "emitDeclarationOnly": true
+  },
+  "include": ["**/*.js"],
+  "exclude": ["node_modules", "**/*.test.js", "test/**"]
+}

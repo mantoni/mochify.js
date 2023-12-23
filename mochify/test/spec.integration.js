@@ -13,6 +13,7 @@ describe('spec', () => {
       spec: `${__dirname}/fixture/pass*.js`,
       bundle: 'cat'
     });
+    // @ts-ignore
     const output = process.stdout.write.firstCall.args[0];
     sinon.restore(); // Restore sandbox here or test output breaks
 

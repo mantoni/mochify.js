@@ -113,23 +113,29 @@ function MochifyReporter(runner) {
   forward(runner, constants.EVENT_TEST_END, getTestData);
 }
 
+// @ts-ignore
 mocha.reporter(MochifyReporter);
 mocha.ui(/* MOCHIFY_UI */);
+// @ts-ignore
 mocha.timeout(/* MOCHIFY_TIMEOUT */);
 
 // Workaround for https://github.com/mozilla/geckodriver/issues/1798
 if (typeof globalThis !== 'undefined' && globalThis !== window) {
   // Register globals on window. Mocha uses globalThis, if defined.
+  // @ts-ignore
   window.mocha = mocha;
   mocha.suite.emit('pre-require', window, null, mocha);
 }
 
+// @ts-ignore
 mocha.mochify_pollEvents = pollEvents;
 
 var chunks = [];
+// @ts-ignore
 mocha.mochify_receive = function (chunk) {
   chunks.push(chunk);
 };
+// @ts-ignore
 mocha.mochify_run = function () {
   // Inject script
   var s = document.createElement('script');
@@ -138,7 +144,9 @@ mocha.mochify_run = function () {
   document.body.appendChild(s);
   // Run mocha
   mocha.run(function (code) {
+    // @ts-ignore
     if (typeof __coverage__ !== 'undefined') {
+      // @ts-ignore
       write('mochify.coverage', window.__coverage__);
     }
     write('mochify.callback', { code: code });

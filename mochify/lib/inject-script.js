@@ -1,10 +1,14 @@
 'use strict';
 
+/**
+ * @typedef {import('../driver').MochifyDriver} MochifyDriver
+ */
+
 exports.injectScript = injectScript;
 
 const MAX_SCRIPT_CHUNK = 700 * 1000;
 
-/*
+/**
  * This hack works around the following issues:
  *
  * https://github.com/mantoni/mochify.js/issues/110
@@ -15,6 +19,10 @@ const MAX_SCRIPT_CHUNK = 700 * 1000;
  * Injecting scripts that are below a certain size works reliably, so we're
  * slicing the actual script into chunks, merge the parts in the browser and
  * then inject a script tag there.
+ *
+ * @param {MochifyDriver} driver
+ * @param {string} script
+ * @returns {Promise<void>}
  */
 async function injectScript(driver, script) {
   do {
@@ -24,7 +32,7 @@ async function injectScript(driver, script) {
       script = script.substring(MAX_SCRIPT_CHUNK);
     } else {
       chunk = script;
-      script = null;
+      script = '';
     }
     await driver.evaluate(
       `window.mocha.mochify_receive(${JSON.stringify(chunk)})`
