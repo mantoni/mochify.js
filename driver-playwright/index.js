@@ -2,8 +2,16 @@
 
 const driver = require('playwright');
 
+/**
+ * @typedef {import('../mochify').MochifyDriver} MochifyDriver
+ */
+
 exports.mochifyDriver = mochifyDriver;
 
+/**
+ * @param {Object} [options]
+ * @returns {Promise<MochifyDriver>}
+ */
 async function mochifyDriver(options = {}) {
   const {
     stderr = process.stderr,
@@ -50,6 +58,10 @@ async function mochifyDriver(options = {}) {
 
   await page.goto(url);
 
+  /**
+   * @param {string} script
+   * @returns {Promise<Object>}
+   */
   function evaluate(script) {
     return page.evaluate(script);
   }

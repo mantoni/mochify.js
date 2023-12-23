@@ -6,6 +6,10 @@ const path = require('path');
 const { assert } = require('@sinonjs/referee-sinon');
 const execa = require('execa');
 
+/**
+ * @typedef {import('execa').ExecaError} ExecaError
+ */
+
 describe('webdriver', () => {
   async function run(file, ...extra_args) {
     try {
@@ -18,7 +22,7 @@ describe('webdriver', () => {
         }
       );
     } catch (error) {
-      return error;
+      return /** @type {ExecaError} */ (error);
     }
   }
 
@@ -47,10 +51,11 @@ describe('webdriver', () => {
       const fixture = fs.createReadStream(
         path.resolve(__dirname, './fixture/passes.js')
       );
+      // @ts-ignore
       fixture.pipe(cp.stdin);
       result = await cp;
     } catch (err) {
-      result = err;
+      result = /** @type {ExecaError} */ (err);
     }
 
     assert.isFalse(result.failed);

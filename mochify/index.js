@@ -11,8 +11,18 @@ const { resolveMochifyDriver } = require('./lib/mochify-driver');
 const { startServer } = require('./lib/server');
 const { run } = require('./lib/run');
 
+/**
+ * @typedef {import('./lib/load-config').MochifyOptions} MochifyOptions
+ * @typedef {import('./lib/server').MochifyServer} MochifyServer
+ * @typedef {import('./driver').MochifyDriver} MochifyDriver
+ */
+
 exports.mochify = mochify;
 
+/**
+ * @param {MochifyOptions} [options]
+ * @returns {Promise<{ exit_code: number }>}
+ */
 async function mochify(options = {}) {
   const config = await loadConfig(options);
   validateConfig(config);
@@ -66,7 +76,7 @@ async function mochify(options = {}) {
 
   let exit_code;
   try {
-    exit_code = await run(driver, mocha_runner, bundle, server);
+    exit_code = await run(driver, mocha_runner, bundle);
   } finally {
     await shutdown(driver, server);
   }
@@ -74,6 +84,11 @@ async function mochify(options = {}) {
   return { exit_code };
 }
 
+/**
+ * @param {MochifyDriver | null} driver
+ * @param {MochifyServer | null} server
+ * @returns {Promise<void>}
+ */
 async function shutdown(driver, server) {
   const shutdown_promises = [];
   if (driver) {

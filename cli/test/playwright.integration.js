@@ -5,6 +5,10 @@ const path = require('path');
 const { assert } = require('@sinonjs/referee-sinon');
 const execa = require('execa');
 
+/**
+ * @typedef {import('execa').ExecaError} ExecaError
+ */
+
 describe('playwright', () => {
   async function run(file, ...extra_args) {
     try {
@@ -24,7 +28,7 @@ describe('playwright', () => {
         }
       );
     } catch (error) {
-      return error;
+      return /** @type {ExecaError} */ (error);
     }
   }
 
@@ -50,10 +54,10 @@ describe('playwright', () => {
       const fixture = fs.createReadStream(
         path.resolve(__dirname, './fixture/passes.js')
       );
-      fixture.pipe(cp.stdin);
+      fixture.pipe(/** @type {Object} */ (cp).stdin);
       result = await cp;
     } catch (err) {
-      result = err;
+      result = /** @type {ExecaError} */ (err);
     }
 
     assert.isFalse(result.failed);

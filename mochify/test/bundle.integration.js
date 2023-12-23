@@ -13,6 +13,7 @@ describe('bundle', () => {
       spec: 'unknown-file.js',
       bundle: 'echo \'it("works", function(){});\''
     });
+    // @ts-ignore
     const output = process.stdout.write.firstCall.args[0];
     sinon.restore(); // Restore sandbox here or test output breaks
 

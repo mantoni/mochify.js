@@ -2,19 +2,35 @@
 
 const driver = require('puppeteer');
 
+/**
+ * @typedef {import('node:stream').Writable} Writable
+ * @typedef {import('puppeteer').PuppeteerLaunchOptions} PuppeteerLaunchOptions
+ * @typedef {import('../mochify').MochifyDriver} MochifyDriver
+ */
+
+/**
+ * @typedef {Object} PuppeteerDriverOptions
+ * @property {string} [url]
+ * @property {Writable} [stderr]
+ */
+
 exports.mochifyDriver = mochifyDriver;
 
+/**
+ * @param {PuppeteerDriverOptions & PuppeteerLaunchOptions} [options]
+ * @returns {Promise<MochifyDriver>}
+ */
 async function mochifyDriver(options = {}) {
   const {
     url = `file:${__dirname}/index.html`,
-    stderr = process.stderr,
+    stderr = /** @type {Writable} */ (process.stderr),
     ...launch_options
   } = options;
 
   // In case this arrives through CLI flags, yargs will pass a string
   // when a single arg is given and an Array of strings when multiple
   // args are given.
-  const extra_args = [].concat(launch_options.args).filter(Boolean);
+  const extra_args = launch_options.args || [];
   launch_options.args = [
     '--allow-insecure-localhost',
     '--disable-dev-shm-usage',
@@ -44,6 +60,9 @@ async function mochifyDriver(options = {}) {
     stderr.write('\n');
   });
 
+  /**
+   * @param {Error} err
+   */
   function handlePuppeteerError(err) {
     stderr.write(err.stack || String(err));
     stderr.write('\n');

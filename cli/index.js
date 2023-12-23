@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 
-const yargs = require('yargs/yargs');
+const yargs = require('yargs');
 const { hideBin } = require('yargs/helpers');
 const { mochify } = require('@mochify/mochify');
 

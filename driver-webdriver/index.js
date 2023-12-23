@@ -1,11 +1,20 @@
 'use strict';
 
+// @ts-ignore
 const { WebDriver } = require('webdriver');
+
+/**
+ * @typedef {import('../mochify').MochifyDriver} MochifyDriver
+ */
 
 exports.mochifyDriver = mochifyDriver;
 
 const default_url = `file:${__dirname}/index.html`;
 
+/**
+ * @param {Object} [options]
+ * @returns {Promise<MochifyDriver>}
+ */
 async function mochifyDriver(options = {}) {
   const { url } = options;
   delete options.url;

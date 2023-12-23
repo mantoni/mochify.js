@@ -2,8 +2,16 @@
 
 const jsdom = require('jsdom');
 
+/**
+ * @typedef {import('../mochify').MochifyDriver} MochifyDriver
+ */
+
 exports.mochifyDriver = mochifyDriver;
 
+/**
+ * @param {Object} [options]
+ * @returns {Promise<MochifyDriver>}
+ */
 function mochifyDriver(options = {}) {
   const {
     stderr = process.stderr,
@@ -27,7 +35,7 @@ function mochifyDriver(options = {}) {
   );
 
   function end() {
-    return null;
+    return Promise.resolve();
   }
 
   virtual_console.on('jsdomError', (error) => {

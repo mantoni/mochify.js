@@ -7,7 +7,10 @@ describe('mochify/lib/inject-script', () => {
   const MAX_SCRIPT_CHUNK = 700 * 1000;
 
   it('evaluates mochify_receive with given script', () => {
-    const driver = { evaluate: sinon.fake.returns(sinon.promise()) };
+    const driver = {
+      evaluate: sinon.fake.returns(sinon.promise()),
+      end: () => Promise.resolve()
+    };
 
     injectScript(driver, 'console.log("Hi!")');
 
@@ -18,7 +21,10 @@ describe('mochify/lib/inject-script', () => {
   });
 
   it('evaluates mochify_run', async () => {
-    const driver = { evaluate: sinon.fake.resolves() };
+    const driver = {
+      evaluate: sinon.fake.resolves(),
+      end: () => Promise.resolve()
+    };
 
     const promise = injectScript(driver, 'console.log("Hi!")');
 
@@ -28,11 +34,15 @@ describe('mochify/lib/inject-script', () => {
   });
 
   it('splits script into chunks and invokes mochify_receive twice', async () => {
-    const driver = { evaluate: sinon.fake.resolves() };
-    const script = {
+    const driver = {
+      evaluate: sinon.fake.resolves(),
+      end: () => Promise.resolve()
+    };
+
+    const script = /** @type {string} */ ({
       length: MAX_SCRIPT_CHUNK + 1,
       substring: sinon.fake((from) => (from === 0 ? 'first' : 'second'))
-    };
+    });
 
     const promise = injectScript(driver, script);
 

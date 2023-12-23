@@ -6,8 +6,19 @@ const { stackMapper } = require('./stack-mapper');
 const { pollEvents } = require('./poll-events');
 const { mochaEventAdapter } = require('./mocha-event-adapter');
 
+/**
+ * @typedef {import('mocha').Runner} Runner
+ * @typedef {import('../driver').MochifyDriver} MochifyDriver
+ */
+
 exports.run = run;
 
+/**
+ * @param {MochifyDriver} driver
+ * @param {Runner} mocha_runner
+ * @param {string} script
+ * @returns {Promise<number>}
+ */
 async function run(driver, mocha_runner, script) {
   let mapStack = null;
   const source_map = fromSource(script);

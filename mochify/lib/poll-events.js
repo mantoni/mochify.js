@@ -1,7 +1,16 @@
 'use strict';
 
+/**
+ * @typedef {import('../driver').MochifyDriver} MochifyDriver
+ */
+
 exports.pollEvents = pollEvents;
 
+/**
+ * @param {MochifyDriver} driver
+ * @param {function(string, Object): void} emit
+ * @returns {Promise<number>}
+ */
 function pollEvents(driver, emit) {
   return new Promise((resolve) => {
     async function doPoll() {
