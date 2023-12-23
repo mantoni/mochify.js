@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
+    "types": "tsc",
     "test": "mocha '**/*.test.js'",
     "test:integration": "mocha --timeout 10000 -R spec '**/*.integration.js'",
     "watch": "npm test -- --watch",
