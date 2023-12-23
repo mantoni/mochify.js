@@ -9,6 +9,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
+    "types": "tsc",
     "test": "echo \"No unit tests yet\"",
     "test:integration": "mocha --timeout 10000 -R spec '**/*.integration.js'",
     "prettier:check": "prettier --check '**/*.{js,json,md}'",

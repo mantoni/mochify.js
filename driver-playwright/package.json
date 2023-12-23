@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
+    "types": "tsc",
     "test": "echo \"No unit tests yet\"",
     "test:integration": "echo \"No integration tests yet\"",
     "prettier:check": "prettier --check '**/*.{js,json,md}'",
